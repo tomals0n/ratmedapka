@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>RatMed Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-3hWJpQhKfGfHqKpQ2jv8lGqv1S7rH3V1gPj0vQ5oQe2hYcRkS0TqTgNw9mWQH8xY6oIYl3pR5S9QzjFJqC+ALw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body class="bg-[#0d0f12] text-white min-h-screen">
+    <main class="max-w-6xl mx-auto p-4">
+      <section id="home">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a id="goMeds" class="rounded-xl border border-[#2a2e35] bg-[#14171b] p-4 text-center shadow hover:shadow-lg transition cursor-pointer">
+            <i class="fa-solid fa-pills text-3xl mb-2"></i>
+            <div class="font-semibold">Leki</div>
+          </a>
+          <a id="goProtocols" class="rounded-xl p-4 text-center shadow hover:shadow-lg transition cursor-pointer glass">
+            <i class="fa-solid fa-clipboard-list text-3xl mb-2 text-emerald-300"></i>
+            <div class="font-semibold">Schematy</div>
+            <div class="text-sm text-white/70 mt-1">Kategorie</div>
+          </a>
+          <a id="goSymptoms" class="rounded-xl border border-[#2a2e35] bg-[#14171b] p-4 text-center shadow hover:shadow-lg transition cursor-pointer">
+            <i class="fa-solid fa-exclamation-circle text-3xl mb-2"></i>
+            <div class="font-semibold">Objawy</div>
+          </a>
+        </div>
+      </section>
+
+      <section id="meds" class="hidden">
+        <button id="backFromMeds" class="fixed top-3 left-3 z-20 px-3 py-2 bg-[#14171b] border border-[#2a2e35] rounded-md text-sm">{'<' } Powrót</button>
+        <div class="max-w-5xl mx-auto">
+          <input id="medSearch" placeholder="Szukaj leku..." class="w-full bg-[#111317] border border-[#2a2e35] rounded-md px-3 py-2 text-sm mb-4" />
+          <div id="medsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+      </section>
+
+      <section id="medDetail" class="hidden">
+        <button id="backMedDetail" class="fixed top-3 left-3 z-20 px-3 py-2 bg-[#14171b] border border-[#2a2e35] rounded-md text-sm">{'<' } Powrót</button>
+        <div class="max-w-3xl mx-auto">
+          <div id="medDetailTitle" class="text-xl font-semibold mb-3"></div>
+          <div id="medDetailContent" class="rounded-xl border border-[#2a2e35] bg-[#14171b] p-4"></div>
+        </div>
+      </section>
+
+      <section id="protocols" class="hidden">
+        <button id="backFromProtocols" class="fixed top-3 left-3 z-20 px-3 py-2 bg-[#14171b] border border-[#2a2e35] rounded-md text-sm">{'<' } Powrót</button>
+        <div class="max-w-5xl mx-auto">
+          <div id="protocolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+      </section>
+
+      <section id="protocolDetail" class="hidden">
+        <button id="backProtocolDetail" class="fixed top-3 left-3 z-20 px-3 py-2 bg-[#14171b] border border-[#2a2e35] rounded-md text-sm">{'<' } Powrót</button>
+        <div class="max-w-3xl mx-auto">
+          <div id="protocolDetailTitle" class="text-xl font-semibold mb-3"></div>
+          <div id="protocolDetailContent" class="rounded-xl border border-[#2a2e35] bg-[#14171b] p-4"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./src/data.js"></script>
+    <script src="./src/main.js"></script>
+  </body>
+</html>
