@@ -16,7 +16,7 @@ const medications = [
       { label: 'II dawka', text: '0,2 mg/kg i.v.' }
     ],
     indications: 'Częstoskurcze nadkomorowe, diagnozowanie i różnicowanie częstoskurczu.', // [cite: 4, 5]
-    contraindications: 'Blok A-V II i III st., zesp. chorego węzła, niewydolność serca, astma, długie QT.', // [cite: 7, 8, 9, 10]
+    contraindications: 'Blok A-V II i III st., zespół chorego węzła, niewydolność serca, astma, długie QT.', // [cite: 7, 8, 9, 10]
     administration: 'Szybki bolus i.v. (w ciągu 2 sekund), natychmiast przepłukać solą.' // [cite: 12, 17]
   },
   {

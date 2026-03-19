@@ -171,11 +171,30 @@ function renderMedDetail() {
     box.appendChild(ul);
     els.medDetailContent.appendChild(box);
   }
+  function addSingleBullet(title, text, color) {
+    if (!text) return;
+    const box = document.createElement('div');
+    box.className = 'mb-3';
+    const header = document.createElement('div');
+    header.className = color === 'red' ? 'text-red-400 font-semibold' : 'text-emerald-400 font-semibold';
+    header.textContent = title;
+    box.appendChild(header);
+    const ul = document.createElement('ul');
+    ul.className = `list-disc pl-5 ${color === 'red' ? 'marker:text-red-400' : 'marker:text-emerald-400'}`;
+    const li = document.createElement('li');
+    li.textContent = String(text).trim();
+    ul.appendChild(li);
+    box.appendChild(ul);
+    els.medDetailContent.appendChild(box);
+  }
   function toList(text) {
-    return String(text)
-      .split(/(?:\n|;|•|·|•\s*|,|\.|\u2022|->)/)
+    const baseSplit = String(text)
+      .split(/(?:\n|;|•|·|\u2022)/)
+      .flatMap(s => s.split(','))
       .map(s => s.trim())
       .filter(Boolean);
+    if (!baseSplit.length) return [String(text).trim()];
+    return baseSplit;
   }
   function extractSegment(text, headingRegex) {
     const m = String(text).match(new RegExp(`${headingRegex.source}\\s*:\\s*([\\s\\S]*?)(?:Dzieci|DOROŚLI|$)`, 'i'));
@@ -186,7 +205,7 @@ function renderMedDetail() {
     addDosesList(m);
     addBulleted('Wskazania', m.indications, 'green');
     addBulleted('Przeciwwskazania', m.contraindications, 'red');
-    addBulleted('Jak podawać', m.administration, 'green');
+    addSingleBullet('Jak podawać', m.administration, 'green');
   }
 }
 els.backMedDetail.addEventListener('click', () => { show('meds'); });
