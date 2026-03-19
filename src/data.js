@@ -42,7 +42,7 @@ const medications = [
     shortDescription: 'NZK (VF/pVT), komorowe zaburzenia rytmu.', // [cite: 43, 45]
     vialSize: 'Amp.: 150 mg / 3 ml', // [cite: 41]
     doses: 'Dorośli NZK: 300 mg po 3 def. -> 150 mg po 5 def. Dzieci NZK: 5 mg/kg.', // [cite: 54, 57]
-    indications: 'NZK (migotanie komór, częstoskurcz bez tętna), częstoskurcz komorowy, migotanie przedsionków.', // [cite: 43, 44, 46]
+    indications: 'VF, pVT, VT, AF.', // [cite: 43, 44, 46]
     contraindications: 'Bradykardia zatokowa, blok A-V, zaburzenia tarczycy, hipokaliemia.', // [cite: 49, 50, 51, 52]
     administration: 'NZK: i.v./i.o. z szybkiego wstrzyknięcia (rozc. w 5% glukozie). W częstoskurczu wlew w 20-60 min.' // [cite: 54, 55, 57]
   },
