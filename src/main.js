@@ -1,17 +1,22 @@
-// Vanilla JS SPA logic using show/hide of sections
+// pokaz/ukryj sekcje
 
 const sections = {
   home: document.getElementById('home'),
   meds: document.getElementById('meds'),
   medDetail: document.getElementById('medDetail'),
   protocols: document.getElementById('protocols'),
-  protocolDetail: document.getElementById('protocolDetail')
+  protocolDetail: document.getElementById('protocolDetail'),
+  calculators: document.getElementById('calculators'),
+  calcGCS: document.getElementById('calcGCS'),
+  calcPeds: document.getElementById('calcPeds'),
+  calcMAP: document.getElementById('calcMAP')
 };
 
 const els = {
   goMeds: document.getElementById('goMeds'),
   goProtocols: document.getElementById('goProtocols'),
   goSymptoms: document.getElementById('goSymptoms'),
+  goCalculators: document.getElementById('goCalculators'),
   backFromMeds: document.getElementById('backFromMeds'),
   medSearch: document.getElementById('medSearch'),
   medsGrid: document.getElementById('medsGrid'),
@@ -22,7 +27,15 @@ const els = {
   protocolsGrid: document.getElementById('protocolsGrid'),
   backProtocolDetail: document.getElementById('backProtocolDetail'),
   protocolDetailTitle: document.getElementById('protocolDetailTitle'),
-  protocolDetailContent: document.getElementById('protocolDetailContent')
+  protocolDetailContent: document.getElementById('protocolDetailContent'),
+  backFromCalculators: document.getElementById('backFromCalculators'),
+  calculatorsGrid: document.getElementById('calculatorsGrid'),
+  backCalcGCS: document.getElementById('backCalcGCS'),
+  gcsBox: document.getElementById('gcsBox'),
+  backCalcPeds: document.getElementById('backCalcPeds'),
+  pedsBox: document.getElementById('pedsBox'),
+  backCalcMAP: document.getElementById('backCalcMAP'),
+  mapBox: document.getElementById('mapBox')
 };
 
 // Data-driven rendering: no normalization — rely on dosesAdults/dosesChildren in data.js
@@ -36,6 +49,7 @@ function show(name) {
 els.goMeds.addEventListener('click', () => { show('meds'); renderMeds(); });
 els.goProtocols.addEventListener('click', () => { show('protocols'); renderProtocols(); });
 els.goSymptoms.addEventListener('click', () => { alert('Widok Objawy dostępny w wersji rozszerzonej.'); });
+els.goCalculators.addEventListener('click', () => { show('calculators'); renderCalculators(); });
 
 // Medications view
 let currentMedId = null;
@@ -282,8 +296,209 @@ function faFromIconName(name) {
   return map[name] || 'fa-solid fa-clipboard-list';
 }
 
+// Calculators view
+function renderCalculators() {
+  els.calculatorsGrid.innerHTML = '';
+  const data = [
+    { id: 'gcs', title: 'GCS', subtitle: 'Glasgow Coma Scale', emoji: '🧠' },
+    { id: 'peds', title: 'Leki dla dzieci', subtitle: 'Przeliczenia dawek leków na kg/mc.', emoji: '👶' },
+    { id: 'map', title: 'MAP', subtitle: 'Średnie ciśnienie tętnicze', emoji: '🩺' }
+  ];
+  data.forEach(c => {
+    const card = document.createElement('button');
+    card.className = 'rounded-xl p-5 text-center glass hover:shadow-lg transition';
+    card.innerHTML = `
+      <span class="tile-emoji">${c.emoji}</span>
+      <div class="font-semibold">${c.title}</div>
+      <div class="text-sm text-white/70 mt-1">${c.subtitle}</div>
+    `;
+    card.addEventListener('click', () => {
+      if (c.id === 'gcs') { renderGCS(); show('calcGCS'); }
+      else if (c.id === 'peds') { renderPeds(); show('calcPeds'); }
+      else if (c.id === 'map') { renderMAP(); show('calcMAP'); }
+    });
+    els.calculatorsGrid.appendChild(card);
+  });
+}
+els.backFromCalculators.addEventListener('click', () => show('home'));
+
+let gcsMode = 'adult';
+function renderGCS() {
+  els.gcsBox.innerHTML = '';
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = `
+    <div class="flex items-center justify-between mb-3">
+      <div id="gcsHeaderTitle" class="text-xl font-semibold">Glasgow Coma Scale (GCS)</div>
+      <div class="inline-flex rounded-md border border-[#2a2e35] overflow-hidden">
+        <button id="gcsAdultBtn" class="px-3 py-2 text-sm ${gcsMode==='adult'?'bg-[#14171b]':'bg-transparent'}">Dorośli</button>
+        <button id="gcsChildBtn" class="px-3 py-2 text-sm ${gcsMode==='peds'?'bg-[#14171b]':'bg-transparent'} border-l border-[#2a2e35]">Dzieci</button>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div class="space-y-2">
+        <div class="font-semibold">Otwieranie oczu (E)</div>
+        <select id="gcsE" class="w-full bg-[#111317] border border-[#2a2e35] rounded-md px-3 py-2 text-sm">
+          
+        </select>
+      </div>
+      <div class="space-y-2">
+        <div class="font-semibold">Odpowiedź słowna (V)</div>
+        <select id="gcsV" class="w-full bg-[#111317] border border-[#2a2e35] rounded-md px-3 py-2 text-sm">
+          
+        </select>
+      </div>
+      <div class="space-y-2">
+        <div class="font-semibold">Reakcja ruchowa (M)</div>
+        <select id="gcsM" class="w-full bg-[#111317] border border-[#2a2e35] rounded-md px-3 py-2 text-sm">
+          
+        </select>
+      </div>
+    </div>
+    <div id="gcsResult" class="mt-4 rounded-md border border-[#2a2e35] bg-[#0f1215] p-3 text-center"></div>
+  `;
+  els.gcsBox.appendChild(wrapper);
+  function setOptions() {
+    const eSel = document.getElementById('gcsE');
+    const vSel = document.getElementById('gcsV');
+    const mSel = document.getElementById('gcsM');
+    const optsE = [
+      { v: 4, t: '4 – spontaniczne' },
+      { v: 3, t: '3 – na głos' },
+      { v: 2, t: '2 – na ból' },
+      { v: 1, t: '1 – brak' }
+    ];
+    const optsVAdult = [
+      { v: 5, t: '5 – zorientowany' },
+      { v: 4, t: '4 – splątany' },
+      { v: 3, t: '3 – nieadekwatny' },
+      { v: 2, t: '2 – niezrozumiały' },
+      { v: 1, t: '1 – brak' }
+    ];
+    const optsVPeds = [
+      { v: 5, t: '5 – gaworzy/śmieje się, adekwatnie reaguje' },
+      { v: 4, t: '4 – płacze, daje się uspokoić' },
+      { v: 3, t: '3 – płacz nieutulony' },
+      { v: 2, t: '2 – jęki na ból' },
+      { v: 1, t: '1 – brak' }
+    ];
+    const optsM = [
+      { v: 6, t: '6 – wykonuje polecenia' },
+      { v: 5, t: '5 – lokalizuje ból' },
+      { v: 4, t: '4 – ucieka przed bólem' },
+      { v: 3, t: '3 – zgięciowa na ból' },
+      { v: 2, t: '2 – wyprostna na ból' },
+      { v: 1, t: '1 – brak' }
+    ];
+    function fill(sel, arr) {
+      if (!sel) return;
+      sel.innerHTML = arr.map(o => `<option value="${o.v}">${o.t}</option>`).join('');
+    }
+    fill(eSel, optsE);
+    fill(vSel, gcsMode === 'adult' ? optsVAdult : optsVPeds);
+    fill(mSel, optsM);
+    const header = document.getElementById('gcsHeaderTitle');
+    if (header) header.textContent = gcsMode === 'adult' ? 'Glasgow Coma Scale (GCS)' : 'Pediatryczna Skala Glasgow (PGCS)';
+  }
+  function update() {
+    const e = Number((document.getElementById('gcsE') || {}).value || 4);
+    const v = Number((document.getElementById('gcsV') || {}).value || 5);
+    const m = Number((document.getElementById('gcsM') || {}).value || 6);
+    const total = e + v + m;
+    let interp = '';
+    if (total >= 13) interp = 'Łagodne';
+    else if (total >= 9) interp = 'Umiarkowane';
+    else interp = 'Ciężkie';
+    const res = document.getElementById('gcsResult');
+    if (res) res.innerHTML = `<div class="font-semibold text-xl">${total} / 15</div><div class="text-white/70 mt-1">Interpretacja: ${interp}</div>`;
+  }
+  setOptions();
+  ['gcsE','gcsV','gcsM'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', update);
+  });
+  const btnA = document.getElementById('gcsAdultBtn');
+  const btnC = document.getElementById('gcsChildBtn');
+  if (btnA) btnA.addEventListener('click', () => { gcsMode = 'adult'; renderGCS(); });
+  if (btnC) btnC.addEventListener('click', () => { gcsMode = 'peds'; renderGCS(); });
+  update();
+}
+els.backCalcGCS.addEventListener('click', () => show('calculators'));
+
+function renderPeds() {
+  els.pedsBox.innerHTML = '';
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = `
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div class="space-y-2">
+        <div class="font-semibold">Masa ciała (kg)</div>
+        <input id="pedsWeight" type="number" step="0.1" class="w-full bg-[#111317] border border-[#2a2e35] rounded-md px-3 py-2 text-sm" />
+      </div>
+      <div class="space-y-2">
+        <div class="font-semibold">Dawka na kg</div>
+        <input id="pedsPerKg" type="number" step="0.01" class="w-full bg-[#111317] border border-[#2a2e35] rounded-md px-3 py-2 text-sm" placeholder="np. 0.1" />
+      </div>
+      <div class="space-y-2">
+        <div class="font-semibold">Jednostka</div>
+        <select id="pedsUnit" class="w-full bg-[#111317] border border-[#2a2e35] rounded-md px-3 py-2 text-sm">
+          <option value="mg">mg</option>
+          <option value="µg">µg</option>
+        </select>
+      </div>
+    </div>
+    <div id="pedsResult" class="mt-4 rounded-md border border-[#2a2e35] bg-[#0f1215] p-3 text-center"></div>
+  `;
+  els.pedsBox.appendChild(wrapper);
+  function update() {
+    const w = Number((document.getElementById('pedsWeight') || {}).value || 0);
+    const dpk = Number((document.getElementById('pedsPerKg') || {}).value || 0);
+    const unit = String((document.getElementById('pedsUnit') || {}).value || 'mg');
+    const dose = w * dpk;
+    const res = document.getElementById('pedsResult');
+    if (res) res.innerHTML = `<div class="font-semibold text-xl">${dose ? dose.toFixed(2) : '0.00'} ${unit}</div><div class="text-white/70 mt-1">Dawka całkowita</div>`;
+  }
+  ['pedsWeight','pedsPerKg','pedsUnit'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', update);
+  });
+  update();
+}
+els.backCalcPeds.addEventListener('click', () => show('calculators'));
+
+function renderMAP() {
+  els.mapBox.innerHTML = '';
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = `
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div class="space-y-2">
+        <div class="font-semibold">SBP (skurczowe)</div>
+        <input id="sbp" type="number" step="1" class="w-full bg-[#111317] border border-[#2a2e35] rounded-md px-3 py-2 text-sm" />
+      </div>
+      <div class="space-y-2">
+        <div class="font-semibold">DBP (rozkurczowe)</div>
+        <input id="dbp" type="number" step="1" class="w-full bg-[#111317] border border-[#2a2e35] rounded-md px-3 py-2 text-sm" />
+      </div>
+    </div>
+    <div id="mapResult" class="mt-4 rounded-md border border-[#2a2e35] bg-[#0f1215] p-3 text-center"></div>
+  `;
+  els.mapBox.appendChild(wrapper);
+  function update() {
+    const s = Number((document.getElementById('sbp') || {}).value || 0);
+    const d = Number((document.getElementById('dbp') || {}).value || 0);
+    const map = (s && d) ? (s + 2 * d) / 3 : 0;
+    const res = document.getElementById('mapResult');
+    if (res) res.innerHTML = `<div class="font-semibold text-xl">${map ? map.toFixed(1) : '0.0'} mmHg</div><div class="text-white/70 mt-1">MAP = (SBP + 2·DBP) / 3</div>`;
+  }
+  ['sbp','dbp'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', update);
+  });
+  update();
+}
+els.backCalcMAP.addEventListener('click', () => show('calculators'));
+
 // Initial
 show('home');
 // Pre-render lists for immediate UX when entering
 renderMeds();
 renderProtocols();
+renderCalculators();

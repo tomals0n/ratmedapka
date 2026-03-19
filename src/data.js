@@ -1,4 +1,4 @@
-// USER WILL ADD REAL DATA HERE
+// leki
 const medications = [
   {
     id: 'adenozyna',
@@ -814,7 +814,7 @@ const protocols = [
     id: 'abcde',
     title: 'Badanie pacjenta',
     iconName: 'stethoscope',
-    subtitle: 'Ocena według ABCDE',
+    subtitle: 'Ocena wg. schematu ABCDE',
     sections: [
       {
         key: 'A',
@@ -870,5 +870,137 @@ const protocols = [
         ]
       }
     ]
-  }
+  },
+  {
+    id: 'wywiad-sample',
+    title: 'Wywiad z pacjentem',
+    iconName: 'clipboard-list',
+    subtitle: 'Wywiad wg. schematu SAMPLE',
+    sections: [
+      {
+        key: 'S',
+        title: 'ymptoms: symptomy',
+        bullets: [
+          'Co się dzieje?',
+          'Od kiedy to się dzieje?',
+          'Gdzie boli? Skala bólu NRS? (jeżeli boli)'
+        ]
+      },
+      {
+        key: 'A',
+        title: 'llergies: alergie',
+        bullets: [
+          'Głównie alergie na leki',
+          'Przy podejrzeniu anafilaksji pytanie o alergen (alergie pokarmowe etc.)'
+        ]
+      },
+      {
+        key: 'M',
+        title: 'edications: przyjmowane leki',
+        bullets: [
+          'Jakie leki stosuje?',
+          'Czy bierze je regularnie?',
+          'Jakie dawki, w których godzinach?',
+          'Czy przyjął je przed przybyciem?'
+        ]
+      },
+      {
+        key: 'P',
+        title: 'ast medical history: przeszłość chorobowa',
+        bullets: [
+          'Czy na coś choruje?',
+          'Przebyte operacje?',
+          'Czy jest w ciąży (jeżeli kobieta)'
+        ]
+      },
+      {
+        key: 'L',
+        title: 'unch: posiłek',
+        bullets: [
+          'Kiedy był ostatnio spożywany posiłek?',
+          'Co to było?'
+        ]
+      },
+      {
+        key: 'E',
+        title: 'vents prior to injury: wydarzenia/ewentualności',
+        bullets: [
+          'Czy wie co się wydarzyło?',
+          'Czy niepokoi coś więcej?',
+          'Co było robione gdy nastąpiło pogorszenie stanu?'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'intubacja',
+    title: 'Intubacja',
+    iconName: 'clipboard-list',
+    subtitle: 'Check lista wg. schematu SPEED-BOMB',
+    
+  },
+  {
+    id: 'intubacja-pogorszenie',
+    title: 'Pogorszenie stanu pacjenta zaintubowanego',
+    iconName: 'clipboard-list',
+    subtitle: 'Kontrola wg. schematu DOPES',
+  },
+    {
+    id: 'ocena-bolu',
+    title: 'Ocena bólu',
+    iconName: 'clipboard-list',
+    subtitle: 'ocena bólu wg. schematu OLDCART',
+    sections: 
+    [
+      {
+        key: 'O',
+        title: 'kreślenie czasu',
+        bullets: [
+          'Od kiedy boli?'
+        ]
+      },
+      {
+        key: 'L',
+        title: 'okalizacja',
+        bullets: [
+          'Jaka jest lokalizacja bólu?'
+        ]
+      },
+      {
+        key: 'D',
+        title: 'ynamika',
+        bullets: [
+          'Jaka jest dynamika bólu wg. skali NRS?'
+        ]
+      },
+      {
+        key: 'C',
+        title: 'harakter',
+        bullets: [
+          'Jaki jest charakter bólu?'
+        ]
+      },
+      {
+        key: 'A',
+        title: 'gresywność / Czynniki nasilające',
+        bullets: [
+          'W jakich okolicznościach ból zwiększa swoje nasilenie?'
+        ]
+      },
+      {
+        key: 'R',
+        title: 'elaksacja / Czynniki zmniejszające ból',
+        bullets: [
+          'W jakich okolicznościach ból zmniejsza swoje nasilenie?'
+        ]
+      },
+      {
+        key: 'T',
+        title: 'owarzyszące objawy',
+        bullets: [
+          'Jakie są dodatkowe objawy, występujące łącznie z bólem?'
+        ]
+      }
+    ]
+  },
 ];
