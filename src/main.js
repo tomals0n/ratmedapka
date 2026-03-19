@@ -25,6 +25,8 @@ const els = {
   protocolDetailContent: document.getElementById('protocolDetailContent')
 };
 
+// Data-driven rendering: no normalization — rely on dosesAdults/dosesChildren in data.js
+
 function show(name) {
   Object.values(sections).forEach(s => s.classList.add('hidden'));
   sections[name].classList.remove('hidden');
@@ -43,9 +45,9 @@ function renderMeds() {
   const list = q ? medications.filter(m => m.name.toLowerCase().includes(q)) : medications;
   list.forEach(m => {
     const card = document.createElement('div');
-    card.className = 'rounded-xl border border-[#2a2e35] bg-[#14171b] p-4 shadow hover:shadow-lg transition text-center';
+    card.className = 'rounded-xl p-4 text-center glass hover:shadow-lg transition';
     card.innerHTML = `
-      <i class="fa-solid fa-pills text-3xl mb-2"></i>
+      <span class="tile-emoji">💊</span>
       <div class="font-semibold">${m.name}</div>
       ${m.shortDescription ? `<div class="text-sm text-white/70 mt-1">${m.shortDescription}</div>` : ''}
       ${m.vialSize ? `<div class="mt-2 text-xs text-white/80 border border-[#2a2e35] rounded-md px-2 py-1 inline-block">${m.vialSize}</div>` : ''}
@@ -91,7 +93,9 @@ function renderMedDetail() {
       ulA.className = 'list-disc pl-5 marker:text-emerald-400';
       med.dosesAdults.forEach(it => {
         const li = document.createElement('li');
-        li.innerHTML = `<span class="font-semibold">${it.label}:</span> ${it.text}`;
+        li.innerHTML = it.label
+          ? `<span class="font-semibold">${it.label}:</span> ${it.text}`
+          : `${it.text}`;
         ulA.appendChild(li);
       });
       container.appendChild(ulA);
@@ -105,49 +109,24 @@ function renderMedDetail() {
       ulK.className = 'list-disc pl-5 marker:text-red-400';
       med.dosesChildren.forEach(it => {
         const li = document.createElement('li');
-        li.innerHTML = `<span class="font-semibold">${it.label}:</span> ${it.text}`;
+        li.innerHTML = it.label
+          ? `<span class="font-semibold">${it.label}:</span> ${it.text}`
+          : `${it.text}`;
         ulK.appendChild(li);
       });
       container.appendChild(ulK);
     }
-    if ((!med.dosesAdults || !med.dosesAdults.length) && (!med.dosesChildren || !med.dosesChildren.length) && med.doses) {
-      // Heurystyczne rozbicie tekstu dawek na punkty
-      const adults = extractSegment(med.doses, /Dorośli/i);
-      const children = extractSegment(med.doses, /Dzieci/i);
-      if (adults) {
-        const adultsHeader = document.createElement('div');
-        adultsHeader.className = 'text-emerald-400 font-semibold mt-2';
-        adultsHeader.textContent = 'Dorośli:';
-        container.appendChild(adultsHeader);
-        const ulA = document.createElement('ul');
-        ulA.className = 'list-disc pl-5 marker:text-emerald-400';
-        toList(adults).forEach(item => {
-          const li = document.createElement('li');
-          li.textContent = item;
-          ulA.appendChild(li);
-        });
-        container.appendChild(ulA);
-      }
-      if (children) {
-        const kidsHeader = document.createElement('div');
-        kidsHeader.className = 'text-red-400 font-semibold mt-3';
-        kidsHeader.textContent = 'Dzieci:';
-        container.appendChild(kidsHeader);
-        const ulK = document.createElement('ul');
-        ulK.className = 'list-disc pl-5 marker:text-red-400';
-        toList(children).forEach(item => {
-          const li = document.createElement('li');
-          li.textContent = item;
-          ulK.appendChild(li);
-        });
-        container.appendChild(ulK);
-      }
-      if (!adults && !children) {
-        const p = document.createElement('div');
-        p.className = 'text-white/80 mt-1';
-        p.textContent = med.doses;
-        container.appendChild(p);
-      }
+    if ((!med.dosesAdults || !med.dosesAdults.length) && med.doses) {
+      const adultsHeader = document.createElement('div');
+      adultsHeader.className = 'text-emerald-400 font-semibold mt-2';
+      adultsHeader.textContent = 'Dorośli:';
+      container.appendChild(adultsHeader);
+      const ulA = document.createElement('ul');
+      ulA.className = 'list-disc pl-5 marker:text-emerald-400';
+      const li = document.createElement('li');
+      li.textContent = String(med.doses).trim();
+      ulA.appendChild(li);
+      container.appendChild(ulA);
     }
     els.medDetailContent.appendChild(container);
   }
@@ -196,6 +175,37 @@ function renderMedDetail() {
     if (!baseSplit.length) return [String(text).trim()];
     return baseSplit;
   }
+  function toListDoses(text) {
+    const parts = String(text)
+      .split(/(?:\n|;|->)/) // dawki dzielone strzałkami i średnikami
+      .map(s => s.trim())
+      .filter(Boolean);
+    if (parts.length > 1) return parts;
+    // dodatkowo dziel po konstrukcjach typu "I dawka:", "II dawka:", "NZK:", "Anafilaksja:"
+    const byLabels = String(text)
+      .split(/(?=(?:I{1,3}\s*dawka|NZK|Anafilaksja|Bradykardia|Astma|Krup|Wstrząs|AF|VF|VT|pVT)\s*:)/i)
+      .map(s => s.trim())
+      .filter(Boolean);
+    return byLabels.length > 1 ? byLabels : [String(text).trim()];
+  }
+  function parseDoses(text) {
+    const s = String(text);
+    const adultsMatch = s.match(/Dorośli[^:]*:\s*([\s\S]*?)(?:Dzieci[^:]*:|$)/i);
+    const childrenMatch = s.match(/Dzieci[^:]*:\s*([\s\S]*?)(?:Dorośli[^:]*:|$)/i);
+    const adultsSeg = adultsMatch ? adultsMatch[1].trim() : null;
+    const childrenSeg = childrenMatch ? childrenMatch[1].trim() : null;
+    function bullets(seg) {
+      if (!seg) return [];
+      let parts = seg.split(/(?:\n|;|->)/).map(t => t.trim()).filter(Boolean);
+      parts = parts.flatMap(p => p.split(/(?=(?:I{1,3}\s*dawka|NZK|Anafilaksja|Bradykardia|Astma|Krup|Wstrząs|AF|VF|VT|pVT)\s*:)/i)).map(t => t.trim()).filter(Boolean);
+      return parts.map(part => {
+        const m = part.match(/^((?:I{1,3}\s*dawka|NZK|Anafilaksja|Bradykardia|Astma|Krup|Wstrząs|AF|VF|VT|pVT)\s*):\s*(.*)$/i);
+        if (m) return { label: m[1].trim(), text: m[2].trim() };
+        return { label: null, text: part };
+      });
+    }
+    return { adults: bullets(adultsSeg), children: bullets(childrenSeg) };
+  }
   function extractSegment(text, headingRegex) {
     const m = String(text).match(new RegExp(`${headingRegex.source}\\s*:\\s*([\\s\\S]*?)(?:Dzieci|DOROŚLI|$)`, 'i'));
     if (m && m[1]) return m[1];
@@ -216,10 +226,9 @@ function renderProtocols() {
   els.protocolsGrid.innerHTML = '';
   protocols.forEach(p => {
     const card = document.createElement('button');
-    card.className = 'rounded-xl p-4 text-center glass hover:shadow-lg transition';
-    const iconClass = faFromIconName(p.iconName || 'clipboard-list');
+    card.className = 'rounded-xl p-5 text-center glass hover:shadow-lg transition';
     card.innerHTML = `
-      <i class="${iconClass} text-3xl mb-2 text-emerald-300"></i>
+      <span class="tile-emoji">📜</span>
       <div class="font-semibold">${p.title}</div>
       ${p.subtitle ? `<div class="text-sm text-white/70 mt-1">${p.subtitle}</div>` : ''}
     `;
@@ -236,7 +245,28 @@ els.backFromProtocols.addEventListener('click', () => show('home'));
 function renderProtocolDetail() {
   const item = protocols.find(p => p.id === currentProtocolId);
   els.protocolDetailTitle.textContent = item ? item.title : 'Brak danych';
-  els.protocolDetailContent.textContent = item ? item.content : '';
+  els.protocolDetailContent.innerHTML = '';
+  if (item && Array.isArray(item.sections)) {
+    item.sections.forEach(sec => {
+      const box = document.createElement('div');
+      box.className = 'mb-4';
+      const header = document.createElement('div');
+      header.className = 'font-semibold';
+      header.innerHTML = `<span class="text-emerald-400 font-extrabold text-xl">${sec.key}</span>: ${sec.title}`;
+      box.appendChild(header);
+      const ul = document.createElement('ul');
+      ul.className = 'list-disc pl-5 marker:text-emerald-400';
+      (sec.bullets || []).forEach(b => {
+        const li = document.createElement('li');
+        li.textContent = b;
+        ul.appendChild(li);
+      });
+      box.appendChild(ul);
+      els.protocolDetailContent.appendChild(box);
+    });
+  } else {
+    els.protocolDetailContent.textContent = item ? (item.content || '') : '';
+  }
 }
 els.backProtocolDetail.addEventListener('click', () => { show('protocols'); });
 
@@ -246,7 +276,8 @@ function faFromIconName(name) {
     bolt: 'fa-solid fa-bolt',
     'clipboard-list': 'fa-solid fa-clipboard-list',
     pill: 'fa-solid fa-pills',
-    alert: 'fa-solid fa-exclamation-circle'
+    alert: 'fa-solid fa-exclamation-circle',
+    stethoscope: 'fa-solid fa-stethoscope'
   };
   return map[name] || 'fa-solid fa-clipboard-list';
 }
