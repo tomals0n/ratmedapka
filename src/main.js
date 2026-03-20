@@ -6,6 +6,8 @@ const sections = {
   medDetail: document.getElementById('medDetail'),
   protocols: document.getElementById('protocols'),
   protocolDetail: document.getElementById('protocolDetail'),
+  symptoms: document.getElementById('symptoms'),
+  symptomDetail: document.getElementById('symptomDetail'),
   calculators: document.getElementById('calculators'),
   calcGCS: document.getElementById('calcGCS'),
   calcPeds: document.getElementById('calcPeds'),
@@ -28,6 +30,11 @@ const els = {
   backProtocolDetail: document.getElementById('backProtocolDetail'),
   protocolDetailTitle: document.getElementById('protocolDetailTitle'),
   protocolDetailContent: document.getElementById('protocolDetailContent'),
+  backFromSymptoms: document.getElementById('backFromSymptoms'),
+  symptomsGrid: document.getElementById('symptomsGrid'),
+  backSymptomDetail: document.getElementById('backSymptomDetail'),
+  symptomDetailTitle: document.getElementById('symptomDetailTitle'),
+  symptomDetailContent: document.getElementById('symptomDetailContent'),
   backFromCalculators: document.getElementById('backFromCalculators'),
   calculatorsGrid: document.getElementById('calculatorsGrid'),
   backCalcGCS: document.getElementById('backCalcGCS'),
@@ -48,7 +55,7 @@ function show(name) {
 // Home navigation
 els.goMeds.addEventListener('click', () => { show('meds'); renderMeds(); });
 els.goProtocols.addEventListener('click', () => { show('protocols'); renderProtocols(); });
-els.goSymptoms.addEventListener('click', () => { alert('Widok Objawy dostępny w wersji rozszerzonej.'); });
+els.goSymptoms.addEventListener('click', () => { show('symptoms'); renderSymptoms(); });
 els.goCalculators.addEventListener('click', () => { show('calculators'); renderCalculators(); });
 
 // Medications view
@@ -295,6 +302,80 @@ function faFromIconName(name) {
   };
   return map[name] || 'fa-solid fa-clipboard-list';
 }
+
+// Symptoms view
+let currentSymptomId = null;
+function renderSymptoms() {
+  els.symptomsGrid.innerHTML = '';
+  (symptoms || []).forEach(s => {
+    const card = document.createElement('button');
+    card.className = 'rounded-xl p-5 text-center glass hover:shadow-lg transition';
+    card.innerHTML = `
+      <span class="tile-emoji">❗</span>
+      <div class="font-semibold">${s.title}</div>
+    `;
+    card.addEventListener('click', () => {
+      currentSymptomId = s.id;
+      renderSymptomDetail();
+      show('symptomDetail');
+    });
+    els.symptomsGrid.appendChild(card);
+  });
+}
+els.backFromSymptoms.addEventListener('click', () => show('home'));
+
+function renderSymptomDetail() {
+  const item = (symptoms || []).find(x => x.id === currentSymptomId);
+  els.symptomDetailTitle.textContent = item ? item.title : 'Brak danych';
+  els.symptomDetailContent.innerHTML = '';
+  if (item && Array.isArray(item.sections)) {
+    item.sections.forEach(sec => {
+      const box = document.createElement('div');
+      box.className = 'mb-4';
+      const header = document.createElement('div');
+      header.className = 'text-emerald-400 font-semibold';
+      header.textContent = sec.title;
+      box.appendChild(header);
+      const ul = document.createElement('ul');
+      ul.className = 'list-disc pl-5 marker:text-emerald-400';
+      (sec.items || []).forEach(it => {
+        const li = document.createElement('li');
+        if (Array.isArray(it.children) && it.children.length) {
+          li.innerHTML = `<span class="font-semibold">${it.label}:</span>`;
+          const ul2 = document.createElement('ul');
+          ul2.className = 'list-disc pl-5 marker:text-emerald-400';
+          it.children.forEach(txt => {
+            const li2 = document.createElement('li');
+            li2.innerHTML = txt;
+            ul2.appendChild(li2);
+          });
+          li.appendChild(ul2);
+        } else {
+          li.textContent = it.label;
+        }
+        ul.appendChild(li);
+      });
+      box.appendChild(ul);
+      els.symptomDetailContent.appendChild(box);
+    });
+    if (item.note) {
+      const note = document.createElement('div');
+      note.className = 'text-red-400 font-semibold mt-3';
+      note.textContent = item.note;
+      els.symptomDetailContent.appendChild(note);
+    }
+  } else if (item && Array.isArray(item.bullets)) {
+    const ul = document.createElement('ul');
+    ul.className = 'list-disc pl-5 marker:text-emerald-400';
+    item.bullets.forEach(b => {
+      const li = document.createElement('li');
+      li.textContent = b;
+      ul.appendChild(li);
+    });
+    els.symptomDetailContent.appendChild(ul);
+  }
+}
+els.backSymptomDetail.addEventListener('click', () => { show('symptoms'); });
 
 // Calculators view
 function renderCalculators() {

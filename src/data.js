@@ -937,13 +937,127 @@ const protocols = [
     title: 'Intubacja',
     iconName: 'clipboard-list',
     subtitle: 'Check lista wg. schematu SPEED-BOMB',
-    
+    sections: [
+    {
+      key: 'S',
+      title: 'uction',
+      bullets: [
+        'ssak',
+        'cewniki do odsysania'
+      ]
+    },
+    {
+      key: 'P',
+      title: 'ositioning',
+      bullets: [
+        'odpowiednia pozycja ciała i głowy'
+      ]
+    },
+    {
+      key: 'E',
+      title: 'quipment for intubation',
+      bullets: [
+        'laryngoskop i łyżki w różnych rozmiarach',
+        '3 rurki intubacyjne jedna docelowy rozmiar, 2 +- 0,5 rozmiaru',
+        'prowadnice, zwykła i bougie'
+      ]
+    },
+    {
+      key: 'E',
+      title: 'nd-tidal CO2',
+      bullets: [
+        'czujnik pomiaru EtCO2'
+      ]
+    },
+    {
+      key: 'D',
+      title: 'rugs and IV access',
+      bullets: [
+        'leki (sedacja,analgezja,zwiotczenie)',
+        'dostęp donaczyniowy: 2x i.v lub i.o'
+      ]
+    },
+    {
+      key: 'B',
+      title: 'ack up airway ready',
+      bullets: [
+        'alternatywy dla intubacji',
+        'iGel, maska krtaniowa, zestaw do konikopunkcji/konikotomii'
+      ]
+    },
+    {
+      key: 'O',
+      title: 'xygen',
+      bullets: [
+        'tlen z przepływem 15l/min'
+      ]
+    },
+    {
+      key: 'M',
+      title: 'onitoring minimum',
+      bullets: [
+        'EKG',
+        'NiBP',
+        'HR',
+        'SpO2',
+        'EtCO2'
+      ]
+    },
+    {
+      key: 'B',
+      title: 'riefing',
+      bullets: [
+        'omówienie/podział ról w zespole'
+      ]
+    }
+    ]
   },
   {
     id: 'intubacja-pogorszenie',
     title: 'Pogorszenie stanu pacjenta zaintubowanego',
     iconName: 'clipboard-list',
     subtitle: 'Kontrola wg. schematu DOPES',
+    sections: [
+      {
+        key: 'D',
+        title: 'isplacement',
+        bullets: [
+          'ekstubacja',
+          'przemieszczenie się rurki intubacyjnej'
+        ]
+      },
+      {
+        key: 'O',
+        title: 'bstruction',
+        bullets: [
+          'zatkanie',
+          'zagięcie rurki intubacyjnej'
+        ]
+      },
+      {
+        key: 'P',
+        title: 'atient',
+        bullets: [
+          'odma prężna',
+          'skurcz oskrzeli'
+        ]
+      },
+      {
+        key: 'E',
+        title: 'quipment',
+        bullets: [
+          'uszkodzenie/awaria/rozłączenie sprzętu',
+          'brak tlenu'
+        ]
+      },
+      {
+        key: 'S',
+        title: 'tomach',
+        bullets: [
+          'intubacja przełyku'
+        ]
+      }
+    ]
   },
     {
     id: 'ocena-bolu',
@@ -1003,4 +1117,132 @@ const protocols = [
       }
     ]
   },
+];
+
+// Objawy
+const symptoms = [
+  {
+    id: 'oponowe',
+    title: 'Objawy oponowe',
+    sections: [
+      {
+        title: 'Objaw Brudzińskiego',
+        items: [
+          { label: 'Karkowy', children: [
+            'przyciągnięcie brody pacjenta do kl.p. powoduje <span class="text-red-400 font-semibold">reakcję zgięciową nóg</span>'
+          ]},
+          { label: 'Policzkowy', children: [
+            'uciśnięcie z obydwu stron miejsca pod kością jarzmową powoduje <span class="text-red-400 font-semibold">reakcję zgięciową rąk</span>'
+          ]},
+          { label: 'Dolny', children: [
+            'uciśnięcie spojenia łonowego powoduje <span class="text-red-400 font-semibold">reakcję zgięciową nóg</span>'
+          ]}
+        ]
+      },
+      {
+        title: 'Objaw Kerniga',
+        items: [
+          { label: 'Górny', children: [
+            'zgięcie w tułowiu pacjenta powoduje <span class="text-red-400 font-semibold">reakcję zgięciową nóg</span>'
+          ]},
+          { label: 'Dolny', children: [
+            'zgięcie kończyny dolnej w stawie biodrowym oraz kolanowym, następnie próba wyprostu w stawie kolanowym, <span class="text-red-400 font-semibold">opór znaczy o obecnym objawie</span>'
+          ]}
+        ]
+      },
+      {
+        title: 'Objaw Flataua',
+        items: [
+          { label: 'Górny', children: [
+            'Zgięcie pacjenta w tułowiu/przyciąganie głowy do kl.p. powoduje <span class="text-red-400 font-semibold">odruchowe powiększenie się źrenic</span>'
+          ]},
+          { label: 'Dolny (erekcyjny)', children: [
+            'U małych chłopców podczas wielokrotnego pochylania może <span class="text-red-400 font-semibold">dojść do erekcji</span>'
+          ]}
+        ]
+      },
+      {
+        title: 'Dodatkowe objawy',
+        items: [
+          {label: 'Gorączka'},
+          {label: 'Zaburzenia świadomości'},
+          {label: 'Silny ból głowy'},
+          {label: 'Wymioty'}
+        ]
+      }
+    ],
+    note: 'Wystąpienie objawów, które są wytłuszczone i na czerwono świadczą o obecnym objawie!'
+  },
+  {
+    id: 'otrzewnowe',
+    title: 'Objawy otrzewnowe',
+    sections: [
+      {
+        title: 'Objaw Blumberga',
+        items: [
+          { label: 'Jak robimy', children: [
+            'Uciskamy powłoki brzuszne i szybko puszczamy'
+          ]},
+          { label: 'Obecny świadczy o czym?', children: [
+            '<span class="text-red-400 font-semibold">Ból wywołany podczas puszczenia oznacza objaw obecny i świadczy o rozlanym zapaleniu otrzewnej</span>'
+          ]}
+        ]
+      },
+      {
+        title: 'Objaw Jaworskiego',
+        items: [
+          { label: 'Jak robimy', children: [
+            'Unosimy wyprostowaną prawą kończynę dolną i powoli opuszczamy, uciskając okolicę kąta pępkowo‑biodrowego'
+          ]},
+          { label: 'Obecny świadczy o czym?', children: [
+            '<span class="text-red-400 font-semibold">Dodatni objaw sugeruje zapalenie wyrostka robaczkowego</span>'
+          ]}
+        ]
+      },
+      {
+        title: 'Objaw Murphy’ego',
+        items: [
+          { label: 'Jak robimy', children: [
+            'Ucisk pod prawym łukiem żebrowym podczas głębokiego wdechu'
+          ]},
+          { label: 'Obecny świadczy o czym?', children: [
+            '<span class="text-red-400 font-semibold">Nagły ból i zatrzymanie wdechu wskazują ostre zapalenie pęcherzyka żółciowego</span>'
+          ]}
+        ]
+      },
+      {
+        title: 'Objaw Chełmońskiego',
+        items: [
+          { label: 'Jak robimy', children: [
+            'Delikatne wstrząsanie/uderzenie pod prawym łukiem żebrowym'
+          ]},
+          { label: 'Obecny świadczy o czym?', children: [
+            '<span class="text-red-400 font-semibold">Ból świadczy o drażnieniu wątroby lub pęcherzyka żółciowego</span>'
+          ]}
+        ]
+      },
+      {
+        title: 'Objaw Rovsinga',
+        items: [
+          { label: 'Jak robimy', children: [
+            'Ucisk lewego dołu biodrowego z przesuwaniem gazów jelitowych ku kątnicy'
+          ]},
+          { label: 'Obecny świadczy o czym?', children: [
+            '<span class="text-red-400 font-semibold">Ból w prawym dole biodrowym sugeruje zapalenie wyrostka robaczkowego</span>'
+          ]}
+        ]
+      },
+      {
+        title: 'Objaw Goldflama',
+        items: [
+          { label: 'Jak robimy', children: [
+            'Uderzenie/opukiwanie w okolicy kąta żebrowo‑kręgosłupowego'
+          ]},
+          { label: 'Obecny świadczy o czym?', children: [
+            '<span class="text-red-400 font-semibold">Ból świadczy o podrażnieniu nerki (kolka nerkowa, odmiedniczkowe zapalenie)</span>'
+          ]}
+        ]
+      }
+    ]
+  }
 ];
