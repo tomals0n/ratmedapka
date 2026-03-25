@@ -775,7 +775,7 @@ const quizQuestions = [
   },
   {
     id: 129,
-    question: "Poniżej jakiej głębokiej temperatury ciała u pacjenta w głębokiej hipotermii (w trakcie NZK) NIE NALEŻY podawać żadnych leków resuscitacyjnych?",
+    question: "Poniżej jakiej głębokiej temperatury ciała u pacjenta w głębokiej hipotermii (w trakcie NZK) NIE NALEŻY podawać żadnych leków resuscytacyjnych?",
     options: ["A. 35°C", "B. 32°C", "C. 30°C", "D. 28°C"],
     correct: 2
   },
