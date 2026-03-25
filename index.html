@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
-    <title>RatMed Web</title>
+    <title>RATOWNIK PRO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./src/styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-3hWJpQhKfGfHqKpQ2jv8lGqv1S7rH3V1gPj0vQ5oQe2hYcRkS0TqTgNw9mWQH8xY6oIYl3pR5S9QzjFJqC+ALw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -20,8 +20,8 @@
           </a>
           <a id="goProtocols" class="rounded-xl p-4 text-center shadow hover:shadow-lg transition cursor-pointer glass">
             <span class="tile-emoji">📜</span>
-            <div class="font-semibold">Schematy</div>
-            <div class="text-sm text-white/70 mt-1">Schematy postępowań z pacjentem</div>
+            <div class="font-semibold">Akronimy</div>
+            <div class="text-sm text-white/70 mt-1">Akronimy ułatwiające działania z pacjentem</div>
           </a>
           <a id="goSymptoms" class="rounded-xl p-4 text-center shadow hover:shadow-lg transition cursor-pointer glass">
             <span class="tile-emoji">❗</span>
@@ -33,6 +33,57 @@
             <div class="font-semibold">Kalkulatory</div>
             <div class="text-sm text-white/70 mt-1">Obliczenia medyczne</div>
           </a>
+          <a id="goALS" class="rounded-xl p-4 text-center shadow hover:shadow-lg transition cursor-pointer glass">
+            <span class="tile-emoji">🚑</span>
+            <div class="font-semibold">ALS</div>
+            <div class="text-sm text-white/70 mt-1">Farmakoterpia i postępowanie</div>
+          </a>
+          <a id="goQuiz" class="rounded-xl p-4 text-center shadow hover:shadow-lg transition cursor-pointer glass">
+            <span class="tile-emoji">📝</span>
+            <div class="font-semibold">Test</div>
+            <div class="text-sm text-white/70 mt-1">Sprawdź swoją wiedzę</div>
+          </a>
+        </div>
+      </section>
+
+      <section id="quizSetup" class="hidden">
+        <button id="backFromQuizSetup" class="fixed top-3 left-3 z-20 w-10 h-10 flex items-center justify-center rounded-full text-xl transition back-btn">←</button>
+        <div class="max-w-md mx-auto mt-10 p-6 glass rounded-2xl border border-[#2a2e35]">
+          <h2 class="text-2xl font-bold mb-6 text-center text-emerald-400">Rozpocznij Test</h2>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">Ilość pytań (20 - 50):</label>
+              <input type="number" id="quizCount" min="20" max="50" value="20" class="w-full bg-[#111317] border border-[#2a2e35] rounded-md px-3 py-2 text-white focus:outline-none focus:border-emerald-500 transition" />
+            </div>
+            <button id="startQuizBtn" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 rounded-xl font-semibold transition mt-4">START</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="quizPlay" class="hidden">
+        <div class="max-w-2xl mx-auto mt-6">
+          <div class="flex justify-between items-center mb-6 px-2">
+            <div id="quizProgress" class="text-sm text-white/70 font-mono">Pytanie 1 / 20</div>
+            <div id="quizTimer" class="text-sm text-emerald-400 font-mono">00:00</div>
+          </div>
+          <div class="w-full bg-[#111317] h-2 rounded-full overflow-hidden mb-8 border border-[#2a2e35]">
+            <div id="quizProgressBar" class="bg-emerald-500 h-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+          <div id="quizQuestionContainer" class="glass p-8 rounded-2xl border border-[#2a2e35] mb-6">
+            <h3 id="quizQuestionText" class="text-xl font-semibold mb-8 leading-relaxed"></h3>
+            <div id="quizOptions" class="grid grid-cols-1 gap-4"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="quizResult" class="hidden">
+        <button id="backFromQuizResult" class="fixed top-3 left-3 z-20 w-10 h-10 flex items-center justify-center rounded-full text-xl transition back-btn">←</button>
+        <div class="max-w-md mx-auto mt-10 p-8 glass rounded-2xl border border-[#2a2e35] text-center">
+          <div id="quizResultEmoji" class="text-6xl mb-4">🏆</div>
+          <h2 class="text-2xl font-bold mb-2">Twój Wynik</h2>
+          <div id="quizScoreText" class="text-4xl font-bold text-emerald-400 mb-2">0 / 20</div>
+          <div id="quizPercentText" class="text-xl text-white/70 mb-8">0%</div>
+          <button id="restartQuizBtn" class="w-full py-3 bg-[#111317] border border-[#2a2e35] hover:bg-[#1a1d22] rounded-xl font-semibold transition">Spróbuj ponownie</button>
         </div>
       </section>
 
@@ -89,6 +140,21 @@
         </div>
       </section>
 
+      <section id="ALS" class="hidden">
+        <button id="backFromALS" class="fixed top-3 left-3 z-20 w-10 h-10 flex items-center justify-center rounded-full text-xl transition back-btn">←</button>
+        <div class="max-w-5xl mx-auto">
+          <div id="ALSGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+      </section>
+
+      <section id="ALSdetail" class="hidden"> 
+        <button id="backFromALSDetail" class="fixed top-3 left-3 z-20 w-10 h-10 flex items-center justify-center rounded-full text-xl transition back-btn">←</button>
+        <div class="max-w-3xl mx-auto">
+          <div id="ALSdetailTitle" class="text-xl font-semibold mb-3"></div>
+          <div id="ALSdetailContent" class="rounded-xl border border-[#2a2e35] bg-[#14171b] p-4"></div>   
+        </div>
+      </section> 
+
       <section id="calcGCS" class="hidden">
         <button id="backCalcGCS" class="fixed top-3 left-3 z-20 w-10 h-10 flex items-center justify-center rounded-full text-xl transition back-btn">←</button>
         <div class="max-w-3xl mx-auto">
@@ -114,6 +180,7 @@
       </section>
     </main>
 
+    <script src="./src/db_quiz.js"></script>
     <script src="./src/data.js"></script>
     <script src="./src/main.js"></script>
   </body>

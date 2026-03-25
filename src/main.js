@@ -1,5 +1,5 @@
 // pokaz/ukryj sekcje
-
+  
 const sections = {
   home: document.getElementById('home'),
   meds: document.getElementById('meds'),
@@ -9,16 +9,23 @@ const sections = {
   symptoms: document.getElementById('symptoms'),
   symptomDetail: document.getElementById('symptomDetail'),
   calculators: document.getElementById('calculators'),
+  ALS: document.getElementById('ALS'),  
+  ALSdetail: document.getElementById('ALSdetail'),
   calcGCS: document.getElementById('calcGCS'),
   calcPeds: document.getElementById('calcPeds'),
-  calcMAP: document.getElementById('calcMAP')
-};
+  calcMAP: document.getElementById('calcMAP'),
+  quizSetup: document.getElementById('quizSetup'),
+  quizPlay: document.getElementById('quizPlay'),
+  quizResult: document.getElementById('quizResult')
+};    
 
 const els = {
   goMeds: document.getElementById('goMeds'),
   goProtocols: document.getElementById('goProtocols'),
   goSymptoms: document.getElementById('goSymptoms'),
   goCalculators: document.getElementById('goCalculators'),
+  goALS: document.getElementById('goALS'),
+  goQuiz: document.getElementById('goQuiz'),
   backFromMeds: document.getElementById('backFromMeds'),
   medSearch: document.getElementById('medSearch'),
   medsGrid: document.getElementById('medsGrid'),
@@ -42,7 +49,25 @@ const els = {
   backCalcPeds: document.getElementById('backCalcPeds'),
   pedsBox: document.getElementById('pedsBox'),
   backCalcMAP: document.getElementById('backCalcMAP'),
-  mapBox: document.getElementById('mapBox')
+  mapBox: document.getElementById('mapBox'),
+  backFromALS: document.getElementById('backFromALS'),
+  ALSGrid: document.getElementById('ALSGrid'),
+  backFromALSDetail: document.getElementById('backFromALSDetail'),
+  ALSdetailTitle: document.getElementById('ALSdetailTitle'),
+  ALSdetailContent: document.getElementById('ALSdetailContent'),
+  backFromQuizSetup: document.getElementById('backFromQuizSetup'),
+  quizCount: document.getElementById('quizCount'),
+  startQuizBtn: document.getElementById('startQuizBtn'),
+  quizProgress: document.getElementById('quizProgress'),
+  quizProgressBar: document.getElementById('quizProgressBar'),
+  quizQuestionText: document.getElementById('quizQuestionText'),
+  quizOptions: document.getElementById('quizOptions'),
+  quizResultEmoji: document.getElementById('quizResultEmoji'),
+  quizScoreText: document.getElementById('quizScoreText'),
+  quizPercentText: document.getElementById('quizPercentText'),
+  restartQuizBtn: document.getElementById('restartQuizBtn'),
+  backFromQuizResult: document.getElementById('backFromQuizResult'),
+  quizTimer: document.getElementById('quizTimer')
 };
 
 // Data-driven rendering: no normalization — rely on dosesAdults/dosesChildren in data.js
@@ -52,13 +77,15 @@ function show(name) {
   sections[name].classList.remove('hidden');
 }
 
-// Home navigation
+// NAWIGACJA "HOME"
 els.goMeds.addEventListener('click', () => { show('meds'); renderMeds(); });
 els.goProtocols.addEventListener('click', () => { show('protocols'); renderProtocols(); });
 els.goSymptoms.addEventListener('click', () => { show('symptoms'); renderSymptoms(); });
 els.goCalculators.addEventListener('click', () => { show('calculators'); renderCalculators(); });
+els.goALS.addEventListener('click', () => { show('ALS'); renderALS(); }); 
+els.goQuiz.addEventListener('click', () => { show('quizSetup'); }); 
 
-// Medications view
+// WIDOK LEKÓW  
 let currentMedId = null;
 function renderMeds() {
   els.medsGrid.innerHTML = '';
@@ -241,7 +268,7 @@ function renderMedDetail() {
 }
 els.backMedDetail.addEventListener('click', () => { show('meds'); });
 
-// Protocols view
+// WIDOK "AKRONIMY"
 let currentProtocolId = null;
 function renderProtocols() {
   els.protocolsGrid.innerHTML = '';
@@ -303,7 +330,7 @@ function faFromIconName(name) {
   return map[name] || 'fa-solid fa-clipboard-list';
 }
 
-// Symptoms view
+// WIDOK "SYMPTOMY"
 let currentSymptomId = null;
 function renderSymptoms() {
   els.symptomsGrid.innerHTML = '';
@@ -377,7 +404,60 @@ function renderSymptomDetail() {
 }
 els.backSymptomDetail.addEventListener('click', () => { show('symptoms'); });
 
-// Calculators view
+// WIDOK "ALS"
+let currentALSId = null;
+function renderALS() {
+  els.ALSGrid.innerHTML = '';
+  ALSData.forEach(a => {  
+    const card = document.createElement('button');
+    card.className = 'rounded-xl p-5 text-center glass hover:shadow-lg transition';
+    card.innerHTML = `
+      <span class="tile-emoji">${a.emoji || '🚑'}</span>
+      <div class="font-semibold">${a.title}</div>
+      ${a.subtitle ? `<div class="text-sm text-white/70 mt-1">${a.subtitle}</div>` : ''}
+    `;
+    card.addEventListener('click', () => {
+      currentALSId = a.id;
+      renderALSDetail();
+      show('ALSdetail');
+    });
+    els.ALSGrid.appendChild(card);  
+  });
+}
+els.backFromALS.addEventListener('click', () => show('home'));
+
+function renderALSDetail() {
+  const item = ALSData.find(x => x.id === currentALSId);
+  els.ALSdetailTitle.textContent = item ? item.title : 'Brak danych';
+  els.ALSdetailContent.innerHTML = '';
+  if (item && Array.isArray(item.sections)) {
+    item.sections.forEach(sec => {
+      const box = document.createElement('div');
+      box.className = 'mb-4';
+      const header = document.createElement('div');
+      header.className = 'text-emerald-400 font-semibold mb-1';
+      header.textContent = sec.title;
+      box.appendChild(header);
+      const ul = document.createElement('ul');
+      ul.className = 'list-disc pl-5 marker:text-emerald-400 text-white/90';
+      (sec.bullets || []).forEach(b => {
+        const li = document.createElement('li');
+        li.textContent = b;
+        ul.appendChild(li);
+      });
+      box.appendChild(ul);
+      els.ALSdetailContent.appendChild(box);
+    });
+  } else if (item && item.content) {
+    const box = document.createElement('div');
+    box.className = 'mb-4';
+    box.innerHTML = item.content;
+    els.ALSdetailContent.appendChild(box);
+  }
+}
+els.backFromALSDetail.addEventListener('click', () => { show('ALS'); });
+
+// WIDOK "KALKULATORY"
 function renderCalculators() {
   els.calculatorsGrid.innerHTML = '';
   const data = [
@@ -577,9 +657,124 @@ function renderMAP() {
 }
 els.backCalcMAP.addEventListener('click', () => show('calculators'));
 
+// WIDOK "QUIZ"
+let currentQuizQuestions = [];
+let currentQuestionIndex = 0;
+let quizScore = 0;
+let quizTimerInterval = null;
+let quizStartTime = 0;
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function startQuiz() {
+  let count = parseInt(els.quizCount.value);
+  if (isNaN(count) || count < 20) count = 20;
+  if (count > 50) count = 50;
+  
+  // Losowanie pytań
+  const allQuestions = [...quizQuestions];
+  shuffleArray(allQuestions);
+  currentQuizQuestions = allQuestions.slice(0, Math.min(count, allQuestions.length));
+  
+  currentQuestionIndex = 0;
+  quizScore = 0;
+  
+  show('quizPlay');
+  startTimer();
+  renderQuizQuestion();
+}
+
+function startTimer() {
+  quizStartTime = Date.now();
+  if (quizTimerInterval) clearInterval(quizTimerInterval);
+  quizTimerInterval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - quizStartTime) / 1000);
+    const mins = Math.floor(elapsed / 60).toString().padStart(2, '0');
+    const secs = (elapsed % 60).toString().padStart(2, '0');
+    els.quizTimer.textContent = `${mins}:${secs}`;
+  }, 1000);
+}
+
+function renderQuizQuestion() {
+  const q = currentQuizQuestions[currentQuestionIndex];
+  els.quizProgress.textContent = `Pytanie ${currentQuestionIndex + 1} / ${currentQuizQuestions.length}`;
+  els.quizProgressBar.style.width = `${((currentQuestionIndex) / currentQuizQuestions.length) * 100}%`;
+  
+  els.quizQuestionText.textContent = q.question;
+  els.quizOptions.innerHTML = '';
+  
+  q.options.forEach((opt, index) => {
+    const btn = document.createElement('button');
+    btn.className = 'w-full p-4 text-left rounded-xl border border-[#2a2e35] bg-[#111317] hover:border-emerald-500 hover:bg-[#1a1d22] transition flex items-center group';
+    btn.innerHTML = `
+      <div class="w-8 h-8 rounded-full border border-[#2a2e35] flex items-center justify-center mr-4 group-hover:border-emerald-500 group-hover:text-emerald-400 transition font-mono text-sm">
+        ${String.fromCharCode(65 + index)}
+      </div>
+      <div class="flex-1">${opt.replace(/^[A-D]\.\s*/, '')}</div>
+    `;
+    btn.onclick = () => handleAnswer(index);
+    els.quizOptions.appendChild(btn);
+  });
+}
+
+function handleAnswer(selectedIndex) {
+  const q = currentQuizQuestions[currentQuestionIndex];
+  const buttons = els.quizOptions.querySelectorAll('button');
+  
+  // Wyłączenie klikania
+  buttons.forEach(btn => btn.disabled = true);
+  
+  if (selectedIndex === q.correct) {
+    quizScore++;
+    buttons[selectedIndex].classList.add('border-emerald-500', 'bg-emerald-500/10');
+    buttons[selectedIndex].querySelector('div').classList.add('bg-emerald-500', 'border-emerald-500', 'text-white');
+  } else {
+    buttons[selectedIndex].classList.add('border-red-500', 'bg-red-500/10');
+    buttons[selectedIndex].querySelector('div').classList.add('bg-red-500', 'border-red-500', 'text-white');
+    // Pokazanie poprawnej
+    buttons[q.correct].classList.add('border-emerald-500', 'bg-emerald-500/5');
+  }
+  
+  setTimeout(() => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < currentQuizQuestions.length) {
+      renderQuizQuestion();
+    } else {
+      finishQuiz();
+    }
+  }, 600);
+}
+
+function finishQuiz() {
+  clearInterval(quizTimerInterval);
+  const percent = Math.round((quizScore / currentQuizQuestions.length) * 100);
+  els.quizScoreText.textContent = `${quizScore} / ${currentQuizQuestions.length}`;
+  els.quizPercentText.textContent = `${percent}%`;
+  
+  let emoji = '🏆';
+  if (percent < 50) emoji = '📉';
+  else if (percent < 75) emoji = '🥉';
+  else if (percent < 90) emoji = '🥈';
+  els.quizResultEmoji.textContent = emoji;
+  
+  show('quizResult');
+}
+
+els.startQuizBtn.addEventListener('click', startQuiz);
+els.backFromQuizSetup.addEventListener('click', () => show('home'));
+els.restartQuizBtn.addEventListener('click', () => show('quizSetup'));
+els.backFromQuizResult.addEventListener('click', () => show('home'));
+
 // Initial
 show('home');
 // Pre-render lists for immediate UX when entering
 renderMeds();
 renderProtocols();
 renderCalculators();
+renderALS();

@@ -808,6 +808,148 @@ const medications = [
     
 ];
 
+// ALS
+
+const ALSData = [
+  {
+    id: 'nzk',
+    title: 'Nagłe zatrzymanie krążenia',
+    emoji: '💀',
+    subtitle: 'Postępowanie przy NZK',
+    sections: [
+      {
+        title: 'RKO',
+        bullets: [
+          'Uciski klatki piersiowej (100-120/min)',
+          'Rozważ intubacje / założenie alternatywy',
+          'Przy intubacji/alternatywa 1 oddech co 5s',
+          'Identyfikuj i lecz odwracalne przyczyny NZK(4H 4T)',
+          'Minimalizuj przerwy w uciskach',
+          'Rozważ użycie sprzętu do mechanicznych ucisków (LUCAS)',
+          'Stosuj kapnografie (EtCO2) - jakość uciśnięć wpływa na wynik -> dąż do wartości nie mniejszej niż 15 mmHg',
+        ]
+      },
+      {
+        title: 'Defibrylacja',
+        bullets: [
+          'Rytmy do defibrylacji: VF / pVT',
+          'Rytmy niedefibrylacyjne: PEA / Asystolia',
+          'Wartości J: 200J 1 defibrylacja -> 300J 2 defibrylacja -> 360J 3 i następne defibrylacje'
+        ]
+      },
+      {
+        title: 'Farmakoterapia',
+        bullets: [
+          'Adrenalina 1mg co 3-5 min (w VF/pVT po 3. defibrylacji, asystolia/PEA jak najszybciej)',
+          'Amiodaron 300mg (po 3. defibrylacji)',
+          'Amiodaron 150mg (po 5. defibrylacji)',
+          'Lignokaina 100mg (po 3. defibrylacji) alternatywa dla Amiodaronu',
+          'Lignokaina 50mg (po 5. defibrylacji) alternatywa dla Amiodaronu',
+          'Wodorowęglan Sodu (1-2 ml/kg) - NZK w zatruciu: TLPD, leki p.padaczkowe, neuroleptyki',
+          'Płyny przy NZK w przebiegu hipowolemii'
+        ]
+      },
+      {
+        title: 'Odwracalne przyczyny NZK',
+        bullets: [
+          'Hipowolemia',
+          'Hipo/hipertermia',
+          'Zaburzenia metaboliczne',
+          'Hipoksja',
+          'Tamponada worka osierdziowego',
+          'Odma prężna',
+          'Zatrucia',
+          'Zakrzepica/zatorowość'
+        ]
+      },
+      {
+        title: 'ROSC',
+        bullets: [
+          'Zbadaj wg. ABCDE',
+          'Docelowe SpO2: 94-98%',
+          'Docelowe EtCO2: 35-45 mmHg',
+          '12-odpr. EKG',
+          'SBP > 100 mmHg',
+          'Płyny - przywróć normowolemię',
+          'Rozważ podłączenie Noradrenaliny jeżeli hipotensja',
+          'Kontroluj temperaturę ciała - 32-36 *C'
+        ]
+      }
+
+    ]
+  },
+  {
+    id: 'ozw',
+    title: 'OZW',
+    emoji: '💔',
+    subtitle: 'Ostry Zespół Wieńcowy',
+    sections: [
+      {
+        title: 'Postępowanie ogólne',
+        bullets: [
+          'EKG 12-odprowadzeniowe (teletransmisja z hemodynamiką)',
+          'Monitorowanie (EKG, SpO2, NiBP)',
+          'Pomiar NiBP z obu kończyn',
+          'Dostęp dożylny (i.v.)',
+          'Jeżeli uniesienia ST w odpr. II,III,aVF -> wykonaj odprowadzenia prawokomorowe(V3R,V4R)',
+          'Poproś dyspozytora o wskazanie najbliższego szpitala dysponującego możliwość wykonania PCI'
+        ]
+      },
+      {
+        title: 'Leki',
+        bullets: [
+          'Morfina (2-4 mg i.v.) - przy silnym bólu',
+          'Tlen (jeśli SpO2 < 90%)',
+          'ASA: 300mg p.o (rozgryźć)',
+          'Po teletransmisji: Klopidogrel 600mg | Tikagrelor 180 mg | Prasugrel 60mg -> p.o',
+          'Heparyna 5000 j.m lub 80 j.m/kg mc.',
+          'Rozważ podanie Nitrogliceryny 0.4mg - p.wskazane w zawale prawej komory!',
+          'Jeżeli hipotensja rozważ: Fentanyl 50-200 mcg i.v',       
+        ]
+      },
+    ]
+  },
+  {
+    id: 'obrzek-pluc',
+    title: 'Obrzęk płuc',
+    emoji: '🌬',
+    subtitle: 'Ostra niewydolność krążenia',
+    sections: [
+      {
+        title: 'Postępowanie wstępne',
+        bullets: [
+          'Zbadaj wg. schematu ABCDE',
+          'Pozycja siedząca z opuszczonymi nogami',
+          'Tlenoterapia (utrzymuj SpO2 > 94%)',
+          'Wsparcie oddechowe (CPAP/NIV jeśli dostępne)'
+        ]
+      },
+      {
+        title: 'Farmakoterapia',
+        bullets: [
+          'Nitrogliceryna (aerozol 0,4 mg co 5 min)',
+          'Furosemid (20-80 mg i.v.) jeżeli pacjent bierze Furosemid to dawka zwiększona 2x',
+          'Morfina (1-2 mg i.v.) - redukcja lęku i preloadu',
+          'Rozważ Dexaven (4-8 mg i.v.)',
+          'Przy znacznej hipotensji rozważ włączenie Noradrenaliny'
+        ]
+      },
+      {
+        title: 'MCR ukierunkowane na przyczynę Ostrej Niewydolności Serca(CHAMPIT)',
+        bullets: [
+          'C - lecz ostry zespół wieńcowy',
+          'H - lecz stan nagły w nadciśnieniu tętniczym',
+          'A - lecz zaburzenia rytmu serca (kardiowersja/stymulacja przezskórna)',
+          'M - brak możliwości leczenia patologii zastawkowych w warunkach ZRM',
+          'P - lecz zatorowość płucną',
+          'I - lecz objawowo zakażenie',
+          'T - brak możliwości leczenia tamponady - rozważ wsparcie LPR'
+        ]
+      }
+    ]
+  }
+]
+
 // Schematy
 const protocols = [
   {
@@ -1010,6 +1152,42 @@ const protocols = [
         'omówienie/podział ról w zespole'
       ]
     }
+    ]
+  },
+  {
+    id: 'leczenie-AHF',
+    title: 'Ostra Niewydolność Serca',
+    iconName: 'clipboard-list',
+    subtitle: 'Leczenie AHF wg. schematu CHAMPIT',
+    sections: [
+      {
+        key: 'C',
+        title: '- (ang. coronary syndrome) ostry zespół wieńcowy',
+      },
+      {
+        key: 'H',
+        title: '- (ang. hypertension emergency) stany nagłe w nadciśnieniu tętniczym',
+      },
+      {
+        key: 'A',
+        title: '- (ang. arrythmia) zaburzenia rytmu serca',
+      },
+      {
+        key: 'M',
+        title: '- (ang. mechanical causes) przypadki mechaniczne (np. uszkodzenie zastawek)',
+      },
+      {
+        key: 'P',
+        title: '- (ang. pulmonary embolism) zatorowość płucna',
+      },
+      {
+        key: 'I',
+        title: '- (ang. infections) zakażenie',
+      },
+      {
+        key: 'T',
+        title: '- (ang. tamponade) tamponada worka osierdziowego'
+      }
     ]
   },
   {
