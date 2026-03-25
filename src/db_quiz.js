@@ -213,7 +213,7 @@ const quizQuestions = [
     id: 35,
     question: "Płyn wieloelektrolitowy (PWE) podajemy w bolusie (hipotensja) dorosłym w dawce:",
     options: ["A. 2 ml/kg", "B. 5 ml/kg", "C. 10 ml/kg", "D. 20 ml/kg"],
-    correct: 2
+    correct: 3
   },
   {
     id: 36,
@@ -591,7 +591,7 @@ const quizQuestions = [
     id: 98,
     question: "Zalecana dawka uderzeniowa (bolus) PWE, 0,9% NaCl lub płynu Ringera w przypadku hipotensji to:",
     options: ["A. 5 ml/kg m.c.", "B. 10 ml/kg m.c.", "C. 20 ml/kg m.c.", "D. 30 ml/kg m.c."],
-    correct: 1
+    correct: 2
   },
   {
     id: 99,
