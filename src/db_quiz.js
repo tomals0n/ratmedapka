@@ -713,5 +713,95 @@ const quizQuestions = [
     options: ["A. 0.01 mg/kg m.c.", "B. 0.02 mg/kg m.c.", "C. 0.05 mg/kg m.c.", "D. 0.1 mg/kg m.c."],
     correct: 2
   },
+  {
+    id: 119,
+    question: "Energia pierwszej i kolejnych defibrylacji u dziecka w nagłym zatrzymaniu krążenia (NZK) wynosi:",
+    options: ["A. 2 J/kg m.c.", "B. 4 J/kg m.c.", "C. 10 J/kg m.c.", "D. 150 J niezależnie od masy"],
+    correct: 1
+  },
+  {
+    id: 120,
+    question: "W trakcie RKO u widocznie ciężarnej kobiety, aby uniknąć zespołu ucisku żyły głównej dolnej, kluczową modyfikacją jest:",
+    options: ["A. Ręczne przesunięcie macicy na lewą stronę", "B. Uniesienie prawego boku pod kątem 45 stopni", "C. Uciskać dolną połowę mostka", "D. Zmniejszyć siłę i głębokość uciśnięć"],
+    correct: 0
+  },
+  {
+    id: 121,
+    question: "Docelowa saturacja (SpO2) u pacjenta z ostrym zaostrzeniem POChP (Przewlekła Obturacyjna Choroba Płuc) wynosi zazwyczaj:",
+    options: ["A. 94 - 98%", "B. 98 - 100%", "C. 88 - 92%", "D. 80 - 85%"],
+    correct: 2
+  },
+  {
+    id: 122,
+    question: "Maksymalna całkowita dobowa dawka Amiodaronu we wlewie dożylnym u dorosłego pacjenta z częstoskurczem wynosi:",
+    options: ["A. 300 mg", "B. 600 mg", "C. 900 mg", "D. 1200 mg"],
+    correct: 2
+  },
+  {
+    id: 123,
+    question: "Pojedyncza dawka salbutamolu w nebulizacji u dziecka powyżej 2 roku życia w napadzie astmy wynosi zazwyczaj:",
+    options: ["A. 1.25 mg", "B. 5 mg", "C. 2.5 mg", "D. 10 mg"],
+    correct: 1
+  },
+  {
+    id: 124,
+    question: "Zgodnie z aktualnymi wytycznymi ITLS, preferowanym miejscem wykonania igłowego odbarczenia odmy prężnej u dorosłego jest:",
+    options: ["A. 2. przestrzeń międzyżebrowa w linii środkowo-obojczykowej", "B. 3. przestrzeń międzyżebrowa w linii przymostkowej", "C. 5. przestrzeń międzyżebrowa w linii pachowej tylnej", "D. 4. lub 5. przestrzeń międzyżebrowa w linii pachowej przedniej/środkowej"],
+    correct: 3
+  },
+  {
+    id: 125,
+    question: "Mechanizm działania adrenaliny we wstrząsie anafilaktycznym polega m.in. na:",
+    options: ["A. Blokowaniu wyrzutu histaminy z komórek tucznych", "B. Pobudzeniu receptorów alfa (skurcz naczyń) i beta2 (rozkurcz oskrzeli)", "C. Wyłącznym działaniu inotropowo dodatnim na serce", "D. Bezpośrednim hamowaniu układu przywspółczulnego"],
+    correct: 1
+  },
+  {
+    id: 126,
+    question: "Odtrutką z wyboru w przypadku ostrego zatrucia trójpierścieniowymi lekami przeciwdepresyjnymi (TLPD), przebiegającego z szerokimi zespołami QRS, jest:",
+    options: ["A. Wodorowęglan sodu", "B. Flumazenil", "C. Siarczan magnezu", "D. Nalokson"],
+    correct: 0
+  },
+  {
+    id: 127,
+    question: "Złote okno terapeutyczne (standardowe) dla dożylnego leczenia trombolitycznego w udarze niedokrwiennym mózgu wynosi od początku objawów:",
+    options: ["A. 1 godzina", "B. 3 godziny", "C. 4.5 godziny", "D. 12 godzin"],
+    correct: 2
+  },
+  {
+    id: 128,
+    question: "Według 'Reguły Dziewiątek', u dorosłego pacjenta oparzenie całej przedniej powierzchni tułowia (klatka piersiowa + brzuch) stanowi około:",
+    options: ["A. 9% powierzchni ciała", "B. 18% powierzchni ciała", "C. 27% powierzchni ciała", "D. 36% powierzchni ciała"],
+    correct: 1
+  },
+  {
+    id: 129,
+    question: "Poniżej jakiej głębokiej temperatury ciała u pacjenta w głębokiej hipotermii (w trakcie NZK) NIE NALEŻY podawać żadnych leków resuscitacyjnych?",
+    options: ["A. 35°C", "B. 32°C", "C. 30°C", "D. 28°C"],
+    correct: 2
+  },
+  {
+    id: 130,
+    question: "Po założeniu opaski uciskowej (stazy taktycznej np. CAT) na krwawiącą kończynę, należy obowiązkowo:",
+    options: ["A. Zapisać czas jej założenia w widocznym miejscu", "B. Poluzować ją na 1 minutę co każdą godzinę", "C. Podać profilaktycznie lidokainę i.v.", "D. Opatrzyć kończynę luźnym opatrunkiem osłaniającym stazę"],
+    correct: 0
+  },
+  {
+    id: 131,
+    question: "Glukagon podany domięśniowo w przypadku ciężkiej hipoglikemii może być całkowicie nieskuteczny u pacjentów:",
+    options: ["A. Z cukrzycą typu 1", "B. Z nadciśnieniem tętniczym", "C. Przyjmujących na stałe leki moczopędne", "D. Z wyczerpanymi zapasami glikogenu w wątrobie (np. w upojeniu alkoholowym, wyniszczeniu)"],
+    correct: 3
+  },
+  {
+    id: 132,
+    question: "U pacjenta z niepowikłanym zawałem mięśnia sercowego (OZW), który nie zgłasza duszności, tlenoterapię wdrażamy, gdy saturacja (SpO2) spadnie poniżej:",
+    options: ["A. 98%", "B. 95%", "C. 90%", "D. 85%"],
+    correct: 2
+  },
+  {
+    id: 133,
+    question: "Dawka amiodaronu w opornym na defibrylację migotaniu komór (VF) u dorosłego pacjenta podawana po 5. defibrylacji wynosi:",
+    options: ["A. 150 mg", "B. 300 mg", "C. 450 mg", "D. 1 mg/kg m.c."],
+    correct: 0
+  },
 
 ];  
