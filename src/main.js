@@ -62,6 +62,9 @@ const els = {
   quizProgressBar: document.getElementById('quizProgressBar'),
   quizQuestionText: document.getElementById('quizQuestionText'),
   quizOptions: document.getElementById('quizOptions'),
+  quizExplanation: document.getElementById('quizExplanation'),
+  quizExplanationText: document.getElementById('quizExplanationText'),
+  nextQuestionBtn: document.getElementById('nextQuestionBtn'),
   quizResultEmoji: document.getElementById('quizResultEmoji'),
   quizScoreText: document.getElementById('quizScoreText'),
   quizPercentText: document.getElementById('quizPercentText'),
@@ -83,7 +86,12 @@ els.goProtocols.addEventListener('click', () => { show('protocols'); renderProto
 els.goSymptoms.addEventListener('click', () => { show('symptoms'); renderSymptoms(); });
 els.goCalculators.addEventListener('click', () => { show('calculators'); renderCalculators(); });
 els.goALS.addEventListener('click', () => { show('ALS'); renderALS(); }); 
-els.goQuiz.addEventListener('click', () => { show('quizSetup'); }); 
+els.goQuiz.addEventListener('click', () => { 
+  selectedQuizCategory = null;
+  quizTypeBtns.forEach(b => b.classList.remove('active', 'border-emerald-500', 'bg-emerald-500/5'));
+  els.startQuizBtn.disabled = true;
+  show('quizSetup'); 
+}); 
 
 // WIDOK LEKÓW  
 let currentMedId = null;
@@ -663,6 +671,18 @@ let currentQuestionIndex = 0;
 let quizScore = 0;
 let quizTimerInterval = null;
 let quizStartTime = 0;
+let selectedQuizCategory = null;
+
+// Obsługa wyboru kategorii
+const quizTypeBtns = document.querySelectorAll('.quiz-type-btn');
+quizTypeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    quizTypeBtns.forEach(b => b.classList.remove('active', 'border-emerald-500', 'bg-emerald-500/5'));
+    btn.classList.add('active', 'border-emerald-500', 'bg-emerald-500/5');
+    selectedQuizCategory = btn.dataset.type;
+    els.startQuizBtn.disabled = false;
+  });
+});
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -674,13 +694,18 @@ function shuffleArray(array) {
 
 function startQuiz() {
   let count = parseInt(els.quizCount.value);
-  if (isNaN(count) || count < 20) count = 20;
+  if (isNaN(count) || count < 5) count = 5;
   if (count > 50) count = 50;
   
+  // Filtrowanie pytań po kategorii
+  let filteredQuestions = [...quizQuestions];
+  if (selectedQuizCategory) {
+    filteredQuestions = filteredQuestions.filter(q => q.category === selectedQuizCategory);
+  }
+  
   // Losowanie pytań
-  const allQuestions = [...quizQuestions];
-  shuffleArray(allQuestions);
-  currentQuizQuestions = allQuestions.slice(0, Math.min(count, allQuestions.length));
+  shuffleArray(filteredQuestions);
+  currentQuizQuestions = filteredQuestions.slice(0, Math.min(count, filteredQuestions.length));
   
   currentQuestionIndex = 0;
   quizScore = 0;
@@ -709,28 +734,42 @@ function renderQuizQuestion() {
   els.quizQuestionText.textContent = q.question;
   els.quizOptions.innerHTML = '';
   
-  q.options.forEach((opt, index) => {
+  // Ukrycie wyjaśnienia i przycisku dalej
+  els.quizExplanation.classList.add('hidden');
+  els.nextQuestionBtn.classList.add('hidden');
+  
+  // Zapamiętanie poprawnej odpowiedzi (tekstowo) przed pomieszaniem
+  const correctText = q.options[q.correct];
+  
+  // Stworzenie kopii opcji i ich pomieszanie
+  const shuffledOptions = [...q.options];
+  shuffleArray(shuffledOptions);
+  
+  // Znalezienie nowego indeksu poprawnej odpowiedzi
+  const newCorrectIndex = shuffledOptions.indexOf(correctText);
+  
+  shuffledOptions.forEach((opt, index) => {
     const btn = document.createElement('button');
     btn.className = 'w-full p-4 text-left rounded-xl border border-[#2a2e35] bg-[#111317] hover:border-emerald-500 hover:bg-[#1a1d22] transition flex items-center group';
     btn.innerHTML = `
       <div class="w-8 h-8 rounded-full border border-[#2a2e35] flex items-center justify-center mr-4 group-hover:border-emerald-500 group-hover:text-emerald-400 transition font-mono text-sm">
         ${String.fromCharCode(65 + index)}
       </div>
-      <div class="flex-1">${opt.replace(/^[A-D]\.\s*/, '')}</div>
+      <div class="flex-1">${opt}</div>
     `;
-    btn.onclick = () => handleAnswer(index);
+    btn.onclick = () => handleAnswer(index, newCorrectIndex);
     els.quizOptions.appendChild(btn);
   });
 }
 
-function handleAnswer(selectedIndex) {
+function handleAnswer(selectedIndex, correctIndex) {
   const q = currentQuizQuestions[currentQuestionIndex];
   const buttons = els.quizOptions.querySelectorAll('button');
   
   // Wyłączenie klikania
   buttons.forEach(btn => btn.disabled = true);
   
-  if (selectedIndex === q.correct) {
+  if (selectedIndex === correctIndex) {
     quizScore++;
     buttons[selectedIndex].classList.add('border-emerald-500', 'bg-emerald-500/10');
     buttons[selectedIndex].querySelector('div').classList.add('bg-emerald-500', 'border-emerald-500', 'text-white');
@@ -738,18 +777,26 @@ function handleAnswer(selectedIndex) {
     buttons[selectedIndex].classList.add('border-red-500', 'bg-red-500/10');
     buttons[selectedIndex].querySelector('div').classList.add('bg-red-500', 'border-red-500', 'text-white');
     // Pokazanie poprawnej
-    buttons[q.correct].classList.add('border-emerald-500', 'bg-emerald-500/5');
+    buttons[correctIndex].classList.add('border-emerald-500', 'bg-emerald-500/5');
   }
   
-  setTimeout(() => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < currentQuizQuestions.length) {
-      renderQuizQuestion();
-    } else {
-      finishQuiz();
-    }
-  }, 600);
+  // Pokazanie wyjaśnienia
+  els.quizExplanationText.textContent = q.explanation || 'Brak dodatkowego wyjaśnienia.';
+  els.quizExplanation.classList.remove('hidden');
+  
+  // Pokazanie przycisku "Następne pytanie"
+  els.nextQuestionBtn.classList.remove('hidden');
+  els.nextQuestionBtn.textContent = (currentQuestionIndex + 1 < currentQuizQuestions.length) ? 'NASTĘPNE PYTANIE' : 'ZOBACZ WYNIK';
 }
+
+els.nextQuestionBtn.addEventListener('click', () => {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < currentQuizQuestions.length) {
+    renderQuizQuestion();
+  } else {
+    finishQuiz();
+  }
+});
 
 function finishQuiz() {
   clearInterval(quizTimerInterval);
@@ -767,9 +814,24 @@ function finishQuiz() {
 }
 
 els.startQuizBtn.addEventListener('click', startQuiz);
-els.backFromQuizSetup.addEventListener('click', () => show('home'));
-els.restartQuizBtn.addEventListener('click', () => show('quizSetup'));
-els.backFromQuizResult.addEventListener('click', () => show('home'));
+els.backFromQuizSetup.addEventListener('click', () => {
+  selectedQuizCategory = null;
+  quizTypeBtns.forEach(b => b.classList.remove('active', 'border-emerald-500', 'bg-emerald-500/5'));
+  els.startQuizBtn.disabled = true;
+  show('home');
+});
+els.restartQuizBtn.addEventListener('click', () => {
+  selectedQuizCategory = null;
+  quizTypeBtns.forEach(b => b.classList.remove('active', 'border-emerald-500', 'bg-emerald-500/5'));
+  els.startQuizBtn.disabled = true;
+  show('quizSetup');
+});
+els.backFromQuizResult.addEventListener('click', () => {
+  selectedQuizCategory = null;
+  quizTypeBtns.forEach(b => b.classList.remove('active', 'border-emerald-500', 'bg-emerald-500/5'));
+  els.startQuizBtn.disabled = true;
+  show('home');
+});
 
 // Initial
 show('home');
