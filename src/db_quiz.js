@@ -622,5 +622,96 @@ const quizQuestions = [
     question: "Dawka hydroksyzyny podawanej domięśniowo (i.m.) u dorosłego wynosi:",
     options: ["A. 200 mg", "B. 10 mg", "C. 50-100 mg", "D. 50-100 mcg"],
     correct: 2
-  }
+  },
+    {
+    id: 104,
+    question: "Dawka nasycająca klopidogrelu (Areplex/Plavix) podawana doustnie (p.o.) pacjentowi z Ostrym Zespołem Wieńcowym (OZW) wynosi:",
+    options: ["A. 75 mg", "B. 150 mg", "C. 300 mg", "D. 600 mg"],
+    correct: 3
+  },
+  {
+    id: 105,
+    question: "Poniżej jakiego wieku lek przeciwwymiotny tietyloperazyna (Torecan) jest bezwzględnie przeciwwskazany?",
+    options: ["A. 15 roku życia", "B. 12 roku życia", "C. 6 roku życia", "D. 18 roku życia"],
+    correct: 0
+  },
+  {
+    id: 106,
+    question: "Dawkę diazepamu (Relanium) podawanego u dzieci można obliczyć na podstawie masy ciała lub według zasady:",
+    options: ["A. 0.5 mg na każdy rok życia", "B. 5 mg niezależnie od wieku", "C. 2 mg na każdy rok życia dziecka", "D. 1 mg na każdy rok życia dziecka"],
+    correct: 3
+  },
+  {
+    id: 107,
+    question: "Silnym wskazaniem do podania wodorowęglanu sodu (8,4%) jest m.in.:",
+    options: ["A. Zatrucie trójpierścieniowymi lekami przeciwdepresyjnymi (TCA)", "B. Zasadowica metaboliczna", "C. Ostre zatrucie opioidami", "D. Hiperwentylacja psychogenna"],
+    correct: 0
+  },
+  {
+    id: 108,
+    question: "W czym i w jakiej objętości należy rozcieńczyć Ketoprofen (Ketonal) przy podaży dożylnej (i.v.) w warunkach ZRM?",
+    options: ["A. Nie wymaga rozcieńczenia", "B. Dożylnie podajemy tylko w warunkach szpitalnych", "C. W 10 ml 0.9% NaCl", "D. Wyłącznie w 5% Glukozie (10 ml)"],
+    correct: 1
+  },
+  {
+    id: 109,
+    question: "Co jest głównym przeciwwskazaniem do podania Papaweryny?",
+    options: ["A. Kolka nerkowa", "B. Kolka żółciowa", "C. Stany spastyczne jelit", "D. Zaburzenia przewodnictwa w mięśniu sercowym"],
+    correct: 3
+  },
+  {
+    id: 110,
+    question: "Wskaż bezwzględne przeciwwskazanie do podania Metoklopramidu u dorosłego pacjenta z nudnościami:",
+    options: ["A. Nadciśnienie tętnicze", "B. Krwawienia z przewodu pokarmowego i niedrożność jelit", "C. Jaskra z otwartym kątem", "D. Kolka nerkowa"],
+    correct: 1
+  },
+  {
+    id: 111,
+    question: "Zalecana dawka salbutamolu (Ventolinu) w nebulizacji u dzieci poniżej 2 roku życia wynosi:",
+    options: ["A. 1 mg", "B. 5 mg", "C. 2.5 mg", "D. 10 mg"],
+    correct: 2
+  },
+  {
+    id: 112,
+    question: "Ile wynosi jednorazowa dawka tikagreloru (Brilique) podawana doustnie przy Ostrym Zespole Wieńcowym?",
+    options: ["A. 60 mg", "B. 90 mg", "C. 300 mg", "D. 180 mg"],
+    correct: 3
+  },
+  {
+    id: 113,
+    question: "Ile wynosi dawka leku przeciwpłytkowego prasugrel (Efient) podawana w Ostrym Zespole Wieńcowym?",
+    options: ["A. 60 mg", "B. 10 mg", "C. 75 mg", "D. 180 mg"],
+    correct: 0
+  },
+  {
+    id: 114,
+    question: "Co jest przeciwwskazaniem do podania płynów koloidowych takich jak Gelofusine?",
+    options: ["A. Hipowolemia bezwzględna", "B. Masywny krwotok urazowy", "C. Ciężka niewydolność serca i przewodnienie organizmu", "D. Oparzenia powierzchowne"],
+    correct: 2
+  },
+  {
+    id: 115,
+    question: "Jakie jest dawkowanie fentanylu i.v. u dorosłego pacjenta, który wymaga oddechu wspomaganego?",
+    options: ["A. 10 - 20 µg", "B. 300 - 3500 µg", "C. 50 - 200 µg", "D. Powyżej 5000 µg"],
+    correct: 1
+  },
+  {
+    id: 116,
+    question: "Standardowa prędkość początkowa wlewu noradrenaliny (Levonoru) we wstrząsie wynosi zazwyczaj:",
+    options: ["A. 0.01 - 0.05 mg/h", "B. 2 - 10 µg/min", "C. 10 - 20 mg/h", "D. 0.4 - 0.8 mg/h (lub 0.05-1.5 µg/kg/min)"],
+    correct: 3
+  },
+  {
+    id: 117,
+    question: "W jakim czasie należy podać wlew z amiodaronu (300 mg w 5% Glukozie) w stabilnym częstoskurczu z szerokimi QRS u dorosłego pacjenta?",
+    options: ["A. W ciągu 20 - 60 minut", "B. Jako szybki bolus w ciągu 2 sekund", "C. W ciągu 5 minut", "D. W ciągu 12 godzin"],
+    correct: 0
+  },
+  {
+    id: 118,
+    question: "W przypadku zatrucia związkami fosforoorganicznymi u dzieci, dawka atropiny wynosi:",
+    options: ["A. 0.01 mg/kg m.c.", "B. 0.02 mg/kg m.c.", "C. 0.05 mg/kg m.c.", "D. 0.1 mg/kg m.c."],
+    correct: 2
+  },
+
 ];  
