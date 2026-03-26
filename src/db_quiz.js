@@ -367,894 +367,580 @@ const quizQuestions = [
   // KATEGORIA: FARMAKOLOGIA
   // ==========================================
   {
+    id: 1,
+    category: "farmakologia",
+    question: "Jaka jest dawka Klopidogrelu (Plavix) w OZW?",
+    options: ["300 mg", "600 mg", "90 mg", "180 mg"],
+    correct: 1,
+    explanation: "600 mg to dawka nasycająca organizm, którą podajemy w zawałach mięśnia sercowego po teletransmisji."
+  },
+  {
+    id: 2,
+    category: "farmakologia",
+    question: "Na co stosujemy lek Klopidogrel (Plavix)?",
+    options: ["Zawał mięśnia sercowego", "Krwawienia wewnętrzne", "Obrzęk płuc", "Dławica Piersiowa"],
+    correct: 0,
+    explanation: "Klopidogrel stosujemy w zawale mięśnia sercowego jako terapia przeciwpłytkowa."
+  },
+  {
+    id: 3,
+    category: "farmakologia",
+    question: "W jakiej dawce występuje Klopidogrel i jak się go podaje?",
+    options: ["75 mg p.o.", "75 mg i.v.", "300 mg p.o.", "300 mg i.v."],
+    correct: 0,
+    explanation: "Klopidogrel (Plavix) występuje w postaci tabletek w dawce 75 mg (1 tabletka), podaje się go p.o."
+  },
+  {
+    id: 4,
+    category: "farmakologia",
+    question: "Jakie jest główne zastosowanie ASA (Kwas acetylosalicylowy) w ZRM?",
+    options: ["Zawał mięśnia sercowego", "Gorączka", "Bóle mięśni", "Ból głowy"],
+    correct: 0,
+    explanation: "ASA stosujemy jedynie w OZW, z perspektywy ZRM mamy lepsze leki do gorączki, bólów mięśniowych oraz bólów głowy."
+  },
+  {
+    id: 5,
+    category: "farmakologia",
+    question: "Jaka jest dawka ASA (Kwas acetylosalicylowy) w OZW?",
+    options: ["300 mg", "150 mg", "400 mg", "100 mg"],
+    correct: 0,
+    explanation: "W OZW stosujemy 300 mg ASA, dajemy pacjentowi do rozgryzienia. Celem podaży jest działanie przeciwpłytkowe ASA należącego do NLPZ."
+  },
+  {
+    id: 6,
+    category: "farmakologia",
+    question: "Jaka jest dawka TXA (Kwasu traneksamowego) u dorosłych?",
+    options: ["1000 mg", "2000 mg", "500 mg", "1500 mg"],
+    correct: 0,
+    explanation: "Dawka TXA dla dorosłych wynosi 1 g (1000 mg)."
+  },
+  {
+    id: 7,
+    category: "farmakologia",
+    question: "Jaka jest dawka TXA (Kwasu traneksamowego) u dzieci?",
+    options: ["20 mg/kg", "30 mg/kg", "15 mg/kg", "10 mg/kg"],
+    correct: 0,
+    explanation: "20 mg/kg masy ciała to dawka TXA dla dzieci, tym samym jest to maksymalna dawka dobowa wg. ChPL."
+  },
+  {
     id: 8,
     category: "farmakologia",
-    question: "Gdzie podajemy Adrenalinę w anafilaksji u dorosłych?",
-    options: ["Dożylnie (i.v.)", "Domięśniowo (i.m.)", "Podskórnie (s.c.)", "Podjęzykowo (s.l.)"],
+    question: "Jakie jest wskazanie do użycia TXA (Kwas traneksamowy)?",
+    options: ["Zakrzepica żył", "Aktywne krwotoki", "Niedrożność mechaniczna jelit", "Zaburzenia czynności nerek"],
     correct: 1,
-    explanation: "W anafilaksji drogą z wyboru dla Adrenaliny jest droga domięśniowa (i.m.) w przednio-boczną powierzchnię uda."
+    explanation: "TXA używamy przy wszelkiego rodzaju krwotokach, podajemy głównie i.v. we wlewie trwającym 10 minut."
   },
   {
     id: 9,
     category: "farmakologia",
-    question: "Jaka jest standardowa dawka Aspiryny w OZW?",
-    options: ["75 mg", "300 mg", "500 mg", "1000 mg"],
-    correct: 1,
-    explanation: "Dawka nasycająca kwasu acetylosalicylowego w OZW to zazwyczaj 150-300 mg (najczęściej 300 mg p.o. rozgryźć)."
+    question: "Jaka jest dawka lignokainy po 3. defibrylacji rytmu VF/pVT?",
+    options: ["150 mg", "200 mg", "100 mg", "50 mg"],
+    correct: 2,
+    explanation: "W VF/pVT możemy użyć lignokainy zamiast amiodaronu w dawce 100 mg po 3. defibrylacji wg. wytycznych ERC 2025."
+  },
+  {
+    id: 10,
+    category: "farmakologia",
+    question: "Jaka jest dawka lignokainy po 5. defibrylacji rytmu VF/pVT?",
+    options: ["100 mg", "200 mg", "50 mg", "25 mg"],
+    correct: 2,
+    explanation: "W VF/pVT możemy użyć lignokainy zamiast amiodaronu w dawce 50 mg po 5. defibrylacji wg. wytycznych ERC 2025."
   },
   {
     id: 11,
     category: "farmakologia",
-    question: "Jaką dawkę Adenozyny podajemy jako pierwszą?",
-    options: ["3 mg", "6 mg", "12 mg", "18 mg"],
-    correct: 1,
-    explanation: "W SVT podajemy najpierw 6 mg Adenozyny w szybkim bolusie i.v."
+    question: "Jakie jest inne zastosowanie lignokainy w ZRM oprócz NZK?",
+    options: ["Ból zęba", "Ból głowy", "Bóle mięśniówki gładkiej", "Bóle stawów"],
+    correct: 2,
+    explanation: "Lignokaina wykazuje działanie rozkurczowe na mięśnie gładkie, co pomaga w uśmierzaniu bólu spastycznego. Dawka ok. 1 mg/kg."
   },
   {
     id: 12,
     category: "farmakologia",
-    question: "Przeciwwskazaniem do podania Nitrogliceryny jest BP skurczowe poniżej:",
-    options: ["110 mmHg", "100 mmHg", "90 mmHg", "80 mmHg"],
+    question: "Które z poniższych jest przeciwwskazaniem do zastosowania lignokainy?",
+    options: ["Zakrzepica żył i tętnic", "Blok AV II i III stopnia", "Częstoskurcz komorowy", "Migotanie przedsionków"],
+    correct: 1,
+    explanation: "Przeciwwskazaniem do zastosowania lignokainy są bloki AV 2 i 3 stopnia, a wskazaniem częstoskurcze komorowe."
+  },
+  {
+    id: 13,
+    category: "farmakologia",
+    question: "Jaka jest dawka lignokainy dla dzieci wg. ChPL?",
+    options: ["0.5 mg/kg", "1.5 mg/kg", "1 mg/kg", "2 mg/kg"],
     correct: 2,
-    explanation: "Nitrogliceryny nie podajemy, jeśli SBP < 90 mmHg lub przy podejrzeniu zawału prawej komory."
+    explanation: "American Heart Association w swoich standardach zaleca podawanie lignokainy w stanach nagłych w dawce 1 mg/kg."
+  },
+  {
+    id: 14,
+    category: "farmakologia",
+    question: "Jaka jest dawka magnezu w Torsade de Pointes?",
+    options: ["2 g i.v.", "1.2 g i.v.", "2 mg i.v.", "1.2 mg i.v."],
+    correct: 0,
+    explanation: "W TdP podajemy 2 g magnezu dożylnie (bolus 2-3 min)."
   },
   {
     id: 15,
     category: "farmakologia",
-    question: "Dawka Furosemidu w obrzęku płuc to zazwyczaj:",
-    options: ["10 mg", "20-80 mg", "100 mg", "1 mg/kg"],
-    correct: 1,
-    explanation: "Zalecana dawka początkowa to 20-80 mg i.v. (lub 80 mg u osób stale przyjmujących leki moczopędne)."
+    question: "Jaka jest dawka magnezu w ciężkim stanie przedrzucawkowym lub rzucawce?",
+    options: ["4 g i.v. we wlewie", "2 g i.v. we wlewie", "4 mg i.v. we wlewie", "2 mg i.v. we wlewie"],
+    correct: 0,
+    explanation: "Podajemy 4 g magnezu we wlewie dożylnym rozcieńczony w 250 ml 0.9% NaCl lub 5% glukozie."
+  },
+  {
+    id: 16,
+    category: "farmakologia",
+    question: "Jakie wskazanie jest do użycia Mannitolu?",
+    options: ["Bezmocz", "Nadciśnienie tętnicze", "Wzrost ciśnienia śródczaszkowego", "Obrzęk płuc"],
+    correct: 2,
+    explanation: "Mannitol to diuretyk osmotyczny, który zmniejsza ciśnienie śródczaszkowe i obrzęk mózgu."
+  },
+  {
+    id: 17,
+    category: "farmakologia",
+    question: "Jaka jest dawka Mannitolu u dorosłych?",
+    options: ["1.5-2 g/kg", "0.15-0.2 g/kg", "0.5-1.5 g/kg", "1 g/kg"],
+    correct: 0,
+    explanation: "Zazwyczaj podawana dawka Mannitolu to 1.5-2 g/kg (10-13 ml/kg) we wlewie trwającym 30-60 min."
+  },
+  {
+    id: 18,
+    category: "farmakologia",
+    question: "Jaka jest dawka Mannitolu u dzieci?",
+    options: ["Nie stosuje się tego leku u dzieci", "2 g/kg", "0.5-1.5 g/kg", "0.5-1.5 mg/kg"],
+    correct: 2,
+    explanation: "Mannitol stosuje się u dzieci w dawce 0.5-1.5 g/kg w celu zmniejszenia ciśnienia śródczaszkowego i obrzęku mózgu."
   },
   {
     id: 19,
     category: "farmakologia",
-    question: "Dawka glukozy 20% w hipoglikemii u dorosłych to:",
-    options: ["1 g/kg", "2 g/kg", "0.2 ml/kg", "200 mg/kg"],
+    question: "Który z podanych poniżej jest przeciwwskazaniem do użycia Mannitolu?",
+    options: ["Obrzęk mózgu", "Wzrost ciśnienia śródczaszkowego", "Obrzęk płuc", "Nadciśnienie tętnicze"],
+    correct: 2,
+    explanation: "W przypadku kardiogennego obrzęku płuc, jeżeli podamy pacjentowi Mannitol to pogorszymy stan, ponieważ zwiększymy objętość płynu w naczyniach, którego niewydolne serce nie może przepompować."
+  },
+  {
+    id: 20,
+    category: "farmakologia",
+    question: "Jaka jest dawka metamizolu u dorosłych?",
+    options: ["5 mg/kg", "100-500 mg", "250 mg", "0.5-2.5 g"],
     correct: 3,
-    explanation: "Standardowo podajemy 0.2 g glukozy na kg m.c., co odpowiada ok. 1 ml Glukozy 20% na kg m.c."
+    explanation: "Podane dawki metamizolu mogą okazać się za małe, przyjmuje się dawki ogólne 0.5-2.5 g w rozcieńczeniu minimum 100 ml."
+  },
+  {
+    id: 21,
+    category: "farmakologia",
+    question: "Jaka jest dawka metamizolu u dzieci?",
+    options: ["2 mg/kg", "5 mg/kg", "8-16 mg/kg", "16-30 mg/kg"],
+    correct: 2,
+    explanation: "Wg. ChPL dawka metamizolu dla dzieci to 8-16 mg/kg (często przyjmuje się dawkę 10 mg/kg)."
   },
   {
     id: 22,
     category: "farmakologia",
-    question: "Morfina w OZW podawana jest głównie w celu:",
-    options: ["Obniżenia ciśnienia", "Zwalczenia bólu i lęku", "Rozpuszczenia skrzepu", "Sedacji"],
+    question: "Po co w ZRM używamy metamizolu?",
+    options: ["Nadciśnienie tętnicze", "Wzrost ciśnienia śródgałkowego", "Bóle oraz gorączka", "Zaburzenia czynności nerek"],
+    correct: 2,
+    explanation: "Metamizol to silny lek przeciwbólowy oraz przeciwgorączkowy, wykazuje dodatkowe działanie spazmolityczne (rozkurczowe)."
+  },
+  {
+    id: 23,
+    category: "farmakologia",
+    question: "Jakie dodatkowe działanie prezentuje metamizol?",
+    options: ["Rozkurczowe", "Skurczowe", "Przeciwdrgawkowe", "Obniżające tętno"],
+    correct: 0,
+    explanation: "Metamizol to silny lek przeciwbólowy oraz przeciwgorączkowy, wykazuje dodatkowe działanie spazmolityczne (rozkurczowe)."
+  },
+  {
+    id: 24,
+    category: "farmakologia",
+    question: "Czy metamizol jest bezpieczny dla kobiet w ciąży?",
+    options: ["Tak", "Nie", "Tak, ale tylko w małych dawkach", "Tak, ale tylko w pierwszym trymestrze"],
     correct: 1,
-    explanation: "Morfina działa przeciwbólowo i anksjolitycznie, co zmniejsza pobudzenie układu współczulnego w OZW."
+    explanation: "Wg. ChPL ciąża jest przeciwwskazaniem do podaży leku."
   },
   {
     id: 25,
     category: "farmakologia",
-    question: "Lekiem z wyboru w Torsade de Pointes jest:",
-    options: ["Amiodaron", "Magnez", "Potas", "Adrenalina"],
-    correct: 1,
-    explanation: "W Torsade de Pointes (wielokształtny VT) lekiem z wyboru jest Siarczan Magnezu (2 g i.v.)."
+    question: "Jaka jest dawka metoklopramidu dla dorosłych?",
+    options: ["10 mg i.v.", "20 mg i.v.", "30 mg i.v.", "5 mg i.v."],
+    correct: 0,
+    explanation: "Jednorazowa dawka metoklopramidu wynosi 10 mg."
   },
   {
     id: 26,
     category: "farmakologia",
-    question: "Dawka Kwasu Traneksamowego (Exacyl) u dorosłych to:",
-    options: ["500 mg", "1 g", "2 g", "10 mg/kg"],
-    correct: 1,
-    explanation: "Standardowa dawka TXA w urazach to 1 g i.v. w ciągu 10 minut."
+    question: "Jaka jest dawka metoklopramidu dla dzieci?",
+    options: ["0.3 mg/kg", "0.5 mg/kg", "1 mg/kg", "0.15 mg/kg"],
+    correct: 3,
+    explanation: "Dawka dla dzieci to 0.15 mg/kg, lecz pamiętaj o działaniu niepożądanym leku - ryzyko wystąpienia zaburzeń pozapiramidowych. Stosujemy u dzieci głównie zwalczając wymioty po zabiegach chirurgicznych lub chemioterapii."
+  },
+  {
+    id: 27,
+    category: "farmakologia",
+    question: "Jakie jest wskazanie do podaży metoklopramidu?",
+    options: ["Wymioty", "Zawroty głowy", "Ból głowy", "Obrzęk mózgu"],
+    correct: 0,
+    explanation: "Metoklopramid jest lekiem przeciwwymiotnym."
   },
   {
     id: 28,
     category: "farmakologia",
-    question: "Dawka Midazolamu w sedacji u dorosłych (<60 lat) to:",
-    options: ["0.5 mg", "2-2.5 mg", "5 mg", "10 mg"],
-    correct: 1,
-    explanation: "Standardowa dawka miareczkowana u zdrowych dorosłych to 2-2.5 mg i.v."
+    question: "Jaka jest dawka metoprololu?",
+    options: ["5 mg", "10 mg", "15 mg", "20 mg"],
+    correct: 0,
+    explanation: "Dawka metoprololu to 5 mg podawana z szybkością 1 do 2 mg na minutę."
   },
   {
     id: 29,
     category: "farmakologia",
-    question: "Przeciwwskazaniem do podania Amiodaronu jest:",
-    options: ["Tachykardia", "Migotanie komór", "Bradykardia zatokowa", "Nadciśnienie"],
-    correct: 2,
-    explanation: "Amiodaron może pogłębić bradykardię lub blok serca."
+    question: "Do jakiej maksymalnej dawki możesz podać metoprolol?",
+    options: ["20 mg", "30 mg", "40 mg", "50 mg"],
+    correct: 0,
+    explanation: "Zwykle wystarcza do 15 mg, lecz można podać 20 mg - ChPL mówi o tym, że dawki 20 mg i powyżej nie spowodują większej korzyści klinicznej dla pacjenta."
   },
   {
     id: 30,
     category: "farmakologia",
-    question: "Ile mg adrenaliny zawiera ampułka 1 ml (1:1000)?",
-    options: ["0.1 mg", "1 mg", "10 mg", "0.5 mg"],
-    correct: 1,
-    explanation: "Stężenie 1:1000 oznacza 1 mg leku w 1 ml roztworu."
+    question: "Z jakiej grupy leków jest metoprolol?",
+    options: ["Diuretyk", "Inhibitor konwertazy angiotensyny", "Bloker Kanału Wapniowego", "Beta-Bloker"],
+    correct: 3,
+    explanation: "Metoprolol należy do grupy beta-blokerów (beta-adrenolityki) – zmniejsza akcję serca, zmniejsza siłę skurczu i tym samym obniża ciśnienie tętnicze krwi."
+  },
+  {
+    id: 31,
+    category: "farmakologia",
+    question: "Jakie jest wskazanie do użycia metoprololu?",
+    options: ["Leczenie częstoskurczów", "Zespół Brugadów", "Blok AV", "Bradykardia zatokowa"],
+    correct: 0,
+    explanation: "Metoprolol używamy do leczenia częstoskurczów (głównie nadkomorowych) np. AF z szybką odpowiedzią komór - zwolni rytm komór i obniży tętno."
   },
   {
     id: 32,
     category: "farmakologia",
-    question: "Lek odwracający działanie Benzodiazepin to:",
-    options: ["Naloxon", "Flumazenil", "Atropina", "Glukagon"],
-    correct: 1,
-    explanation: "Flumazenil jest specyficznym antagonistą receptorów benzodiazepinowych."
+    question: "Jaka jest dawka midazolamu dla dorosłych?",
+    options: ["10 mg", "5-15 mg", "2-2.5 mg", "1 mg/kg"],
+    correct: 2,
+    explanation: "Midazolam podajemy w dawkach frakcjonowanych z kontrolą sedacji pacjenta. Pamiętaj o mniejszej dawce dla osób starszych - są podatniejsi na benzodiazepiny."
+  },
+  {
+    id: 33,
+    category: "farmakologia",
+    question: "Jaka jest dawka midazolamu dla dzieci?",
+    options: ["0.05-0.1 mg/kg", "0.05-0.1 mcg/kg", "2-2.5 mg/kg", "0.5-1 mg/kg"],
+    correct: 0,
+    explanation: "Midazolam dla dzieci podajemy w dawce 0.05-0.1 mg/kg. Dawka całkowita dla dzieci 6 msc - 5 r.ż. to < 6 mg, a dla dzieci 6 - 12 r.ż. to < 10 mg."
   },
   {
     id: 34,
     category: "farmakologia",
-    question: "Dawka Hydrokortyzonu w anafilaksji to zazwyczaj:",
-    options: ["50 mg", "100-200 mg", "500 mg", "1 g"],
+    question: "Jaka jest dawka midazolamu podawanego donosowo dla dzieci w celu przerwania drgawek?",
+    options: ["Nie podajemy dzieciom midazolamu", "0.3 mg/kg", "0.05-0.1 mg/kg", "Midazolamu nie możemy podać donosowo"],
     correct: 1,
-    explanation: "Standardowa dawka hydrokortyzonu w anafilaksji to 100-200 mg i.v."
+    explanation: "Wytyczne ERC 2025 wskazują na to, że midazolam jest lekiem pierwszego rzutu w celu przerwania drgawek. Wykorzystujemy końcówkę MAD do podaży leków donosowo w dawce 0.3 mg/kg (maksymalnie 10 mg)."
   },
+  // --- MORFINA ---
   {
     id: 35,
     category: "farmakologia",
-    question: "Płyn wieloelektrolitowy (PWE) podajemy w bolusie (hipotensja) dorosłym w dawce:",
-    options: ["2 ml/kg", "5 ml/kg", "10 ml/kg", "20 ml/kg"],
-    correct: 3,
-    explanation: "Zgodnie z wytycznymi w bolusie podaje się 20 ml/kg m.c. płynu izotonicznego (np. 500 ml u przeciętnego dorosłego)."
+    question: "Jaka jest początkowa dawka siarczanu morfiny podawana frakcjonowanie (i.v./i.o.) u dorosłego pacjenta w silnym bólu lub OZW?",
+    options: ["1 - 2 mg", "3 - 5 mg", "10 - 15 mg", "20 mg"],
+    correct: 1,
+    explanation: "U dorosłych podajemy zazwyczaj 3-5 mg i.v. w dawkach frakcjonowanych, obserwując reakcję pacjenta."
+  },
+  {
+    id: 36,
+    category: "farmakologia",
+    question: "Jaką dawkę siarczanu morfiny podasz dziecku w celu zniesienia silnego bólu?",
+    options: ["10 - 20 µg/kg m.c.", "50 - 100 µg/kg m.c.", "100 - 200 µg/kg m.c.", "0.5 - 1 mg/kg m.c."],
+    correct: 2,
+    explanation: "Dawka morfiny dla dzieci to 100-200 µg/kg m.c. i.v./i.o."
   },
   {
     id: 37,
     category: "farmakologia",
-    question: "Pacjent z bradykardią 35/min jaki lek podasz jako pierwszy?",
-    options: ["Atropina", "Adrenalina", "Noradrenalina", "Glukagon"],
-    correct: 0,
-    explanation: "Lekiem pierwszego rzutu w objawowej bradykardii jest Atropina (0.5 mg i.v.)."
+    question: "Wskaż bezwzględne przeciwwskazanie do podania morfiny u pacjenta po wypadku komunikacyjnym:",
+    options: ["Złamanie otwarte uda", "Amputacja urazowa", "Uraz głowy / OUN z podejrzeniem nadciśnienia śródczaszkowego", "Uraz miednicy"],
+    correct: 2,
+    explanation: "Morfina hamuje ośrodek oddechowy, prowadząc do wzrostu CO2, co drastycznie podnosi ciśnienie wewnątrzczaszkowe, dlatego jest przeciwwskazana w urazach TBI."
   },
+
+  // --- NALOKSON ---
   {
     id: 38,
     category: "farmakologia",
-    question: "Dawka Heparyny w OZW (standardowo i.v.) to:",
-    options: ["2500 j.m.", "5000 j.m.", "10000 j.m.", "75 j.m./kg"],
+    question: "Standardowa dawka początkowa Naloksonu (Narcan) u dorosłego pacjenta z depresją oddechową po opioidach wynosi:",
+    options: ["0.1 mg", "0.4 mg", "1 mg", "2 mg"],
     correct: 1,
-    explanation: "Standardowa dawka nasycająca heparyny niefrakcjonowanej w OZW to 5000 j.m. i.v."
+    explanation: "Standardowo podaje się 0.4 mg (jedna ampułka) i miareczkuje do powrotu prawidłowego oddechu."
   },
   {
     id: 39,
     category: "farmakologia",
-    question: "Który lek podajemy w nebulizacji przy Krupie?",
-    options: ["Salbutamol", "Budesonid", "Atrovent", "Adrenalina"],
-    correct: 3,
-    explanation: "W ciężkim krupie (podgłośniowe zapalenie krtani) podaje się Adrenalinę w nebulizacji."
+    question: "Jaką dawkę Naloksonu podasz dziecku ważącemu poniżej 20 kg (poza NZK)?",
+    options: ["0.01 mg/kg m.c.", "0.1 mg/kg m.c.", "0.4 mg/kg m.c.", "2 mg niezależnie od masy"],
+    correct: 0,
+    explanation: "Dawka dla dzieci poniżej 20 kg to 0.01 mg/kg (w przypadku NZK podaje się dawkę wyższą: 0.1 mg/kg)."
   },
+  {
+    id: 40,
+    category: "farmakologia",
+    question: "U jakiej grupy pacjentów podanie Naloksonu wymaga szczególnej ostrożności ze względu na ryzyko ostrego zespołu abstynencyjnego i agresji?",
+    options: ["U chorych na astmę", "U chorych na cukrzycę", "U osób przewlekle uzależnionych od opioidów", "U pacjentów po urazie czaszkowo-mózgowym"],
+    correct: 2,
+    explanation: "Szybkie odwrócenie działania opioidów u osoby uzależnionej wywołuje natychmiastowy głód narkotyczny, pobudzenie i agresję."
+  },
+
+  // --- NITROGLICERYNA ---
   {
     id: 41,
     category: "farmakologia",
-    question: "Dawka Naloxonu w zatruciu opioidami (startowa) to:",
-    options: ["0.1 mg", "0.4 mg", "2 mg", "4 mg"],
+    question: "Jaką dawkę nitrogliceryny podaje się podjęzykowo jednorazowo u dorosłego?",
+    options: ["100 µg", "400 µg (0.4 mg)", "800 µg", "1 mg"],
     correct: 1,
-    explanation: "Standardowa dawka początkowa to 400 mcg (0.4 mg) i.v. / i.m."
+    explanation: "Jedna dawka (tabletka lub wziew z aerozolu) zawiera najczęściej 400 µg nitrogliceryny."
+  },
+  {
+    id: 42,
+    category: "farmakologia",
+    question: "Nitroglicerynę stosujemy m.in. w kardiogennym obrzęku płuc u dorosłych. Czy lek ten stosuje się w rutynowych dawkach u dzieci?",
+    options: ["Tak, w dawce 10 µg/kg", "Tak, w dawce 400 µg niezależnie od wieku", "Nie, brak danych dotyczących stosowania w pediatrii w warunkach ZRM", "Tak, w dawce o połowę mniejszej niż u dorosłych"],
+    correct: 2,
+    explanation: "Nitrogliceryna w postaci podjęzykowej nie jest przeznaczona do rutynowego stosowania u dzieci."
   },
   {
     id: 43,
     category: "farmakologia",
-    question: "Lekiem przeciwgorączkowym, który można podać i.v. jest:",
-    options: ["Ibuprofen", "Paracetamol", "Aspiryna", "Naproksen"],
+    question: "Bezwzględnym przeciwwskazaniem do podania nitrogliceryny u dorosłego pacjenta z bólem w klatce piersiowej jest:",
+    options: ["Tachykardia pow. 100/min", "Nadciśnienie tętnicze 180/100", "Ciśnienie skurczowe poniżej 90 mmHg", "Duszność i spadek SpO2 do 92%"],
+    correct: 2,
+    explanation: "Nitrogliceryna rozszerza łożysko żylne, co przy SBP < 90 mmHg doprowadzi do zagrażającego życiu wstrząsu."
+  },
+
+  // --- NORADRENALINA ---
+  {
+    id: 44,
+    category: "farmakologia",
+    question: "Zalecana początkowa dawka noradrenaliny (Levonoru) we wlewie ciągłym u dorosłego we wstrząsie to:",
+    options: ["0.01 - 0.05 mg/h", "0.4 - 0.8 mg/h (0.05 - 1.5 µg/kg/min)", "2 - 10 µg/min", "10 - 20 mg/h"],
     correct: 1,
-    explanation: "Paracetamol jest dostępny w formie roztworu do infuzji dożylnej."
+    explanation: "Startowa dawka we wstrząsie to 0.4 - 0.8 mg/h, aby obkurczyć naczynia obwodowe."
   },
   {
     id: 45,
     category: "farmakologia",
-    question: "Dawka Adrenaliny w anafilaksji u dzieci (i.m.) wynosi:",
-    options: ["10 mcg/kg", "0.01 mg/kg", "0.15-0.3 mg (zależnie od wagi)", "Wszystkie powyższe są poprawne"],
-    correct: 3,
-    explanation: "Wszystkie te formy zapisu określają prawidłową dawkę domięśniową u dzieci (0.01 mg/kg)."
+    question: "Noradrenalina w warunkach ZRM u pacjentów pediatrycznych:",
+    options: ["Jest lekiem pierwszego rzutu, dawka to 1 µg/kg/min", "Nie ustalono bezpieczeństwa stosowania u dzieci (brak danych w standardowej liście ZRM)", "Podaje się ją domięśniowo w dawce 0.1 mg", "Zastępuje adrenalinę w NZK"],
+    correct: 1,
+    explanation: "Zgodnie z ChPL, bezpieczeństwo stosowania noradrenaliny u dzieci nie jest w pełni ustalone (zazwyczaj preferuje się adrenalinę)."
   },
+  {
+    id: 46,
+    category: "farmakologia",
+    question: "Kiedy podaż noradrenaliny jest przeciwwskazana u pacjenta wydolnego hemodynamicznie (poza stanem bezpośredniego zagrożenia życia)?",
+    options: ["W chorobach zakrzepowych i niedociśnieniu bezpośrednio po zawale mięśnia sercowego", "W cukrzycy typu 2", "W Przewlekłej Obturacyjnej Chorobie Płuc", "W obrzęku mózgu"],
+    correct: 0,
+    explanation: "Noradrenalina silnie kurczy naczynia, co w stanach zakrzepowych lub niedokrwieniu serca może pogorszyć perfuzję (w stanie zagrożenia życia przeciwwskazania te pomijamy)."
+  },
+
+  // --- PAPAWERYNA ---
   {
     id: 47,
     category: "farmakologia",
-    question: "Jaki lek podajemy podjęzykowo przy nadciśnieniu?",
-    options: ["Metoprolol", "Captopril", "Furosemid", "Relanium"],
+    question: "Standardowa dawka spazmolityczna papaweryny u osoby dorosłej (i.m. lub s.c.) wynosi:",
+    options: ["10 - 20 mg", "40 - 120 mg", "200 - 300 mg", "500 mg"],
     correct: 1,
-    explanation: "Captopril podaje się p.o. lub s.l. (podjęzykowo - off label) w celu szybszego działania w stanach nagłych nadciśnienia."
+    explanation: "Dawka papaweryny dla osoby dorosłej wynosi 40-120 mg."
   },
+  {
+    id: 48,
+    category: "farmakologia",
+    question: "Jaka jest dawka papaweryny dla dziecka w przypadku silnej kolki jelitowej?",
+    options: ["10 mg/kg m.c.", "1 mg/kg m.c.", "40 mg w bolusie", "Leku nie należy stosować u dzieci"],
+    correct: 3,
+    explanation: "Papaweryna nie jest przeznaczona do stosowania w pediatrii."
+  },
+  {
+    id: 49,
+    category: "farmakologia",
+    question: "Głównym przeciwwskazaniem kardiologicznym do zastosowania papaweryny jest:",
+    options: ["Niedociśnienie tętnicze", "Zaburzenia przewodnictwa w mięśniu sercowym", "Migotanie przedsionków", "Obrzęk płuc"],
+    correct: 1,
+    explanation: "Papaweryna wywiera bezpośredni, depresyjny wpływ na układ przewodzący serca i może wywołać bloki."
+  },
+
+  // --- PARACETAMOL ---
   {
     id: 50,
     category: "farmakologia",
-    question: "Dawka Clemastinu u dorosłych to:",
-    options: ["1 mg", "2 mg", "5 mg", "10 mg"],
+    question: "Standardowa dawka dożylna paracetamolu u osoby dorosłej w leczeniu bólu wynosi:",
+    options: ["0.5 g", "1 g", "1.5 g", "2 g"],
     correct: 1,
-    explanation: "Standardowa ampułka Clemastinu zawiera 2 mg leku."
+    explanation: "Jednorazowa dawka i.v. z gotowego flakonu to zazwyczaj 1 g (1000 mg)."
   },
   {
     id: 51,
     category: "farmakologia",
-    question: "Dawka adrenaliny w nagłym zatrzymaniu krążenia (NZK) u dziecka ważącego 20 kg wynosi (droga i.v./i.o.):",
-    options: ["0.1 mg", "0.2 mg", "0.5 mg", "1.0 mg"],
+    question: "Dawka i.v. paracetamolu dla dziecka powyżej 6 roku życia (lub > 33 kg) wynosi:",
+    options: ["5 mg/kg m.c.", "10 - 15 mg/kg m.c.", "20 - 30 mg/kg m.c.", "50 mg/kg m.c."],
     correct: 1,
-    explanation: "Dawka Adrenaliny w NZK u dzieci to 10 mcg/kg. Dla 20 kg: 200 mcg = 0.2 mg."
+    explanation: "U starszych dzieci dawka to 10-15 mg/kg m.c."
   },
   {
     id: 52,
     category: "farmakologia",
-    question: "Jaka jest dawka Fentanylu dla dzieci?:",
-    options: ["1-3 mg/kg", "1-3 g/kg", "1-3 mcg/kg", "50-200 mcg/kg"],
-    correct: 2,
-    explanation: "Standardowa dawka przeciwbólowa Fentanylu u dzieci to 1-3 mcg/kg."
+    question: "Paracetamol, w przeciwieństwie do NLPZ (np. Ketonal, Ibuprofen), jest lekiem pierwszego wyboru m.in. w krwawieniach, ale jest bezwzględnie przeciwwskazany w:",
+    options: ["Ciężkiej niewydolności wątroby i chorobie alkoholowej", "Chorobie wrzodowej żołądka", "Astmie oskrzelowej", "Zaburzeniach krzepnięcia krwi"],
+    correct: 0,
+    explanation: "Paracetamol jest silnie hepatotoksyczny w przedawkowaniu, a u osób z uszkodzoną wątrobą ryzyko to drastycznie rośnie."
   },
+
+  // --- PWE & PŁYN RINGERA ---
   {
     id: 53,
     category: "farmakologia",
-    question: "Dawka Amiodaronu w opornym na defibrylację migotaniu komór (VF) u dziecka to:",
-    options: ["1 mg/kg m.c.", "3 mg/kg m.c.", "5 mg/kg m.c.", "10 mg/kg m.c."],
-    correct: 2,
-    explanation: "Dawka Amiodaronu w NZK u dzieci to 5 mg/kg."
+    question: "Standardowy uderzeniowy bolus Płynu Wieloelektrolitowego (PWE) lub Ringera we wstrząsie (hipotensji) u osoby dorosłej i u dziecka to zazwyczaj:",
+    options: ["1 ml/kg m.c.", "10 ml/kg m.c.", "30 ml/kg m.c.", "50 ml/kg m.c."],
+    correct: 1,
+    explanation: "Uśredniony bolus w hipotensji wynosi 10 ml/kg (często powtarzany lub stosowany jako 20 ml/kg u dorosłych wg ALS.)."
   },
   {
     id: 54,
     category: "farmakologia",
-    question: "Zalecana dawka midazolamu podawanego donosowo (MAD) u dziecka w przypadku drgawek to:",
-    options: ["0.1 mg/kg m.c.", "0.3 mg/kg m.c.", "0.5 mg/kg m.c.", "1.0 mg/kg m.c."],
+    question: "W jakim stanie klinicznym pacjenta PWE oraz Płyn Ringera będą przeciwwskazane z uwagi na ryzyko pogorszenia wydolności oddechowej?",
+    options: ["We wstrząsie anafilaktycznym", "W przewodnieniu i obrzęku płuc", "W odwodnieniu z powodu wymiotów", "W masywnych oparzeniach"],
     correct: 1,
-    explanation: "Dawka Midazolamu donosowo to zazwyczaj 0.2-0.3 mg/kg."
+    explanation: "Każdy płyn infuzyjny u pacjenta z obrzękiem płuc lub niewydolnością serca może doprowadzić do śmiertelnego zalania pęcherzyków płucnych."
   },
+
+  // --- PRASUGREL & TIKAGRELOR ---
   {
     id: 55,
     category: "farmakologia",
-    question: "Dawka jednorazowa paracetamolu podawanego dożylnie (i.v.) u dziecka wynosi:",
-    options: ["5 mg/kg m.c.", "10 mg/kg m.c.", "15 mg/kg m.c.", "20 mg/kg m.c."],
-    correct: 2,
-    explanation: "Dawka i.v. Paracetamolu u dzieci powyżej 10 kg to 15 mg/kg."
+    question: "Dawka nasycająca Prasugrelu (Efient) u dorosłego w OZW to:",
+    options: ["10 mg", "60 mg", "75 mg", "180 mg"],
+    correct: 1,
+    explanation: "Prasugrel podajemy w dawce 60 mg p.o."
   },
   {
     id: 56,
     category: "farmakologia",
-    question: "Pierwsza dawka adenozyny u dorosłego pacjenta w częstoskurczu nadkomorowym (SVT) wynosi:",
-    options: ["3 mg", "6 mg", "12 mg", "18 mg"],
-    correct: 1,
-    explanation: "Standardowa pierwsza dawka Adenozyny to 6 mg."
+    question: "Dawka nasycająca Tikagreloru (Brilique) u dorosłego w OZW to:",
+    options: ["60 mg", "90 mg", "180 mg", "300 mg"],
+    correct: 2,
+    explanation: "Tikagrelor stosujemy w dawce 180 mg p.o."
   },
   {
     id: 57,
     category: "farmakologia",
-    question: "Dawka glukagonu podawana domięśniowo u dorosłego pacjenta w ciężkiej hipoglikemii to:",
-    options: ["0.5 mg", "1 mg", "2 mg", "5 mg"],
-    correct: 1,
-    explanation: "Standardowa dawka Glukagonu dla dorosłych to 1 mg i.m."
+    question: "Głównym przeciwwskazaniem do zastosowania Prasugrelu lub Tikagreloru u pacjenta z zawałem (OZW) jest:",
+    options: ["Tachykardia", "Nadciśnienie tętnicze pow. 160/90 mmHg", "Czynne, aktywne krwawienie (np. z przewodu pokarmowego)", "Cukrzyca typu 2"],
+    correct: 2,
+    explanation: "Jako leki silnie przeciwpłytkowe, mogą one doprowadzić do niemożliwego do opanowania krwotoku u pacjentów z czynnym krwawieniem."
   },
+
+  // --- SALBUTAMOL ---
   {
     id: 58,
     category: "farmakologia",
-    question: "Dawka siarczanu magnezu w ciężkim napadzie astmy oskrzelowej u dziecka wynosi:",
-    options: ["10 mg/kg m.c.", "25 mg/kg m.c.", "50 mg/kg m.c.", "100 mg/kg m.c."],
+    question: "Standardowa dawka salbutamolu (Ventolin) w nebulizacji w ataku duszności u osoby dorosłej i pacjentów pow. 2 roku życia wynosi:",
+    options: ["1 mg", "2.5 mg", "5 mg", "10 mg"],
     correct: 2,
-    explanation: "W astmie podaje się 40-50 mg/kg i.v. Magnezu."
+    explanation: "Dorośli i starsze dzieci otrzymują 5 mg salbutamolu w nebulizacji."
   },
   {
     id: 59,
     category: "farmakologia",
-    question: "Dawka jednorazowa ibuprofenu podawanego doustnie (p.o.) u dziecka wynosi zazwyczaj:",
-    options: ["5 mg/kg m.c.", "10 mg/kg m.c.", "15 mg/kg m.c.", "20 mg/kg m.c."],
+    question: "Jaką dawkę salbutamolu w nebulizacji podasz dziecku poniżej 2 roku życia z dusznością (obturacją)?",
+    options: ["1.25 mg", "2.5 mg", "5 mg", "Salbutamolu nie stosuje się poniżej 2 r.ż."],
     correct: 1,
-    explanation: "Standardowa dawka p.o. Ibuprofenu u dzieci to 10 mg/kg."
+    explanation: "Zalecana dawka dla małych dzieci (< 2 r.ż.) to 2.5 mg w nebulizacji."
   },
+
+  // --- NaCl 0.9% ---
   {
     id: 60,
     category: "farmakologia",
-    question: "Jaką dawkę hydrokortyzonu (i.v.) podasz dorosłemu pacjentowi z ciężką anafilaksją?",
-    options: ["50 mg", "100 mg", "200 mg", "500 mg"],
-    correct: 2,
-    explanation: "Standardowo w anafilaksji 200 mg i.v."
+    question: "Sól fizjologiczna (0.9% NaCl) jest najpopularniejszym roztworem. Czy u dorosłego pacjenta z bezmoczem i niewydolnością nerek należy toczyć ten płyn bez ograniczeń?",
+    options: ["Tak, aby 'przepłukać' nerki", "Nie, ponieważ pacjent jest narażony na natychmiastowe przewodnienie i obrzęk płuc", "Tak, o ile podamy go z Furosemidem", "Tak, NaCl 0.9% nie ma przeciwwskazań"],
+    correct: 1,
+    explanation: "Niewydolność nerek i bezmocz to bezwzględne przeciwwskazanie do swobodnej podaży płynów – organizm pacjenta nie pozbędzie się podanej wody."
   },
+
+  // --- TORECAN (THIETHYLPERAZINE) ---
   {
     id: 61,
     category: "farmakologia",
-    question: "Dawka amiodaronu podawana w stabilnym hemodynamicznie częstoskurczu komorowym (VT) u dorosłego wynosi:",
-    options: ["150 mg", "300 mg", "600 mg", "900 mg"],
+    question: "Standardowa jednorazowa dawka leku Torecan u dorosłych wynosi:",
+    options: ["1 mg", "6.5 mg", "10 mg", "19.5 mg"],
     correct: 1,
-    explanation: "Standardowa dawka we wlewie to 300 mg (choć często zaczyna się od 150 mg w 10 min)."
+    explanation: "Zazwyczaj podaje się 6.5 mg (p.r., i.m., i.v.), z maksymalną dobową dawką do 19.5 mg."
   },
   {
     id: 62,
     category: "farmakologia",
-    question: "Ile miligramów kwasu traneksamowego (TXA) podasz dorosłemu pacjentowi z masywnym krwotokiem pourazowym w pierwszej dawce?",
-    options: ["250 mg", "500 mg", "1000 mg (1 g)", "2000 mg (2 g)"],
+    question: "Jakie ograniczenie wiekowe (wg ChPL) dotyczy leku Torecan?",
+    options: ["Przeciwwskazany u dzieci poniżej 2 roku życia", "Przeciwwskazany u dzieci poniżej 6 roku życia", "Przeciwwskazany poniżej 15 roku życia", "Przeciwwskazany u osób powyżej 65 roku życia"],
     correct: 2,
-    explanation: "Pierwsza dawka TXA to 1 g i.v."
+    explanation: "Lek jest bezwzględnie przeciwwskazany do 15 roku życia ze względu na ryzyko silnych objawów pozapiramidowych."
+  },
+  {
+    id: 63,
+    category: "farmakologia",
+    question: "Bezwzględnym przeciwwskazaniem do podania Torecanu (Tietyloperazyny) dorosłemu pacjentowi z wymiotami/zawrotami głowy jest:",
+    options: ["Zaburzenia świadomości i ciężka depresja OUN", "Hipotensja 110/70", "Częstoskurcz nadkomorowy", "Ostre zatrucie pokarmowe"],
+    correct: 0,
+    explanation: "Torecan działa hamująco na ośrodkowy układ nerwowy, w stanach depresji OUN może doprowadzić do śpiączki lub bezdechu."
+  },
+
+  // --- URAPIDIL ---
+  {
+    id: 64,
+    category: "farmakologia",
+    question: "W jakich dawkach dożylnie u dorosłego miareczkuje się Urapidil (Ebrantil) w celu zbicia nagłego nadciśnienia tętniczego?",
+    options: ["1 - 5 mg", "10 - 50 mg", "100 - 200 mg", "250 mg"],
+    correct: 1,
+    explanation: "Standardowo dawkuje się 10-50 mg i.v., zachowując limit 100 mg jako dawkę dobową."
+  },
+  {
+    id: 65,
+    category: "farmakologia",
+    question: "Czy Urapidil w postaci ampułek z ZRM jest zarejestrowany do standardowego obniżania ciśnienia u dzieci?",
+    options: ["Tak, w dawce 1 mg/kg m.c.", "Nie, nie zaleca się stosowania poniżej 18 roku życia", "Tak, w dawce o połowę mniejszej niż u dorosłych", "Tak, ale tylko we wlewie ciągłym"],
+    correct: 1,
+    explanation: "Zgodnie ze standardową wiedzą ratowniczą, leku tego nie stosuje się w pediatrii (< 18 r.ż.)."
   },
   {
     id: 66,
     category: "farmakologia",
-    question: "Jaki lek podasz na nieurazowy obrzęk mózgu?",
-    options: ["Deksametazon", "Hydrokortyzon", "Urapidyl", "Furosemid"],
-    correct: 0,
-    explanation: "Deksametazon jest lekiem z wyboru w nieurazowym obrzęku mózgu (np. guz)."
+    question: "Która z wad serca stanowi wprost przeciwwskazanie do podania Urapidilu?",
+    options: ["Niedomykalność zastawki mitralnej", "Ubytek przegrody międzyprzedsionkowej", "Stenoza aortalna", "Zespół wypadania płatka zastawki mitralnej"],
+    correct: 2,
+    explanation: "Zwężenie zastawki aortalnej (stenoza aortalna) znacznie upośledza rzut serca, nagłe rozszerzenie naczyń Urapidilem doprowadzi do gwałtownego niedokrwienia."
   },
+
+  // --- WODOROWĘGLAN SODU ---
   {
     id: 67,
     category: "farmakologia",
-    question: "Flumazenil jest specyficzną odtrutką w przypadku zatrucia:",
-    options: ["Opioidami", "Benzodiazepinami", "Paracetamolem", "Trójpierścieniowymi lekami przeciwdepresyjnymi (TLPD)"],
+    question: "Jaka jest dawka i.v. wodorowęglanu sodu (Natrium Bicarbonicum 8,4%) u dorosłych i dzieci m.in. w ciężkiej kwasicy metabolicznej?",
+    options: ["0.5 mEq/kg m.c.", "1 mEq/kg m.c.", "2 mEq/kg m.c.", "5 mEq/kg m.c."],
     correct: 1,
-    explanation: "Flumazenil znosi działanie benzodiazepin."
+    explanation: "Podaż wynosi 1 mEq/kg masy ciała (1 ml roztworu 8.4% to 1 mEq)."
   },
   {
-    id: 73,
+    id: 68,
     category: "farmakologia",
-    question: "Zalecana dawka początkowa Furosemidu (i.v.) w ostrym obrzęku płuc u pacjenta, który przewlekle nie stosuje leków moczopędnych, to:",
-    options: ["10 mg", "20 - 80 mg", "80 - 100 mg", "200 mg"],
-    correct: 1,
-    explanation: "Początkowo 20-40 mg i.v."
-  },
-  {
-    id: 74,
-    category: "farmakologia",
-    question: "Bezwzględnym przeciwwskazaniem do podania kwasu acetylosalicylowego (ASA) pacjentowi z podejrzeniem OZW jest:",
-    options: ["Aktywna choroba wrzodowa i czynne krwawienie z przewodu pokarmowego", "Cukrzyca typu 2", "Nadciśnienie tętnicze uregulowane farmakologicznie", "Przewlekła Obturacyjna Choroba Płuc (POChP)"],
+    question: "Podaż wodorowęglanu sodu u dzieci (zwłaszcza u niemowląt) musi być wolna i bardzo ostrożna. Dlaczego?",
+    options: ["Szybki bolus hiperosmolarny grozi krwawieniem do komór mózgu", "Powoduje obrzęk głośni", "Wywołuje natychmiastowy spadek glukozy we krwi", "Wywołuje trwały blok serca"],
     correct: 0,
-    explanation: "Czynne krwawienie z p.pok. jest bezwzględnym przeciwwskazaniem do leków antyagregacyjnych."
+    explanation: "Zbyt szybkie podanie silnie hiperosmolarnego roztworu wodorowęglanu sodu uszkadza naczynia mózgowe u niemowląt i może doprowadzić do wylewów krwawych."
   },
   {
-    id: 75,
+    id: 69,
     category: "farmakologia",
-    question: "Poniżej jakiego wieku bezwzględnie NIE WOLNO stosować Ketoprofenu (Ketonalu)?",
-    options: ["12 roku życia", "15 roku życia", "16 roku życia", "18 roku życia"],
-    correct: 1,
-    explanation: "Ketoprofen jest przeciwwskazany u dzieci poniżej 15 r.ż."
-  },
-  {
-    id: 76,
-    category: "farmakologia",
-    question: "U jakiego pacjenta z ciężką bradykardią podanie Atropiny jest przeciwwskazane i nieskuteczne?",
-    options: ["U pacjenta po zatruciu fosforoorganikami", "U pacjenta z zawałem ściany dolnej", "U pacjenta po przeszczepie serca", "U pacjenta z jaskrą z zamkniętym kątem"],
+    question: "Kiedy podaż wodorowęglanu sodu (jako buforu) jest absolutnie przeciwwskazana i nieskuteczna w ratownictwie?",
+    options: ["W kwasicy hiperchloremicznej", "W zatruciu aspiryną", "W zasadowicy oraz przy głębokiej hipowentylacji (retencji CO2)", "W zatruciu trójpierścieniowymi lekami przeciwdepresyjnymi (TLPD)"],
     correct: 2,
-    explanation: "Serce przeszczepione jest odnerwione (brak nerwu błędnego), więc Atropina nie zadziała."
-  },
-  {
-    id: 77,
-    category: "farmakologia",
-    question: "Bezwzględnym przeciwwskazaniem do podania glukagonu (w przypadku hipoglikemii) jest:",
-    options: ["Guz chromochłonny nadnerczy", "Cukrzyca typu 1", "Niewydolność nerek", "Padaczka"],
-    correct: 0,
-    explanation: "Guz chromochłonny (Pheochromocytoma) jest przeciwwskazaniem (ryzyko wyrzutu katecholamin)."
-  },
-  {
-    id: 78,
-    category: "farmakologia",
-    question: "Nitrogliceryny (Nitromintu) m.in. w ostrym zespole wieńcowym NIE podasz pacjentowi, u którego ciśnienie skurczowe wynosi poniżej:",
-    options: ["110 mmHg", "100 mmHg", "90 mmHg", "80 mmHg"],
-    correct: 2,
-    explanation: "SBP < 90 mmHg to granica podania azotanów."
-  },
-  {
-    id: 79,
-    category: "farmakologia",
-    question: "Jaką dawkę adrenaliny (i.m.) podasz we wstrząsie anafilaktycznym u 8-letniego dziecka (przedział 6-12 r.ż.)?",
-    options: ["100 µg", "150 µg", "300 µg", "500 µg"],
-    correct: 2,
-    explanation: "Dzieci 6-12 lat: 300 mcg i.m."
-  },
-  {
-    id: 80,
-    category: "farmakologia",
-    question: "Przeciwwskazaniem do podania metamizolu (Pyralginy), ze względu na ryzyko powikłań hemodynamicznych, jest m.in.:",
-    options: ["Hipotensja", "Nadciśnienie tętnicze", "Gorączka pow. 39°C", "Kolka nerkowa"],
-    correct: 0,
-    explanation: "Pyralgina może powodować gwałtowny spadek ciśnienia tętniczego."
-  },
-  {
-    id: 81,
-    category: "farmakologia",
-    question: "Kaptoprylu (Captopril) stosowanego w nadciśnieniu tętniczym nie należy podawać pacjentom z:",
-    options: ["Ostrym Zespołem Wieńcowym (OZW)", "Obustronnym zwężeniem tętnic nerkowych", "Tachykardią zatokową", "Astmą oskrzelową"],
-    correct: 1,
-    explanation: "Obustronne zwężenie tętnic nerkowych to istotne przeciwwskazanie do inhibitorów ACE."
-  },
-  {
-    id: 82,
-    category: "farmakologia",
-    question: "Co jest przeciwwskazaniem do podania Amiodaronu u pacjenta (wydolnego hemodynamicznie) z zaburzeniami rytmu serca?",
-    options: ["Zaburzenia czynności tarczycy", "Cukrzyca", "Przewlekła niewydolność nerek", "Przewlekła Obturacyjna Choroba Płuc (POChP)"],
-    correct: 0,
-    explanation: "Amiodaron zawiera jod i może powodować nadczynność lub niedoczynność tarczycy."
-  },
-  {
-    id: 83,
-    category: "farmakologia",
-    question: "Dawka drotaweryny (No-Spy) podawana dożylnie (i.v.) u dziecka wynosi:",
-    options: ["10 mg", "20 mg", "40 mg", "Dzieciom nie podaje się drotaweryny i.v"],
-    correct: 3,
-    explanation: "Drotaweryna nie jest zalecana do podawania dożylnego u dzieci."
-  },
-  {
-    id: 84,
-    category: "farmakologia",
-    question: "Urapidil (Ebrantil) stosowany inagłym, znacznym nadciśnieniu tętniczym nie jest zalecany do stosowania u pacjentów poniżej:",
-    options: ["12 roku życia", "15 roku życia", "16 roku życia", "18 roku życia"],
-    correct: 3,
-    explanation: "Urapidil jest zarejestrowany dla dorosłych."
-  },
-  {
-    id: 85,
-    category: "farmakologia",
-    question: "Klemastyny (Clemastin) bezwzględnie nie należy podawać dzieciom poniżej:",
-    options: ["1 roku życia", "3 roku życia", "6 roku życia", "12 roku życia"],
-    correct: 1,
-    explanation: "Clemastin nie należy podawać w ogóle dzieciom(można, dawka 25-50 mcg/kg), lecz bezwzględnie unikamy poniżej 3 r.ż,"
-  },
-  {
-    id: 86,
-    category: "farmakologia",
-    question: "Jaką dawkę paracetamolu podasz dożylnie (i.v.) dorosłemu pacjentowi z prawidłową czynnością nerek i wątroby w leczeniu przeciwbólowym?",
-    options: ["0.5 g", "1 g", "1.5 g", "2 g"],
-    correct: 1,
-    explanation: "Standardowa dawka i.v. u dorosłych to 1 g."
-  },
-  {
-    id: 87,
-    category: "farmakologia",
-    question: "W jakim rozpuszczalniku, należy podać Amiodaron w dawce 300 mg i.v. podczas NZK?",
-    options: ["W 10 ml 0.9% NaCl", "W 5% Glukozie", "W Płynie Wieloelektrolitowym (PWE)", "W Płynie Ringera"],
-    correct: 1,
-    explanation: "Amiodaron jest kompatybilny tylko z 5% Glukozą."
-  },
-  {
-    id: 88,
-    category: "farmakologia",
-    question: "Przeciwwskazaniem do zastosowania Płynu Wieloelektrolitowego (PWE) jest m.in.:",
-    options: ["Hipowolemia i odwodnienie", "Hiponatremią i hipokaliemia", "Hiperkaliemia i hiperkalcemia", "Biegunka i wymioty"],
-    correct: 2,
-    explanation: "PWE zawiera potas i wapń, więc hiperkaliemia i hiperkalcemia są przeciwwskazaniami."
-  },
-  {
-    id: 89,
-    category: "farmakologia",
-    question: "Dawka adrenaliny w napadzie astmy oskrzelowej (obturacja dróg oddechowych) u osoby dorosłej wynosi:",
-    options: ["1 mg i.v.", "500 µg i.m.", "300 µg i.m. lub s.c.", "150 µg i.m."],
-    correct: 2,
-    explanation: "W ciężkiej astmie można podać 300 mcg i.m. lub s.c."
-  },
-  {
-    id: 91,
-    category: "farmakologia",
-    question: "Jaką dawkę glukagonu podasz domięśniowo (i.m.) lub podskórnie (s.c.) dziecku ważącemu poniżej 25 kg w przypadku hipoglikemii?",
-    options: ["0,5 mg", "1 mg", "2 mg", "5 mg"],
-    correct: 0,
-    explanation: "Dzieci < 25 kg: 0.5 mg."
-  },
-  {
-    id: 92,
-    category: "farmakologia",
-    question: "Dawka amiodaronu w opornym na defibrylację NZK u dzieci wynosi:",
-    options: ["1 mg/kg m.c.", "3 mg/kg m.c.", "5 mg/kg m.c.", "10 mg/kg m.c."],
-    correct: 2,
-    explanation: "NZK u dzieci: 5 mg/kg Amiodaronu."
-  },
-  {
-    id: 93,
-    category: "farmakologia",
-    question: "Zalecana dawka fentanylu dla dorosłego pacjenta z zachowanym, spontanicznym oddychaniem wynosi:",
-    options: ["10 - 20 µg i.v.", "50 - 200 µg i.v.", "300 - 500 µg i.v.", "1 - 3 µg/kg m.c. i.v."],
-    correct: 1,
-    explanation: "Zazwyczaj 1-2 mcg/kg, co daje ok. 50-200 mcg u dorosłego."
-  },
-
-  {
-    id: 95,
-    category: "farmakologia",
-    question: "Dawka kwasu traneksamowego (Exacyl) w krwawieniu po urazie u dziecka (powyżej 1 r.ż.) to:",
-    options: ["10 mg/kg m.c.", "15 mg/kg m.c.", "20 mg/kg m.c.", "30 mg/kg m.c."],
-    correct: 2,
-    explanation: "Zazwyczaj 15-30 mg/kg (średnio 20 mg/kg)."
-  },
-  {
-    id: 96,
-    category: "farmakologia",
-    question: "Dawka Mannitolu dla dorosłych wynosi:",
-    options: ["1.5-2 g/kg", "1.5-2 mg/kg", "1.5-2 mcg/kg", "500 mg/kg m.c."],
-    correct: 0,
-    explanation: "Standardowa dawka to 0.25-2 g/kg (średnio 1.5-2 g/kg)."
-  },
-  {
-    id: 97,
-    category: "farmakologia",
-    question: "Dawka midazolamu (Midanium) w celu sedacji dorosłego pacjenta wynosi:",
-    options: ["0,5 - 1 mg i.v.", "2 - 2,5 mg i.v.", "5 mg i.v.", "10 mg i.m."],
-    correct: 1,
-    explanation: "Standardowa dawka i.v. to 2-2.5 mg, pamiętaj, że midazolam miareczkujemy!"
-  },
-  {
-    id: 98,
-    category: "farmakologia",
-    question: "Zalecany bolus PWE, 0,9% NaCl lub płynu Ringera przypadku hipotensji u dorosłych to:",
-    options: ["5 ml/kg m.c.", "10 ml/kg m.c.", "20 ml/kg m.c.", "30 ml/kg m.c."],
-    correct: 2,
-    explanation: "Zaleca się bolus 20 ml/kg. U dzieci bolus wynosi 10 ml/kg."
-  },
-  {
-    id: 99,
-    category: "farmakologia",
-    question: "Jaką dawkę naloksonu podasz dziecku o masie ciała poniżej 20 kg?",
-    options: ["0,01 mg/kg m.c.", "0,1 mg/kg m.c.", "0,4 mg/kg m.c.", "2 mg"],
-    correct: 0,
-    explanation: "Dzieci < 20 kg: 10 mcg/kg (0.01 mg/kg)."
-  },
-  {
-    id: 100,
-    category: "farmakologia",
-    question: "Dawka siarczanu atropiny w ciężkiej bradykardii u dziecka wynosi:",
-    options: ["10 µg/kg m.c.", "20 µg/kg m.c.", "50 µg/kg m.c.", "100 µg/kg m.c."],
-    correct: 1,
-    explanation: "W przypadku ciężkiej bradykardii u dzieci: 20 mcg/kg Atropiny. (Lek pierwszego rzutu)"
-  },
-  {
-    id: 101,
-    category: "farmakologia",
-    question: "Dawka siarczanu morfiny dla dziecka (i.v., i.o.) wynosi:",
-    options: ["10 - 50 µg/kg m.c.", "100 - 200 µg/kg m.c.", "300 - 400 µg/kg m.c.", "0,5 - 1 mg/kg m.c."],
-    correct: 1,
-    explanation: "Dzieci: 0.1-0.2 mg/kg (100-200 mcg/kg)."
-  },
-  {
-    id: 102,
-    category: "farmakologia",
-    question: "W przypadku ostrego zatrucia beta-blokerami, zalecana dawka glukagonu to:",
-    options: ["10 - 20 µg/kg m.c.", "50 - 150 µg/kg m.c.", "200 - 300 µg/kg m.c.", "1 mg niezależnie od masy ciała"],
-    correct: 1,
-    explanation: "W zatruciu BB stosuje się wysokie dawki Glukagonu: 50-150 mcg/kg."
-  },
-  {
-    id: 103,
-    category: "farmakologia",
-    question: "Dawka hydroksyzyny podawanej domięśniowo (i.m.) u dorosłego wynosi:",
-    options: ["200 mg", "10 mg", "50-100 mg", "50-100 mcg"],
-    correct: 2,
-    explanation: "Dawka i.m. u dorosłych to zazwyczaj 50-100 mg."
-  },
-  {
-    id: 104,
-    category: "farmakologia",
-    question: "Dawka nasycająca klopidogrelu (Areplex/Plavix) podawana doustnie (p.o.) pacjentowi z Ostrym Zespołem Wieńcowym (OZW) wynosi:",
-    options: ["75 mg", "150 mg", "300 mg", "600 mg"],
-    correct: 3,
-    explanation: "Standardowa dawka nasycająca w OZW to 600 mg (lub 300 mg wg starszych wytycznych)."
-  },
-  {
-    id: 105,
-    category: "farmakologia",
-    question: "Poniżej jakiego wieku lek przeciwwymiotny tietyloperazyna (Torecan) jest bezwzględnie przeciwwskazany?",
-    options: ["15 roku życia", "12 roku życia", "6 roku życia", "18 roku życia"],
-    correct: 0,
-    explanation: "Torecan jest przeciwwskazany poniżej 15 r.ż."
-  },
-  {
-    id: 106,
-    category: "farmakologia",
-    question: "Dawkę diazepamu (Relanium) podawanego u dzieci można obliczyć na podstawie masy ciała lub według zasady:",
-    options: ["0.5 mg na każdy rok życia", "5 mg niezależnie od wieku", "2 mg na każdy rok życia dziecka", "1 mg na każdy rok życia dziecka"],
-    correct: 3,
-    explanation: "Jedna z uproszczonych zasad to 1 mg na każdy rok życia."
-  },
-  {
-    id: 107,
-    category: "farmakologia",
-    question: "Silnym wskazaniem do podania wodorowęglanu sodu (8,4%) jest m.in.:",
-    options: ["Zatrucie trójpierścieniowymi lekami przeciwdepresyjnymi (TCA)", "Zasadowica metaboliczna", "Ostre zatrucie opioidami", "Hiperwentylacja psychogenna"],
-    correct: 0,
-    explanation: "NaHCO3 jest odtrutką w zatruciu TCA (TLPD)."
-  },
-  {
-    id: 108,
-    category: "farmakologia",
-    question: "W czym i w jakiej objętości należy rozcieńczyć Ketoprofen (Ketonal) przy podaży dożylnej (i.v.) w warunkach ZRM?",
-    options: ["Nie wymaga rozcieńczenia", "Dożylnie podajemy tylko w warunkach szpitalnych", "W 10 ml 0.9% NaCl", "Wyłącznie w 5% Glukozie (10 ml)"],
-    correct: 1,
-    explanation: "Ketoprofenu nie należy podawać w szybkim bolusie i.v. bez rozcieńczenia."
-  },
-  {
-    id: 109,
-    category: "farmakologia",
-    question: "Co jest głównym przeciwwskazaniem do podania Papaweryny?",
-    options: ["Kolka nerkowa", "Kolka żółciowa", "Stany spastyczne jelit", "Zaburzenia przewodnictwa w mięśniu sercowym"],
-    correct: 3,
-    explanation: "Zaburzenia przewodnictwa są przeciwwskazaniem."
-  },
-  {
-    id: 110,
-    category: "farmakologia",
-    question: "Wskaż bezwzględne przeciwwskazanie do podania Metoklopramidu u dorosłego pacjenta z nudnościami:",
-    options: ["Nadciśnienie tętnicze", "Krwawienia z przewodu pokarmowego i niedrożność jelit", "Jaskra z otwartym kątem", "Kolka nerkowa"],
-    correct: 1,
-    explanation: "Niedrożność mechaniczna jelit jest bezwzględnym przeciwwskazaniem."
-  },
-  {
-    id: 111,
-    category: "farmakologia",
-    question: "Zalecana dawka salbutamolu (Ventolinu) w nebulizacji u dzieci poniżej 2 roku życia wynosi:",
-    options: ["1 mg", "5 mg", "2.5 mg", "10 mg"],
-    correct: 2,
-    explanation: "Dzieci < 2 lat: 2.5 mg."
-  },
-  {
-    id: 112,
-    category: "farmakologia",
-    question: "Ile wynosi jednorazowa dawka tikagreloru (Brilique) podawana doustnie przy Ostrym Zespole Wieńcowym?",
-    options: ["60 mg", "90 mg", "300 mg", "180 mg"],
-    correct: 3,
-    explanation: "Dawka nasycająca Tikagreloru to 180 mg."
-  },
-  {
-    id: 113,
-    category: "farmakologia",
-    question: "Ile wynosi dawka leku przeciwpłytkowego prasugrel (Efient) podawana w Ostrym Zespole Wieńcowym?",
-    options: ["60 mg", "10 mg", "75 mg", "180 mg"],
-    correct: 0,
-    explanation: "Dawka nasycająca Prasugrelu to 60 mg."
-  },
-  {
-    id: 114,
-    category: "farmakologia",
-    question: "Co jest przeciwwskazaniem do podania płynów koloidowych takich jak Gelofusine?",
-    options: ["Hipowolemia bezwzględna", "Masywny krwotok urazowy", "Ciężka niewydolność serca i przewodnienie organizmu", "Oparzenia powierzchowne"],
-    correct: 2,
-    explanation: "Przewodnienie i niewydolność serca to przeciwwskazania do koloidów."
-  },
-  {
-    id: 115,
-    category: "farmakologia",
-    question: "Jakie jest dawkowanie fentanylu i.v. u dorosłego pacjenta, który wymaga oddechu wspomaganego?",
-    options: ["10 - 20 µg", "300 - 3500 µg", "50 - 200 µg", "Powyżej 5000 µg"],
-    correct: 1,
-    explanation: "Wysokie dawki stosuje się przy intubacji i wentylacji."
-  },
-  {
-    id: 116,
-    category: "farmakologia",
-    question: "Standardowa prędkość początkowa wlewu noradrenaliny (Levonoru) we wstrząsie wynosi zazwyczaj:",
-    options: ["0.01 - 0.05 mg/h", "2 - 10 µg/min", "10 - 20 mg/h", "0.4 - 0.8 mg/h (lub 0.05-1.5 µg/kg/min)"],
-    correct: 3,
-    explanation: "Standardowa prędkość początkowa to ok. 0.4-0.8 mg/h."
-  },
-  {
-    id: 117,
-    category: "farmakologia",
-    question: "W jakim czasie należy podać wlew z amiodaronu (300 mg w 5% Glukozie) w stabilnym częstoskurczu z szerokimi QRS u dorosłego pacjenta?",
-    options: ["W ciągu 20 - 60 minut", "Jako szybki bolus w ciągu 2 sekund", "W ciągu 5 minut", "W ciągu 12 godzin"],
-    correct: 0,
-    explanation: "Amiodaron w stabilnym VT podaje się we wlewie (zazwyczaj 150-300 mg w 20-60 min)."
-  },
-  {
-    id: 118,
-    category: "farmakologia",
-    question: "W przypadku zatrucia związkami fosforoorganikami u dzieci, dawka atropiny wynosi:",
-    options: ["0.01 mg/kg m.c.", "0.02 mg/kg m.c.", "0.05 mg/kg m.c.", "0.1 mg/kg m.c."],
-    correct: 2,
-    explanation: "W zatruciu fosforoorganikami stosuje się wyższe dawki Atropiny (0.05 mg/kg)."
-  },
-  {
-    id: 122,
-    category: "farmakologia",
-    question: "Maksymalna całkowita dobowa dawka Amiodaronu we wlewie dożylnym u dorosłego pacjenta z częstoskurczem wynosi:",
-    options: ["300 mg", "600 mg", "900 mg", "1200 mg"],
-    correct: 2,
-    explanation: "Maksymalna dawka dobowa to 900-1200 mg (zazwyczaj przyjmuje się 900 mg)."
-  },
-  {
-    id: 123,
-    category: "farmakologia",
-    question: "Pojedyncza dawka salbutamolu inebulizacji u dziecka powyżej 2 roku życia w napadzie astmy wynosi zazwyczaj:",
-    options: ["1.25 mg", "5 mg", "2.5 mg", "10 mg"],
-    correct: 1,
-    explanation: "Dzieci > 2 lat: 2.5-5 mg (zazwyczaj 5 mg)."
-  },
-  {
-    id: 125,
-    category: "farmakologia",
-    question: "Mechanizm działania adrenaliny we wstrząsie anafilaktycznym polega m.in. na:",
-    options: ["Blokowaniu wyrzutu histaminy z komórek tucznych", "Pobudzeniu receptorów alfa (skurcz naczyń) i beta2 (rozkurcz oskrzeli)", "Wyłącznym działaniu inotropowo dodatnim na serce", "Bezpośrednim hamowaniu układu przywspółczulnego"],
-    correct: 1,
-    explanation: "Alfa-1 (skurcz naczyń, wzrost BP), Beta-2 (rozkurcz oskrzeli)."
-  },
-  {
-    id: 126,
-    category: "farmakologia",
-    question: "Odtrutką z wyboru w przypadku ostrego zatrucia trójpierścieniowymi lekami przeciwdepresyjnymi (TLPD), przebiegającego z szerokimi zespołami QRS, jest:",
-    options: ["Wodorowęglan sodu", "Flumazenil", "Siarczan magnezu", "Nalokson"],
-    correct: 0,
-    explanation: "NaHCO3 stabilizuje błonę komórkową kardiomiocytów w zatruciu TCA."
-  },
-  {
-    id: 131,
-    category: "farmakologia",
-    question: "Glukagon podany domięśniowo w przypadku ciężkiej hipoglikemii może być całkowicie nieskuteczny u pacjentów:",
-    options: ["Z cukrzycą typu 1", "Z nadciśnieniem tętniczym", "Przyjmujących na stałe leki moczopędne", "Z wyczerpanymi zapasami glikogenu w wątrobie (np. w upojeniu alkoholowym, wyniszczeniu)"],
-    correct: 3,
-    explanation: "Glukagon działa poprzez uwalnianie glikogenu z wątroby. Jeśli go nie ma, lek nie zadziała."
-  },
-  {
-    id: 133,
-    category: "farmakologia",
-    question: "Dawka amiodaronu w opornym na defibrylację migotaniu komór (VF) u dorosłego pacjenta podawana po 5. defibrylacji wynosi:",
-    options: ["150 mg", "300 mg", "450 mg", "1 mg/kg m.c."],
-    correct: 0,
-    explanation: "Druga dawka Amiodaronu to 150 mg."
-  },
-  {
-    id: 134,
-    category: "farmakologia",
-    question: "Jaka jest dawka Adrenaliny we wstrząsie kardiogennym u dzieci?",
-    options: ["2-10 mcg/min", "0,05-0,5 mcg/kg/min", "0,05-1 mcg/kg/min", "0,01-0,5 mcg/min/kg"],
-    correct: 2,
-    explanation: "U dzieci we wstrząsie kardiogennym jako lek drugiego rzutu podajemy Adrenalinę w dawce: 0,05-1 mcg/kg/min."
-  },
-  {
-    id: 135,
-    category: "farmakologia",
-    question: "Jak rozcieńczysz i jak podasz Ketoprofen (Ketonal) w warunkach ZRM?",
-    options: ["Minimum 100 ml 0.9% NaCl, wolny wlew", "10 ml 5% glukozy, bolus", "Dożylnie można podać tylko w warunkach szpitalnych", "Bez rozcieńczenia szybki bolus"],
-    correct: 2,
-    explanation: "Ketoprofen (Ketonal) dożylnie można podać tylko w warunkach szpitalnych wg. ChPL."
-  },
-    {
-    id: 136,
-    category: "farmakologia",
-    question: "Jaki lek podasz w AF z szybką odpowiedzią komór?",
-    options: ["Metoprolol", "Adenozyna", "Wodorowęglan Sodu", "Magnez"],
-    correct: 0,
-    explanation: "W celu zwolnienia rytmu komór podajemy 5mg metoprololu (Betaloc/Metocard) i.v"
-  },
-  {
-    id: 172,
-    category: "farmakologia",
-    question: "Jaką dawkę glukozy podasz dziecku w przypadku hipoglikemii, przeliczając na gramy czystej substancji (i.v.)?",
-    options: ["0.1 g/kg m.c.", "0.3 g/kg m.c.", "0.5 g/kg m.c.", "1.0 g/kg m.c."],
-    correct: 1,
-    explanation: "Dawka glukozy u dzieci to 0.3 g/kg m.c. i.v."
-  },
-  {
-    id: 173,
-    category: "farmakologia",
-    question: "Dawka Klonazepamu w przerywaniu napadu drgawek wynosi standardowo:",
-    options: ["1 mg i.v. u dorosłych i 0.5 mg i.v. u dzieci", "2 mg i.v. u dorosłych i 1 mg i.v. u dzieci", "0.5 mg i.v. niezależnie od wieku", "5 mg i.m. u dorosłych i 2 mg i.m. u dzieci"],
-    correct: 0,
-    explanation: "Klonazepam w drgawkach podaje się w dawce 1 mg i.v. u dorosłych oraz 0.5 mg i.v. u dzieci (bardzo powoli, po rozcieńczeniu)."
-  },
-  {
-    id: 174,
-    category: "farmakologia",
-    question: "W ostrych stanach zagrażających życiu (np. ciężki skurcz oskrzeli) zalecana dawka deksametazonu podawana dożylnie (i.v.) u dzieci wynosi:",
-    options: ["0.1 - 0.2 mg/kg m.c.", "0.2 - 0.4 mg/kg m.c.", "0.5 - 1.0 mg/kg m.c.", "1.5 - 2.0 mg/kg m.c."],
-    correct: 1,
-    explanation: "Dawka ratunkowa deksametazonu (Dexaven) i.v. u dzieci w stanach nagłych wynosi 0.2 - 0.4 mg/kg m.c."
-  },
-  {
-    id: 175,
-    category: "farmakologia",
-    question: "Dawka diazepamu (Relanium) u dzieci w przypadku stanu padaczkowego wynosi (przy podaży i.v. / i.o.):",
-    options: ["1 mg/kg m.c.", "100 µg/kg m.c.", "200 - 300 µg/kg m.c.", "500 µg/kg m.c."],
-    correct: 2,
-    explanation: "Dawka pediatryczna diazepamu to 200 - 300 µg/kg m.c. i.v./i.o. (można również przeliczać jako 1 mg na każdy rok życia)."
-  },
-  {
-    id: 177,
-    category: "farmakologia",
-    question: "Jeśli w opornym na defibrylację migotaniu komór (VF) Amiodaron jest niedostępny, dawka Lignokainy podana dożylnie u dorosłego wynosi:",
-    options: ["50 mg i 50 mg", "100 mg i 50 mg", "150 mg i 50 mg", "100 mg i 100 mg"],
-    correct: 1,
-    explanation: "Zastępczo za amiodaron stosuje się lignokainę w dawkach: po 3. defibrylacji 100 mg i.v (i.o) po 5. defibrylacji 50 mg i.v (i.o)."
-  },
-  {
-    id: 178,
-    category: "farmakologia",
-    question: "Zgodnie z ChPL, bezwzględnym przeciwwskazaniem do podania dożylnego Metoprololu jest:",
-    options: ["Tachykardia zatokowa 110/min", "Migotanie przedsionków z szybką czynnością komór", "Blok przedsionkowo-komorowy II lub III stopnia", "Nadciśnienie tętnicze pow. 180/100 mmHg"],
-    correct: 2,
-    explanation: "Metoprolol (Beta-bloker) hamuje przewodnictwo w węźle AV. Podanie go w bloku II lub III stopnia grozi asystolią."
-  },
-  {
-    id: 179,
-    category: "farmakologia",
-    question: "Bezwzględnym przeciwwskazaniem do podania 15% roztworu Mannitolu z powodu ryzyka nagłego obciążenia objętościowego i pogorszenia stanu pacjenta jest:",
-    options: ["Izolowany uraz czaszkowo-mózgowy", "Obrzęk mózgu o etiologii nowotworowej", "Zastoinowa niewydolność krążenia (obrzęk płuc)", "Udar niedokrwienny mózgu"],
-    correct: 2,
-    explanation: "Mannitol jest lekiem osmotycznie czynnym - „ściąga” wodę z tkanek do naczyń. Przy niewydolnym sercu doprowadzi to do błyskawicznego zalania płuc."
-  },
-  {
-    id: 180,
-    category: "farmakologia",
-    question: "Główny mechanizm działania noradrenaliny (Levonoru) we wstrząsie polega na silnym pobudzeniu receptorów:",
-    options: ["Beta-1 (silne działanie inotropowe dodatnie)", "Beta-2 (rozkurcz oskrzeli)", "Dopaminergicznych (rozszerzenie naczyń nerkowych)", "Alfa-1 (silny skurcz naczyń krwionośnych)"],
-    correct: 3,
-    explanation: "Noradrenalina w głównej mierze działa na receptory Alfa-1, powodując silną wazokonstrukcję (skurcz naczyń) i wzrost ciśnienia tętniczego."
-  },
-
-  {
-    id: 182,
-    category: "farmakologia",
-    question: "Jakie groźne objawy neurologiczne (tzw. objawy pozapiramidowe) mogą wystąpić po podaniu tietyloperazyny (Torecanu) lub Metoklopramidu, szczególnie u osób młodych?",
-    options: ["Porażenie wiotkie kończyn dolnych", "Nagłe skurcze mięśni karku, twarzy i prężenia", "Głęboka śpiączka i arefleksja", "Przemijająca ślepota korowa"],
-    correct: 1,
-    explanation: "Leki przeciwwymiotne z tej grupy mogą wywoływać ostre reakcje dystoniczne (mimowolne ruchy, sztywność karku, prężenia), które często mylone są z drgawkami lub tężcem."
-  },
-  {
-    id: 183,
-    category: "farmakologia",
-    question: "Maksymalna dobowa dawka ibuprofenu podawanego doustnie u dzieci wynosi:",
-    options: ["10 mg/kg m.c.", "20-30 mg/kg m.c. w dawkach podzielonych", "50 mg/kg m.c.", "100 mg/kg m.c."],
-    correct: 1,
-    explanation: "Jednorazowa dawka ibuprofenu to 10 mg/kg m.c., a maksymalna dawka dobowa wynosi 20-30 mg/kg m.c."
-  },
-  {
-    id: 184,
-    category: "farmakologia",
-    question: "Fentanyl (silny opioid) u pacjenta z bólem pourazowym należy stosować ze szczególną ostrożnością lub zaniechać podaży i.v. w przypadku:",
-    options: ["Podejrzenia złamania kości udowej", "Tachykardii zatokowej pow. 100/min", "Niekontrolowanej depresji ośrodka oddechowego (np. uraz głowy)", "Nadciśnienia tętniczego pow. 160/90"],
-    correct: 2,
-    explanation: "Opioidy silnie hamują ośrodek oddechowy w pniu mózgu. U pacjentów z TBI (uraz czaszkowo-mózgowy) podanie fentanylu może wywołać całkowity bezdech i wzrost ciśnienia wewnątrzczaszkowego z powodu hiperkarbii."
-  },
-  {
-    id: 186,
-    category: "farmakologia",
-    question: "Oprócz czynnego krwawienia z przewodu pokarmowego, bezwzględnym przeciwwskazaniem do podania heparyny niefrakcjonowanej w OZW według ChPL jest obecność w wywiadzie:",
-    options: ["Zawału serca (STEMI) w przeszłości", "Zatorowości płucnej", "Przewlekłej niewydolności nerek", "Małopłytkowości indukowanej heparyną (HIT)"],
-    correct: 3,
-    explanation: "Zespół HIT (Heparin-Induced Thrombocytopenia) to groźne immunologiczne powikłanie po heparynie, objawiające się paradoksalną zakrzepicą. Jego wywiad bezwzględnie wyklucza użycie heparyny."
-  },
-  {
-    id: 187,
-    category: "farmakologia",
-    question: "W jaki sposób należy prawidłowo podać pierwszą dawkę Adenozyny (6 mg) u dorosłego pacjenta z częstoskurczem nadkomorowym (SVT)?",
-    options: ["W powolnym wlewie kroplowym przez 10 minut", "W szybkim bolusie i.v. (w ciągu 2 sekund) z natychmiastowym przepłukaniem solą fizjologiczną", "Domięśniowo (i.m.) w ramię", "W bolusie dożylnym podawanym przez minimum 1 minutę"],
-    correct: 1,
-    explanation: "Adenozyna ma ekstremalnie krótki czas półtrwania (kilka sekund). Musi być podana w bardzo szybkim bolusie (1-2 sekundy) i popchnięta płynem (tzw. flush), aby dotarła do serca."
-  },
-
-  {
-    id: 189,
-    category: "farmakologia",
-    question: "Urapidil (Ebrantil) to skuteczny lek w przełomie nadciśnieniowym, jednak posiada jedno bardzo specyficzne kardiologiczne przeciwwskazanie. Jest to:",
-    options: ["Tachykardia zatokowa", "Blok AV I stopnia", "Stenoza aortalna", "Migotanie przedsionków"],
-    correct: 2,
-    explanation: "Zgodnie z Charakterystyką Produktu Leczniczego, stenoza aortalna (zwężenie zastawki aorty) jest przeciwwskazaniem do podania Urapidilu."
-  },
-  {
-    id: 190,
-    category: "farmakologia",
-    question: "Dlaczego Metamizol (Pyralginę) w dawce 0.5-2.5 g należy podawać dożylnie we wlewie kropelkowym (rozcieńczone w 0.9% NaCl)?",
-    options: ["Szybka podaż może wywołać napad drgawek", "Szybka podaż leku może wywołać hipotensję", "Szybka podaż wywołuje odruchową tachykardię i migotanie komór", "Metamizol szybko krystalizuje się we krwi"],
-    correct: 1,
-    explanation: "Zbyt szybkie podanie dożylne Pyralginy może spowodować gwałtowny spadek ciśnienia tętniczego."
-  },
-  {
-    id: 192,
-    category: "farmakologia",
-    question: "W jakiej dawce we wlewie dożylnym podasz Adrenalinę dorosłemu pacjentowi znajdującemu się we wstrząsie kardiogennym (jako lek drugiego rzutu)?",
-    options: ["0.05 - 0.5 µg/kg m.c./min", "2 - 10 µg/min", "1 mg w szybkim bolusie", "0.5 mg i.m."],
-    correct: 0,
-    explanation: "We wstrząsie kardiogennym dawkowanie adrenaliny w pompie to 0.05-0.5 µg/kg m.c./min. (Dawka 2-10 µg/min dotyczy leczenia ciężkiej bradykardii)."
-  },
-  {
-    id: 193,
-    category: "farmakologia",
-    question: "Jeden z podanych stanów pacjenta bezwzględnie wyklucza zastosowanie diazepamu (Relanium). Wskaż który:",
-    options: ["Tachykardia pow. 120/min", "Nadciśnienie tętnicze 160/90", "Ostra niewydolność oddechowa", "Stan po napadzie padaczkowym"],
-    correct: 2,
-    explanation: "Diazepam (benzodiazepina) silnie działa miorelaksacyjnie i depresyjnie na OUN. Ostra niewydolność oddechowa jest przeciwwskazaniem, gdyż lek może spowodować całkowity bezdech."
-  },
-  {
-    id: 195,
-    category: "farmakologia",
-    question: "Jaką dawkę siarczanu atropiny przygotujesz dla dorosłego pacjenta z zatrzymaniem krążenia (w rytmie PEA/Asystolii), u którego podejrzewasz wpływ silnego napięcia nerwu błędnego?",
-    options: ["0.5 mg i.v.", "1 mg i.v.", "3 mg i.v.", "Atropiny nie stosuje się w żadnym z przypadków NZK"],
-    correct: 2,
-    explanation: "Chociaż standardowo atropina zniknęła z rutynowego algorytmu ALS dla asystolii/PEA, podaje się jednorazową dawkę 3 mg i.v., jeśli podejrzewamy silny wpływ nerwu błędnego (odruch wazowagalny) prowadzący do zatrzymania krążenia."
-  },
-  {
-    id: 196,
-    category: "farmakologia",
-    question: "Hydroksyzynę podajemy domięśniowo (i.m.). Jaka jest dawka pediatryczna dla dziecka powyżej 12 m.ż. i ważącego do 40 kg?",
-    options: ["0.5 mg/kg m.c.", "1 - 2 mg/kg m.c.", "50 mg", "100 mg"],
-    correct: 1,
-    explanation: "Dla dzieci do 40 kg dawka hydroksyzyny i.m. wynosi 1-2 mg/kg m.c."
-  },
-  {
-    id: 199,
-    category: "farmakologia",
-    question: "Czy sól fizjologiczną (0.9% NaCl) można zawsze podawać w dowolnych ilościach jako płyn obojętny?",
-    options: ["Tak, to najbezpieczniejszy płyn w ratownictwie", "Nie, jest przeciwwskazana w przewodnieniu, ciężkiej niewydolności krążenia i nerek", "Nie, ponieważ wypłukuje magnez z organizmu", "Tak, o ile podgrzejemy ją do 37 stopni"],
-    correct: 1,
-    explanation: "Sól fizjologiczna zatrzymuje wodę w organizmie, dlatego w obrzęku płuc, niewydolności nerek czy krążenia może doprowadzić do śmiertelnego w skutkach przewodnienia."
-  },
-  {
-    id: 201,
-    category: "farmakologia",
-    question: "Jaki jest główny cel zastosowania wodorowęglanu sodu (8.4%) u pacjenta, który uległ masywnemu zatruciu trójpierścieniowymi lekami przeciwdepresyjnymi (TLPD)?",
-    options: ["Przyspieszenie wydalania leku z moczem", "Zapobieganie i leczenie groźnych arytmii komorowych spowodowanych kardiotoksycznością leku", "Znoszenie działania sedacyjnego leków", "Zahamowanie wchłaniania leku z przewodu pokarmowego"],
-    correct: 1,
-    explanation: "W zatruciu TLPD dochodzi do blokady kanałów sodowych w sercu (poszerzenie QRS, groźne arytmie). Podaż sodu w postaci hiperosmolarnego wodorowęglanu odwraca tę blokadę, stabilizując pracę mięśnia sercowego."
+    explanation: "Podanie buforu osobie, która nie wentyluje (nie wydycha CO2), tylko drastycznie pogorszy jej stan (wodorowęglan we krwi rozkłada się do CO2, który pacjent musi wydmuchać)."
   }
 ];
