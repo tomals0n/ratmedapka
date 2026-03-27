@@ -947,6 +947,148 @@ const ALSData = [
         ]
       }
     ]
+  },
+  {
+    id: 'badanie-dziecka',
+    title: 'Badanie dziecka',
+    emoji: '👶',
+    subtitle: 'Badanie dziecka w stanach nagłych',
+    sections: [
+      {
+      title: 'Lecz w trakcie badania!',
+      bullets: [
+        'Jeżeli zostanie zidentfikowany problem potencjalnie zagrażający życiu dziecka, przed przejściem do kolejnego etapu należy wdrożyć natychmiastowe leczenie.'
+
+      ]
+      },
+      {
+        title: '1. Quick Look (ZOK)',
+        bullets: [
+          'Z - zachowanie',
+          'O - oddychanie',
+          'K - kolor skóry'
+        ]
+      },
+      {
+        title: 'Z - zachowanie',
+        bullets: [
+          'Brak spontanicznych ruchów, brak możliwości siedzenia lub stania',
+          'Obniżenie stanu świadomości lub interakcji z medykiem, opiekunem, zabawkami i otoczeniem',
+          'Niepokój, problem z uspokojeniem dziecka',
+          'Nienaturalna pozycja',
+          'Drgawki, nienaturalne ruchy'
+        ]
+      },
+      {
+        title: 'O - oddychanie',
+        bullets: [
+          'Nienaturalne odgłosy oddechowe: chrapanie, stękanie, świsty',
+          'Zaciąganie: przestrzeni nadobojczykowych, międzyżebrowych lub podmostkowej',
+          'Poruszanie skrzydełkami nosa',
+        ]
+      },
+      {
+        title: 'K - kolor skóry',
+        bullets: [
+          'Bladość: biała lub blada skóra / śluzówki',
+          'Skóra marmurkowa: plamiste zabarwienie skóry',
+          'Sinica: niebieskawe zabarwienie skóry i śluzówek',
+        ]
+      },
+      {
+        title: '2. Ocena wstępna - podejście ABCDEF',
+        bullets: [
+          'A - drogi oddechowe - niedrożność? Ręczne udrożnienie, odessanie, przyrządowe udrożnienie d.o',
+          'B - oddech - ocena RTWO',
+          'C - krążenie - 5P, HR, perfuzja obwodowa, objętość tętna, CTK, preload',
+          'D - ocena neurologiczna - ACVPU, pGCS, napięcie mięśniowe, źrenice, glikemia',
+          'E - ekspozycja - SAMPLE, gorączka, zmiany skórne, urazy',
+          'F - rodzina - Rodzic zawsze wie najlepiej czy jego dziecko zachowuje się inaczej niż zwykle'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ekg',
+    title: 'EKG',
+    emoji: '❤️',
+    subtitle: 'Najważniejsze rzeczy z EKG w medycynie ratunkowej',
+    sections: [
+      {
+        title: 'Szybka ocena EKG w 6 krokach wg ALS',
+        bullets: [
+          'Czy występuje aktywność elektryczna?',
+          'Jaka jest częstość zespołów QRS?',
+          'Czy zespoły QRS są miarowe czy niemiarowe?',
+          'Czy zespoły QRS są szerokie czy prawidłowe? (max 0.12s -> 3 małe kratki)',
+          'Czy występuje aktywność elektryczna przedsionków?',
+          'Jaki jest związek załamków P do QRS? (czy po każdym załamku P jest QRS)'
+        ]
+      },
+      {
+        title: 'Na co "patrzą" dane odprowadzenia?',
+        bullets: [
+          'Ściana przednia: V1, V2, V3, V4',
+          'Ściana dolna: II, III, aVF',
+          'Ściana boczna: I, aVL, V5, V6',
+          'Ściana tylna: V7, V8, V9',
+          'Prawa komora: V3R, V4R'
+        ]
+      },
+      {
+        title: 'Migotanie komór',
+        img: './src/img/migotanie_komor.png'
+      },
+      {
+        title: 'Częstoskurcz komorowy',
+        img: './src/img/czestoskurcz_komorowy.png'
+      },
+      {
+        title: 'Torsades De Pointes',
+        img: './src/img/torsades_de_pointes.png'
+      },
+      {
+        title: 'Rytm zatokowy / PEA',
+        img: './src/img/PEA_zatokowy.png'
+      },
+      {
+        title: 'Asystolia',
+        img: './src/img/asystolia.png'
+      },
+      {
+        title: 'Migotanie przedsionków',
+        img: './src/img/migotanie_przedsionkow.png'
+      },
+      {
+        title: 'Trzepotanie przedsionków',
+        img: './src/img/trzepotanie_przedsionków.png'
+      },
+      {
+        title: 'Częstoskurcz nadkomorowy',
+        img: './src/img/czestoskurcz_nadkomorowy.png'
+      },
+      {
+        title: 'Blok przedsionkowo-komorowy I stopnia',
+        img: './src/img/blok_av_1.png'
+      },
+      {
+        title: 'Blok przedsionkowo-komorowy II stopnia typu 1 (periodyka Wenckebacha)',
+        img: './src/img/blok_av_2.png'
+      },
+      {
+        title: 'Blok przedsionkowo-komorowy II stopnia typu 2',
+        img: './src/img/blok_av_22.png'
+      },
+      {
+        title: 'Blok przedsionkowo-komorowy III stopnia (całkowity)',
+        img: './src/img/blok_av_3.png'
+      },
+      {
+        title: 'Zawał mięśnia sercowego z uniesieniem odcinka ST (STEMI)',
+        img: './src/img/stemi.png'
+      },
+    ]
+
   }
 ]
 
@@ -1422,5 +1564,22 @@ const symptoms = [
         ]
       }
     ]
+  },
+  {
+    id: 'parametry',
+    title: 'Parametry życiowe',
+    isTable: true,
+    tableData: {
+      headers: ['Wiek', 'Oddech', 'HR', 'SBP (dolna)', 'EtCO2', 'SpO2', 'Temp.'],
+      rows: [
+        ['0 - 1 mies.', '30 - 50', '120 - 160', '60 (50)', '35 - 45', '94 - 98%', '36.6 - 37.5'],
+        ['1 - 12 mies.', '30 - 40', '120 - 140', '80 (70)', '35 - 45', '94 - 98%', '36.6 - 37.5'],
+        ['2 lata', '20 - 30', '100 - 120', '90+2x (70+2x)', '35 - 45', '94 - 98%', '36.6 - 37.5'],
+        ['6 lat', '20 - 25', '80 - 110', '90+2x (70+2x)', '35 - 45', '94 - 98%', '36.6 - 37.5'],
+        ['12 lat', '12 - 20', '60 - 100', '120 (90)', '35 - 45', '94 - 98%', '36.6 - 37.5'],
+        ['Dorośli', '12 - 20', '60 - 100', '120 (90)', '35 - 45', '94 - 98%', '36.6 - 37.5']
+      ],
+      note: 'SBP (dolna): norma (wartość krytyczna). Dla wieku 2-6 lat: x = wiek w latach.'
+    }
   }
 ];
