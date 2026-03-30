@@ -1038,15 +1038,15 @@ function renderQuizQuestion() {
   els.quizExplanation.classList.add('hidden');
   els.nextQuestionBtn.classList.add('hidden');
   
-  // Zapamiętanie poprawnej odpowiedzi (tekstowo) przed pomieszaniem
-  const correctText = q.options[q.correct];
+  // Zapamiętanie poprawnych odpowiedzi (tekstowo) przed pomieszaniem
+  const correctTexts = Array.isArray(q.correct) ? q.correct.map(idx => q.options[idx]) : [q.options[q.correct]];
   
   // Stworzenie kopii opcji i ich pomieszanie
   const shuffledOptions = [...q.options];
   shuffleArray(shuffledOptions);
   
-  // Znalezienie nowego indeksu poprawnej odpowiedzi
-  const newCorrectIndex = shuffledOptions.indexOf(correctText);
+  // Znalezienie nowych indeksów poprawnych odpowiedzi
+  const newCorrectIndices = correctTexts.map(text => shuffledOptions.indexOf(text));
   
   shuffledOptions.forEach((opt, index) => {
     const btn = document.createElement('button');
@@ -1057,27 +1057,31 @@ function renderQuizQuestion() {
       </div>
       <div class="flex-1">${opt}</div>
     `;
-    btn.onclick = () => handleAnswer(index, newCorrectIndex);
+    btn.onclick = () => handleAnswer(index, newCorrectIndices);
     els.quizOptions.appendChild(btn);
   });
 }
 
-function handleAnswer(selectedIndex, correctIndex) {
+function handleAnswer(selectedIndex, correctIndices) {
   const q = currentQuizQuestions[currentQuestionIndex];
   const buttons = els.quizOptions.querySelectorAll('button');
   
   // Wyłączenie klikania
   buttons.forEach(btn => btn.disabled = true);
   
-  if (selectedIndex === correctIndex) {
+  const isCorrect = correctIndices.includes(selectedIndex);
+  
+  if (isCorrect) {
     quizScore++;
     buttons[selectedIndex].classList.add('border-emerald-500', 'bg-emerald-500/10');
     buttons[selectedIndex].querySelector('div').classList.add('bg-emerald-500', 'border-emerald-500', 'text-white');
   } else {
     buttons[selectedIndex].classList.add('border-red-500', 'bg-red-500/10');
     buttons[selectedIndex].querySelector('div').classList.add('bg-red-500', 'border-red-500', 'text-white');
-    // Pokazanie poprawnej
-    buttons[correctIndex].classList.add('border-emerald-500', 'bg-emerald-500/5');
+    // Pokazanie wszystkich poprawnych
+    correctIndices.forEach(idx => {
+      buttons[idx].classList.add('border-emerald-500', 'bg-emerald-500/5');
+    });
   }
   
   // Pokazanie wyjaśnienia
