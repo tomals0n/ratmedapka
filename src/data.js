@@ -1089,6 +1089,127 @@ const ALSData = [
       },
     ]
 
+  },
+  {
+    id: 'tachyarytmie',
+    title: 'Częstoskurcze',
+    emoji: '💕',
+    subtitle: 'Postępowanie w tachyarytmiach',
+    sections: [
+      {
+        title: 'Co pierwsze zrobić przy pacjencie?',
+        bullets: [
+          'Zbadaj pacjenta wg. schematu ABCDE',
+          'Zbierz parametry życiowe pacjenta',
+          'Wykonaj 4-odprowadzeniowe / 12-odprowadzeniowe EKG',
+          'Nie opóźniaj leczenia, jeżeli pacjent z częstoskurczem jest niestabilny, przyklej elektrody QuickCombo, podaj leki do sedacji i wykonaj kardiowersje!',
+          'Jeżeli potwierdzasz częstoskurcz - zróżnicuj go, częstoskurcz komorowy a nadkomorowy',
+        ]
+      },
+      {
+        title: 'Różnicowanie częstoskurczów',
+        bullets: [
+          'Częstoskurcz komorowy (VT/pVT): Szerokie QRS - sprawdź tętno! możliwe NZK! miarowy',
+          'Częstoskurcz nadkomorowy (SVT): Wąskie QRS, brak widocznych załamków P, miarowy',
+          'Migotanie przedsionków (AF): brak załamków P, niemiarowy rytm - może występować z szybką odpowiedzią komór',
+          'Trzepotanie przedsionków (AFl): charakterystyczne "zęby piły" na EKG zazwyczaj miarowy'
+        ]
+      },
+      {
+        title: 'Zbieranie wywiadu w przypadku migotania przedsionków / trzepotania przedsionków',
+        bullets: [
+          'Od kiedy występuje uczucie kołatania w klatce piersiowej?',
+          'Czy uczucie kołatania w klatce piersiowej występowało w przeszłości?',
+          'Czy wcześniej rozpoznawano AF?',
+          'Czy AF ma charatker napadowy czy utrwalony? (rozpoznane po raz pierwszy, napadowe (ustępujące samoistnie lub przerywane leczeniem w ciągu 7 dni od wystąpienia), przetrwałe (nieprzerwanie od 7 dni), utrwalone (zaakceptowane przez lekarza i podjęcie decyzji o przerwaniu prób umiarowienia)',
+          'Jak zakończono poprzednie napady AF?',
+          'Czy pacjent przyjmuje leki przeciwkrzepliwe? Czy dokonuje pomiaru parametrów krzepnięcia?',
+          'Czy występuje ból w klatce piersiowej?',
+          'Czy występuje zmniejszenie tolerancji wysiłku fizycznego?',
+          'Czy występowały omdlenia?',
+          'Czy występowały zawroty głowy?'
+        ]
+      },
+      {
+        title: 'Medyczne czynności ratunkowe w przypadku migotania przedsionków / trzepotania przedsionków',
+        bullets: [
+          'Pacjent stabilny: AF z szybką odpowiedzią komór, rozważ podanie Metoprololu 5-10 mg w celu zwolnienia rytmu',
+          'W stanach nagłych rozważ podaż 150-300 mg Amiodaronu, uważaj na AF z preekscytacją, oceń dokumentacje medyczną i poszukuj informacji o ewentualnej preekscytacji',
+          'Pacjent niestabilny: wykonaj dostęp dożylny, podaj 5.000 j.m. heparyny, podaj Midazolam 2-2.5 mg (ew. dodaj 50-200 mcg Fentanylu) oraz wykonaj kardiowersje elektryczną',
+          'Oceń tętno i oddech, oceń zapis na monitorze. W przypadku braku konwersji rytmu, powtórz wyładowanie do trzech razy'
+        ]
+      },
+      {
+        title: 'Medyczne czynności ratunkowe w przypadku częstoskurczów komorowych',
+        bullets: [
+          'Pacjent stabilny: wykonaj dostęp dożylny, podaj 300 mg Amiodaronu w 250 ml 5% glukozy w ciągu 20-60 minut (w przypadku dzieci 5 mg/kg mc)',
+          'Pacjent niestabilny: wykonaj dostęp dożylny, podaj 2-2.5 mg Midazolamu (ew. dodaj 50-200 mcg Fentanylu) oraz wykonaj kardiowersje elektryczną',
+          'Jeżeli kardiowersja nie przywróciła rytmu zatokowego, podaj 300 mg Amiodaronu w 250 ml 5% glukozy w ciągu 10-20 minut i wykonaj kolejną kardiowersję'
+        ]
+      },
+      {
+        title: 'Medyczne czynności ratunkowe w przypadku częstoskurczów nadkomorowych',
+        bullets: [
+          'Pacjent stabilny: rozpocznij leczenie od stymulacji nerwu błędnego: masaż zatoki szyjnej lub manewr Valsalvy',
+          'Jeżeli stymulacja nerwu błędnego nie przerwała SVT: wykonaj dostęp dożylny, podaj 6 mg Adenozyny, przepłukując kaniulę 0.9% NaCl i unosząc kończyne',
+          'Jeżeli 6 mg Adenozyny nie pomogło: podaj 12 mg Adenozyny i postępuj j.w. -> jeżeli nie przyniosło poprawy rozważ podanie 18 mg Adenozyny',
+          'Pacjent niestabilny: wykonaj dostęp dożylny, podaj 2-2.5 mg Midazolamu (ew. dodaj 50-200 mcg Fentanylu) oraz wykonaj kardiowersje elektryczną'
+        ]
+      },
+      {
+        title: 'Wybór energii do kardiowersji elektrycznej',
+        bullets : [
+          'VT: 120-150J',
+          'SVT: 70-120J',
+          'AF: 360J (najwyższa możliwa)',
+          'AFl: 70-120J'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'bloki',
+    title: 'Bloki AV',
+    emoji: '⚡',
+    subtitle: 'Postępowanie w przypadku bloków przedsionkowo-komorowych',
+    sections: [
+      {
+        title: 'Co pierwsze zrobić przy pacjencie?',
+        bullets: [
+          'Oceń pacjenta wg. schematu ABCDE',
+          'Zbierz parametry życiowe pacjenta',
+          'Wykonaj 4-odprowadzeniowe / 12-odprowadzeniowe EKG',
+        ]
+      },
+      {
+        title: 'Różnicowanie bloków AV',
+        bullets: [
+          'Blok AV I stopnia: wydłużony odstęp PQ -> najczęściej nie wymaga leczenia',
+          'Blok AV II stopnia Mobitz I: odstęp PQ się wydłuża dopóki nie wypadnie zespół QRS',
+          'Blok AV II stopnia Mobitz II: zespoły QRS wypadają ze stałym odstępem PQ, zazwyczaj wymaga wszczepienia stymulatora serca, atropina może tutaj nie zadziałać',
+          'Blok AV III stopnia (blok całkowity): przedsionki i komory pracują chaotycznie, brak składu, wskazanie do wszczepienia stymulatora serca'
+        ]
+      },
+      {
+        title: 'Schemat postępowania w przypadku bloków',
+        bullets: [
+          'W przypadku bradykardii objawowej rozpocznij podaż: 0.5 mg Atropiny do łącznej dawki 3 mg (w przypadku dzieci: 0.02 mg/kg mc / min. dawka 0.1 mg)',
+          'Pamiętaj, że w przypadku Bloku AV II stopnia Mobitz II / bloku całkowitego Atropina najprawdopodobniej nie zadziała',
+          'Jeżeli bradykardia jest oporna na Atropinę: rozpocznij wlew ciągły (pompa infuzyjna) Adrenaliny w dawce 2-10 mcg/min (w przypadku dzieci: 0.05-1 mcg/kg/min)',
+          'Jeżeli wlew z adrenaliny nie pomaga, przeprowadź sedacje pacjenta (2-2.5 mg Atropiny) ew. analgosedacja z 50-200 mcg Fentanylu i rozpocznij stymulacje przezskórną'
+
+        ]
+      },
+      {
+        title: 'Stymulacja przezskórna',
+        bullets: [
+          'Ustaw rytm z którym ma bić serce (zwykle 60-80/min)',
+          'Ustaw natężenie (mA) -> zwiększaj stopniowo aż do przechwycenia rytmu, jeżeli przechwyci - zwiększ o 10%',
+          'Pamiętaj o sedacji/analgosedacji pacjenta - stymulacja przezskórna jest bolesna',
+          'Sprawdź tętno na tętnicy udowej aby potwierdzić mechaniczne przejęcie rytmu a nie tylko elektryczne'
+        ]
+      }
+    ]
   }
 ]
 
