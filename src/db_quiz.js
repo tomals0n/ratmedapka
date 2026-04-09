@@ -942,5 +942,333 @@ const quizQuestions = [
     options: ["W kwasicy hiperchloremicznej", "W zatruciu aspiryną", "W zasadowicy oraz przy głębokiej hipowentylacji (retencji CO2)", "W zatruciu trójpierścieniowymi lekami przeciwdepresyjnymi (TLPD)"],
     correct: 2,
     explanation: "Podanie buforu osobie, która nie wentyluje (nie wydycha CO2), tylko drastycznie pogorszy jej stan (wodorowęglan we krwi rozkłada się do CO2, który pacjent musi wydmuchać)."
+  },
+  {
+    id: 70,
+    category: 'farmakologia',
+    question: 'Jaka jest dawka adenozyny w SVT dla dorosłych?',
+    options: ["6 mg -> 12 mg -> 18 mg", "2 mg -> 4 mg -> 6 mg", "6 mg -> 6 mg -> 8 mg", "3 mg -> 12 mg -> 18 mg"],
+    correct: 0,
+    explanation: "Poprawna dawka adenozyny w SVT wg. ChPL to: 3 mg -> 6 mg -> 12 mg, lecz bazujemy na wytycznych ERC 2025, które mówią o dawce 6 mg -> 12 mg -> 18 mg."
+  },
+  {
+    id: 71,
+    category: 'farmakologia',
+    question: 'Jaka jest dawka adenozyny w SVT dla dzieci?',
+    options: ['6 mg -> 12 mg -> 18 mg', "3 mg -> 6 mg -> 12 mg", "0.1 mg/kg -> 0.2 mg/kg", "0.2 mg/kg -> 0.3 mg/kg"],
+    correct: 2,
+    explanation: "Poprawna dawka adenozyny w SVT u dzieci to: 0.1 mg/kg -> 0.2 mg/kg + rozważyć można jeszcze dawkę 0.3 mg/kg."
+  },
+  {
+    id: 72,
+    category: "farmakologia",
+    question: "Jaka jest dawka atropiny w objawowej bradykardii dla dorosłych?",
+    options: ['2 mg', '0.2 mg', '0.5 mg', '5 mg'],
+    correct: 2,
+    explanation: 'W objawowej bradykardii u dorosłych stosujemy atropinę w dawce 0.5 mg i miareczkujemy do całkowitej dawki 3 mg.'
+  },
+  {
+    id: 73,
+    category: 'farmakologia',
+    question: "Jaka jest dawka atropiny w objawowej bradykardii dla dzieci?",
+    options: ['30 mcg/kg', '20 mcg/kg', '35 mcg/kg', '25 mcg/kg'],
+    correct: 1,
+    explanation: 'Poprawne przeliczenie dawki atropiny dla dzieci w objawowej bradykardii to 20 mcg/kg masy ciała.'
+  },
+  {
+    id: 74,
+    category: 'farmakologia',
+    question: "Jaka jest dawka atropiny w zatruciach środkami fosfoorganicznymi, muskarynami, cholinomimetykami dla dorosłych?",
+    options: ['1-2 mg miareczkujemy do max. 100 mg całkowitej dawki', '0.5-1 mg miareczkujemy do max. 20 mg całkowitej dawki', '1-2 mg miareczkujemy do max. 100 mg całkowitej dawki', '0.5-1mg miareczkujemy do max. 100 mg całkowitej dawki'],
+    correct: 0,
+    explanation: 'W zatruciach atropinę podajemy w dawce 1-2 mg do całkowitej dawki 100 mg co 5-60 min. (dla dorosłych)'
+  },
+  {
+    id: 75,
+    category: 'farmakologia',
+    question: "Jaka jest dawka atropiny w zatruciach środkami fosfoorganicznymi, muskarynami, cholinomimetykami dla dzieci?",
+    options: ['20 mcg/kg', '0.05 mcg/kg', '30 mcg/kg', '0.03 mcg/kg'],
+    correct: 1,
+    explanation: 'W zatruciach u dzieci atropinę podajemy w dawce 0.05 mcg/kg masy ciała do zaniku objawów co 10-30 min do zaniku objawów.'
+  },
+  {
+    id: 76,
+    category: 'farmakologia',
+    question: 'Jaka jest dawka amiodaronu w VT u dorosłych?',
+    options: ['50 mg w 250 ml 5% glukozy', '150 mg w 250 ml 5% glukozy', '300 mg w 250 ml 5% glukozy', '600 mg w 250 ml 5% glukozy'],
+    correct: 2,
+    explanation: 'W częstoskurczu komorowym u dorosłych podajemy 300 mg amiodaronu w 250 ml 5% glukozy kontrolując rytm.'
+  },
+  {
+    id: 77,
+    category: 'farmakologia',
+    question: 'Jakie dawki amiodaronu stosujemy w rytmach pVT/VF?',
+    options: ['150 mg po III defibrylacji -> 300 mg po V defibrylacji', '300 mg po III defibrylacji -> 150 mg po V defibrylacji', '150 mg po III defibrylacji -> 150 mg po V defibrylacji', 'Amiodaron jest przeciwwskazany'],
+    correct: 1,
+    explanation: 'W NZK w rytmach pVT/VF stosujemy 300 mg amiodaronu po III defibrylacji i 150 mg po V defibrylacji.',
+  },
+  {
+    id: 78,
+    category: 'farmakologia',
+    question: 'Jakie dawki amiodaronu stosujemy w VT u dzieci?',
+    options: ['5 mg/kg', '150 mg', '2.5 mg/kg', '3 mg/kg'],
+    correct: 0,
+    explanation: 'W VT u dzieci stosujemy przeliczenie 5 mg/kg masy ciała (max 300mg)'
+  },
+  {
+    id: 79,
+    category: 'farmakologia',
+    question: 'Jakie dawki amiodaronu stosujemy w pVT/VF u dzieci?',
+    options: ['Nie stosujemy tego leku u dzieci', '5 mg/kg', '300 mg po III defibrylacji -> 150 mg po V defibrylacji', '300 mg'],
+    correct: 1,
+    explanation: 'W pVT/VF u dzieci stosujemy przeliczenie 5 mg/kg (max 300 mg po III defibrylacji -> max 150 mg po V defibrylacji)',
+  },
+  {
+    id: 80,
+    category: 'farmakologia',
+    question: 'Jaką dawke budesonide podasz dziecku w zaostrzeniu astmy?',
+    options: ['1-2 mg', '0.25-0.5 mg', '1 mg', '0.1-0.2 mg'],
+    correct: 1,
+    explanation: 'W zaostrzeniu astmy u dzieci podajemy budesonide w dawce 0.25-0.5 mg'
+  },
+  {
+    id: 81, 
+    category: 'farmakologia',
+    question: 'Jaką dawkę budesonide podasz dorosłemu z zaostrzeniem astmy?',
+    options: ['1-2 mg', '0.25-0.5 mg', 'Budesonide nie podajemy dorosłym z astmą', '0.5-1 mg'],
+    correct: 0,
+    explanation: 'W zaostrzeniu astmy u dorosłych podajemy budesonide w dawce 1-2 mg.'
+  },
+  {
+    id: 82,
+    category: 'farmakologia',
+    question: 'Jaką dawkę budesonide podasz dziecku z zespołem krupu?',
+    options: ['1-2 mg', '0.25-0.5 mg', 'Zespół krupu jest przeciwwskazaniem do podaży leku', '4-8 mg'],
+    correct: 0,
+    explanation: 'W zespole krupu podajemy dziecku 1-2 mg budesonide (po 1 mg)',
+  },
+  {
+    id: 83,
+    category: 'farmakologia',
+    question: 'Jaką dawkę kaptoprilu podasz dorosłemu z nadciśnieniem tętniczym?',
+    options: ['100-200 mg', '10-20 mg', '80-100 mg', '25-50 mg'],
+    correct: 3,
+    explanation: 'Dawka kaptoprilu dla dorosłych to 25-50 mg.'    
+  },
+  {
+    id: 84,
+    category: 'farmakologia',
+    question: 'Jaką dawkę klemastyny (Clemastin) podasz dorosłemu pomocniczo przy anafilaksji?',
+    options: ['0.5 mg', '4 mg', '2 mg', '1.5 mg'],
+    correct: 2,
+    explanation: 'Prawidłowa dawka klemastyny to 2 mg.'
+  },
+  {
+    id: 85, 
+    category: 'farmakologia',
+    question: 'Jaką dawkę klonazepamu (Clonazepam) podasz dorosłemu z drgawkami toniczno-klonicznymi?',
+    options: ['1 mg', '5 mg', '3 mg', '10 mg'],
+    correct: 0,
+    explanation: 'Dorosłemu podajemy 1 mg powoli dożylnie nie przekraczając 20 mg/doba.'
+  },
+  {
+    id: 86,
+    category: 'farmakologia',
+    question: 'Jaką dawkę klonazepamu (Clonazepam) podasz dziecku z drawkami toniczno-klonicznymi?',
+    options: ['0.1-0.5 mcg/kg', '0.1-0.5 mg/kg', '1-2 mg/kg', '0.5-0.8 mg/kg'],
+    correct: 0,
+    explanation: 'Dziecku podajemy klonazepam w przeliczeniu 0.1-0.5 mcg/kg.'
+  },
+  {
+    id: 87,
+    category: 'farmakologia',
+    question: 'Jaką dawkę deksametazonu podasz dorosłemu z anafilaksją?',
+    options: ['4-8 mg', '40-80 mg', '1-2 mg', '10-20 mg'],
+    correct: 0,
+    explanation: 'Dawkujemy deksametazon 4-8 mg.',
+  },
+  {
+    id: 88,
+    category: 'farmakologia',
+    question: 'Jaką dawkę deksametazonu podasz dziecku z zespołem krupu?',
+    options: ['0.2-0.4 mg/kg', '4-8 mg', '10 mg', '0.4-0.8 mg/kg'],
+    correct: 0,
+    explanation: 'Poprawne przeliczenie deksametazonu na kilogram masy ciała dla dzieci to 0.2-0.4 mg.'
+  },
+  {
+    id: 89,
+    category: "farmakologia",
+    question: "Jaka jest dawka adrenaliny (epinefryny) podawana we wstrząsie anafilaktycznym u dorosłych?",
+    options: ["1 mg i.v.", "0.5 mg i.m.", "0.3 mg s.c.", "2-10 mcg/min"],
+    correct: 1,
+    explanation: "Standardowa dawka we wstrząsie anafilaktycznym u dorosłych to 0.5 mg podawana domięśniowo (i.m.) w przednio-boczną powierzchnię uda."
+  },
+  {
+    id: 90,
+    category: "farmakologia",
+    question: "Jaka jest dawka adrenaliny (epinefryny) u dorosłych w Nagłym Zatrzymaniu Krążenia (NZK)?",
+    options: ["1 mg i.v./i.o.", "0.5 mg i.m.", "3 mg i.v.", "10 mg i.v."],
+    correct: 0,
+    explanation: "W rutynowym NZK u dorosłych podaje się 1 mg adrenaliny (najczęściej po rozcieńczeniu w 10 ml 0.9% NaCl) w szybkim bolusie dożylnym lub doszpikowym."
+  },
+  {
+    id: 91,
+    category: "farmakologia",
+    question: "Jaka jest zalecana dawka adrenaliny we wlewie ciągłym we wstrząsie kardiogennym lub ciężkiej bradykardii u dzieci?",
+    options: ["1 mg w bolusie", "0.05 - 1 mcg/kg/min", "2 - 10 mcg/min", "0.01 mg/kg m.c. w bolusie"],
+    correct: 1,
+    explanation: "U dzieci w celu podtrzymania rzutu serca we wstrząsie stosuje się wlew ciągły adrenaliny w dawce od 0.05 do 1 mcg/kg/min."
+  },
+  {
+    id: 92,
+    category: "farmakologia",
+    question: "Jaką dawkę diazepamu (Relanium) podasz dorosłemu w celu przerwania napadu drgawek?",
+    options: ["1 - 2 mg i.v.", "5 - 10 mg i.v.", "15 - 20 mg i.v.", "0.5 mg i.v."],
+    correct: 1,
+    explanation: "W celu przerwania drgawek u dorosłego podaje się powoli dożylnie od 5 do 10 mg diazepamu."
+  },
+  {
+    id: 93,
+    category: "farmakologia",
+    question: "Jaka jest dawka diazepamu (Relanium) stosowana u dzieci w stanie padaczkowym?",
+    options: ["0.2 - 0.3 mg/kg m.c.", "1 mg/kg m.c.", "5 mg niezależnie od wagi", "10 - 20 mcg/kg m.c."],
+    correct: 0,
+    explanation: "Dawka pediatryczna diazepamu wynosi 0.2 do 0.3 mg/kg m.c. podawana powoli dożylnie lub doszpikowo."
+  },
+  {
+    id: 94,
+    category: "farmakologia",
+    question: "W jakiej dawce podasz drotawerynę (No-Spę) dorosłemu pacjentowi z kolką nerkową?",
+    options: ["10 - 20 mg", "40 - 80 mg i.m./i.v.", "100 - 150 mg i.m.", "200 mg p.o."],
+    correct: 1,
+    explanation: "Jednorazowa dawka rozkurczowa drotaweryny dla osoby dorosłej wynosi od 40 do 80 mg (1-2 ampułki)."
+  },
+  {
+    id: 95,
+    category: "farmakologia",
+    question: "Jaka jest dawka fentanylu dla dorosłego pacjenta z silnym bólem urazowym (bez intubacji)?",
+    options: ["10 - 20 mcg", "50 - 200 mcg (1-2 mcg/kg)", "300 - 500 mcg", "1 mg"],
+    correct: 1,
+    explanation: "Dawka przeciwbólowa fentanylu dla wydolnego oddechowo dorosłego to zazwyczaj 50-200 mcg (ok. 1-2 mcg/kg m.c.) miareczkowana dożylnie."
+  },
+  {
+    id: 96,
+    category: "farmakologia",
+    question: "Jak dawkujemy fentanyl u dzieci w celu zniesienia silnego bólu?",
+    options: ["10 - 20 mcg/kg m.c.", "1 - 3 mcg/kg m.c.", "0.1 mg/kg m.c.", "Dzieciom nie podajemy fentanylu"],
+    correct: 1,
+    explanation: "U dzieci fentanyl miarekuje się ostrożnie w dawce od 1 do 3 mikrogramów (mcg) na każdy kilogram masy ciała."
+  },
+  {
+    id: 97,
+    category: "farmakologia",
+    question: "Jaką początkową dawkę flumazenilu (Anexate) zastosujesz u dorosłego pacjenta w celu odwrócenia działania benzodiazepin?",
+    options: ["1 mg i.v.", "2 mg i.v.", "0.2 mg i.v.", "0.5 mg/kg m.c."],
+    correct: 2,
+    explanation: "Dawka startowa wybudzająca dla dorosłego to 0.2 mg i.v. podana w ciągu 15 sekund, w razie potrzeby powtarzana po minucie."
+  },
+  {
+    id: 98,
+    category: "farmakologia",
+    question: "Kiedy podanie flumazenilu jest bezwzględnie przeciwwskazane u zatrutego pacjenta?",
+    options: ["W upojeniu alkoholowym", "W zatruciu paracetamolem", "W zatruciu trójpierścieniowymi lekami przeciwdepresyjnymi (TLPD)", "W nadciśnieniu tętniczym"],
+    correct: 2,
+    explanation: "Zniesienie działania przeciwdrgawkowego benzodiazepin u pacjenta zatrutego TLPD (lub leczącego się na padaczkę) może wywołać niemożliwy do opanowania stan padaczkowy."
+  },
+  {
+    id: 99,
+    category: "farmakologia",
+    question: "Jaka jest dawka początkowa furosemidu u dorosłego pacjenta z obrzękiem płuc?",
+    options: ["5 - 10 mg i.v.", "20 - 80 mg i.v. (lub dwukrotność dawki domowej)", "100 - 200 mg i.v.", "0.5 mg/kg m.c."],
+    correct: 1,
+    explanation: "Standardowo podaje się 20-80 mg i.v. Jeśli pacjent przewlekle przyjmuje diuretyki, dawkę można zwiększyć."
+  },
+  {
+    id: 100,
+    category: "farmakologia",
+    question: "Wskaż bezwzględne przeciwwskazanie do podania furosemidu:",
+    options: ["Obrzęk płuc", "Niewydolność serca", "Hipowolemia (np. masywny krwotok, odwodnienie)", "Nadciśnienie tętnicze"],
+    correct: 2,
+    explanation: "Furosemid to silny diuretyk wymuszający wydalanie wody. W hipowolemii doprowadzi to do natychmiastowego załamania ciśnienia krwi."
+  },
+  {
+    id: 101,
+    category: "farmakologia",
+    question: "Jaką dawkę glukagonu podasz domięśniowo dziecku o masie ciała poniżej 25 kg w ciężkiej hipoglikemii?",
+    options: ["0.25 mg", "0.5 mg", "1 mg", "2 mg"],
+    correct: 1,
+    explanation: "Dzieciom o masie poniżej 25 kg podaje się połowę dawki dorosłej, czyli 0.5 mg glukagonu."
+  },
+  {
+    id: 102,
+    category: "farmakologia",
+    question: "Jakie jest specyficzne kardiologiczne wskazanie (poza hipoglikemią) do podania dużych dawek glukagonu?",
+    options: ["Zatrucie opioidami", "Zatrucie beta-blokerami", "Częstoskurcz komorowy (VT)", "Blok AV I stopnia"],
+    correct: 1,
+    explanation: "Glukagon stymuluje mięsień sercowy z pominięciem zablokowanych receptorów beta, będąc odtrutką w przedawkowaniu beta-blokerów."
+  },
+  {
+    id: 103,
+    category: "farmakologia",
+    question: "Jaka jest dawka i.v. glukozy podawana pacjentom (zarówno dzieciom, jak i dorosłym) w przypadku hipoglikemii wg wytycznych ERC?",
+    options: ["100 mg/kg m.c.", "200 mg/kg m.c. (0.2 g/kg)", "500 mg/kg m.c.", "1 g/kg m.c."],
+    correct: 1,
+    explanation: "ERC zaleca podawanie glukozy w dawce ok. 0.2 g/kg (200 mg/kg m.c.), np. w postaci roztworu 10% lub 20%."
+  },
+  {
+    id: 104,
+    category: "farmakologia",
+    question: "Jaka jest dawka nasycająca heparyny niefrakcjonowanej podawana dożylnie dorosłemu w Ostrym Zespole Wieńcowym?",
+    options: ["1000 j.m.", "2000 j.m.", "5000 j.m.", "10000 j.m."],
+    correct: 2,
+    explanation: "Standardowa dawka nasycająca w OZW (zwykle po konsultacji z kardiologiem) to 5000 j.m. w szybkim bolusie i.v."
+  },
+  {
+    id: 105,
+    category: "farmakologia",
+    question: "Jak dawkujemy hydrokortyzon u dzieci w stanach nagłych (np. anafilaksja, zaostrzenie astmy)?",
+    options: ["1 - 2 mg/kg m.c.", "4 - 10 mg/kg m.c.", "20 - 30 mg/kg m.c.", "50 mg sztywno"],
+    correct: 1,
+    explanation: "Dawka sterydu ratunkowego dla dzieci wynosi od 4 do 10 mg na każdy kilogram masy ciała."
+  },
+  {
+    id: 106,
+    category: "farmakologia",
+    question: "Jaka jest standardowa dawka hydroksyzyny podawanej domięśniowo u dorosłego pacjenta (np. w ostrej reakcji lękowej)?",
+    options: ["10 - 20 mg", "50 - 100 mg", "200 mg", "1 - 5 mg"],
+    correct: 1,
+    explanation: "Dorośli przyjmują głęboko domięśniowo dawkę w granicach od 50 do 100 mg (1 do 2 ampułek)."
+  },
+  {
+    id: 107,
+    category: "farmakologia",
+    question: "Jaka jest jednorazowa dawka ibuprofenu (p.o.) dla dzieci w celu obniżenia gorączki lub uśmierzenia bólu?",
+    options: ["5 mg/kg m.c.", "10 mg/kg m.c.", "20 mg/kg m.c.", "30 mg/kg m.c."],
+    correct: 1,
+    explanation: "Pojedyncza dawka ibuprofenu to 10 mg/kg m.c., którą można powtarzać co 6-8 godzin (maks. 30 mg/kg/dobę)."
+  },
+  {
+    id: 108,
+    category: "farmakologia",
+    question: "Jak podajemy Isosorbid (np. Monosan, Effox) w napadzie dławicy piersiowej u dorosłego?",
+    options: ["10 - 20 mg podjęzykowo (po rozkruszeniu tabletki)", "40 mg połykane w całości", "1 - 5 mg dożylnie", "100 mg domięśniowo"],
+    correct: 0,
+    explanation: "W stanach nagłych azotany podajemy w dawce 10-20 mg podjęzykowo (S.L.), aby błyskawicznie wchłonęły się przez śluzówkę."
+  },
+  {
+    id: 109,
+    category: "farmakologia",
+    question: "Ile mg leku zawiera klasyczna, iniekcyjna ampułka ketoprofenu (Ketonalu) stosowana w ZRM?",
+    options: ["10 mg", "50 mg", "100 mg", "200 mg"],
+    correct: 2,
+    explanation: "Ampułka ketoprofenu o pojemności 2 ml zawsze zawiera 100 mg substancji czynnej."
+  },
+  {
+    id: 110,
+    category: "farmakologia",
+    question: "Jaką uderzeniową dawkę koloidów (np. Gelofusine) podasz dorosłemu we wstrząsie hipowolemicznym z utraty krwi?",
+    options: ["5 ml/kg m.c.", "10 ml/kg m.c.", "20 ml/kg m.c.", "50 ml/kg m.c."],
+    correct: 2,
+    explanation: "Zarówno dla płynów krystaloidowych, jak i koloidów (o ile stosowane wg zaleceń), początkowy bolus we wstrząsie wynosi u dorosłego do 20 ml/kg m.c."
   }
 ];
