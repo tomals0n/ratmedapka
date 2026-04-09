@@ -14,6 +14,9 @@ const sections = {
   calcGCS: document.getElementById('calcGCS'),
   calcPeds: document.getElementById('calcPeds'),
   calcMAP: document.getElementById('calcMAP'),
+  calcAPGAR: document.getElementById('calcAPGAR'),
+  calcQSOFA: document.getElementById('calcQSOFA'),
+  calcPain: document.getElementById('calcPain'),
   calcPedsIdeal: document.getElementById('calcPedsIdeal'),
   calcPumps: document.getElementById('calcPumps'),
   quizSetup: document.getElementById('quizSetup'),
@@ -50,6 +53,12 @@ const els = {
   gcsBox: document.getElementById('gcsBox'),
   backCalcPeds: document.getElementById('backCalcPeds'),
   pedsBox: document.getElementById('pedsBox'),
+  backCalcAPGAR: document.getElementById('backCalcAPGAR'),
+  apgarBox: document.getElementById('apgarBox'),
+  backCalcQSOFA: document.getElementById('backCalcQSOFA'),
+  qsofaBox: document.getElementById('qsofaBox'),
+  backCalcPain: document.getElementById('backCalcPain'),
+  painBox: document.getElementById('painBox'),
   backCalcMAP: document.getElementById('backCalcMAP'),
   mapBox: document.getElementById('mapBox'),
   backFromALS: document.getElementById('backFromALS'),
@@ -320,7 +329,7 @@ function renderProtocolDetail() {
       ul.className = 'list-disc pl-5 marker:text-emerald-400';
       (sec.bullets || []).forEach(b => {
         const li = document.createElement('li');
-        li.textContent = b;
+        li.innerHTML = b;
         ul.appendChild(li);
       });
       box.appendChild(ul);
@@ -500,7 +509,7 @@ function renderALSDetail() {
       ul.className = 'list-disc pl-5 marker:text-emerald-400 text-white/90';
       (sec.bullets || []).forEach(b => {
         const li = document.createElement('li');
-        li.textContent = b;
+        li.innerHTML = b;
         ul.appendChild(li);
       });
       box.appendChild(ul);
@@ -520,7 +529,10 @@ function renderCalculators() {
   els.calculatorsGrid.innerHTML = '';
   const data = [
     { id: 'gcs', title: 'GCS', subtitle: 'Glasgow Coma Scale', emoji: '🧠' },
-    { id: 'peds', title: 'Leki dla dzieci', subtitle: 'Przeliczenia dawek leków na kg/mc.', emoji: '👶' },
+    { id: 'apgar', title: 'APGAR', subtitle: 'Skala oceny noworodka', emoji: '👶' },
+    { id: 'qsofa', title: 'qSOFA', subtitle: 'Szybka ocena sepsy', emoji: '🚑' },
+    { id: 'pain', title: 'Ból (NRS)', subtitle: 'Kalkulator leczenia bólu', emoji: '💉' },
+    { id: 'peds', title: 'Leki dla dzieci', subtitle: 'Przeliczenia dawek leków na kg/mc.', emoji: '🍼' },
     { id: 'map', title: 'MAP', subtitle: 'Średnie ciśnienie tętnicze', emoji: '🩺' },
     { id: 'peds-ideal', title: 'Należna masa (dzieci)', subtitle: 'Wzory na masę ciała u dzieci', emoji: '⚖️' },
     { id: 'pumps', title: 'Pompy infuzyjne', subtitle: 'Dawkowanie Adrenaliny i Noradrenaliny', emoji: '💉' }
@@ -535,6 +547,9 @@ function renderCalculators() {
     `;
     card.addEventListener('click', () => {
       if (c.id === 'gcs') { renderGCS(); show('calcGCS'); }
+      else if (c.id === 'apgar') { renderAPGAR(); show('calcAPGAR'); }
+      else if (c.id === 'qsofa') { renderQSOFA(); show('calcQSOFA'); }
+      else if (c.id === 'pain') { renderPain(); show('calcPain'); }
       else if (c.id === 'peds') { renderPeds(); show('calcPeds'); }
       else if (c.id === 'map') { renderMAP(); show('calcMAP'); }
       else if (c.id === 'peds-ideal') { renderPedsIdeal(); show('calcPedsIdeal'); }
@@ -778,8 +793,324 @@ function renderPedsIdeal() {
   calculateWeight(); // Initial call
 }
 els.backCalcPedsIdeal.addEventListener('click', () => show('calculators'));
+els.backCalcAPGAR.addEventListener('click', () => show('calculators'));
+els.backCalcQSOFA.addEventListener('click', () => show('calculators'));
+els.backCalcPain.addEventListener('click', () => show('calculators'));
 
-function renderPumps() {
+function renderAPGAR() {
+  const criteria = [
+    { id: 'apgarA', title: 'Akcja serca', options: ['Brak', '< 100/min', '≥ 100/min'] },
+    { id: 'apgarR', title: 'Oddech', options: ['Brak', 'Zwolniony, nieregularny', 'Głośny płacz'] },
+    { id: 'apgarT', title: 'Napięcie mięśni (Tonus)', options: ['Wiotkie', 'Słabe zgięcia kończyn', 'Ruchy czynne'] },
+    { id: 'apgarG', title: 'Reakcja na cewnik (Grimace)', options: ['Brak', 'Grymas twarzy', 'Kaszle, kicha, płacze'] },
+    { id: 'apgarS', title: 'Skóra (Skin)', options: ['Sina, blada', 'Tułów różowy, sinica obwodowa', 'Całe ciało różowe'] }
+  ];
+
+  els.apgarBox.innerHTML = `
+    <div class="space-y-4">
+      ${criteria.map(c => `
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-white/70">${c.title}:</label>
+          <select id="${c.id}" class="w-full bg-[#111317] border border-[#2a2e35] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition">
+            ${c.options.map((opt, i) => `<option value="${i}">${i} - ${opt}</option>`).join('')}
+          </select>
+        </div>
+      `).join('')}
+      <div class="bg-[#0f1215] border border-[#2a2e35] rounded-2xl p-6 text-center mt-6">
+        <div class="text-sm text-white/50 mb-1">Wynik APGAR:</div>
+        <div id="apgarResultValue" class="text-4xl font-bold text-emerald-400">0 pkt</div>
+        <div id="apgarStatus" class="text-sm text-white/40 mt-3">Ciężka zamartwica</div>
+      </div>
+    </div>
+  `;
+
+  const selects = criteria.map(c => document.getElementById(c.id));
+  const resVal = document.getElementById('apgarResultValue');
+  const resStatus = document.getElementById('apgarStatus');
+
+  function update() {
+    const total = selects.reduce((acc, s) => acc + parseInt(s.value), 0);
+    resVal.textContent = `${total} pkt`;
+    if (total >= 8) { resStatus.textContent = 'Stan dobry'; resStatus.className = 'text-sm text-emerald-400 mt-3'; }
+    else if (total >= 4) { resStatus.textContent = 'Stan średni (umiarkowana zamartwica)'; resStatus.className = 'text-sm text-yellow-400 mt-3'; }
+    else { resStatus.textContent = 'Stan ciężki (ciężka zamartwica)'; resStatus.className = 'text-sm text-red-400 mt-3'; }
+  }
+
+  selects.forEach(s => s.addEventListener('change', update));
+  update();
+}
+
+function renderQSOFA() {
+  const criteria = [
+    { id: 'qsofaSBP', title: 'Ciśnienie tętnicze skurczowe', opt1: '> 100 mmHg', opt2: '≤ 100 mmHg' },
+    { id: 'qsofaRR', title: 'Liczba oddechów na minutę', opt1: '< 22', opt2: '≥ 22' },
+    { id: 'qsofaGCS', title: 'Liczba punktów w skali Glasgow', opt1: '15', opt2: '3-14' }
+  ];
+
+  const state = { qsofaSBP: 0, qsofaRR: 0, qsofaGCS: 0 };
+
+  els.qsofaBox.innerHTML = `
+    <div class="space-y-4">
+      <div class="glass p-1 rounded-2xl border border-[#2a2e35] overflow-hidden">
+        <table class="w-full text-sm">
+          <tbody class="divide-y divide-[#2a2e35]">
+            ${criteria.map(c => `
+              <tr>
+                <td class="p-4 font-medium text-white/70 w-1/3">${c.title}</td>
+                <td class="p-2 w-2/3">
+                  <div class="grid grid-cols-2 gap-2">
+                    <button id="${c.id}_0" class="py-3 px-2 rounded-xl border border-[#2a2e35] bg-[#111317] hover:border-emerald-500/50 transition text-xs font-semibold qsofa-btn active-q" data-val="0">${c.opt1}</button>
+                    <button id="${c.id}_1" class="py-3 px-2 rounded-xl border border-[#2a2e35] bg-[#111317] hover:border-emerald-500/50 transition text-xs font-semibold qsofa-btn" data-val="1">${c.opt2}</button>
+                  </div>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="glass p-6 rounded-2xl border border-[#2a2e35] bg-[#0f1215]">
+        <div class="flex items-center mb-4 text-emerald-400 font-bold">
+          <span class="mr-2">📋</span> Wynik
+        </div>
+        <div class="bg-[#14171b] border border-[#2a2e35] rounded-xl p-4">
+          <div class="flex items-center mb-2">
+            <div class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></div>
+            <div class="text-xs text-white/50 uppercase tracking-wider">Skala qSOFA</div>
+          </div>
+          <div class="flex items-baseline space-x-2">
+            <span id="qsofaResultValue" class="text-4xl font-bold text-white">0</span>
+            <span class="text-xl text-white/40">pkt</span>
+          </div>
+          <div id="qsofaStatusBox" class="mt-4 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center">
+            <div class="w-2 h-2 rounded-full bg-emerald-500 mr-3"></div>
+            <span id="qsofaStatusText" class="text-sm font-medium text-emerald-400">Niewielkie ryzyko sepsy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const resVal = document.getElementById('qsofaResultValue');
+  const statusBox = document.getElementById('qsofaStatusBox');
+  const statusText = document.getElementById('qsofaStatusText');
+  const statusDot = statusBox.querySelector('div');
+
+  function update() {
+    const total = Object.values(state).reduce((a, b) => a + b, 0);
+    resVal.textContent = total;
+    
+    if (total >= 2) {
+      statusBox.className = 'mt-4 p-3 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center animate-pulse';
+      statusText.textContent = 'Wysokie ryzyko sepsy / zgonu!';
+      statusText.className = 'text-sm font-medium text-red-400';
+      statusDot.className = 'w-2 h-2 rounded-full bg-red-500 mr-3';
+    } else {
+      statusBox.className = 'mt-4 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center';
+      statusText.textContent = 'Niewielkie ryzyko sepsy';
+      statusText.className = 'text-sm font-medium text-emerald-400';
+      statusDot.className = 'w-2 h-2 rounded-full bg-emerald-500 mr-3';
+    }
+  }
+
+  criteria.forEach(c => {
+    const btn0 = document.getElementById(`${c.id}_0`);
+    const btn1 = document.getElementById(`${c.id}_1`);
+
+    btn0.addEventListener('click', () => {
+      state[c.id] = 0;
+      btn0.classList.add('bg-emerald-600', 'border-emerald-500', 'active-q');
+      btn0.classList.remove('bg-[#111317]', 'border-[#2a2e35]');
+      btn1.classList.remove('bg-emerald-600', 'border-emerald-500', 'active-q');
+      btn1.classList.add('bg-[#111317]', 'border-[#2a2e35]');
+      update();
+    });
+
+    btn1.addEventListener('click', () => {
+      state[c.id] = 1;
+      btn1.classList.add('bg-emerald-600', 'border-emerald-500', 'active-q');
+      btn1.classList.remove('bg-[#111317]', 'border-[#2a2e35]');
+      btn0.classList.remove('bg-emerald-600', 'border-emerald-500', 'active-q');
+      btn0.classList.add('bg-[#111317]', 'border-[#2a2e35]');
+      update();
+    });
+    
+    // Initial state visuals
+    btn0.classList.add('bg-emerald-600', 'border-emerald-500');
+  });
+
+  update();
+}
+
+function renderPain() {
+  els.painBox.innerHTML = `
+    <div class="space-y-6">
+      <!-- Skala NRS -->
+      <div class="glass p-6 rounded-2xl border border-[#2a2e35]">
+        <label class="block text-sm font-medium text-white/70 mb-6 text-center">Natężenie bólu (skala NRS 0-10):</label>
+        <div class="relative px-2">
+          <input id="painRange" type="range" min="0" max="10" step="1" value="0" class="w-full accent-emerald-500 h-2 bg-[#111317] rounded-lg appearance-none cursor-pointer">
+          <div class="flex justify-between mt-4 text-[10px] font-mono text-white/40">
+            <div class="flex flex-col items-center w-6"><span>0</span><span class="mt-1">BRAK</span></div>
+            <div class="flex flex-col items-center w-6"><span>1</span><span class="mt-1 opacity-0">.</span></div>
+            <div class="flex flex-col items-center w-6"><span>2</span><span class="mt-1 opacity-0">.</span></div>
+            <div class="flex flex-col items-center w-6"><span>3</span><span class="mt-1 opacity-0">.</span></div>
+            <div class="flex flex-col items-center w-6"><span>4</span><span class="mt-1 opacity-0">.</span></div>
+            <div class="flex flex-col items-center w-6"><span>5</span><span class="mt-1 opacity-0">.</span></div>
+            <div class="flex flex-col items-center w-6"><span>6</span><span class="mt-1 opacity-0">.</span></div>
+            <div class="flex flex-col items-center w-6"><span>7</span><span class="mt-1 opacity-0">.</span></div>
+            <div class="flex flex-col items-center w-6"><span>8</span><span class="mt-1 opacity-0">.</span></div>
+            <div class="flex flex-col items-center w-6"><span>9</span><span class="mt-1 opacity-0">.</span></div>
+            <div class="flex flex-col items-center w-6"><span>10</span><span class="mt-1">MAX</span></div>
+          </div>
+        </div>
+        <div class="text-center mt-6">
+          <span id="painValueDisplay" class="text-5xl font-bold text-emerald-400">0</span>
+        </div>
+      </div>
+
+      <!-- Rodzaj bólu -->
+      <div class="glass p-6 rounded-2xl border border-[#2a2e35]">
+        <label class="block text-sm font-medium text-white/70 mb-4">Lokalizacja / Rodzaj bólu:</label>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <button id="painTypeChest" class="pain-type-btn p-3 rounded-xl border border-[#2a2e35] bg-[#111317] text-sm hover:border-emerald-500/50 transition flex flex-col items-center">
+            <span class="text-xl mb-1">🫀</span>
+            <span>Klatka piersiowa</span>
+          </button>
+          <button id="painTypeAbdomen" class="pain-type-btn p-3 rounded-xl border border-[#2a2e35] bg-[#111317] text-sm hover:border-emerald-500/50 transition flex flex-col items-center">
+            <span class="text-xl mb-1">🤢</span>
+            <span>Brzuch</span>
+          </button>
+          <button id="painTypeHead" class="pain-type-btn p-3 rounded-xl border border-[#2a2e35] bg-[#111317] text-sm hover:border-emerald-500/50 transition flex flex-col items-center">
+            <span class="text-xl mb-1">🤯</span>
+            <span>Głowa</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Rekomendacje -->
+      <div id="painRecommendation" class="hidden glass p-6 rounded-2xl border border-emerald-500/30 bg-emerald-500/5">
+        <div class="flex items-start">
+          <span class="text-2xl mr-4">💊</span>
+          <div class="space-y-4 w-full">
+            <div id="painSpecificWarning" class="hidden bg-red-500/20 border border-red-500/40 p-4 rounded-xl text-red-200 text-sm leading-relaxed"></div>
+            
+            <div>
+              <div class="font-bold text-emerald-400 uppercase tracking-wider text-xs mb-3">Zalecenia i farmakoterapia:</div>
+              <div id="painMedList" class="text-white/90 space-y-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const range = document.getElementById('painRange');
+  const valDisplay = document.getElementById('painValueDisplay');
+  const recommendBox = document.getElementById('painRecommendation');
+  const medList = document.getElementById('painMedList');
+  const specificWarning = document.getElementById('painSpecificWarning');
+  
+  const typeBtns = {
+    chest: document.getElementById('painTypeChest'),
+    abdomen: document.getElementById('painTypeAbdomen'),
+    head: document.getElementById('painTypeHead')
+  };
+
+  let selectedType = null;
+
+  function update() {
+    const val = parseInt(range.value);
+    valDisplay.textContent = val;
+    
+    if (val === 0 && !selectedType) {
+      recommendBox.classList.add('hidden');
+      return;
+    }
+
+    recommendBox.classList.remove('hidden');
+    
+    // Warnings
+    specificWarning.classList.add('hidden');
+    if (selectedType === 'chest') {
+      specificWarning.innerHTML = `<strong>⚠️ UWAGA OZW:</strong> Wykonaj 12-odpr EKG i teletransmisję. Monitoruj parametry (NiBP, SpO2). Wykonaj NiBP na obu kończynach (rozwarstwienie aorty)`;
+      specificWarning.classList.remove('hidden');
+    } else if (selectedType === 'head') {
+      specificWarning.innerHTML = `<strong>⚠️ UWAGA UDAR/KRWAWIENIE:</strong> Wykonaj skalę FAST/BE-FAST. Sprawdź źrenice, glikemię i ciśnienie. Nagły "najsilniejszy w życiu" ból głowy sugeruje krwotok podpajęczynówkowy!`;
+      specificWarning.classList.remove('hidden');
+    } else if (selectedType === 'abdomen') {
+      specificWarning.innerHTML = `<strong>⚠️ UWAGA BRZUCH:</strong> Sprawdź objawy otrzewnowe (Blumberg, Jaworski itp.).`;
+      specificWarning.classList.remove('hidden');
+    }
+
+    let html = '';
+    
+    // Standard Analgesic Ladder based on NRS
+    let ladderInfo = '';
+    if (val >= 1 && val <= 3) {
+      ladderInfo = `<div class="text-xs font-bold text-white/50 mb-1">I STOPIEŃ DRABINY (Lekki ból):</div>
+                    <ul class="list-disc pl-5 text-sm space-y-1">
+                      <li>Paracetamol 1g i.v.</li>
+                      <li>NLPZ (np. Ketoprofen 100mg i.v. / Ibuprofen 400 mg p.o)</li>
+                    </ul>`;
+    } else if (val >= 4 && val <= 6) {
+      ladderInfo = `<div class="text-xs font-bold text-white/50 mb-1">II STOPIEŃ DRABINY (Umiarkowany ból):</div>
+                    <ul class="list-disc pl-5 text-sm space-y-1">
+                    <li>NLPZ (Ketonal 100 mg / Ibuprofen 400 mg p.o) + Paracetamol(1 g)</li>
+                    <li>Paracetamol (1 g)+ Metamizol(1-2.5 g)</li>
+                    <li>NLPZ (Ketonal 100 mg / Ibuprofen 400 mg p.o) + Metamizol(1-2.5 g)</li>
+                    <li>Małe dawki morfiny (np. 0.5 mg)</li>
+                    </ul>`;
+    } else if (val >= 7) {
+      ladderInfo = `<div class="text-xs font-bold text-red-400/80 mb-1">III STOPIEŃ DRABINY (Silny ból):</div>
+                    <ul class="list-disc pl-5 text-sm space-y-1">
+                      <li><span class="text-red-300 font-semibold">Morfina:</span> 2-5 mg i.v. (miareczkuj co 5-10 min)</li>
+                      <li><span class="text-red-300 font-semibold">Fentanyl:</span> 25-100 mcg i.v.</li>
+                    </ul>`;
+    }
+
+    // Specific treatment additions
+    let specificInfo = '';
+    if (selectedType === 'abdomen') {
+      specificInfo = `
+        <div class="mt-4 p-3 rounded-xl bg-blue-500/10 border border-blue-500/20">
+          <div class="text-xs font-bold text-blue-400 mb-2">SPECYFICZNE DLA BRZUCHA:</div>
+          <ul class="list-disc pl-5 text-sm space-y-1">
+            <li><span class="font-semibold">Rozkurczowe:</span> No-Spa (Drotaweryna) 40-80mg i.v./i.m.</li>
+            <li><span class="font-semibold">Rozkurczowe:</span> Papaweryna 40-80mg i.m./s.c.</li>
+            <li><span class="font-semibold">Przeciwbólowe + rozkurczowe:</span> Metamizol 1-2g i.v. (często lek 1. wyboru w kolkach)</li>
+            <li><span class="font-semibold">Rozkurczowe:</span> Lignokaina 1 mg/kg  i.v.</li>
+          </ul>
+        </div>`;
+    } else if (selectedType === 'chest') {
+      specificInfo = `
+        <div class="mt-4 p-3 rounded-xl bg-red-500/10 border border-red-500/20">
+          <div class="text-xs font-bold text-red-400 mb-2">SPECYFICZNE DLA OZW:</div>
+          <div class="text-sm">Preferowana <span class="font-bold">Morfina</span> - zmniejsza preload, zapotrzebowanie serca na tlen i lęk.</div>
+        </div>`;
+    }
+
+    medList.innerHTML = ladderInfo + specificInfo;
+  }
+
+  Object.entries(typeBtns).forEach(([key, btn]) => {
+    btn.addEventListener('click', () => {
+      if (selectedType === key) {
+        selectedType = null;
+        btn.classList.remove('bg-emerald-500/20', 'border-emerald-500');
+      } else {
+        Object.values(typeBtns).forEach(b => b.classList.remove('bg-emerald-500/20', 'border-emerald-500'));
+        selectedType = key;
+        btn.classList.add('bg-emerald-500/20', 'border-emerald-500');
+      }
+      update();
+    });
+  });
+
+  range.addEventListener('input', update);
+}
+
+function renderPedsIdeal() {
   els.pumpsBox.innerHTML = `
     <!-- Interaktywny Kalkulator Pomp -->
     <div class="glass p-6 rounded-2xl border border-[#2a2e35] mb-10">

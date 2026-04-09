@@ -362,6 +362,343 @@ const quizQuestions = [
     correct: 2,
     explanation: "W OZW tlen podajemy tylko gdy SpO2 < 90%."
   },
+  {
+    id: 133,
+    category: "als",
+    question: "U pacjenta z częstoskurczem z tętnem, który jest niestabilny hemodynamicznie, wykonujesz kardiowersję elektryczną. Wyładowanie musi być zsynchronizowane na monitorze z:",
+    options: ["Załamkiem P", "Załamkiem T", "Załamkiem R", "Odcinkiem ST"],
+    correct: 2,
+    explanation: "Synchronizacja z załamkiem R pozwala uniknąć trafienia wyładowaniem w fazę relatywnej refrakcji (szczyt załamka T), co mogłoby wywołać śmiertelne migotanie komór (zjawisko R na T)."
+  },
+  {
+    id: 134,
+    category: "als",
+    question: "Pacjent od 2 godzin ma przygniecione obie nogi przez zawał gruzu. Zanim straż pożarna podniesie ciężar (uwolnienie), ratownik powinien w pierwszej kolejności:",
+    options: ["Założyć stazy taktyczne na obie nogi", "Rozpocząć agresywną płynoterapię (np. 1-2 litry krystaloidów i.v.)", "Podać profilaktycznie amiodaron", "Podać wodorowęglan sodu dożylnie"],
+    correct: 1,
+    explanation: "W zespole zmiażdżenia (crush syndrome) agresywna płynoterapia wdrożona JESZCZE PRZED uwolnieniem ucisku zapobiega ciężkiemu wstrząsowi z reperfuzji i uszkodzeniu nerek przez uwalnianą mioglobinę."
+  },
+  {
+    id: 135,
+    category: "als",
+    question: "Które z poniższych parametrów wchodzą w skład przedszpitalnej skali oceny udaru mózgu CPSS (Cincinnati Prehospital Stroke Scale)?",
+    options: ["Opadanie kącika ust, niedowład kończyny górnej, zaburzenia mowy", "Reakcja źrenic, siła mięśniowa kończyn dolnych, splątanie", "Asymetria twarzy, zaburzenia połykania, oczopląs", "Ból głowy, niedowład połowiczy, afazja"],
+    correct: 0,
+    explanation: "CPSS ocenia 3 główne elementy (podobne do FAST): asymetrię twarzy (opadający kącik ust przy uśmiechu), opadanie kończyny górnej (próba Barrego) oraz zaburzenia mowy (powtarzanie prostego zdania)."
+  },
+  {
+    id: 136,
+    category: "als",
+    question: "Pacjent po tępym urazie klatki prezentuje narastającą duszność, poszerzenie żył szyjnych, przesunięcie tchawicy na stronę lewą oraz brak szmeru pęcherzykowego po stronie prawej. Wskazuje to na:",
+    options: ["Tamponadę worka osierdziowego", "Masywny krwiak opłucnej po stronie lewej", "Odmę prężną prawostronną", "Pęknięcie przepony"],
+    correct: 2,
+    explanation: "Odma prężna prawostronna powoduje wzrost ciśnienia w prawej opłucnej, znosząc szmer oddechowy, wypełniając żyły szyjne i spychając śródpiersie (w tym tchawicę) na stronę przeciwną (zdrową)."
+  },
+  {
+    id: 137,
+    category: "als",
+    question: "Wstrząs neurogenny (np. po urazie rdzenia w odcinku szyjnym) różni się klasycznie od wstrząsu hipowolemicznego tym, że pacjent wykazuje:",
+    options: ["Hipotensję, ale skóra jest ciepła, różowa, a tętno zazwyczaj wolne (bradykardia/normokardia)", "Ciężką tachykardię i zlewne poty", "Wzrost ciśnienia tętniczego i bradykardię", "Prawidłowe ciśnienie tętnicze, ale niemiarowe tętno"],
+    correct: 0,
+    explanation: "We wstrząsie neurogennym dochodzi do utraty napięcia współczulnego. Naczynia rozszerzają się (skóra jest ciepła), ciśnienie spada, ale brakuje odruchowej tachykardii (serce nie przyspiesza)."
+  },
+  {
+    id: 138,
+    category: "als",
+    question: "Które z poniższych parametrów oceniamy w szybkiej skali qSOFA służącej do przedszpitalnej identyfikacji pacjentów z podejrzeniem sepsy?",
+    options: ["Temperatura, tętno, saturacja", "Skurczowe ciśnienie krwi ≤ 100 mmHg, częstość oddechów ≥ 22/min, zmieniony stan świadomości", "Glikemia, diureza, poziom mleczanów", "Czas nawrotu kapilarnego, tętno, temperatura > 38°C"],
+    correct: 1,
+    explanation: "Skala qSOFA (quick SOFA) obejmuje 3 kliniczne kryteria: ciśnienie skurczowe (SBP) ≤ 100 mmHg, oddechy ≥ 22/min oraz zmieniony stan świadomości. Spełnienie ≥2 punktów świadczy o wysokim ryzyku zgonu."
+  },
+  {
+    id: 139,
+    category: "als",
+    question: "U pacjenta z niestabilną bradykardią zdecydowałeś się na przezskórną stymulację serca (TCP). W jaki sposób dobierasz natężenie prądu (mA)?",
+    options: ["Zaczynam od maksymalnego natężenia (130 mA) i po uzyskaniu przechwycenia zmniejszam", "Zaczynam od 10-20 mA i stopniowo zwiększam, aż do momentu zaobserwowania elektrycznego i mechanicznego przechwycenia", "Ustawiam sztywno na 50 mA i zmieniam tylko częstotliwość stymulacji", "Ustawiam na tryb 'na żądanie' z prądem 150 J"],
+    correct: 1,
+    explanation: "Elektrostymulację zaczyna się od niskich wartości natężenia prądu (mA) i stopniowo zwiększa, aż na monitorze EKG po piku stymulatora pojawi się szeroki QRS (przechwycenie elektryczne), a na tętnicy udowej wyczuwalne będzie tętno."
+  },
+  {
+    id: 140,
+    category: "als",
+    question: "Wyjeżdżasz do młodego, nieprzytomnego mężczyzny. Oddech 6/min, płytki. Na ramionach widoczne stare ślady po wkłuciach. Źrenice pacjenta są najprawdopodobniej:",
+    options: ["Maksymalnie rozszerzone", "Szpilkowate (bardzo wąskie)", "Nierówne (anizokoria)", "Prawidłowej wielkości, ale nie reagują na światło"],
+    correct: 1,
+    explanation: "Klasyczna triada objawów ostrego zatrucia opioidami (np. heroiną, fentanylem) to: zaburzenia świadomości (śpiączka), głęboka depresja oddechowa oraz szpilkowate (mioza) źrenice."
+  },
+  {
+    id: 141,
+    category: "als",
+    question: "W jakiej konkretnej sytuacji u pacjenta po ciężkim urazie czaszkowo-mózgowym dopuszcza się krótkotrwałą hiperwentylację (utrzymywanie EtCO2 ok. 30-35 mmHg)?",
+    options: ["Rutynowo u każdego pacjenta z GCS < 8", "Tylko u pacjentów ze współistniejącą odmą prężną", "Tylko w przypadku wystąpienia objawów ostrego wgłabiania pnia mózgu (np. poszerzenie jednej źrenicy, nagły spadek GCS, prężenia)", "Hiperwentylacja jest bezwzględnie zakazana w każdym urazie głowy"],
+    correct: 2,
+    explanation: "Rutynowa hiperwentylacja jest szkodliwa, bo nadmiernie obkurcza naczynia i pogłębia niedokrwienie mózgu. Stosuje się ją wyłącznie jako ostateczność ratującą życie, gdy pacjent wgłabia się (by szybko obniżyć ICP)."
+  },
+  {
+    id: 142,
+    category: "als",
+    question: "Pacjent wydobyty z zimnej wody, temperatura głęboka 29°C. Jest nieprzytomny, ale ma zachowane wolne tętno i oddech. Podczas przenoszenia do karetki należy pamiętać, aby:",
+    options: ["Masować energicznie jego kończyny, aby przywrócić krążenie obwodowe", "Podać mu gorące płyny doustnie", "Utrzymywać pozycję poziomą i przenosić go z maksymalną ostrożnością (minimalizować wstrząsy)", "Szybko pionizować pacjenta w celu ułatwienia pracy płuc"],
+    correct: 2,
+    explanation: "U pacjenta w głębokiej hipotermii serce jest skrajnie wrażliwe. Gwałtowne ruchy, pionizacja, a zwłaszcza masaż (przepychanie zimnej krwi z obwodu do rdzenia - afterdrop) mogą natychmiast wywołać oporne migotanie komór (VF)."
+  },
+  {
+    id: 143,
+    category: "als",
+    question: "Wykonujesz EKG u pacjenta z bólem w klatce piersiowej. Uniesienia odcinka ST w odprowadzeniach V1, V2, V3 i V4 świadczą o świeżym niedokrwieniu:",
+    options: ["Ściany bocznej lewej komory", "Ściany dolnej", "Przegrody i ściany przedniej lewej komory", "Prawej komory serca"],
+    correct: 2,
+    explanation: "Odprowadzenia V1 i V2 obrazują przegrodę międzykomorową, a V3 i V4 ścianę przednią. Wskazuje to zazwyczaj na proksymalne zamknięcie gałęzi międzykomorowej przedniej (LAD)."
+  },
+  {
+    id: 144,
+    category: "als",
+    question: "Szacując powierzchnię oparzeń, należy pamiętać, że proporcje ciała małego dziecka różnią się od dorosłego. U niemowląt znacznie większy procent powierzchni ciała (aż ok. 18%) stanowi:",
+    options: ["Klatka piersiowa", "Głowa", "Kończyny dolne", "Kończyny górne"],
+    correct: 1,
+    explanation: "U dorosłych głowa stanowi ok. 9% powierzchni ciała, natomiast u noworodków i niemowląt głowa jest proporcjonalnie znacznie większa i stanowi około 18% (Reguła Lunda i Browdera)."
+  },
+  {
+    id: 145,
+    category: "als",
+    question: "Nagły, rwący ból w klatce piersiowej promieniujący do międzyłopacia, któremu towarzyszy asymetria tętna i ciśnienia na kończynach górnych, to obraz kliniczny typowy dla:",
+    options: ["Ostrego Zespołu Wieńcowego (OZW)", "Rozwarstwienia aorty", "Zatorowości płucnej", "Tamponady osierdzia"],
+    correct: 1,
+    explanation: "To klasyczne objawy rozwarstwienia aorty. Asymetria ciśnień wynika z zamykania światła tętnic odchodzących od łuku aorty. Podanie w tym stanie ASA (jak w zawałach) jest śmiertelnie niebezpieczne!"
+  },
+  {
+    id: 146,
+    category: "als",
+    question: "Zapis kapnografii (EtCO2) u pacjenta z ciężkim atakiem astmy oskrzelowej (silna obturacja) przypomina kształtem:",
+    options: ["Płetwę rekina (brak fazy plateau)", "Idealne prostokąty", "Odwrócone trójkąty", "Linię izoelektryczną"],
+    correct: 0,
+    explanation: "Z powodu skurczu oskrzeli faza wydechu jest znacznie wydłużona i opóźniona, co daje charakterystyczny obraz 'płetwy rekina' (shark fin) bez płaskiego, stabilnego plateau na monitorze."
+  },
+  {
+    id: 147,
+    category: "als",
+    question: "Czym charakteryzuje się tzw. wiotka klatka piersiowa (flail chest)?",
+    options: ["Płynem w worku osierdziowym po tępym urazie", "Jednostronnym ściszeniem szmerów pęcherzykowych", "Paradoksalnym ruchem wyłamanego fragmentu klatki podczas oddychania", "Zapadnięciem całego mostka do wewnątrz"],
+    correct: 2,
+    explanation: "Wiotka klatka powstaje przy złamaniu co najmniej 3 sąsiednich żeber w 2 miejscach. Podczas wdechu uwolniony fragment zapada się, a przy wydechu uwypukla (ruch paradoksalny)."
+  },
+  {
+    id: 148,
+    category: "als",
+    question: "W skład Trójkąta Oceny Pediatrycznej (PAT) wchodzą trzy elementy pozwalające na błyskawiczną ocenę dziecka z dystansu. Są to:",
+    options: ["Wygląd, Praca oddechowa, Krążenie skórne", "Tętno, Oddech, Ciśnienie krwi", "Świadomość (GCS), Źrenice, Tonus mięśniowy", "Zapis EKG, SpO2, EtCO2"],
+    correct: 0,
+    explanation: "PAT (Pediatric Assessment Triangle) pozwala ocenić krytycznie chore dziecko w kilka sekund z 'progu drzwi', bez dotykania. Oceniamy: Appearance (wygląd), Work of Breathing (oddychanie) i Circulation to skin (krążenie - barwa skóry)."
+  },
+  {
+    id: 149,
+    category: "als",
+    question: "Dlaczego u pacjenta z podejrzeniem zatrucia tlenkiem węgla (CO) standardowy pulsoksymetr (SpO2) wskazuje fałszywie prawidłowe wartości (np. 100%)?",
+    options: ["CO blokuje całkowicie emisję światła czerwonego w czujniku", "Karboksyhemoglobina pochłania światło w sposób zbliżony do hemoglobiny utlenowanej", "Tlenek węgla uszkadza naczynia włosowate na palcach", "Pacjenci z zatruciem CO wydzielają poty, które zaburzają odczyt fal"],
+    correct: 1,
+    explanation: "Zwykły pulsoksymetr dwufalowy nie odróżnia hemoglobiny połączonej z tlenem (oksyhemoglobina) od tej połączonej z czadem (karboksyhemoglobina). Może wskazywać 100% u pacjenta umierającego z głębokiego niedotlenienia tkankowego."
+  },
+  {
+    id: 150,
+    category: "als",
+    question: "Głęboki, przyspieszony oddech (oddech Kussmaula) oraz zapach zgniłych jabłek (acetonu) z ust to klasyczne objawy:",
+    options: ["Głębokiej hipoglikemii", "Kwasicy ketonowej (DKA) w przebiegu cukrzycy", "Krwiaka nadtwardówkowego", "Ostrej niewydolności nerek"],
+    correct: 1,
+    explanation: "Oddech Kussmaula to mechanizm kompensacyjny – organizm głębokimi oddechami próbuje pozbyć się nadmiaru kwasów (wydychając CO2) w przebiegu groźnej dla życia kwasicy ketonowej."
+  },
+  {
+    id: 151,
+    category: "als",
+    question: "Skrócenie odstępu PQ (< 0.12 s) oraz obecność tzw. 'fali delta' na ramieniu wstępującym zespołu QRS to w EKG cechy charakterystyczne dla:",
+    options: ["Zespołu Wolffa-Parkinsona-White'a (WPW)", "Bloku prawej odnogi pęczka Hisa (RBBB)", "Ostrego zawału ściany przedniej", "Zatorowości płucnej"],
+    correct: 0,
+    explanation: "Fala delta i krótki odstęp PQ świadczą o obecności dodatkowej, patologicznej drogi przewodzenia (pęczka Kenta), która jest podstawą zespołu preekscytacji (WPW)."
+  },
+  {
+    id: 152,
+    category: "als",
+    question: "Objaw Kehra, czyli silny ból rzutowany promieniujący do lewego barku, u pacjenta po tępym urazie brzucha najczęściej wskazuje na:",
+    options: ["Pęknięcie wątroby", "Pęknięcie śledziony", "Pęknięcie pęcherza moczowego", "Odmę opłucnową prawostronną"],
+    correct: 1,
+    explanation: "Krew gromadząca się pod lewą kopułą przepony w wyniku pęknięcia śledziony podrażnia nerw przeponowy, co pacjent odczuwa jako ból w lewym barku (objaw Kehra)."
+  },
+  {
+    id: 153,
+    category: "als",
+    question: "W porażeniu prądem elektrycznym o wysokim napięciu, oprócz bezpośredniego zatrzymania krążenia (VF/Asystolia), największym ogólnoustrojowym zagrożeniem dla pacjenta jest:",
+    options: ["Ostra niewydolność wątroby", "Masywna rabdomioliza (rozpad mięśni) prowadząca do uszkodzenia nerek", "Spontaniczna odma prężna", "Zakażenie septyczne w pierwszych 2 godzinach"],
+    correct: 1,
+    explanation: "Prąd, szukając najkrótszej drogi ujścia, przepływa przez mięśnie, 'gotując' je od środka (często bez zewnętrznych oparzeń). Rozpad mięśni uwalnia mioglobinę, która zatyka cewki nerkowe. Wymaga to bardzo agresywnej płynoterapii."
+  },
+  {
+    id: 154,
+    category: "als",
+    question: "Nagły, ostry ból w dole brzucha u kobiety w wieku rozrodczym, któremu towarzyszą objawy rozwijającego się wstrząsu hipowolemicznego (tachykardia, hipotensja, bladość), to w warunkach ZRM w pierwszej kolejności podejrzenie:",
+    options: ["Ostrego zapalenia wyrostka robaczkowego", "Kolki nerkowej", "Pękniętej ciąży pozamacicznej (ektopowej)", "Zakażenia układu moczowego"],
+    correct: 2,
+    explanation: "Każda kobieta w wieku rozrodczym we wstrząsie krwotocznym z bólem podbrzusza to ciąża ektopowa do czasu udowodnienia (np. przez USG w szpitalu) że jest inaczej. To stan bezpośredniego zagrożenia życia z masywnym krwotokiem wewnętrznym."
+  },
+  {
+    id: 155,
+    category: "als",
+    question: "Wysokie, spiczaste, symetryczne załamki T ('namiotowate'), poszerzenie zespołów QRS i stopniowy zanik załamków P to w zapisie EKG klasyczny obraz postępującej:",
+    options: ["Hipokaliemii", "Hiperkaliemii (podwyższonego potasu we krwi)", "Ostrej zatorowości płucnej", "Zawału ściany bocznej"],
+    correct: 1,
+    explanation: "Hiperkaliemia (np. u pacjentów dializowanych) prowadzi do drastycznych zmian w przewodnictwie. 'Namiotowate' T i poszerzone QRS to stan alarmowy tuż przed zatrzymaniem krążenia. Lekiem ratującym życie, stabilizującym serce jest podaż wapnia (Calcium Chloride)."
+  },
+  {
+    id: 156,
+    category: "als",
+    question: "U pacjenta rozpoznajesz zawał ściany dolnej (uniesienia ST w II, III, aVF). Pacjent ma ciśnienie 90/60 mmHg i czyste pola płucne. Czego BEZWZGLĘDNIE NIE WOLNO mu podać?",
+    options: ["Kwasu acetylosalicylowego (ASA)", "Nitrogliceryny podjęzykowo", "Heparyny", "Fentanylu"],
+    correct: 1,
+    explanation: "Zawał ściany dolnej często wiąże się z zawałem prawej komory, która staje się krytycznie zależna od obciążenia wstępnego (preload). Podanie nitrogliceryny (która rozszerza żyły) odetnie powrót krwi do serca i pacjent wpadnie w głęboki, śmiertelny wstrząs."
+  },
+  {
+    id: 157,
+    category: "als",
+    question: "Wyjeżdżasz do pacjenta po próbie samobójczej, który połknął garść tabletek Amitryptyliny (Trójpierścieniowe Leki Przeciwdepresyjne - TLPD). W EKG widzisz skrajnie szerokie zespoły QRS (>120 ms). Jaki lek ratuje tu życie?",
+    options: ["Flumazenil (Anexate)", "Wodorowęglan sodu (8.4% NaHCO3)", "Siarczan magnezu", "Glukagon"],
+    correct: 1,
+    explanation: "TLPD blokują kanały sodowe w sercu, co prowadzi do poszerzenia QRS i śmiertelnych arytmii. Uderzeniowa dawka Wodorowęglanu Sodu 'przełamuje' tę blokadę ładunkiem sodu i alkalizacją krwi, zawężając QRS."
+  },
+  {
+    id: 158,
+    category: "als",
+    question: "Masz pacjenta z krwotokiem wewnętrznym po wypadku drogowym (bez poważnego urazu głowy). Zgodnie ze strategią 'hipotensji dopuszczalnej' (permissive hypotension), do jakiego ciśnienia skurczowego (SBP) dążysz podczas płynoterapii?",
+    options: ["120 - 130 mmHg", "100 - 110 mmHg", "80 - 90 mmHg", "60 - 70 mmHg"],
+    correct: 2,
+    explanation: "Lanie płynów 'pod kurek' rozcieńczy krew, wychłodzi pacjenta i 'zdmuchnie' (wypłucze) nowo powstałe skrzepy. Dążymy do SBP ok. 80-90 mmHg – ma być tętno na promieniowej i zachowana świadomość. Wyższe ciśnienie tylko nasili krwotok."
+  },
+  {
+    id: 159,
+    category: "als",
+    question: "Zgodnie z najnowszymi wytycznymi ERC (2025) dotyczącymi 'Świadomości Indukowanej RKO' (CPR-induced consciousness), jeśli pacjent z NZK podczas uciśnięć klatki otwiera oczy i odpycha ręce ratownika, należy:",
+    options: ["Natychmiast przerwać RKO, bo to oznacza ROSC", "Wyłączyć LUCASa i poczekać na zatrzymanie krążenia", "Nie przerywać uciśnięć, rozważyć zastosowanie fizycznego skrępowania (pasy)", "Nie przerywać uciśnięć i podać leki sedacyjne/przeciwbólowe (np. Ketaminę/Midazolam)"],
+    correct: 3,
+    explanation: "To zjawisko oznacza, że uciśnięcia (szczególnie urządzenia mechaniczne) dają świetny przepływ mózgowy, ale pacjent nadal nie ma WŁASNEGO tętna. Przerwanie RKO zabije pacjenta. Należy go farmakologicznie uśpić i kontynuować RKO."
+  },
+  {
+    id: 160,
+    category: "als",
+    question: "Transportujesz zintubowanego pacjenta. Nagle na monitorze zapis kapnografii (EtCO2) z wartości 35 mmHg spada płasko do zera, a pacjent zaczyna sinieć. Jaka jest najbardziej prawdopodobna przyczyna, którą musisz od razu sprawdzić?",
+    options: ["Rurka intubacyjna wysunęła się z tchawicy (ekstubacja do przełyku)", "Pacjent ma napad astmy", "Aparat tlenowy zepsuł się", "Spadło ciśnienie krwi"],
+    correct: 0,
+    explanation: "Nagły spadek EtCO2 do absolutnego zera to niemal zawsze problem mechaniczny z rurką (wysunięcie, zatkanie) lub rozłączenie sprzętu. Gdy nie ma wentylacji płuc (lub rurka jest w żołądku), nie ma CO2 na wylocie."
+  },
+  {
+    id: 161,
+    category: "als",
+    question: "Dziecko (3 lata), nagły początek, bardzo wysoka gorączka, ślinienie się, pozycja 'tripod' (siedząca z podparciem rąk), brak kaszlu. Podejrzewasz ostre zapalenie nagłośni (Epiglottitis). Czego KATEGORYCZNIE NIE WOLNO Ci zrobić?",
+    options: ["Podać tlenu", "Zajrzeć do gardła z użyciem szpatułki", "Podać leków przeciwgorączkowych p.r.", "Przewieźć w pozycji siedzącej"],
+    correct: 1,
+    explanation: "Zapalenie nagłośni to tykająca bomba. Próba zajrzenia do gardła (drażnienie szpatułką) wyzwala odruchowy, śmiertelny skurcz krtani, całkowicie zamykając drogi oddechowe dziecka. Dziecka nie stresujemy, tlen podajemy z dystansu."
+  },
+  {
+    id: 162,
+    category: "als",
+    question: "Jaka jest wartość energii do pierwszej kardiowersji elektrycznej (zsynchronizowanej) u dziecka z niestabilnym częstoskurczem (SVT lub VT z tętnem)?",
+    options: ["1 J/kg m.c.", "4 J/kg m.c.", "10 J/kg m.c.", "50 J niezależnie od masy"],
+    correct: 0,
+    explanation: "Do pierwszej kardiowersji (gdzie chcemy 'zresetować' rytm bez uszkadzania serca) używamy mniejszej energii niż do defibrylacji: 1 J/kg. Jeśli jest nieskuteczna, zwiększamy do 2 J/kg."
+  },
+  {
+    id: 165,
+    category: "als",
+    question: "Rozpoznanie kliniczne odmy prężnej (wymagającej natychmiastowego odbarczenia igłowego lub torakostomii palcowej) opiera się przede wszystkim na wystąpieniu asymetrii szmerów oddechowych ORAZ:",
+    options: ["Silnego bólu w klatce piersiowej przy wdechu", "Krwioplucia", "Niestabilności hemodynamicznej (np. głęboki spadek ciśnienia / ciężki wstrząs)", "Odmy podskórnej wyczuwalnej przy badaniu palpacją"],
+    correct: 2,
+    explanation: "Samo ściszenie szmerów czy ból to może być zwykła odma prosta (której w ZRM się nie kłuje). Wskazaniem do wbicia igły/palca jest odma PRĘŻNA, czyli taka, która uciska serce i naczynia, powodując drastyczny spadek ciśnienia i narastający wstrząs."
+  },
+  {
+    id: 166,
+    category: "als",
+    question: "Zaawansowane wytyczne ALS zalecają wykonanie tzw. Ratunkowego Cięcia Cesarskiego (Perimortem Cesarean Section - PMCS) u ciężarnej kobiety w NZK (jeśli RKO nie przynosi skutku), najlepiej w czasie:",
+    options: ["W ciągu pierwszych 5 minut od zatrzymania krążenia", "Po 15 minutach RKO", "Po 30 minutach na SOR", "Nie wykonuje się tego u kobiet z widoczną ciążą"],
+    correct: 0,
+    explanation: "Zasada 4-5 minut. Jeśli po 4 minutach resuscytacji ciężarnej nie ma ROSC, wdrożenie PMCS (wydobycie dziecka w 5. minucie) drastycznie zwiększa szanse na przeżycie matki (odbarcza żyłę główną i przywraca rzut serca) oraz ratuje niemowlę."
+  },
+  {
+    id: 167,
+    category: "als",
+    question: "Badając źrenice u pacjenta po ciężkim urazie czaszkowo-mózgowym, zauważasz anizokorię (jedna źrenica szeroka, sztywna, brak reakcji na światło, druga w normie). Jest to klasyczny zwiastun:",
+    options: ["Wstrząsu neurogennego", "Śmierci pnia mózgu", "Wgłobienia mózgu (ucisk na nerw okoruchowy III)", "Zatrucia opiatami"],
+    correct: 2,
+    explanation: "Jednostronnie poszerzona i sztywna źrenica to późny i bardzo groźny objaw ciasnoty śródczaszkowej. Obrzęknięty mózg (lub krwiak) przesuwa się (wgłabia), uciskając bezpośrednio na nerw okoruchowy (CN III)."
+  },
+  {
+    id: 168,
+    category: "als",
+    question: "Zgodnie z wytycznymi ERC 2025, jeśli po 3 kolejnych wyładowaniach u pacjenta nadal utrzymuje się oporne migotanie komór (Refractory VF), należy w pierwszej kolejności:",
+    options: ["Podać wodorowęglan sodu (8.4%)", "Zmienić ułożenie elektrod defibrylacyjnych na przednio-tylne (Vector Change)", "Podać podwójną dawkę Amiodaronu (600 mg)", "Zaintubować pacjenta przed kolejną defibrylacją"],
+    correct: 1,
+    explanation: "ERC 2025 kładzie ogromny nacisk na 'Vector Change Defibrillation'. Zmiana ułożenia elektrod ze standardowego na przednio-tylne (AP) zmienia oś przepływu prądu i drastycznie zwiększa szanse na przełamanie opornego migotania komór."
+  },
+  {
+    id: 169,
+    category: "als",
+    question: "Wytyczne ERC 2025 definitywnie rozstrzygają spór między dostępem dożylnym (I.V.) a doszpikowym (I.O.) w NZK. Zgodnie z nimi:",
+    options: ["Dostęp I.O. jest preferowany jako pierwszy rzut ze względu na szybkość", "Dostęp I.V. jest nadrzędny, a I.O. stosuje się tylko, gdy założenie I.V. zawiedzie", "Oba dostępy są równorzędne w dystrybucji leków", "Dostęp I.O. rezerwuje się wyłącznie dla dzieci"],
+    correct: 1,
+    explanation: "Badania (w tym badanie PARAMEDIC3) udowodniły, że leki (szczególnie amiodaron i adrenalina) podawane doszpikowo w NZK docierają do serca w niższych stężeniach. ERC 2025 mówi wprost: 'Intravenous access is superior'."
+  },
+  {
+    id: 170,
+    category: "als",
+    question: "U dorosłego pacjenta doszło do wstrząsu anafilaktycznego. Podałeś Adrenalinę I.M. Co wytyczne ERC 2025 mówią o podaży sterydów (np. Deksametazon) w ostrej fazie anafilaksji?",
+    options: ["Są lekami pierwszego rzutu, podawanymi równocześnie z adrenaliną", "Zaleca się je rutynowo, aby zapobiec reakcji dwufazowej", "Wydano silną rekomendację przeciwko ich rutynowemu stosowaniu w ostrej fazie", "Podaje się je tylko w przypadku wystąpienia drgawek"],
+    correct: 2,
+    explanation: "To największa rewolucja w farmakologii ERC 2025. Ze względu na brak dowodów na poprawę przeżywalności tu i teraz, wytyczne stanowczo odradzają rutynowe stosowanie kortykosteroidów i leków przeciwhistaminowych w ostrej anafilaksji, stawiając 100% na Adrenalinę i płyny."
+  },
+  {
+    id: 171,
+    category: "als",
+    question: "Według najnowszych wytycznych urazowych (m.in. ITLS 9th Ed / ATLS 11th Ed), preferowanym, najbardziej skutecznym miejscem igłowego odbarczenia odmy prężnej u dorosłego jest:",
+    options: ["2. przestrzeń międzyżebrowa w linii środkowo-obojczykowej", "4. lub 5. przestrzeń międzyżebrowa w linii pachowej przedniej", "5. przestrzeń międzyżebrowa w linii pachowej tylnej", "Przestrzeń pod wyrostkiem mieczykowatym"],
+    correct: 1,
+    explanation: "Tradycyjne kłucie w 2. przestrzeni u dorosłych często kończyło się wbiciem igły w mięsień piersiowy lub tłuszcz (igła 50mm jest często za krótka). 4/5 przestrzeń w linii pachowej przedniej jest cieńsza i gwarantuje wyższy wskaźnik sukcesu wejścia do opłucnej."
+  },
+  {
+    id: 172,
+    category: "als",
+    question: "Wyjeżdżasz na budowę. Nogi pracownika od 3 godzin przygniecione są betonową płytą (zespół zmiażdżenia - Crush Syndrome). Pacjent jest przytomny. Kluczowym krokiem ratunkowym, KTÓRY MUSISZ WYKONAĆ JESZCZE PRZED PODNIESIENIEM PŁYTY, jest:",
+    options: ["Podanie wodorowęglanu sodu dożylnie", "Założenie dwóch opasek uciskowych na uda", "Rozpoczęcie bardzo agresywnej płynoterapii (min. 1-2 litry) krystaloidami", "Podanie dużej dawki adrenaliny I.M."],
+    correct: 2,
+    explanation: "Zmiażdżone mięśnie gromadzą potas i mioglobinę. Podniesienie ciężaru bez 'wypełnienia' pacjenta płynami spowoduje natychmiastowy wstrząs z reperfuzji, zatrzymanie nerek i serca. Agresywną infuzję płynów startuje się na uwięzionym pacjencie!"
+  },
+
+  {
+    id: 174,
+    category: "als",
+    question: "Udzielasz pomocy 20-letniemu mężczyźnie dźgniętemu nożem w udo. Tętnica udowa uszkodzona, krwotok jest masywny i pulsujący. Twoim pierwszym i najważniejszym krokiem (zgodnie z wytycznymi TCCC/TECC i ERC 2025) jest:",
+    options: ["Natychmiastowe założenie stazy taktycznej (tourniqueta) 'High and Tight' na udo", "Udrożnienie dróg oddechowych z kontrolą odcinka szyjnego", "Ucisk bezpośredni rany gazą przez 10 minut", "Podanie kwasu traneksamowego (TXA) i.v."],
+    correct: 0,
+    explanation: "W protokołach urazowych (MARCH / cABC) Masywne Krwotoki z kończyn mają absolutny priorytet przed drogami oddechowymi. Jeśli krew sika, staza ląduje od razu, wysoko i ciasno, bez tracenia czasu na inne procedury."
+  },
+  {
+    id: 175,
+    category: "als",
+    question: "Pacjent w Nagłym Zatrzymaniu Krążenia (NZK). Urządzenie do mechanicznej kompresji klatki (np. LUCAS) jest włączone. Zgodnie z wytycznymi ERC 2025, defibrylację należy wykonać:",
+    options: ["Po zatrzymaniu urządzenia, ocenie rytmu i naładowaniu defibrylatora", "Podczas trwającej kompresji klatki piersiowej, bez zatrzymywania urządzenia na czas wyładowania", "Zatrzymując urządzenie na max 5 sekund podczas oceny rytmu, a wyładowanie i ładowanie wykonać w trakcie uciskania", "Zdejmując urządzenie z klatki na czas wyładowania"],
+    correct: 2,
+    explanation: "Wytyczne minimalizują przerwy. Zatrzymujesz kompresję tylko na 2-5 sekund, aby upewnić się, że to VF/pVT. Odpalasz maszynę z powrotem, w trakcie uciskania ładujesz defibrylator i oddajesz strzał BEZ ponownego zatrzymywania kompresji."
+  },
+  {
+    id: 176,
+    category: "als",
+    question: "Kalkulacja płynoterapii dla rozległych oparzeń u dorosłych przeszła modyfikację. Zgodnie z najnowszą zaktualizowaną formułą (dawne Parkland), ile płynów krystaloidowych przetoczysz w ciągu pierwszych 24h?",
+    options: ["4 ml x kg m.c. x % TBSA", "2 ml x kg m.c. x % TBSA", "10 ml x kg m.c. x % TBSA", "1000 ml sztywno dla każdego"],
+    correct: 1,
+    explanation: "Aby uniknąć zjawiska 'fluid creep' (groźnego przewodnienia prowadzącego do ciasnoty przedziałów powięziowych i obrzęku płuc), standardowa formuła dla oparzeń termicznych u dorosłych została zmniejszona z 4 ml do 2 ml. Formułę 4 ml rezerwuje się dla oparzeń elektrycznych."
+  },
+  {
+    id: 177,
+    category: "als",
+    question: "Wystąpienie objawu 'Świadomości indukowanej RKO' (CPR-induced consciousness) nakazuje ratownikom:",
+    options: ["Rozpoznanie ROSC i odstawienie kompresji klatki", "Błyskawiczne zaintubowanie pacjenta bez leków", "Kontynuację RKO oraz wdrożenie protokołu sedacji (np. małymi dawkami midazolamu) i analgezji", "Podanie 3 mg Atropiny w celu stabilizacji pnia mózgu"],
+    correct: 2,
+    explanation: "ERC 2025 oficjalnie reguluje ten fenomen. Skuteczne RKO potrafi wybudzić niedotleniony mózg (pacjent walczy, otwiera oczy, jęczy), podczas gdy jego serce nadal stoi. Przerywanie uciśnięć go zabije. Należy go farmakologicznie 'uśpić' w trakcie trwającej resuscytacji."
+  },
 
   // ==========================================
   // KATEGORIA: FARMAKOLOGIA
@@ -433,7 +770,7 @@ const quizQuestions = [
   {
     id: 9,
     category: "farmakologia",
-    question: "Jaka jest dawka lignokainy po 3. defibrylacji rytmu VF/pVT?",
+    question: "Jaka jest dawka lignokainy po 3. defibrylacji rytmu VF/pVT u dorosłych?",
     options: ["150 mg", "200 mg", "100 mg", "50 mg"],
     correct: 2,
     explanation: "W VF/pVT możemy użyć lignokainy zamiast amiodaronu w dawce 100 mg po 3. defibrylacji wg. wytycznych ERC 2025."
@@ -441,7 +778,7 @@ const quizQuestions = [
   {
     id: 10,
     category: "farmakologia",
-    question: "Jaka jest dawka lignokainy po 5. defibrylacji rytmu VF/pVT?",
+    question: "Jaka jest dawka lignokainy po 5. defibrylacji rytmu VF/pVT u dorosłych?",
     options: ["100 mg", "200 mg", "50 mg", "25 mg"],
     correct: 2,
     explanation: "W VF/pVT możemy użyć lignokainy zamiast amiodaronu w dawce 50 mg po 5. defibrylacji wg. wytycznych ERC 2025."
@@ -1002,7 +1339,7 @@ const quizQuestions = [
   {
     id: 77,
     category: 'farmakologia',
-    question: 'Jakie dawki amiodaronu stosujemy w rytmach pVT/VF?',
+    question: 'Jakie dawki amiodaronu stosujemy w rytmach pVT/VF u dorosłych?',
     options: ['150 mg po III defibrylacji -> 300 mg po V defibrylacji', '300 mg po III defibrylacji -> 150 mg po V defibrylacji', '150 mg po III defibrylacji -> 150 mg po V defibrylacji', 'Amiodaron jest przeciwwskazany'],
     correct: 1,
     explanation: 'W NZK w rytmach pVT/VF stosujemy 300 mg amiodaronu po III defibrylacji i 150 mg po V defibrylacji.',
@@ -1147,9 +1484,9 @@ const quizQuestions = [
     id: 95,
     category: "farmakologia",
     question: "Jaka jest dawka fentanylu dla dorosłego pacjenta z silnym bólem urazowym (bez intubacji)?",
-    options: ["10 - 20 mcg", "50 - 200 mcg (1-2 mcg/kg)", "300 - 500 mcg", "1 mg"],
+    options: ["10 - 20 mcg", "50 - 200 mcg ", "300 - 500 mcg", "1 mg"],
     correct: 1,
-    explanation: "Dawka przeciwbólowa fentanylu dla wydolnego oddechowo dorosłego to zazwyczaj 50-200 mcg (ok. 1-2 mcg/kg m.c.) miareczkowana dożylnie."
+    explanation: "Dawka przeciwbólowa fentanylu dla wydolnego oddechowo dorosłego to zazwyczaj 50-200 mcg  miareczkowana dożylnie."
   },
   {
     id: 96,
