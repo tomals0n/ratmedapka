@@ -437,7 +437,7 @@ function renderSymptomDetail() {
           });
           li.appendChild(ul2);
         } else {
-          li.textContent = it.label;
+          li.innerHTML = it.label;
         }
         ul.appendChild(li);
       });
@@ -447,7 +447,7 @@ function renderSymptomDetail() {
     if (item.note) {
       const note = document.createElement('div');
       note.className = 'text-red-400 font-semibold mt-3';
-      note.textContent = item.note;
+      note.innerHTML = item.note;
       els.symptomDetailContent.appendChild(note);
     }
   } else if (item && Array.isArray(item.bullets)) {
@@ -455,7 +455,7 @@ function renderSymptomDetail() {
     ul.className = 'list-disc pl-5 marker:text-emerald-400';
     item.bullets.forEach(b => {
       const li = document.createElement('li');
-      li.textContent = b;
+      li.innerHTML = b;
       ul.appendChild(li);
     });
     els.symptomDetailContent.appendChild(ul);
@@ -534,7 +534,7 @@ function renderCalculators() {
     { id: 'pain', title: 'Ból (NRS)', subtitle: 'Kalkulator leczenia bólu', emoji: '💉' },
     { id: 'peds', title: 'Leki dla dzieci', subtitle: 'Przeliczenia dawek leków na kg/mc.', emoji: '🍼' },
     { id: 'map', title: 'MAP', subtitle: 'Średnie ciśnienie tętnicze', emoji: '🩺' },
-    { id: 'peds-ideal', title: 'Należna masa (dzieci)', subtitle: 'Wzory na masę ciała u dzieci', emoji: '⚖️' },
+    { id: 'peds-ideal', title: 'Należna masa ciała', subtitle: 'Wzory na masę ciała u dzieci', emoji: '⚖️' },
     { id: 'pumps', title: 'Pompy infuzyjne', subtitle: 'Dawkowanie Adrenaliny i Noradrenaliny', emoji: '💉' }
   ];
   data.forEach(c => {
@@ -546,14 +546,45 @@ function renderCalculators() {
       <div class="text-sm text-white/70 mt-1">${c.subtitle}</div>
     `;
     card.addEventListener('click', () => {
-      if (c.id === 'gcs') { renderGCS(); show('calcGCS'); }
-      else if (c.id === 'apgar') { renderAPGAR(); show('calcAPGAR'); }
-      else if (c.id === 'qsofa') { renderQSOFA(); show('calcQSOFA'); }
-      else if (c.id === 'pain') { renderPain(); show('calcPain'); }
-      else if (c.id === 'peds') { renderPeds(); show('calcPeds'); }
-      else if (c.id === 'map') { renderMAP(); show('calcMAP'); }
-      else if (c.id === 'peds-ideal') { renderPedsIdeal(); show('calcPedsIdeal'); }
-      else if (c.id === 'pumps') { renderPumps(); show('calcPumps'); }
+      console.log('Kliknięto kalkulator:', c.id);
+      
+      // Ukrywamy listę kalkulatorów
+      show('home'); // tymczasowo, show i tak ukryje wszystko
+      
+      if (c.id === 'gcs') { 
+        show('calcGCS'); 
+        renderGCS(); 
+      }
+      else if (c.id === 'apgar') { 
+        show('calcAPGAR'); 
+        renderAPGAR(); 
+      }
+      else if (c.id === 'qsofa') { 
+        show('calcQSOFA'); 
+        renderQSOFA(); 
+      }
+      else if (c.id === 'pain') { 
+        show('calcPain'); 
+        renderPain(); 
+      }
+      else if (c.id === 'peds') { 
+        show('calcPeds'); 
+        renderPeds(); 
+      }
+      else if (c.id === 'map') { 
+        show('calcMAP'); 
+        renderMAP(); 
+      }
+      else if (c.id === 'peds-ideal') { 
+        console.log('Pokazuję sekcję calcPedsIdeal');
+        show('calcPedsIdeal'); 
+        console.log('Uruchamiam renderPedsIdeal');
+        renderPedsIdeal(); 
+      }
+      else if (c.id === 'pumps') { 
+        show('calcPumps'); 
+        renderPumps(); 
+      }
     });
     els.calculatorsGrid.appendChild(card);
   });
@@ -734,65 +765,276 @@ function renderMAP() {
 }
 els.backCalcMAP.addEventListener('click', () => show('calculators'));
 
-function renderWeight() {
-  els.weightBox.innerHTML = '';
-  const wrapper = document.createElement('div');
-  wrapper.innerHTML = ` 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <div class="space-y-2">
-        <div class="font-semibold">Wiek dziecka</div>
-        <input id="childAge" type="number" step="1" class="w-full bg-[#111317] border border-[#2a2e35] rounded-md px-3 py-2 text-sm" />
-      </div>
-    <div id="weightResult" class="mt-4 rounded-md border border-[#2a2e35] bg-[#0f1215] p-3 text-center"></div>
-  `;
-    els.weightBox.appendChild(wrapper);
-  function update() {
-    const childAge = Number((document.getElementById('childAge') || {}).value || 0);
-    const weight = (childAge + 4) * 2;
-    const res = document.getElementById('weightResult');
-    if (res) res.innerHTML = `<div class="font-semibold text-xl">${weight ? weight.toFixed(2) : '0.0'} kg</div><div class="text-white/70 mt-1">Waga = (wiek + 4) * 2</div>`;
-  }
-  ['childAge'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('input', update);
-  });
-  update();
-}
-  els.backCalcMAP.addEventListener('click', () => show('calculators'));
-
 function renderPedsIdeal() {
-  els.pedsIdealBox.innerHTML = `
-    <div class="space-y-4">
-      <div>
-        <label class="block text-sm font-medium mb-2">Wiek dziecka (w latach):</label>
-        <input id="pedsAgeInput" type="number" min="1" max="10" class="w-full bg-[#111317] border border-[#2a2e35] rounded-md px-3 py-2 text-white focus:outline-none focus:border-emerald-500 transition" />
+  const box = document.getElementById('pedsIdealBox');
+  if (!box) {
+    console.error('Błąd: Nie znaleziono elementu pedsIdealBox');
+    return;
+  }
+  
+  box.innerHTML = `
+    <div class="space-y-6">
+      <div class="glass p-6 rounded-2xl border border-[#2a2e35]">
+        <label class="block text-sm font-medium mb-3 text-white/70">Wybierz wiek dziecka:</label>
+        <div class="grid grid-cols-2 gap-3 mb-6">
+          <button id="pedsAgeInfant" class="p-3 rounded-xl border border-[#2a2e35] bg-[#111317] text-xs hover:border-emerald-500 transition">Niemowlę (< 1 r.ż.)</button>
+          <button id="pedsAgeChild" class="p-3 rounded-xl border border-emerald-500 bg-emerald-500/10 text-xs transition font-bold">Dziecko (1-10 lat)</button>
+        </div>
+        
+        <div id="pedsAgeInputContainer">
+          <label class="block text-sm font-medium mb-2 text-white/70">Wiek:</label>
+          <div class="flex items-center space-x-3">
+            <input id="pedsAgeInput" type="number" min="1" max="10" value="1" class="w-full bg-[#111317] border border-[#2a2e35] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition" />
+            <span id="pedsAgeUnit" class="text-white/50 w-20">lat</span>
+          </div>
+        </div>
       </div>
-      <div id="pedsIdealResult" class="mt-4 rounded-md border border-[#2a2e35] bg-[#0f1215] p-4 text-center"></div>
+
+      <div class="bg-[#0f1215] border border-[#2a2e35] rounded-2xl p-6 text-center">
+        <div class="text-sm text-white/50 mb-1 uppercase tracking-wider">Należna masa ciała:</div>
+        <div id="pedsIdealResult" class="text-5xl font-bold text-emerald-400">10 kg</div>
+        <div id="pedsIdealFormula" class="text-xs text-white/40 mt-4 font-mono bg-black/30 py-2 px-3 rounded-lg inline-block">(2 * wiek) + 8</div>
+      </div>
     </div>
   `;
 
   const ageInput = document.getElementById('pedsAgeInput');
   const resultBox = document.getElementById('pedsIdealResult');
+  const formulaBox = document.getElementById('pedsIdealFormula');
+  const ageUnit = document.getElementById('pedsAgeUnit');
+  const btnInfant = document.getElementById('pedsAgeInfant');
+  const btnChild = document.getElementById('pedsAgeChild');
 
-  function calculateWeight() {
-    const age = parseInt(ageInput.value);
-    if (isNaN(age) || age < 1 || age > 10) {
-      resultBox.innerHTML = `<div class="text-white/70">Podaj wiek od 1 do 10 lat.</div>`;
-      return;
+  if (!ageInput || !resultBox) return;
+
+  let mode = 'child'; 
+
+  function update() {
+    const age = parseFloat(ageInput.value) || 0;
+    let weight = 0;
+    let formula = '';
+
+    if (mode === 'infant') {
+      weight = (age + 9) / 2;
+      formula = `(${age} mies. + 9) / 2`;
+    } else {
+      weight = (age * 2) + 8;
+      formula = `(2 * ${age} lat) + 8`;
     }
 
-    const weight = (age * 2) + 8;
-    resultBox.innerHTML = `
-      <div class="text-sm text-white/70">Należna masa ciała:</div>
-      <div class="font-semibold text-2xl text-emerald-400 mt-1">${weight} kg</div>
-      <div class="text-xs text-white/50 mt-2 font-mono">(2 * wiek) + 8</div>
-    `;
+    resultBox.textContent = `${weight.toFixed(1).replace('.', ',')} kg`;
+    formulaBox.textContent = formula;
   }
 
-  ageInput.addEventListener('input', calculateWeight);
-  calculateWeight(); // Initial call
+  btnInfant.addEventListener('click', () => {
+    mode = 'infant';
+    ageUnit.textContent = 'miesięcy';
+    ageInput.min = 1;
+    ageInput.max = 11;
+    ageInput.value = 6;
+    btnInfant.className = 'p-3 rounded-xl border border-emerald-500 bg-emerald-500/10 text-xs transition font-bold';
+    btnChild.className = 'p-3 rounded-xl border border-[#2a2e35] bg-[#111317] text-xs hover:border-emerald-500 transition';
+    update();
+  });
+
+  btnChild.addEventListener('click', () => {
+    mode = 'child';
+    ageUnit.textContent = 'lat';
+    ageInput.min = 1;
+    ageInput.max = 10;
+    ageInput.value = 1;
+    btnChild.className = 'p-3 rounded-xl border border-emerald-500 bg-emerald-500/10 text-xs transition font-bold';
+    btnInfant.className = 'p-3 rounded-xl border border-[#2a2e35] bg-[#111317] text-xs hover:border-emerald-500 transition';
+    update();
+  });
+
+  ageInput.addEventListener('input', update);
+  update();
 }
 els.backCalcPedsIdeal.addEventListener('click', () => show('calculators'));
+
+function renderPumps() {
+  els.pumpsBox.innerHTML = `
+    <!-- Interaktywny Kalkulator Pomp -->
+    <div class="glass p-6 rounded-2xl border border-[#2a2e35] mb-10">
+      <h3 class="text-xl font-bold text-emerald-400 mb-6 flex items-center">
+        <span class="mr-2">🧮</span> Kalkulator przepływu
+      </h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <!-- Wybór leku i trybu -->
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-white/70">Lek i tryb:</label>
+          <select id="pumpDrugSelect" class="w-full bg-[#111317] border border-[#2a2e35] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition">
+            <option value="adr_shock">Adrenalina - wstrząs</option>
+            <option value="adr_brady">Adrenalina - bradykardia</option>
+            <option value="nor_shock">Noradrenalina - wstrząs</option>
+          </select>
+        </div>
+
+        <!-- Waga pacjenta -->
+        <div id="pumpWeightContainer" class="space-y-2">
+          <label class="block text-sm font-medium text-white/70">Waga pacjenta [kg]:</label>
+          <input id="pumpWeightInput" type="number" value="70" min="1" max="250" class="w-full bg-[#111317] border border-[#2a2e35] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition" />
+        </div>
+
+        <!-- Dawka -->
+        <div class="space-y-2">
+          <label id="pumpDoseLabel" class="block text-sm font-medium text-white/70">Dawka [mcg/kg/min]:</label>
+          <input id="pumpDoseInput" type="number" value="0.1" step="0.01" min="0.01" max="10" class="w-full bg-[#111317] border border-[#2a2e35] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition" />
+        </div>
+      </div>
+
+      <!-- Wynik -->
+      <div class="bg-[#0f1215] border border-[#2a2e35] rounded-2xl p-6 text-center">
+        <div class="text-sm text-white/50 mb-1">Obliczony przepływ:</div>
+        <div id="pumpResultValue" class="text-4xl font-bold text-emerald-400">10,5 ml/h</div>
+        <div id="pumpPreparationInfo" class="text-xs text-white/40 mt-3 font-mono">Przygotowanie: Adrenalina 1 mg / 50 ml (20 mcg/ml)</div>
+      </div>
+    </div>
+
+    <!-- Tabele statyczne -->
+    <div class="space-y-10">
+      <div>
+        <h3 class="text-lg font-semibold text-emerald-400 mb-3">Dawkowanie adrenaliny we wstrząsie</h3>
+        <div class="overflow-x-auto rounded-lg border border-[#2a2e35]">
+          <table class="w-full text-sm text-left text-white/90">
+            <thead class="bg-[#14171b]">
+              <tr>
+                <th class="p-3">Waga pacjenta</th>
+                <th class="p-3 bg-green-900/30">Dawka 0,05 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
+                <th class="p-3 bg-green-800/40">Dawka 0,1 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
+                <th class="p-3 bg-green-700/50">Dawka 0,5 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#2a2e35]">
+              <tr class="bg-[#111317]/50"><td>40 kg</td><td class="bg-green-900/30">6,0 ml / h</td><td class="bg-green-800/40">12,0 ml / h</td><td class="bg-green-700/50">60 ml / h</td></tr>
+              <tr><td>50 kg</td><td class="bg-green-900/30">7,5 ml / h</td><td class="bg-green-800/40">15,0 ml / h</td><td class="bg-green-700/50">75 ml / h</td></tr>
+              <tr class="bg-[#111317]/50"><td>60 kg</td><td class="bg-green-900/30">9,0 ml / h</td><td class="bg-green-800/40">18,0 ml / h</td><td class="bg-green-700/50">90 ml / h</td></tr>
+              <tr><td>70 kg</td><td class="bg-green-900/30">10,5 ml / h</td><td class="bg-green-800/40">21,0 ml / h</td><td class="bg-green-700/50">105 ml / h</td></tr>
+              <tr class="bg-[#111317]/50"><td>80 kg</td><td class="bg-green-900/30">12,0 ml / h</td><td class="bg-green-800/40">24,0 ml / h</td><td class="bg-green-700/50">120 ml / h</td></tr>
+              <tr><td>90 kg</td><td class="bg-green-900/30">13,5 ml / h</td><td class="bg-green-800/40">27,0 ml / h</td><td class="bg-green-700/50">135 ml / h</td></tr>
+              <tr class="bg-[#111317]/50"><td>100 kg</td><td class="bg-green-900/30">15,0 ml / h</td><td class="bg-green-800/40">30,0 ml / h</td><td class="bg-green-700/50">150 ml / h</td></tr>
+              <tr><td>110 kg</td><td class="bg-green-900/30">16,5 ml / h</td><td class="bg-green-800/40">33,0 ml / h</td><td class="bg-green-700/50">165 ml / h</td></tr>
+              <tr class="bg-[#111317]/50"><td>120 kg</td><td class="bg-green-900/30">18,0 ml / h</td><td class="bg-green-800/40">36,0 ml / h</td><td class="bg-green-700/50">180 ml / h</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-xs text-white/60 mt-2 font-mono text-right">Przygotowanie: Adrenalina 1 mg / 50 ml NaCl 0,9%</div>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-sky-400 mb-3">Dawkowanie adrenaliny w bradykardii</h3>
+        <div class="overflow-x-auto rounded-lg border border-[#2a2e35]">
+          <table class="w-full text-sm text-left text-white/90">
+            <thead class="bg-[#14171b]">
+              <tr>
+                <th class="p-3 w-1/2">Dawka [mcg/min]</th>
+                <th class="p-3 w-1/2 bg-sky-900/40 text-center">Przepływ [ml/h]</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#2a2e35]">
+              <tr class="bg-[#111317]/50"><td>2 mcg / min</td><td class="bg-sky-900/40 text-center">60,0 ml / h</td></tr>
+              <tr><td>3 mcg / min</td><td class="bg-sky-900/40 text-center">90,0 ml / h</td></tr>
+              <tr class="bg-[#111317]/50"><td>4 mcg / min</td><td class="bg-sky-900/40 text-center">120,0 ml / h</td></tr>
+              <tr><td>5 mcg / min</td><td class="bg-sky-900/40 text-center">150,0 ml / h</td></tr>
+              <tr class="bg-[#111317]/50"><td>6 mcg / min</td><td class="bg-sky-900/40 text-center">180,0 ml / h</td></tr>
+              <tr><td>7 mcg / min</td><td class="bg-sky-900/40 text-center">210,0 ml / h</td></tr>
+              <tr class="bg-[#111317]/50"><td>8 mcg / min</td><td class="bg-sky-900/40 text-center">240,0 ml / h</td></tr>
+              <tr><td>9 mcg / min</td><td class="bg-sky-900/40 text-center">270,0 ml / h</td></tr>
+              <tr class="bg-[#111317]/50"><td>10 mcg / min</td><td class="bg-sky-900/40 text-center">300,0 ml / h</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-xs text-white/60 mt-2 font-mono text-right">Przygotowanie: Adrenalina 1 mg / 500 ml NaCl 0,9%</div>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-pink-400 mb-3">Dawkowanie noradrenaliny we wstrząsie</h3>
+        <div class="overflow-x-auto rounded-lg border border-[#2a2e35]">
+          <table class="w-full text-sm text-left text-white/90">
+            <thead class="bg-[#14171b]">
+              <tr>
+                <th class="p-3">Waga pacjenta</th>
+                <th class="p-3 bg-pink-900/30">Dawka 0,05 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
+                <th class="p-3 bg-pink-800/40">Dawka 0,1 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
+                <th class="p-3 bg-pink-700/50">Dawka 0,5 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
+                <th class="p-3 bg-pink-600/60">Dawka 1,0 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#2a2e35]">
+              <tr class="bg-[#111317]/50"><td>40 kg</td><td class="bg-pink-900/30">1,5 ml / h</td><td class="bg-pink-800/40">3,0 ml / h</td><td class="bg-pink-700/50">15 ml / h</td><td class="bg-pink-600/60">30 ml / h</td></tr>
+              <tr><td>50 kg</td><td class="bg-pink-900/30">1,9 ml / h</td><td class="bg-pink-800/40">3,8 ml / h</td><td class="bg-pink-700/50">18,8 ml / h</td><td class="bg-pink-600/60">37,5 ml / h</td></tr>
+              <tr class="bg-[#111317]/50"><td>60 kg</td><td class="bg-pink-900/30">2,3 ml / h</td><td class="bg-pink-800/40">4,5 ml / h</td><td class="bg-pink-700/50">22,5 ml / h</td><td class="bg-pink-600/60">45 ml / h</td></tr>
+              <tr><td>70 kg</td><td class="bg-pink-900/30">2,6 ml / h</td><td class="bg-pink-800/40">5,3 ml / h</td><td class="bg-pink-700/50">26,3 ml / h</td><td class="bg-pink-600/60">52,5 ml / h</td></tr>
+              <tr class="bg-[#111317]/50"><td>80 kg</td><td class="bg-pink-900/30">3,0 ml / h</td><td class="bg-pink-800/40">6,0 ml / h</td><td class="bg-pink-700/50">30 ml / h</td><td class="bg-pink-600/60">60 ml / h</td></tr>
+              <tr><td>90 kg</td><td class="bg-pink-900/30">3,4 ml / h</td><td class="bg-pink-800/40">6,8 ml / h</td><td class="bg-pink-700/50">33,8 ml / h</td><td class="bg-pink-600/60">67,5 ml / h</td></tr>
+              <tr class="bg-[#111317]/50"><td>100 kg</td><td class="bg-pink-900/30">3,8 ml / h</td><td class="bg-pink-800/40">7,5 ml / h</td><td class="bg-pink-700/50">37,5 ml / h</td><td class="bg-pink-600/60">75 ml / h</td></tr>
+              <tr><td>110 kg</td><td class="bg-pink-900/30">4,1 ml / h</td><td class="bg-pink-800/40">8,3 ml / h</td><td class="bg-pink-700/50">41,3 ml / h</td><td class="bg-pink-600/60">82,5 ml / h</td></tr>
+              <tr class="bg-[#111317]/50"><td>120 kg</td><td class="bg-pink-900/30">4,5 ml / h</td><td class="bg-pink-800/40">9,0 ml / h</td><td class="bg-pink-700/50">45 ml / h</td><td class="bg-pink-600/60">90 ml / h</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-xs text-white/60 mt-2 font-mono text-right">Przygotowanie: Noradrenalina 4 mg / 50 ml NaCl 0,9%</div>
+      </div>
+    </div>
+  `;
+
+  const drugSelect = document.getElementById('pumpDrugSelect');
+  const weightInput = document.getElementById('pumpWeightInput');
+  const doseInput = document.getElementById('pumpDoseInput');
+  const resultValue = document.getElementById('pumpResultValue');
+  const prepInfo = document.getElementById('pumpPreparationInfo');
+  const doseLabel = document.getElementById('pumpDoseLabel');
+
+  function update() {
+    const drug = drugSelect.value;
+    const weight = parseFloat(weightInput.value) || 70;
+    const dose = parseFloat(doseInput.value) || 0;
+    
+    let mlh = 0;
+    let preparation = "";
+
+    if (drug === 'adr_shock') {
+      // 1 mg / 50 ml = 20 mcg / ml
+      // ml/h = (mcg/kg/min * kg * 60) / 20
+      mlh = (dose * weight * 60) / 20;
+      preparation = "Adrenalina 1 mg / 50 ml NaCl 0,9% (20 mcg/ml)";
+      doseLabel.textContent = "Dawka [mcg/kg/min]:";
+    } else if (drug === 'adr_brady') {
+      // 1 mg / 500 ml = 2 mcg / ml
+      // ml/h = (mcg/min * 60) / 2
+      mlh = (dose * 60) / 2;
+      preparation = "Adrenalina 1 mg / 500 ml NaCl 0,9% (2 mcg/ml)";
+      doseLabel.textContent = "Dawka [mcg/min]:";
+    } else if (drug === 'nor_shock') {
+      // 4 mg / 50 ml = 80 mcg / ml
+      // ml/h = (mcg/kg/min * kg * 60) / 80
+      mlh = (dose * weight * 60) / 80;
+      preparation = "Noradrenalina 4 mg / 50 ml NaCl 0,9% (80 mcg/ml)";
+      doseLabel.textContent = "Dawka [mcg/kg/min]:";
+    }
+
+    resultValue.textContent = `${mlh.toFixed(1)} ml/h`;
+    prepInfo.textContent = `Przygotowanie: ${preparation}`;
+  }
+
+  drugSelect.addEventListener('change', () => {
+    if (drugSelect.value === 'adr_brady') {
+      document.getElementById('pumpWeightContainer').style.opacity = '0.3';
+      doseInput.value = 2; // Default for bradycardia is 2-10 mcg/min
+    } else {
+      document.getElementById('pumpWeightContainer').style.opacity = '1';
+      doseInput.value = 0.1; // Default for shock
+    }
+    update();
+  });
+
+  weightInput.addEventListener('input', update);
+  doseInput.addEventListener('input', update);
+  update();
+}
+els.backCalcPumps.addEventListener('click', () => show('calculators'));
 els.backCalcAPGAR.addEventListener('click', () => show('calculators'));
 els.backCalcQSOFA.addEventListener('click', () => show('calculators'));
 els.backCalcPain.addEventListener('click', () => show('calculators'));
@@ -1109,192 +1351,6 @@ function renderPain() {
 
   range.addEventListener('input', update);
 }
-
-function renderPedsIdeal() {
-  els.pumpsBox.innerHTML = `
-    <!-- Interaktywny Kalkulator Pomp -->
-    <div class="glass p-6 rounded-2xl border border-[#2a2e35] mb-10">
-      <h3 class="text-xl font-bold text-emerald-400 mb-6 flex items-center">
-        <span class="mr-2">🧮</span> Kalkulator przepływu
-      </h3>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        <!-- Wybór leku i trybu -->
-        <div class="space-y-2">
-          <label class="block text-sm font-medium text-white/70">Lek i tryb:</label>
-          <select id="pumpDrugSelect" class="w-full bg-[#111317] border border-[#2a2e35] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition">
-            <option value="adr_shock">Adrenalina - wstrząs</option>
-            <option value="adr_brady">Adrenalina - bradykardia</option>
-            <option value="nor_shock">Noradrenalina - wstrząs</option>
-          </select>
-        </div>
-
-        <!-- Waga pacjenta -->
-        <div id="pumpWeightContainer" class="space-y-2">
-          <label class="block text-sm font-medium text-white/70">Waga pacjenta [kg]:</label>
-          <input id="pumpWeightInput" type="number" value="70" min="1" max="250" class="w-full bg-[#111317] border border-[#2a2e35] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition" />
-        </div>
-
-        <!-- Dawka -->
-        <div class="space-y-2">
-          <label id="pumpDoseLabel" class="block text-sm font-medium text-white/70">Dawka [mcg/kg/min]:</label>
-          <input id="pumpDoseInput" type="number" value="0.1" step="0.01" min="0.01" max="10" class="w-full bg-[#111317] border border-[#2a2e35] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition" />
-        </div>
-      </div>
-
-      <!-- Wynik -->
-      <div class="bg-[#0f1215] border border-[#2a2e35] rounded-2xl p-6 text-center">
-        <div class="text-sm text-white/50 mb-1">Obliczony przepływ:</div>
-        <div id="pumpResultValue" class="text-4xl font-bold text-emerald-400">10,5 ml/h</div>
-        <div id="pumpPreparationInfo" class="text-xs text-white/40 mt-3 font-mono">Przygotowanie: Adrenalina 1 mg / 50 ml (20 mcg/ml)</div>
-      </div>
-    </div>
-
-    <!-- Tabele statyczne -->
-    <div class="space-y-10">
-      <div>
-        <h3 class="text-lg font-semibold text-emerald-400 mb-3">Dawkowanie adrenaliny we wstrząsie</h3>
-        <div class="overflow-x-auto rounded-lg border border-[#2a2e35]">
-          <table class="w-full text-sm text-left text-white/90">
-            <thead class="bg-[#14171b]">
-              <tr>
-                <th class="p-3">Waga pacjenta</th>
-                <th class="p-3 bg-green-900/30">Dawka 0,05 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
-                <th class="p-3 bg-green-800/40">Dawka 0,1 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
-                <th class="p-3 bg-green-700/50">Dawka 0,5 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-[#2a2e35]">
-              <tr class="bg-[#111317]/50"><td>40 kg</td><td class="bg-green-900/30">6,0 ml / h</td><td class="bg-green-800/40">12,0 ml / h</td><td class="bg-green-700/50">60 ml / h</td></tr>
-              <tr><td>50 kg</td><td class="bg-green-900/30">7,5 ml / h</td><td class="bg-green-800/40">15,0 ml / h</td><td class="bg-green-700/50">75 ml / h</td></tr>
-              <tr class="bg-[#111317]/50"><td>60 kg</td><td class="bg-green-900/30">9,0 ml / h</td><td class="bg-green-800/40">18,0 ml / h</td><td class="bg-green-700/50">90 ml / h</td></tr>
-              <tr><td>70 kg</td><td class="bg-green-900/30">10,5 ml / h</td><td class="bg-green-800/40">21,0 ml / h</td><td class="bg-green-700/50">105 ml / h</td></tr>
-              <tr class="bg-[#111317]/50"><td>80 kg</td><td class="bg-green-900/30">12,0 ml / h</td><td class="bg-green-800/40">24,0 ml / h</td><td class="bg-green-700/50">120 ml / h</td></tr>
-              <tr><td>90 kg</td><td class="bg-green-900/30">13,5 ml / h</td><td class="bg-green-800/40">27,0 ml / h</td><td class="bg-green-700/50">135 ml / h</td></tr>
-              <tr class="bg-[#111317]/50"><td>100 kg</td><td class="bg-green-900/30">15,0 ml / h</td><td class="bg-green-800/40">30,0 ml / h</td><td class="bg-green-700/50">150 ml / h</td></tr>
-              <tr><td>110 kg</td><td class="bg-green-900/30">16,5 ml / h</td><td class="bg-green-800/40">33,0 ml / h</td><td class="bg-green-700/50">165 ml / h</td></tr>
-              <tr class="bg-[#111317]/50"><td>120 kg</td><td class="bg-green-900/30">18,0 ml / h</td><td class="bg-green-800/40">36,0 ml / h</td><td class="bg-green-700/50">180 ml / h</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="text-xs text-white/60 mt-2 font-mono">Przygotowanie: Adrenalina 1 mg / 50 ml 0,9% NaCl</div>
-      </div>
-
-      <div>
-        <h3 class="text-lg font-semibold text-sky-400 mb-3">Dawkowanie adrenaliny w bradykardii</h3>
-        <div class="overflow-x-auto rounded-lg border border-[#2a2e35]">
-          <table class="w-full text-sm text-left text-white/90">
-            <thead class="bg-[#14171b]">
-              <tr>
-                <th class="p-3">Dawka [mcg/min]</th>
-                <th class="p-3 bg-sky-900/40">Przepływ [ml/h]</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-[#2a2e35]">
-              <tr class="bg-[#111317]/50"><td>2</td><td class="bg-sky-900/40">6,0 ml / h</td></tr>
-              <tr><td>3</td><td class="bg-sky-900/40">9,0 ml / h</td></tr>
-              <tr class="bg-[#111317]/50"><td>4</td><td class="bg-sky-900/40">12,0 ml / h</td></tr>
-              <tr><td>5</td><td class="bg-sky-900/40">15,0 ml / h</td></tr>
-              <tr class="bg-[#111317]/50"><td>6</td><td class="bg-sky-900/40">18,0 ml / h</td></tr>
-              <tr><td>7</td><td class="bg-sky-900/40">21,0 ml / h</td></tr>
-              <tr class="bg-[#111317]/50"><td>8</td><td class="bg-sky-900/40">24,0 ml / h</td></tr>
-              <tr><td>9</td><td class="bg-sky-900/40">27,0 ml / h</td></tr>
-              <tr class="bg-[#111317]/50"><td>10</td><td class="bg-sky-900/40">30,0 ml / h</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="text-xs text-white/60 mt-2 font-mono">Przygotowanie: Adrenalina 1 mg / 50 ml 0,9% NaCl</div>
-      </div>
-
-      <div>
-        <h3 class="text-lg font-semibold text-pink-400 mb-3">Dawkowanie noradrenaliny we wstrząsie</h3>
-        <div class="overflow-x-auto rounded-lg border border-[#2a2e35]">
-          <table class="w-full text-sm text-left text-white/90">
-            <thead class="bg-[#14171b]">
-              <tr>
-                <th class="p-3">Waga pacjenta</th>
-                <th class="p-3 bg-pink-900/30">Dawka 0,05 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
-                <th class="p-3 bg-pink-800/40">Dawka 0,1 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
-                <th class="p-3 bg-pink-700/50">Dawka 0,5 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
-                <th class="p-3 bg-pink-600/60">Dawka 1,0 mcg/kg/min<br><span class="font-normal text-white/70">Przepływ [ml/h]</span></th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-[#2a2e35]">
-              <tr class="bg-[#111317]/50"><td>40 kg</td><td class="bg-pink-900/30">1,5 ml / h</td><td class="bg-pink-800/40">3,0 ml / h</td><td class="bg-pink-700/50">15 ml / h</td><td class="bg-pink-600/60">30 ml / h</td></tr>
-              <tr><td>50 kg</td><td class="bg-pink-900/30">1,9 ml / h</td><td class="bg-pink-800/40">3,8 ml / h</td><td class="bg-pink-700/50">18,8 ml / h</td><td class="bg-pink-600/60">37,5 ml / h</td></tr>
-              <tr class="bg-[#111317]/50"><td>60 kg</td><td class="bg-pink-900/30">2,3 ml / h</td><td class="bg-pink-800/40">4,5 ml / h</td><td class="bg-pink-700/50">22,5 ml / h</td><td class="bg-pink-600/60">45 ml / h</td></tr>
-              <tr><td>70 kg</td><td class="bg-pink-900/30">2,6 ml / h</td><td class="bg-pink-800/40">5,3 ml / h</td><td class="bg-pink-700/50">26,3 ml / h</td><td class="bg-pink-600/60">52,5 ml / h</td></tr>
-              <tr class="bg-[#111317]/50"><td>80 kg</td><td class="bg-pink-900/30">3,0 ml / h</td><td class="bg-pink-800/40">6,0 ml / h</td><td class="bg-pink-700/50">30 ml / h</td><td class="bg-pink-600/60">60 ml / h</td></tr>
-              <tr><td>90 kg</td><td class="bg-pink-900/30">3,4 ml / h</td><td class="bg-pink-800/40">6,8 ml / h</td><td class="bg-pink-700/50">33,8 ml / h</td><td class="bg-pink-600/60">67,5 ml / h</td></tr>
-              <tr class="bg-[#111317]/50"><td>100 kg</td><td class="bg-pink-900/30">3,8 ml / h</td><td class="bg-pink-800/40">7,5 ml / h</td><td class="bg-pink-700/50">37,5 ml / h</td><td class="bg-pink-600/60">75 ml / h</td></tr>
-              <tr><td>110 kg</td><td class="bg-pink-900/30">4,1 ml / h</td><td class="bg-pink-800/40">8,3 ml / h</td><td class="bg-pink-700/50">41,3 ml / h</td><td class="bg-pink-600/60">82,5 ml / h</td></tr>
-              <tr class="bg-[#111317]/50"><td>120 kg</td><td class="bg-pink-900/30">4,5 ml / h</td><td class="bg-pink-800/40">9,0 ml / h</td><td class="bg-pink-700/50">45 ml / h</td><td class="bg-pink-600/60">90 ml / h</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="text-xs text-white/60 mt-2 font-mono">Przygotowanie: Noradrenalina 4 mg / 50 ml (5% Glukoza lub 0,9% NaCl)</div>
-      </div>
-    </div>
-  `;
-
-  // Logika kalkulatora
-  const drugSelect = document.getElementById('pumpDrugSelect');
-  const weightInput = document.getElementById('pumpWeightInput');
-  const doseInput = document.getElementById('pumpDoseInput');
-  const resultValue = document.getElementById('pumpResultValue');
-  const weightContainer = document.getElementById('pumpWeightContainer');
-  const doseLabel = document.getElementById('pumpDoseLabel');
-  const preparationInfo = document.getElementById('pumpPreparationInfo');
-
-  function calculatePump() {
-    const drug = drugSelect.value;
-    const weight = parseFloat(weightInput.value) || 70;
-    const dose = parseFloat(doseInput.value) || 0;
-    let flow = 0;
-    let concentration = 20; // mcg/ml dla adrenaliny 1mg/50ml
-    let prepText = 'Adrenalina 1 mg / 50 ml (20 mcg/ml)';
-
-    if (drug === 'adr_shock') {
-      weightContainer.classList.remove('hidden');
-      doseLabel.textContent = 'Dawka [mcg/kg/min]:';
-      concentration = 20;
-      flow = (dose * weight * 60) / concentration;
-      prepText = 'Adrenalina 1 mg / 50 ml (20 mcg/ml)';
-    } else if (drug === 'adr_brady') {
-      weightContainer.classList.add('hidden');
-      doseLabel.textContent = 'Dawka [mcg/min]:';
-      concentration = 20;
-      flow = (dose * 60) / concentration;
-      prepText = 'Adrenalina 1 mg / 50 ml (20 mcg/ml)';
-    } else if (drug === 'nor_shock') {
-      weightContainer.classList.remove('hidden');
-      doseLabel.textContent = 'Dawka [mcg/kg/min]:';
-      concentration = 80; // mcg/ml dla noradrenaliny 4mg/50ml
-      flow = (dose * weight * 60) / concentration;
-      prepText = 'Noradrenalina 4 mg / 50 ml (80 mcg/ml)';
-    }
-
-    resultValue.textContent = `${flow.toFixed(1).replace('.', ',')} ml/h`;
-    preparationInfo.textContent = `Przygotowanie: ${prepText}`;
-  }
-
-  [drugSelect, weightInput, doseInput].forEach(el => {
-    el.addEventListener('input', calculatePump);
-  });
-
-  // Ustawienie początkowej dawki przy zmianie leku
-  drugSelect.addEventListener('change', () => {
-    if (drugSelect.value === 'adr_brady') {
-      doseInput.value = 5;
-    } else {
-      doseInput.value = 0.1;
-    }
-    calculatePump();
-  });
-
-  calculatePump(); // Inicjalne przeliczenie
-}
-els.backCalcPumps.addEventListener('click', () => show('calculators'));
 
 // WIDOK "QUIZ"
 let currentQuizQuestions = [];
