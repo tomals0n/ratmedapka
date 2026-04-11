@@ -36,7 +36,16 @@ const els = {
   medsGrid: document.getElementById('medsGrid'),
   backMedDetail: document.getElementById('backMedDetail'),
   medDetailTitle: document.getElementById('medDetailTitle'),
-  medDetailContent: document.getElementById('medDetailContent'),
+  medDetailMenu: document.getElementById('medDetailMenu'),
+  medSubSection: document.getElementById('medSubSection'),
+  medSubSectionTitle: document.getElementById('medSubSectionTitle'),
+  medSubSectionContent: document.getElementById('medSubSectionContent'),
+  medSubSectionIcon: document.getElementById('medSubSectionIcon'),
+  backToMedMenu: document.getElementById('backToMedMenu'),
+  btnIndications: document.getElementById('btnIndications'),
+  btnContraindications: document.getElementById('btnContraindications'),
+  btnDosage: document.getElementById('btnDosage'),
+  btnAdministration: document.getElementById('btnAdministration'),
   backFromProtocols: document.getElementById('backFromProtocols'),
   protocolsGrid: document.getElementById('protocolsGrid'),
   backProtocolDetail: document.getElementById('backProtocolDetail'),
@@ -116,17 +125,16 @@ function renderMeds() {
   const list = q ? medications.filter(m => m.name.toLowerCase().includes(q)) : medications;
   list.forEach(m => {
     const card = document.createElement('div');
-    card.className = 'rounded-xl p-4 text-center glass hover:shadow-lg transition';
+    card.className = 'rounded-xl p-4 text-center glass hover:shadow-lg transition group cursor-pointer';
     card.innerHTML = `
-      <span class="tile-emoji">💊</span>
-      <div class="font-semibold">${m.name}</div>
+      <div class="w-12 h-12 mx-auto mb-2 bg-emerald-500/10 rounded-lg flex items-center justify-center overflow-hidden group-hover:bg-emerald-500/20 transition-colors">
+        <img src="./src/img/dawkaleku.png" alt="Lek" class="w-8 h-8 object-contain filter brightness-0 invert opacity-80">
+      </div>
+      <div class="font-semibold text-white group-hover:text-emerald-400 transition-colors">${m.name}</div>
       ${m.shortDescription ? `<div class="text-sm text-white/70 mt-1">${m.shortDescription}</div>` : ''}
       ${m.vialSize ? `<div class="mt-2 text-xs text-white/80 border border-[#2a2e35] rounded-md px-2 py-1 inline-block">${m.vialSize}</div>` : ''}
-      <div class="mt-3">
-        <button class="px-3 py-2 bg-[#14171b] border border-[#2a2e35] rounded-md text-sm">Wejdź</button>
-      </div>
     `;
-    card.querySelector('button').addEventListener('click', () => {
+    card.addEventListener('click', () => {
       currentMedId = m.id;
       renderMedDetail();
       show('medDetail');
@@ -139,155 +147,189 @@ els.backFromMeds.addEventListener('click', () => show('home'));
 
 function renderMedDetail() {
   const m = medications.find(x => x.id === currentMedId);
-  els.medDetailTitle.textContent = m ? m.name : 'Brak danych';
-  els.medDetailContent.innerHTML = '';
-  function addSection(title, text) {
-    if (!text) return;
-    const d = document.createElement('div');
-    d.className = 'mb-3';
-    d.innerHTML = `<div class="font-semibold">${title}</div><div class="text-white/80 mt-1">${text}</div>`;
-    els.medDetailContent.appendChild(d);
-  }
-  function addDosesList(med) {
-    const container = document.createElement('div');
-    container.className = 'mb-3';
-    const title = document.createElement('div');
-    title.className = 'font-semibold';
-    title.textContent = 'Dawki';
-    container.appendChild(title);
-    if (Array.isArray(med.dosesAdults) && med.dosesAdults.length) {
-      const adultsHeader = document.createElement('div');
-      adultsHeader.className = 'text-emerald-400 font-semibold mt-2';
-      adultsHeader.textContent = 'Dorośli:';
-      container.appendChild(adultsHeader);
-      const ulA = document.createElement('ul');
-      ulA.className = 'list-disc pl-5 marker:text-emerald-400';
-      med.dosesAdults.forEach(it => {
-        const li = document.createElement('li');
-        li.innerHTML = it.label
-          ? `<span class="font-semibold">${it.label}:</span> ${it.text}`
-          : `${it.text}`;
-        ulA.appendChild(li);
-      });
-      container.appendChild(ulA);
-    }
-    if (Array.isArray(med.dosesChildren) && med.dosesChildren.length) {
-      const kidsHeader = document.createElement('div');
-      kidsHeader.className = 'text-red-400 font-semibold mt-3';
-      kidsHeader.textContent = 'Dzieci:';
-      container.appendChild(kidsHeader);
-      const ulK = document.createElement('ul');
-      ulK.className = 'list-disc pl-5 marker:text-red-400';
-      med.dosesChildren.forEach(it => {
-        const li = document.createElement('li');
-        li.innerHTML = it.label
-          ? `<span class="font-semibold">${it.label}:</span> ${it.text}`
-          : `${it.text}`;
-        ulK.appendChild(li);
-      });
-      container.appendChild(ulK);
-    }
-    if ((!med.dosesAdults || !med.dosesAdults.length) && med.doses) {
-      const adultsHeader = document.createElement('div');
-      adultsHeader.className = 'text-emerald-400 font-semibold mt-2';
-      adultsHeader.textContent = 'Dorośli:';
-      container.appendChild(adultsHeader);
-      const ulA = document.createElement('ul');
-      ulA.className = 'list-disc pl-5 marker:text-emerald-400';
-      const li = document.createElement('li');
-      li.textContent = String(med.doses).trim();
-      ulA.appendChild(li);
-      container.appendChild(ulA);
-    }
-    els.medDetailContent.appendChild(container);
-  }
-  function addBulleted(title, text, color) {
-    if (!text) return;
-    const items = toList(text);
-    if (!items.length) return;
-    const box = document.createElement('div');
-    box.className = 'mb-3';
-    const header = document.createElement('div');
-    header.className = color === 'red' ? 'text-red-400 font-semibold' : 'text-emerald-400 font-semibold';
-    header.textContent = title;
-    box.appendChild(header);
-    const ul = document.createElement('ul');
-    ul.className = `list-disc pl-5 ${color === 'red' ? 'marker:text-red-400' : 'marker:text-emerald-400'}`;
-    items.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      ul.appendChild(li);
-    });
-    box.appendChild(ul);
-    els.medDetailContent.appendChild(box);
-  }
-  function addSingleBullet(title, text, color) {
-    if (!text) return;
-    const box = document.createElement('div');
-    box.className = 'mb-3';
-    const header = document.createElement('div');
-    header.className = color === 'red' ? 'text-red-400 font-semibold' : 'text-emerald-400 font-semibold';
-    header.textContent = title;
-    box.appendChild(header);
-    const ul = document.createElement('ul');
-    ul.className = `list-disc pl-5 ${color === 'red' ? 'marker:text-red-400' : 'marker:text-emerald-400'}`;
-    const li = document.createElement('li');
-    li.textContent = String(text).trim();
-    ul.appendChild(li);
-    box.appendChild(ul);
-    els.medDetailContent.appendChild(box);
-  }
-  function toList(text) {
-    const baseSplit = String(text)
+  if (!m) return;
+
+  els.medDetailTitle.textContent = m.name;
+  
+  // Reset widoku do menu głównego leku
+  els.medDetailMenu.classList.remove('hidden');
+  els.medSubSection.classList.add('hidden');
+
+  // Funkcja pomocnicza do tworzenia list punktowych
+  function createList(text, colorClass = 'emerald-400') {
+    if (!text) return '<div class="text-white/50 italic">Brak danych</div>';
+    
+    // Rozbijamy tekst na punkty po przecinkach, kropkach (jeśli nie są częścią dawki), średnikach lub nowych liniach
+    const items = String(text)
       .split(/(?:\n|;|•|·|\u2022)/)
       .flatMap(s => s.split(','))
       .map(s => s.trim())
       .filter(Boolean);
-    if (!baseSplit.length) return [String(text).trim()];
-    return baseSplit;
+    
+    if (items.length <= 1) return `<div class="text-white/90">${text}</div>`;
+    
+    return `<ul class="space-y-3">
+      ${items.map(it => `
+        <li class="flex items-start space-x-3">
+          <div class="w-1.5 h-1.5 rounded-full bg-${colorClass} mt-2 shrink-0"></div>
+          <span class="text-white/90">${it}</span>
+        </li>
+      `).join('')}
+    </ul>`;
   }
-  function toListDoses(text) {
-    const parts = String(text)
-      .split(/(?:\n|;|->)/) // dawki dzielone strzałkami i średnikami
-      .map(s => s.trim())
-      .filter(Boolean);
-    if (parts.length > 1) return parts;
-    // dodatkowo dziel po konstrukcjach typu "I dawka:", "II dawka:", "NZK:", "Anafilaksja:"
-    const byLabels = String(text)
-      .split(/(?=(?:I{1,3}\s*dawka|NZK|Anafilaksja|Bradykardia|Astma|Krup|Wstrząs|AF|VF|VT|pVT)\s*:)/i)
-      .map(s => s.trim())
-      .filter(Boolean);
-    return byLabels.length > 1 ? byLabels : [String(text).trim()];
+
+  // Funkcja pomocnicza do rozpoznawania dróg podania i tworzenia ikon
+  function createRouteIcons(adminText) {
+    const routes = [
+      { key: 'i.v.', label: 'dożylnie', img: 'iv.png' },
+      { key: 'dożylnie', label: 'dożylnie', img: 'iv.png' },
+      { key: 'i.m.', label: 'domięśniowo', img: 'im.png' },
+      { key: 'domięśniowo', label: 'domięśniowo', img: 'im.png' },
+      { key: 's.c.', label: 'podskórnie', img: 'sc.png' },
+      { key: 'podskórnie', label: 'podskórnie', img: 'sc.png' },
+      { key: 'p.o.', label: 'doustnie', img: 'po.png' },
+      { key: 'doustnie', label: 'doustnie', img: 'po.png' },
+      { key: 'p.r.', label: 'odbytniczo', img: 'pr.png' },
+      { key: 'odbytniczo', label: 'odbytniczo', img: 'pr.png' },
+      { key: 's.l.', label: 'podjęzykowo', img: 'po.png' },
+      { key: 'podjęzykowo', label: 'podjęzykowo', img: 'po.png' },
+      { key: 'i.o.', label: 'doszpikowo', img: 'io.png' },
+      { key: 'doszpikowo', label: 'doszpikowo', img: 'io.png' },
+      { key: 'nebulizacji', label: 'nebulizacja', img: 'nebu.png'},
+      { key: 'nebulizacja', label: 'nebulizacja', img: 'nebu.png'}
+    ];
+
+    const foundRoutes = [];
+    const lowerText = adminText.toLowerCase();
+    
+    // Unikalne etykiety, żeby nie powtarzać "dożylnie" jeśli w tekście jest i "i.v." i "dożylnie"
+    const seenLabels = new Set();
+
+    routes.forEach(route => {
+      if (lowerText.includes(route.key) && !seenLabels.has(route.label)) {
+        foundRoutes.push(route);
+        seenLabels.add(route.label);
+      }
+    });
+
+    if (foundRoutes.length === 0) return '';
+
+    return `
+      <div class="flex flex-wrap gap-3 mb-6">
+        ${foundRoutes.map(route => `
+          <div class="flex items-center space-x-2 px-3 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center overflow-hidden">
+              <img src="./src/img/${route.img}" alt="${route.label}" class="w-6 h-6 object-contain filter brightness-0 invert opacity-80">
+            </div>
+            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">${route.label}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="h-px w-full bg-[#2a2e35] mb-6 opacity-50"></div>
+    `;
   }
-  function parseDoses(text) {
-    const s = String(text);
-    const adultsMatch = s.match(/Dorośli[^:]*:\s*([\s\S]*?)(?:Dzieci[^:]*:|$)/i);
-    const childrenMatch = s.match(/Dzieci[^:]*:\s*([\s\S]*?)(?:Dorośli[^:]*:|$)/i);
-    const adultsSeg = adultsMatch ? adultsMatch[1].trim() : null;
-    const childrenSeg = childrenMatch ? childrenMatch[1].trim() : null;
-    function bullets(seg) {
-      if (!seg) return [];
-      let parts = seg.split(/(?:\n|;|->)/).map(t => t.trim()).filter(Boolean);
-      parts = parts.flatMap(p => p.split(/(?=(?:I{1,3}\s*dawka|NZK|Anafilaksja|Bradykardia|Astma|Krup|Wstrząs|AF|VF|VT|pVT)\s*:)/i)).map(t => t.trim()).filter(Boolean);
-      return parts.map(part => {
-        const m = part.match(/^((?:I{1,3}\s*dawka|NZK|Anafilaksja|Bradykardia|Astma|Krup|Wstrząs|AF|VF|VT|pVT)\s*):\s*(.*)$/i);
-        if (m) return { label: m[1].trim(), text: m[2].trim() };
-        return { label: null, text: part };
-      });
+
+  // Funkcja pomocnicza do dawkowania
+  function createDosageContent(med) {
+    let html = '<div class="space-y-6">';
+    
+    if (Array.isArray(med.dosesAdults) && med.dosesAdults.length) {
+      html += `<div>
+        <div class="text-emerald-400 font-bold uppercase text-xs tracking-widest mb-3">Dorośli</div>
+        <div class="space-y-2">
+          ${med.dosesAdults.map(d => `
+            <div class="flex items-start space-x-3">
+              <span class="text-emerald-400/50 mt-1">•</span>
+              <div><span class="font-bold text-emerald-400">${d.label ? d.label + ': ' : ''}</span>${d.text}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>`;
     }
-    return { adults: bullets(adultsSeg), children: bullets(childrenSeg) };
+
+    if (Array.isArray(med.dosesChildren) && med.dosesChildren.length) {
+      html += `<div>
+        <div class="text-red-400 font-bold uppercase text-xs tracking-widest mb-3">Dzieci</div>
+        <div class="space-y-2">
+          ${med.dosesChildren.map(d => `
+            <div class="flex items-start space-x-3">
+              <span class="text-red-400/50 mt-1">•</span>
+              <div><span class="font-bold text-red-400">${d.label ? d.label + ': ' : ''}</span>${d.text}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>`;
+    }
+
+    if (!html.includes('Dorośli') && med.doses) {
+      html += `<div>
+        <div class="text-emerald-400 font-bold uppercase text-xs tracking-widest mb-3">Dawkowanie ogólne</div>
+        <div>${med.doses}</div>
+      </div>`;
+    }
+
+    html += '</div>';
+    return html;
   }
-  function extractSegment(text, headingRegex) {
-    const m = String(text).match(new RegExp(`${headingRegex.source}\\s*:\\s*([\\s\\S]*?)(?:Dzieci|DOROŚLI|$)`, 'i'));
-    if (m && m[1]) return m[1];
-    return null;
-  }
-  if (m) {
-    addDosesList(m);
-    addBulleted('Wskazania', m.indications, 'green');
-    addBulleted('Przeciwwskazania', m.contraindications, 'red');
-    addSingleBullet('Jak podawać', m.administration, 'green');
-  }
+
+  // Obsługa kliknięć w sekcje
+  const showSub = (type) => {
+    els.medDetailMenu.classList.add('hidden');
+    els.medSubSection.classList.remove('hidden');
+    
+    const iconEl = els.medSubSectionIcon.querySelector('i');
+    const iconImg = els.medSubSectionIcon.querySelector('img') || document.createElement('img');
+    
+    // Jeśli nie było obrazka, dodaj go i usuń FontAwesome i
+    if (!els.medSubSectionIcon.querySelector('img')) {
+      if (iconEl) iconEl.remove();
+      iconImg.className = "w-7 h-7 object-contain filter brightness-0 invert opacity-80";
+      els.medSubSectionIcon.appendChild(iconImg);
+    }
+
+    els.medSubSectionIcon.className = "w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden shrink-0";
+
+    switch(type) {
+      case 'indications':
+        els.medSubSectionTitle.textContent = 'Wskazania';
+        els.medSubSectionContent.innerHTML = createList(m.indications);
+        els.medSubSectionIcon.classList.add('bg-emerald-500/20');
+        iconImg.src = "./src/img/wskazania.png";
+        break;
+      case 'contraindications':
+        els.medSubSectionTitle.textContent = 'Przeciwwskazania';
+        els.medSubSectionContent.innerHTML = createList(m.contraindications, 'red-400');
+        els.medSubSectionIcon.classList.add('bg-red-500/20');
+        iconImg.src = "./src/img/przeciwwskazania.png";
+        break;
+      case 'dosage':
+        els.medSubSectionTitle.textContent = 'Dawka leku';
+        els.medSubSectionContent.innerHTML = createDosageContent(m);
+        els.medSubSectionIcon.classList.add('bg-emerald-500/20');
+        iconImg.src = "./src/img/dawkaleku.png";
+        break;
+      case 'administration':
+        els.medSubSectionTitle.textContent = 'Sposób podania';
+        const routeIconsHtml = createRouteIcons(m.administration || '');
+        els.medSubSectionContent.innerHTML = `
+          ${routeIconsHtml}
+          <div class="text-white/90 leading-relaxed">${m.administration || 'Brak danych'}</div>
+        `;
+        els.medSubSectionIcon.classList.add('bg-emerald-500/20');
+        iconImg.src = "./src/img/sposobpodania.png";
+        break;
+    }
+  };
+
+  // Event Listeners dla przycisków menu (używamy onclick lub addEventListener, tu lepiej addEventListener raz)
+  els.btnIndications.onclick = () => showSub('indications');
+  els.btnContraindications.onclick = () => showSub('contraindications');
+  els.btnDosage.onclick = () => showSub('dosage');
+  els.btnAdministration.onclick = () => showSub('administration');
+  els.backToMedMenu.onclick = () => {
+    els.medSubSection.classList.add('hidden');
+    els.medDetailMenu.classList.remove('hidden');
+  };
 }
 els.backMedDetail.addEventListener('click', () => { show('meds'); });
 

@@ -182,7 +182,7 @@ const medications = [
     ],
     indications: 'Napad drgawek, stan padaczkowy, pobudzenie ruchowe, agresja.',
     contraindications: 'Ostra niewydolność oddechowa.',
-    administration: 'i.v., i.o., i.m., p.r.'
+    administration: 'Dożylnie (powoli, bez rozcieńczania), Domięśniowo (głęboko), Odbytniczo (wlewka p.r.).'
   },
   {
     id: 'fentanyl',
@@ -198,7 +198,7 @@ const medications = [
     ],
     indications: 'Leczenie silnych bólów, hamowanie oddechu (oddech wspomagany).',
     contraindications: 'Choroby zatorowe płuc, depresja ośrodka oddechowego.',
-    administration: 'i.v.'
+    administration: 'Dożylnie (powoli, w bolusach co 1-2 minuty, rozcieńczony do 10 ml 0.9% NaCl).'
   },
   {
     id: 'flumazenil',
@@ -520,7 +520,7 @@ const medications = [
     ],
     indications: 'Sedacja z zachowaniem świadomości, premedykacja, znieczulenie.',
     contraindications: 'Ostra niewydolność oddechowa, ostre zatrucie alkoholem.',
-    administration: 'i.v.'
+    administration: 'Dożylnie (powoli), Domięśniowo, Odbytniczo, Donosowo (z użyciem atomizera MAD).'
   },
   {
     id: 'morfina',
@@ -536,7 +536,7 @@ const medications = [
     ],
     indications: 'OZW, obrzęk płuc, umiarkowane do bardzo silnych bólów.',
     contraindications: 'Urazy głowy, nadciśnienie śródczaszkowe, upośledzenie oddychania, zatrucie alkoholem.',
-    administration: 'i.v., i.o., i.m.'
+    administration: 'Dożylnie (bezwzględnie rozcieńczona do 10 ml 0.9% NaCl, podawana frakcjonowanie po 2 mg co 2-3 minuty), Domięśniowo, Podskórnie.'
   },
   {
     id: 'naloxon',

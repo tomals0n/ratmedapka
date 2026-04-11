@@ -130,9 +130,80 @@
 
       <section id="medDetail" class="hidden">
         <button id="backMedDetail" class="fixed top-3 left-3 z-20 w-10 h-10 flex items-center justify-center rounded-full text-xl transition back-btn">←</button>
-        <div class="max-w-3xl mx-auto">
-          <div id="medDetailTitle" class="text-xl font-semibold mb-3"></div>
-          <div id="medDetailContent" class="rounded-xl border border-[#2a2e35] bg-[#14171b] p-4"></div>
+        <div class="max-w-2xl mx-auto pt-14 px-4">
+          <!-- Drug Header -->
+          <div class="mb-8 flex items-center space-x-5 p-6 glass rounded-3xl border border-[#2a2e35] shadow-xl">
+            <div class="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center overflow-hidden shrink-0">
+              <img src="./src/img/dawkaleku.png" alt="Lek" class="w-10 h-10 object-contain filter brightness-0 invert opacity-90">
+            </div>
+            <div>
+              <h2 id="medDetailTitle" class="text-2xl font-bold text-white leading-tight"></h2>
+              <div class="text-emerald-400 text-[10px] font-black tracking-[0.2em] uppercase mt-1 opacity-80">Informacje o leku</div>
+            </div>
+          </div>
+
+          <!-- Main Detail Menu -->
+          <div id="medDetailMenu" class="space-y-4">
+            <button id="btnIndications" class="w-full flex items-center justify-between p-5 glass rounded-2xl border border-[#2a2e35] hover:border-emerald-500 transition-all duration-300 group active:scale-[0.98]">
+              <div class="flex items-center space-x-4">
+                <div class="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center overflow-hidden shrink-0 group-hover:bg-emerald-500/20 transition-colors">
+                  <img src="./src/img/wskazania.png" alt="Wskazania" class="w-7 h-7 object-contain filter brightness-0 invert opacity-80">
+                </div>
+                <span class="font-bold text-lg text-white/90">Wskazania</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-white/20 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all"></i>
+            </button>
+
+            <button id="btnContraindications" class="w-full flex items-center justify-between p-5 glass rounded-2xl border border-[#2a2e35] hover:border-red-500/50 transition-all duration-300 group active:scale-[0.98]">
+              <div class="flex items-center space-x-4">
+                <div class="w-11 h-11 rounded-xl bg-red-500/10 flex items-center justify-center overflow-hidden shrink-0 group-hover:bg-red-500/20 transition-colors">
+                  <img src="./src/img/przeciwwskazania.png" alt="Przeciwwskazania" class="w-7 h-7 object-contain filter brightness-0 invert opacity-80">
+                </div>
+                <span class="font-bold text-lg text-white/90">Przeciwwskazania</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-white/20 group-hover:text-red-400 group-hover:translate-x-1 transition-all"></i>
+            </button>
+
+            <button id="btnDosage" class="w-full flex items-center justify-between p-5 glass rounded-2xl border border-[#2a2e35] hover:border-emerald-500 transition-all duration-300 group active:scale-[0.98]">
+              <div class="flex items-center space-x-4">
+                <div class="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center overflow-hidden shrink-0 group-hover:bg-emerald-500/20 transition-colors">
+                  <img src="./src/img/dawkaleku.png" alt="Dawka" class="w-7 h-7 object-contain filter brightness-0 invert opacity-80">
+                </div>
+                <span class="font-bold text-lg text-white/90">Dawka leku</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-white/20 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all"></i>
+            </button>
+
+            <button id="btnAdministration" class="w-full flex items-center justify-between p-5 glass rounded-2xl border border-[#2a2e35] hover:border-emerald-500 transition-all duration-300 group active:scale-[0.98]">
+              <div class="flex items-center space-x-4">
+                <div class="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center overflow-hidden shrink-0 group-hover:bg-emerald-500/20 transition-colors">
+                  <img src="./src/img/sposobpodania.png" alt="Sposób" class="w-7 h-7 object-contain filter brightness-0 invert opacity-80">
+                </div>
+                <span class="font-bold text-lg text-white/90">Sposób podania</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-white/20 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all"></i>
+            </button>
+          </div>
+
+          <!-- Sub-sections Content (initially hidden) -->
+          <div id="medSubSection" class="hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
+            <button id="backToMedMenu" class="flex items-center space-x-2 text-emerald-400 hover:text-emerald-300 transition-all mb-6 group">
+              <div class="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center group-hover:-translate-x-1 transition-transform">
+                <i class="fa-solid fa-arrow-left text-sm"></i>
+              </div>
+              <span class="font-bold text-sm">Wróć do informacji o leku</span>
+            </button>
+            
+            <div id="medSubSectionBox" class="glass rounded-3xl border border-[#2a2e35] overflow-hidden shadow-2xl">
+              <div class="p-6 border-b border-[#2a2e35] bg-emerald-500/5 flex items-center space-x-4">
+                <div id="medSubSectionIcon" class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                  <i class="fa-solid fa-clipboard-list text-lg"></i>
+                </div>
+                <h3 id="medSubSectionTitle" class="text-xl font-bold text-white"></h3>
+              </div>
+              <div id="medSubSectionContent" class="p-8 text-white/90 leading-relaxed text-base space-y-4"></div>
+            </div>
+          </div>
         </div>
       </section>
 
