@@ -1196,7 +1196,7 @@ const ALSData = [
           'W przypadku bradykardii objawowej rozpocznij podaż: 0.5 mg Atropiny do łącznej dawki 3 mg (w przypadku dzieci: 0.02 mg/kg mc / min. dawka 0.1 mg)',
           'Pamiętaj, że w przypadku Bloku AV II stopnia Mobitz II / bloku całkowitego Atropina najprawdopodobniej nie zadziała',
           'Jeżeli bradykardia jest oporna na Atropinę: rozpocznij wlew ciągły (pompa infuzyjna) Adrenaliny w dawce 2-10 mcg/min (w przypadku dzieci: 0.05-1 mcg/kg/min)',
-          'Jeżeli wlew z adrenaliny nie pomaga, przeprowadź sedacje pacjenta (2-2.5 mg Atropiny) ew. analgosedacja z 50-200 mcg Fentanylu i rozpocznij stymulacje przezskórną'
+          'Jeżeli wlew z adrenaliny nie pomaga, przeprowadź sedacje pacjenta (2-2.5 mg Midazolamu) ew. analgosedacja z 50-200 mcg Fentanylu i rozpocznij stymulacje przezskórną'
 
         ]
       },
