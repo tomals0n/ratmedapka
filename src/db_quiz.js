@@ -1316,7 +1316,7 @@ const quizQuestions = [
     id: 74,
     category: 'farmakologia',
     question: "Jaka jest dawka atropiny w zatruciach środkami fosfoorganicznymi, muskarynami, cholinomimetykami dla dorosłych?",
-    options: ['1-2 mg miareczkujemy do max. 100 mg całkowitej dawki', '0.5-1 mg miareczkujemy do max. 20 mg całkowitej dawki', '1-2 mg miareczkujemy do max. 100 mg całkowitej dawki', '0.5-1mg miareczkujemy do max. 100 mg całkowitej dawki'],
+    options: ['1-2 mg miareczkujemy do max. 100 mg całkowitej dawki', '0.5-1 mg miareczkujemy do max. 20 mg całkowitej dawki', '1-2 mg miareczkujemy do max. 20 mg całkowitej dawki', '0.5-1mg miareczkujemy do max. 100 mg całkowitej dawki'],
     correct: 0,
     explanation: 'W zatruciach atropinę podajemy w dawce 1-2 mg do całkowitej dawki 100 mg co 5-60 min. (dla dorosłych)'
   },
