@@ -1324,9 +1324,9 @@ const quizQuestions = [
     id: 75,
     category: 'farmakologia',
     question: "Jaka jest dawka atropiny w zatruciach środkami fosfoorganicznymi, muskarynami, cholinomimetykami dla dzieci?",
-    options: ['20 mcg/kg', '0.05 mcg/kg', '30 mcg/kg', '0.03 mcg/kg'],
+    options: ['20 mcg/kg', '0.05 mg/kg', '30 mcg/kg', '0.03 mg/kg'],
     correct: 1,
-    explanation: 'W zatruciach u dzieci atropinę podajemy w dawce 0.05 mcg/kg masy ciała do zaniku objawów co 10-30 min do zaniku objawów.'
+    explanation: 'W zatruciach u dzieci atropinę podajemy w dawce 0.05 mg/kg (50 mcg/kg)masy ciała do zaniku objawów co 10-30 min do zaniku objawów.'
   },
   {
     id: 76,
