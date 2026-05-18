@@ -221,7 +221,7 @@ const medications = [
     name: 'Furosemid',
     shortDescription: 'Obrzęki (np. płuc), przełom nadciśnieniowy.',
     vialSize: 'Amp.: 20 mg / 2 ml',
-    doses: 'Dorośli: 20-40 mg. Dzieci (<15 r.ż.): 0,5-1,5 mg/kg (max 20 mg).',
+    doses: 'Dorośli: 20-80 mg. Dzieci (<15 r.ż.): 0,5-1,5 mg/kg (max 20 mg).',
     dosesAdults: [
       { label: 'Dawka', text: '20-40 mg' }
     ],

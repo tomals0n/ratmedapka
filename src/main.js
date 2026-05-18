@@ -19,6 +19,7 @@ const sections = {
   calcPain: document.getElementById('calcPain'),
   calcPedsIdeal: document.getElementById('calcPedsIdeal'),
   calcPumps: document.getElementById('calcPumps'),
+  calcPedsFull: document.getElementById('calcPedsFull'),
   quizSetup: document.getElementById('quizSetup'),
   quizPlay: document.getElementById('quizPlay'),
   quizResult: document.getElementById('quizResult')
@@ -79,6 +80,8 @@ const els = {
   pedsIdealBox: document.getElementById('pedsIdealBox'),
   backCalcPumps: document.getElementById('backCalcPumps'),
   pumpsBox: document.getElementById('pumpsBox'),
+  backCalcPedsFull: document.getElementById('backCalcPedsFull'),
+  pedsFullBox: document.getElementById('pedsFullBox'),
   backFromQuizSetup: document.getElementById('backFromQuizSetup'),
   quizCount: document.getElementById('quizCount'),
   startQuizBtn: document.getElementById('startQuizBtn'),
@@ -116,6 +119,180 @@ els.goQuiz.addEventListener('click', () => {
   els.startQuizBtn.disabled = true;
   show('quizSetup'); 
 }); 
+
+// DAWKI LEKÓW PEDIATRYCZNYCH DO KALKULATORA WSZYSTKICH LEKÓW
+// 1. Adenozyna (Adenocor)
+let pedsAdenozynaPierwszaDosage = 0.1; // mg/kg
+let pedsAdenozynaPierwszaDosageMAX = 6; // mg (blokada: 1. dawka dorośli)
+
+let pedsAdenozynaKolejnaDosage = 0.2; // mg/kg
+let pedsAdenozynaKolejnaDosageMAX = 12; // mg (blokada: 2. dawka dorośli)
+
+// 2. Adrenalina
+let pedsAdrenalinaNzkDosage = 10; // mcg/kg (NZK)
+let pedsAdrenalinaNzkDosageMAX = 1000; // mcg (blokada: 1 mg)
+
+let pedsAdrenalinaAstmaDosage = 10; // mcg/kg (Astma/Anafilaksja)
+let pedsAdrenalinaAstmaDosageMAX = 500; // mcg (blokada: 0,5 mg)
+
+// Pompa objętościowa (wstrząs kardiogenny/ciężka bradykardia)
+let pedsAdrenalinaPompaMinDosage = 0.05; // mcg/kg/min
+let pedsAdrenalinaPompaMaxDosage = 1; // mcg/kg/min
+
+// 3. Amiodaron (Cordarone)
+let pedsAmiodaronDosage = 5; // mg/kg (NZK/Częstoskurcze)
+let pedsAmiodaronDosageMAX = 300; // mg (blokada: 1. dawka dorośli)
+
+// 4. Atropina
+let pedsAtropinaNzkDosage = 20; // mcg/kg (NZK)
+let pedsAtropinaNzkDosageMAX = 1000; // mcg (blokada: 1 mg jednorazowo)
+let pedsAtropinaZatruciaDosage = 50; // mcg/kg 
+let pedsAtropinaZatruciaDosageMAX = 2000; // mcg
+let pedsAtropinaBradykardiaDosage = 20; // mcg/kg (Bradykardia)
+let pedsAtropinaBradykardiaDosageMAX = 500; // mcg (blokada: standardowa dawka jednorazowa)
+// Minimalna dawka skuteczna w bradykardii to 100 mcg (0,1 mg), żeby uniknąć paradoksalnej bradykardii.
+
+// 5. Budesonid (Nebbud/Pulmicort) - Dawki stałe wg ChPL
+let pedsBudesonideAstmaMinDosage = 0.25; // mg (nebulizacja)
+let pedsBudesonideAstmaMaxDosage = 0.5; // mg (nebulizacja)
+let pedsBudesonideKrupMinDosage = 1; // mg (nebulizacja)
+let pedsBudesonideKrupMaxDosage = 2; // mg (nebulizacja)
+
+// 6. Captopril
+let pedsCaptoprilDosage = 0.3; // mg/kg
+let pedsCaptoprilDosageMAX = 25; // mg (blokada: startowa dawka dorośli)
+
+// 7. Clemastin (pow. 1-3 r.ż. zależnie od ChPL)
+let pedsClemastinMinDosage = 25; // mcg/kg
+let pedsClemastinMaxDosage = 50; // mcg/kg
+let pedsClemastinDosageMAX = 2000; // mcg (blokada: 2 mg dorośli)
+
+// 8. Clonazepam (Rivotril)
+// Zamiast sztywnego 0.5mg z tabel, bezpieczny przelicznik z ChPL na przerwanie drgawek:
+let pedsClonazepamDosage = 0.05; // mg/kg
+let pedsClonazepamDosageMAX = 1; // mg (blokada: max dawka jednorazowa dorośli/starsze dzieci)
+
+// 9. Deksametazon (Dexaven)
+let pedsDeksametazonMinDosage = 0.15; // mg/kg (min. krup/astma wg nowych wytycznych)
+let pedsDeksametazonMaxDosage = 0.6; // mg/kg (często podawane 0,4-0,6)
+let pedsDeksametazonDosageMAX = 8; // mg (blokada: standard jednorazowy dorośli)
+
+// 10. Diazepam (Relanium)
+let pedsDiazepamMinDosage = 200; // mcg/kg (i.v. / p.r.)
+let pedsDiazepamMaxDosage = 300; // mcg/kg (i.v. / p.r.)
+let pedsDiazepamDosageMAX = 10000; // mcg (blokada: 10 mg dorośli)
+
+// 11. Drotaweryna (No-Spa)
+let pedsDrotawerynaDosage = 0.5; // mg/kg
+let pedsDrotawerynaDosageMAX = 40; // mg (blokada: 1 ampułka dorośli)
+
+// 12. Fentanyl
+let pedsFentanylMinDosage = 1; // mcg/kg
+let pedsFentanylMaxDosage = 3; // mcg/kg
+let pedsFentanylDosageMAX = 100; // mcg (blokada: max jednorazowa przy oddychaniu spontanicznym)
+
+// 13. Flumazenil (Anexate)
+let pedsFlumazenilDosage = 0.01; // mg/kg
+let pedsFlumazenilDosageMAX = 0.2; // mg (blokada: sztywny max jednorazowy)
+
+// 14. Furosemid
+let pedsFurosemidMinDosage = 0.5; // mg/kg
+let pedsFurosemidMaxDosage = 1; // mg/kg
+let pedsFurosemidDosageMAX = 20; // mg (blokada: standardowa ampułka/dawka początkowa dorośli)
+
+// 15. Gelofusine
+let pedsGelofusineDosage = 20; // ml/kg
+let pedsGelofusineDosageMAX = 500; // ml (blokada bezpiecznego bolusu)
+
+// 16. Glukagon
+// Dawki sztywne z ChPL zależnie od wagi dla hipoglikemii:
+let pedsGlukagonPonizej25kgDosage = 0.5; // mg
+let pedsGlukagonPowyzej25kgDosage = 1; // mg
+// Dawka przeliczana tylko dla zatruć B-blokerami:
+let pedsGlukagonZatruciaDosage = 50; // mcg/kg
+let pedsGlukagonZatruciaDosageMAX = 10000; // mcg (blokada: 10 mg)
+
+// 17. Glukoza 20% (lub 10%)
+// W ratownictwie podajemy czyste g/kg. 
+let pedsGlukozaDosage = 0.3; // g/kg (300 mg/kg)
+let pedsGlukozaDosageMAX = 25; // g (blokada: standardowa pełna dawka ratunkowa dorośli)
+
+// 18. Heparyna (Heparinum)
+let pedsHeparynaDosage = 50; // j.m./kg
+let pedsHeparynaDosageMAX = 5000; // j.m. (blokada: dawka dorośli OZW)
+
+// 19. Hydrokortyzon (Corhydron)
+let pedsHydrokortyzonMinDosage = 5; // mg/kg
+let pedsHydrokortyzonMaxDosage = 10; // mg/kg
+let pedsHydrokortyzonDosageMAX = 250; // mg (blokada: max jednorazowa dorośli)
+
+// 20. Hydroksyzyna (Atarax)
+let pedsHydroksyzynaDosage = 1; // mg/kg
+let pedsHydroksyzynaDosageMAX = 50; // mg (blokada: dawka i.m. dorośli jednorazowa)
+
+// 21. Ibuprofen (od 3 m.ż., i.v. pow. 6 r.ż.)
+let pedsIbuprofenMinDosage = 5; // mg/kg (dawka jednorazowa)
+let pedsIbuprofenMaxDosage = 10; // mg/kg (dawka jednorazowa)
+let pedsIbuprofenDosageMAX = 400; // mg (blokada: max jednorazowa dorośli)
+
+// 22. Kwas traneksamowy (Exacyl)
+let pedsKwasTraneksamowyDosage = 15; // mg/kg (w urazach 15-20 mg/kg)
+let pedsKwasTraneksamowyDosageMAX = 1000; // mg (blokada: 1 g dorośli)
+
+// 23. Lignocaina
+let pedsLignocainaDosage = 1; // mg/kg
+let pedsLignocainaDosageMAX = 100; // mg (blokada: dawka uderzeniowa dorośli)
+
+// 24. Magnez (MgSO4)
+let pedsMagnezMinDosage = 40; // mg/kg
+let pedsMagnezMaxDosage = 50; // mg/kg
+let pedsMagnezDosageMAX = 2000; // mg (blokada: 2 g dorośli)
+
+// 25. Mannitol 15% / 20%
+let pedsMannitolMinDosage = 0.5; // g/kg
+let pedsMannitolMaxDosage = 1; // g/kg (max jednorazowa to często 1g/kg do obniżenia ICP)
+let pedsMannitolDosageMAX = 50; // g (blokada bezpieczna jednorazowa)
+
+// 26. Metamizol (Pyralgina)
+// Przelicznik kg bezpośrednio z ChPL (8-16 mg/kg):
+let pedsPyralginaMinDosage = 10; // mg/kg
+let pedsPyralginaMaxDosage = 15; // mg/kg
+let pedsPyralginaDosageMAX = 1000; // mg (blokada: 1 g jednorazowo dorośli)
+
+// 27. Metoclopramid
+let pedsMetoclopramidDosage = 0.15; // mg/kg
+let pedsMetoclopramidDosageMAX = 10; // mg (blokada: 1 ampułka dorośli)
+
+// 28. Midazolam (Midanium)
+let pedsMidazolamIvDosage = 0.1; // mg/kg (sedacja/drgawki i.v.)
+let pedsMidazolamInDosage = 0.3; // mg/kg (donosowo MAD - wyższa dawka)
+let pedsMidazolamDosageMAX = 5; // mg (blokada: max jednorazowa dorośli)
+
+// 29. Morfina
+let pedsMorfinaDosage = 100; // mcg/kg (0,1 mg/kg)
+let pedsMorfinaDosageMAX = 5000; // mcg (blokada: 5 mg dorośli jednorazowo)
+
+// 30. Naloxon (Narcan)
+let pedsNaloxonDosage = 0.01; // mg/kg
+let pedsNaloxonNzkDosage = 0.1; // mg/kg (wyższa dawka rozważana w NZK)
+let pedsNaloxonDosageMAX = 2; // mg (blokada: ampułka/max dorośli)
+
+// 32. Paracetamol (Perfalgan)
+let pedsParacetamolDosage = 15; // mg/kg i.v. (od urodzenia/odpowiednia waga)
+let pedsParacetamolDosageMAX = 1000; // mg (blokada: 1 g dorośli)
+
+// 33. Płyny Krystaloidy (PWE / NaCl 0.9% / Ringer)
+let pedsPlynyBolusMinDosage = 10; // ml/kg (ostrożny bolus)
+let pedsPlynyBolusMaxDosage = 20; // ml/kg (agresywny bolus wstrząsowy)
+let pedsPlynyBolusDosageMAX = 500; // ml (blokada standardowa)
+
+// 34. Salbutamol (Ventolin) - Dawki sztywne do nebulizacji
+let pedsSalbutamolDo20kgDosage = 2.5; // mg
+let pedsSalbutamolPowyzej20kgDosage = 5; // mg
+
+// 35. Wodorowęglan Sodu 8,4%
+let pedsWodoroweglanSoduDosage = 1; // mEq/kg (1 mEq = 1 ml dla 8,4%)
+let pedsWodoroweglanSoduDosageMAX = 50; // mEq (blokada)
 
 // WIDOK LEKÓW  
 let currentMedId = null;
@@ -577,7 +754,8 @@ function renderCalculators() {
     { id: 'peds', title: 'Leki dla dzieci', subtitle: 'Przeliczenia dawek leków na kg/mc.', emoji: '🍼' },
     { id: 'map', title: 'MAP', subtitle: 'Średnie ciśnienie tętnicze', emoji: '🩺' },
     { id: 'peds-ideal', title: 'Należna masa ciała', subtitle: 'Wzory na masę ciała u dzieci', emoji: '⚖️' },
-    { id: 'pumps', title: 'Pompy infuzyjne', subtitle: 'Dawkowanie Adrenaliny i Noradrenaliny', emoji: '💉' }
+    { id: 'pumps', title: 'Pompy infuzyjne', subtitle: 'Dawkowanie Adrenaliny i Noradrenaliny', emoji: '💉' },
+    { id: 'peds-full', title: 'Przeliczniki pediatryczne', subtitle: 'Kompleksowe przeliczniki wszystkich leków', emoji: '📋' }
   ];
   data.forEach(c => {
     const card = document.createElement('button');
@@ -626,6 +804,10 @@ function renderCalculators() {
       else if (c.id === 'pumps') { 
         show('calcPumps'); 
         renderPumps(); 
+      }
+      else if (c.id === 'peds-full') { 
+        show('calcPedsFull'); 
+        renderPedsFull(); 
       }
     });
     els.calculatorsGrid.appendChild(card);
@@ -1080,6 +1262,432 @@ els.backCalcPumps.addEventListener('click', () => show('calculators'));
 els.backCalcAPGAR.addEventListener('click', () => show('calculators'));
 els.backCalcQSOFA.addEventListener('click', () => show('calculators'));
 els.backCalcPain.addEventListener('click', () => show('calculators'));
+els.backCalcPedsFull.addEventListener('click', () => show('calculators'));
+
+function renderPedsFull() {
+  els.pedsFullBox.innerHTML = '';
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = `
+    <div class="glass p-4 rounded-2xl border border-[#2a2e35] mb-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="space-y-2">
+          <label class="block text-sm font-semibold text-white/70">Waga dziecka (kg)</label>
+          <input id="pedsFullWeight" type="number" step="0.1" min="1" max="100" value="10" class="w-full bg-[#111317] border border-[#2a2e35] rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition" />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-sm font-semibold text-white/70">Wiek dziecka (lat)</label>
+          <input id="pedsFullAge" type="number" min="0" max="18" value="1" class="w-full bg-[#111317] border border-[#2a2e35] rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition" />
+        </div>
+      </div>
+    </div>
+    <div id="pedsFullPhysiology" class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4"></div>
+    <div id="pedsFullEquipment" class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4"></div>
+    <div id="pedsFullResults" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+  `;
+  els.pedsFullBox.appendChild(wrapper);
+
+  const weightInput = document.getElementById('pedsFullWeight');
+  const ageInput = document.getElementById('pedsFullAge');
+  const physiologyContainer = document.getElementById('pedsFullPhysiology');
+  const equipmentContainer = document.getElementById('pedsFullEquipment');
+  const resultsContainer = document.getElementById('pedsFullResults');
+
+  const formatNumber = (num) => {
+    return num.toFixed(2).replace(/\.?0+$/, '').replace('.', ',');
+  };
+
+  const update = () => {
+    const weight = parseFloat(weightInput.value) || 0;
+    const age = parseFloat(ageInput.value) || 0;
+    
+    if (weight === 0) {
+      physiologyContainer.innerHTML = '';
+      equipmentContainer.innerHTML = '';
+      resultsContainer.innerHTML = '<div class="text-white/50 text-center py-8 col-span-full">Wprowadź wagę dziecka</div>';
+      return;
+    }
+
+    // --- FIZJOLOGIA ---
+    let hr, rr, sbp;
+    const idealWeight = (age * 2) + 8;
+    const tvMin = idealWeight * 6;
+    const tvMax = idealWeight * 8;
+
+    if (age < 1) { hr = '100-160'; rr = '30-60'; sbp = '70-90'; }
+    else if (age < 3) { hr = '90-150'; rr = '24-40'; sbp = '80-100'; }
+    else if (age < 6) { hr = '80-140'; rr = '22-34'; sbp = '80-110'; }
+    else if (age < 12) { hr = '70-120'; rr = '18-30'; sbp = '90-120'; }
+    else { hr = '60-100'; rr = '12-20'; sbp = '100-130'; }
+
+    physiologyContainer.innerHTML = `
+      <div class="glass p-3.5 rounded-2xl border border-blue-500/30 bg-blue-500/5 col-span-full">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center shrink-0">
+            <span class="text-blue-400 text-lg">🫀</span>
+          </div>
+          <div class="font-bold text-base text-white">Fizjologia (Normy)</div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+          <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35]">
+            <div class="text-[11px] text-white/60 uppercase font-semibold mb-1">HR (Tętno)</div>
+            <div class="text-lg font-bold text-blue-400">${hr} <span class="text-xs font-normal text-white/40">/min</span></div>
+          </div>
+          <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35]">
+            <div class="text-[11px] text-white/60 uppercase font-semibold mb-1">RR (Oddech)</div>
+            <div class="text-lg font-bold text-blue-400">${rr} <span class="text-xs font-normal text-white/40">/min</span></div>
+          </div>
+          <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35]">
+            <div class="text-[11px] text-white/60 uppercase font-semibold mb-1">SBP (Skurczowe)</div>
+            <div class="text-lg font-bold text-blue-400">${sbp} <span class="text-xs font-normal text-white/40">mmHg</span></div>
+          </div>
+          <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35]">
+            <div class="text-[11px] text-white/60 uppercase font-semibold mb-1">EtCO2</div>
+            <div class="text-lg font-bold text-blue-400">35-45 <span class="text-xs font-normal text-white/40">mmHg</span></div>
+          </div>
+          <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35]">
+            <div class="text-[11px] text-white/60 uppercase font-semibold mb-1">Należna masa</div>
+            <div class="text-lg font-bold text-blue-400">${idealWeight} <span class="text-xs font-normal text-white/40">kg</span></div>
+          </div>
+          <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35]">
+            <div class="text-[11px] text-white/60 uppercase font-semibold mb-1">Obj. oddechowa</div>
+            <div class="text-lg font-bold text-blue-400">${formatNumber(tvMin)}-${formatNumber(tvMax)} <span class="text-xs font-normal text-white/40">ml</span></div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // --- SPRZĘT ---
+    const ettUncuffed = age > 0 ? (age / 4 + 4) : (weight < 3.5 ? 3.0 : 3.5);
+    const ettCuffed = age > 0 ? (age / 4 + 3.5) : (weight < 3.5 ? 2.5 : 3.0);
+    const ettDepth = 12 + (age / 2);
+    
+    let igel = 'N/A';
+    if (weight >= 2 && weight < 5) igel = '1 (Różowa)';
+    else if (weight < 12) igel = '1.5 (Niebieska)';
+    else if (weight < 25) igel = '2 (Szara)';
+    else if (weight < 35) igel = '2.5 (Biała)';
+    else if (weight < 60) igel = '3 (Żółta)';
+    else if (weight < 90) igel = '4 (Zielona)';
+
+    let lma = 'N/A';
+    if (weight < 5) lma = '1';
+    else if (weight < 10) lma = '1.5';
+    else if (weight < 20) lma = '2';
+    else if (weight < 30) lma = '2.5';
+    else if (weight < 50) lma = '3';
+    else lma = '4';
+
+    let blade = 'Miller 0/1';
+    if (age < 1) blade = 'Miller 1';
+    else if (age < 2) blade = 'Macintosh 1';
+    else if (age < 8) blade = 'Macintosh 2';
+    else blade = 'Macintosh 3';
+
+    equipmentContainer.innerHTML = `
+      <div class="glass p-3.5 rounded-2xl border border-purple-500/30 bg-purple-500/5 col-span-full">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center shrink-0">
+            <span class="text-purple-400 text-lg">🧪</span>
+          </div>
+          <div class="font-bold text-base text-white">Sprzęt (Drogi Oddechowe)</div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
+          <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35]">
+            <div class="text-[11px] text-white/60 uppercase font-semibold mb-1">Rurka ETT (U/C)</div>
+            <div class="text-sm font-bold text-purple-400">${formatNumber(ettUncuffed)} / ${formatNumber(ettCuffed)}</div>
+            <div class="text-[10px] text-white/40 mt-1">Głębokość: ${formatNumber(ettDepth)} cm</div>
+          </div>
+          <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35]">
+            <div class="text-[11px] text-white/60 uppercase font-semibold mb-1">I-GEL</div>
+            <div class="text-sm font-bold text-purple-400">${igel}</div>
+          </div>
+          <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35]">
+            <div class="text-[11px] text-white/60 uppercase font-semibold mb-1">Maska LMA</div>
+            <div class="text-sm font-bold text-purple-400">Rozmiar ${lma}</div>
+          </div>
+          <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35]">
+            <div class="text-[11px] text-white/60 uppercase font-semibold mb-1">Łyżka</div>
+            <div class="text-sm font-bold text-purple-400">${blade}</div>
+          </div>
+          <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35]">
+            <div class="text-[11px] text-white/60 uppercase font-semibold mb-1">Rurka krtan.</div>
+            <div class="text-sm font-bold text-purple-400">${weight < 10 ? 'N/A' : (weight < 15 ? '0 (Fioletowa)' : '1 (Biała)')}</div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const drugs = [
+      {
+        name: 'Adenozyna (0,1 | 0,2 mg/kg)',
+        doses: [
+          { label: 'I dawka', value: pedsAdenozynaPierwszaDosage * weight, unit: 'mg', max: pedsAdenozynaPierwszaDosageMAX },
+          { label: 'II dawka', value: pedsAdenozynaKolejnaDosage * weight, unit: 'mg', max: pedsAdenozynaKolejnaDosageMAX }
+        ]
+      },
+      {
+        name: 'Adrenalina (10 µg/kg)',
+        doses: [
+          { label: 'NZK', value: pedsAdrenalinaNzkDosage * weight, unit: 'µg', max: pedsAdrenalinaNzkDosageMAX },
+          { label: 'Anafilaksja/Astma', value: pedsAdrenalinaAstmaDosage * weight, unit: 'µg', max: pedsAdrenalinaAstmaDosageMAX },
+          { label: 'Wlew (min: 0,05 µg/kg)', value: pedsAdrenalinaPompaMinDosage * weight, unit: 'mcg/min', max: null },
+          { label: 'Wlew (max: 1 µg/kg)', value: pedsAdrenalinaPompaMaxDosage * weight, unit: 'mcg/min', max: null }
+        ]
+      },
+      {
+        name: 'Amiodaron (5 mg/kg)',
+        doses: [
+          { label: 'NZK', value: pedsAmiodaronDosage * weight, unit: 'mg', max: pedsAmiodaronDosageMAX }
+        ]
+      },
+      {
+        name: 'Atropina (20 µg/kg)',
+        doses: [
+          { label: 'Bradykardia', value: pedsAtropinaBradykardiaDosage * weight, unit: 'µg', max: pedsAtropinaBradykardiaDosageMAX }
+        ]
+      },
+      {
+        name: 'Budesonid (Dawki stałe)',
+        doses: [
+          { label: 'Astma (min)', value: pedsBudesonideAstmaMinDosage, unit: 'mg', max: null, fixed: true },
+          { label: 'Astma (max)', value: pedsBudesonideAstmaMaxDosage, unit: 'mg', max: null, fixed: true },
+          { label: 'Krup (min)', value: pedsBudesonideKrupMinDosage, unit: 'mg', max: null, fixed: true },
+          { label: 'Krup (max)', value: pedsBudesonideKrupMaxDosage, unit: 'mg', max: null, fixed: true }
+        ]
+      },
+      {
+        name: 'Captopril (0,3 mg/kg)',
+        doses: [
+          { label: 'Dawka', value: pedsCaptoprilDosage * weight, unit: 'mg', max: pedsCaptoprilDosageMAX }
+        ]
+      },
+      {
+        name: 'Clemastin (25-50 µg/kg)',
+        doses: [
+          { label: 'Min dawka', value: pedsClemastinMinDosage * weight, unit: 'µg', max: pedsClemastinDosageMAX },
+          { label: 'Max dawka', value: pedsClemastinMaxDosage * weight, unit: 'µg', max: pedsClemastinDosageMAX }
+        ]
+      },
+      {
+        name: 'Clonazepam (0,05 mg/kg)',
+        doses: [
+          { label: 'Dawka', value: pedsClonazepamDosage * weight, unit: 'mg', max: pedsClonazepamDosageMAX }
+        ]
+      },
+      {
+        name: 'Deksametazon (0,15-0,6 mg/kg)',
+        doses: [
+          { label: 'Min dawka', value: pedsDeksametazonMinDosage * weight, unit: 'mg', max: pedsDeksametazonDosageMAX },
+          { label: 'Max dawka', value: pedsDeksametazonMaxDosage * weight, unit: 'mg', max: pedsDeksametazonDosageMAX }
+        ]
+      },
+      {
+        name: 'Diazepam (200-300 µg/kg)',
+        doses: [
+          { label: 'Min dawka', value: pedsDiazepamMinDosage * weight, unit: 'µg', max: pedsDiazepamDosageMAX },
+          { label: 'Max dawka', value: pedsDiazepamMaxDosage * weight, unit: 'µg', max: pedsDiazepamDosageMAX }
+        ]
+      },
+      {
+        name: 'Fentanyl (1-2 µg/kg)',
+        doses: [
+          { label: 'Min dawka', value: pedsFentanylMinDosage * weight, unit: 'µg', max: pedsFentanylDosageMAX },
+          { label: 'Max dawka', value: pedsFentanylMaxDosage * weight, unit: 'µg', max: pedsFentanylDosageMAX }
+        ]
+      },
+      {
+        name: 'Flumazenil (0,01 mg/kg)',
+        doses: [
+          { label: 'Dawka', value: pedsFlumazenilDosage * weight, unit: 'mg', max: pedsFlumazenilDosageMAX }
+        ]
+      },
+      {
+        name: 'Furosemid (0,5-1 mg/kg)',
+        doses: [
+          { label: 'Min dawka', value: pedsFurosemidMinDosage * weight, unit: 'mg', max: pedsFurosemidDosageMAX },
+          { label: 'Max dawka', value: pedsFurosemidMaxDosage * weight, unit: 'mg', max: pedsFurosemidDosageMAX }
+        ]
+      },
+      {
+        name: 'Glukagon (Stała | 50 µg/kg)',
+        doses: [
+          { label: '< 25 kg', value: pedsGlukagonPonizej25kgDosage, unit: 'mg', max: null, fixed: true },
+          { label: '> 25 kg', value: pedsGlukagonPowyzej25kgDosage, unit: 'mg', max: null, fixed: true },
+          { label: 'Zatrucia β-blok.', value: pedsGlukagonZatruciaDosage * weight, unit: 'mcg', max: pedsGlukagonZatruciaDosageMAX }
+        ]
+      },
+      {
+        name: 'Glukoza (0,3 g/kg)',
+        doses: [
+          { label: 'Dawka', value: pedsGlukozaDosage * weight, unit: 'g', max: pedsGlukozaDosageMAX }
+        ]
+      },
+      {
+        name: 'Heparyna (50 j.m./kg)',
+        doses: [
+          { label: 'Dawka', value: pedsHeparynaDosage * weight, unit: 'j.m.', max: pedsHeparynaDosageMAX }
+        ]
+      },
+      {
+        name: 'Hydrokortyzon (5-10 mg/kg)',
+        doses: [
+          { label: 'Min dawka', value: pedsHydrokortyzonMinDosage * weight, unit: 'mg', max: pedsHydrokortyzonDosageMAX },
+          { label: 'Max dawka', value: pedsHydrokortyzonMaxDosage * weight, unit: 'mg', max: pedsHydrokortyzonDosageMAX }
+        ]
+      },
+      {
+        name: 'Hydroksyzyna (1 mg/kg)',
+        doses: [
+          { label: 'Dawka', value: pedsHydroksyzynaDosage * weight, unit: 'mg', max: pedsHydroksyzynaDosageMAX }
+        ]
+      },
+      {
+        name: 'Ibuprofen (5-10 mg/kg)',
+        doses: [
+          { label: 'Min dawka', value: pedsIbuprofenMinDosage * weight, unit: 'mg', max: pedsIbuprofenDosageMAX },
+          { label: 'Max dawka', value: pedsIbuprofenMaxDosage * weight, unit: 'mg', max: pedsIbuprofenDosageMAX }
+        ]
+      },
+      {
+        name: 'Kwas traneksamowy (15 mg/kg)',
+        doses: [
+          { label: 'Dawka', value: pedsKwasTraneksamowyDosage * weight, unit: 'mg', max: pedsKwasTraneksamowyDosageMAX }
+        ]
+      },
+      {
+        name: 'Lignocaina (1 mg/kg)',
+        doses: [
+          { label: 'Dawka', value: pedsLignocainaDosage * weight, unit: 'mg', max: pedsLignocainaDosageMAX }
+        ]
+      },
+      {
+        name: 'Magnez (40-50 mg/kg)',
+        doses: [
+          { label: 'Min dawka', value: pedsMagnezMinDosage * weight, unit: 'mg', max: pedsMagnezDosageMAX },
+          { label: 'Max dawka', value: pedsMagnezMaxDosage * weight, unit: 'mg', max: pedsMagnezDosageMAX }
+        ]
+      },
+      {
+        name: 'Mannitol (0,5-1 g/kg)',
+        doses: [
+          { label: 'Min dawka', value: pedsMannitolMinDosage * weight, unit: 'g', max: pedsMannitolDosageMAX },
+          { label: 'Max dawka', value: pedsMannitolMaxDosage * weight, unit: 'g', max: pedsMannitolDosageMAX }
+        ]
+      },
+      {
+        name: 'Pyralgina (10-15 mg/kg)',
+        doses: [
+          { label: 'Min dawka', value: pedsPyralginaMinDosage * weight, unit: 'mg', max: pedsPyralginaDosageMAX },
+          { label: 'Max dawka', value: pedsPyralginaMaxDosage * weight, unit: 'mg', max: pedsPyralginaDosageMAX }
+        ]
+      },
+      {
+        name: 'Metoclopramid (0,15 mg/kg)',
+        doses: [
+          { label: 'Dawka', value: pedsMetoclopramidDosage * weight, unit: 'mg', max: pedsMetoclopramidDosageMAX }
+        ]
+      },
+      {
+        name: 'Midazolam (0,1 | 0,3 mg/kg)',
+        doses: [
+          { label: 'i.v./i.o.', value: pedsMidazolamIvDosage * weight, unit: 'mg', max: pedsMidazolamDosageMAX },
+          { label: 'donosowo', value: pedsMidazolamInDosage * weight, unit: 'mg', max: pedsMidazolamDosageMAX }
+        ]
+      },
+      {
+        name: 'Morfina (100 µg/kg)',
+        doses: [
+          { label: 'Dawka', value: pedsMorfinaDosage * weight, unit: 'mcg', max: pedsMorfinaDosageMAX }
+        ]
+      },
+      {
+        name: 'Naloxon (0,01 mg/kg)',
+        doses: [
+          { label: 'Standard', value: pedsNaloxonDosage * weight, unit: 'mg', max: pedsNaloxonDosageMAX }
+        ]
+      },
+      {
+        name: 'No-Spa (0,5 mg/kg)',
+        doses: [
+          { label: 'Dawka', value: pedsDrotawerynaDosage * weight, unit: 'mg', max: pedsDrotawerynaDosageMAX }
+        ]
+      },
+      {
+        name: 'Paracetamol (15 mg/kg)',
+        doses: [
+          { label: 'Dawka', value: pedsParacetamolDosage * weight, unit: 'mg', max: pedsParacetamolDosageMAX }
+        ]
+      },
+      {
+        name: 'Płyny (10-20 ml/kg)',
+        doses: [
+          { label: 'Bolus (ostrożny)', value: pedsPlynyBolusMinDosage * weight, unit: 'ml', max: pedsPlynyBolusDosageMAX },
+          { label: 'Bolus (wstrząs)', value: pedsPlynyBolusMaxDosage * weight, unit: 'ml', max: pedsPlynyBolusDosageMAX }
+        ]
+      },
+      {
+        name: 'Salbutamol (Stałe)',
+        doses: [
+          { label: '< 20 kg', value: pedsSalbutamolDo20kgDosage, unit: 'mg', max: null, fixed: true },
+          { label: '> 20 kg', value: pedsSalbutamolPowyzej20kgDosage, unit: 'mg', max: null, fixed: true }
+        ]
+      },
+      {
+        name: 'Wodorowęglan Sodu (1 mEq/kg)',
+        doses: [
+          { label: 'Dawka', value: pedsWodoroweglanSoduDosage * weight, unit: 'mEq', max: pedsWodoroweglanSoduDosageMAX }
+        ]
+      }
+    ];
+
+    let html = '';
+    drugs.forEach(drug => {
+      html += `
+        <div class="glass p-3.5 rounded-2xl border border-[#2a2e35]">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center shrink-0">
+              <img src="./src/img/dawkaleku.png" alt="" class="w-5 h-5 object-contain filter brightness-0 invert opacity-80">
+            </div>
+            <div class="font-bold text-base text-white">${drug.name}</div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            ${drug.doses.map(dose => {
+              let val = dose.value;
+              let isMaxed = false;
+              
+              if (dose.max !== undefined && dose.max !== null) {
+                if (val > dose.max) {
+                  val = dose.max;
+                  isMaxed = true;
+                }
+              }
+
+              const badge = isMaxed 
+                ? '<span class="ml-1.5 px-1.5 py-0.5 text-[10px] bg-amber-500/20 text-amber-400 rounded-full border border-amber-500/30">max</span>' 
+                : '';
+
+              return `
+                <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35]">
+                  <div class="text-[11px] text-white/60 uppercase tracking-wider font-semibold mb-1">${dose.label}</div>
+                  <div class="text-lg font-bold text-emerald-400">
+                    ${formatNumber(val)} ${dose.unit}
+                    ${badge}
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    });
+
+    resultsContainer.innerHTML = html;
+  };
+
+  weightInput.addEventListener('input', update);
+  ageInput.addEventListener('input', update);
+  update();
+}
 
 function renderAPGAR() {
   const criteria = [
