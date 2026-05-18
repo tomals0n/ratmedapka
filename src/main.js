@@ -1358,7 +1358,7 @@ function renderPedsFull() {
 
     // --- SPRZĘT ---
     const ettUncuffed = age > 0 ? (age / 4 + 4) : (weight < 3.5 ? 3.0 : 3.5);
-    const ettCuffed = age > 0 ? (age / 4 + 3.5) : (weight < 3.5 ? 2.5 : 3.0);
+    const ettCuffed = age > 0 ? (age / 4 + 3) : (weight < 3.5 ? 2.5 : 3.0);
     const ettDepth = 12 + (age / 2);
     
     let igel = 'N/A';
