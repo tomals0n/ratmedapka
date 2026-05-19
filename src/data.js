@@ -33,7 +33,11 @@ const medications = [
       {label: 'Ciężka bradykardia oporna na atropinę', text: '2-10 mcg/min'},
     ],
     dosesChildren: [
-      { label: 'NZK', text: '10 µg/kg i.v./i.o.' }
+      { label: 'NZK', text: '10 µg/kg i.v./i.o.' },
+      { label: 'Wstrząs anafilaktyczny', text: "10 µg/kg i.m"},
+      { label: 'Napad astmy', text: '10 µg/kg s.c./i.m.'},
+      { label: 'Wstrząs kardiogenny', text: '0.05-1 mcg/kg/min'},
+      { label: 'Ciężka bradykardia oporna na atropinę', text: '0.05-1 mcg/kg'}
     ],
     indications: 'Nagłe zatrzymanie krążenia, wstrząs anafilaktyczny, napad astmy, wstrząs kardiogenny.', // [cite: 22, 23, 24, 25]
     contraindications: 'Hipowolemia bezwzględna, przełom nadciśnieniowy (Brak przeciwwskazań w stanach zagrożenia życia).', // [cite: 27, 28]
@@ -47,10 +51,12 @@ const medications = [
     doses: 'Dorośli NZK: 300 mg po 3 def. -> 150 mg po 5 def. Dzieci NZK: 5 mg/kg.', // [cite: 54, 57]
     dosesAdults: [
       { label: 'NZK', text: '300 mg po 3 defibrylacjach' },
-      { label: 'NZK (dalsze)', text: '150 mg po 5 defibrylacjach' }
+      { label: 'NZK (dalsze)', text: '150 mg po 5 defibrylacjach' },
+      { label: 'VT', text: '300 mg'}
     ],
     dosesChildren: [
-      { label: 'NZK', text: '5 mg/kg' }
+      { label: 'NZK/VT', text: '5 mg/kg' },
+      
     ],
     indications: 'VF, pVT, VT, AF', // [cite: 43, 44, 46]
     contraindications: 'Bradykardia zatokowa, blok A-V, zaburzenia tarczycy, hipokaliemia.', // [cite: 49, 50, 51, 52]
@@ -61,13 +67,15 @@ const medications = [
     name: 'Atropina', // [cite: 58]
     shortDescription: 'Bradykardia, zatrucia (np. fosforoorganiczne).', // [cite: 62, 63]
     vialSize: 'Amp.: 0,5 mg lub 1 mg / 1 ml', // [cite: 59]
-    doses: 'Dorośli NZK: 3 mg. Bradykardia: do max 3 mg. Dzieci NZK: 20 µg/kg.', // [cite: 69, 70, 72]
+    doses: 'Dorośli NZK: 3 mg. Bradykardia: do max 3 mg. Dzieci Bradykardia: 20 µg/kg.', // [cite: 69, 70, 72]
     dosesAdults: [
       { label: 'NZK', text: '3 mg' },
-      { label: 'Bradykardia', text: 'po 0.5mg do max 3 mg' }
+      { label: 'Bradykardia', text: 'po 0.5mg do max 3 mg' },
+      { label: 'Zatrucia środkami fosforoorganiczymi, cholinomimetykami, muskarynami', text: '1-2 mg'}
     ],
     dosesChildren: [
-      { label: 'NZK', text: '20 µg/kg' }
+      { label: 'Bradykardia', text: '20 µg/kg | min. dawka 0.1mg' },
+      { label: 'Zatrucia środkami fosforoorganicznymi, cholinomimetykami, muskaryny', text: '0.5-1 mg powtarzane'}
     ],
     indications: 'NZK (wpływ n. błędnego), bradykardia zatokowa, zatrucia zw. fosforoorganicznymi i grzybami.', // [cite: 61, 62, 63, 64]
     contraindications: 'Zaburzenia drożności dróg moczowych/pokarmowych, pacjent po przeszczepie serca.', // [cite: 66, 67]
@@ -101,6 +109,7 @@ const medications = [
     ],
     dosesChildren: [
       { label: 'Dawka', text: '0,3 mg/kg' }
+
     ],
     indications: 'Nadciśnienie tętnicze, niewydolność krążenia.', // [cite: 90, 91]
     contraindications: 'Obrzęk naczynioruchowy, zwężenie tętnic nerkowych, hiperkalemia, ciąża.', // [cite: 93, 94, 95, 96]
@@ -132,7 +141,7 @@ const medications = [
       { label: 'Dawka', text: '1 mg' }
     ],
     dosesChildren: [
-      { label: 'Dawka', text: '0,5 mg' }
+      { label: 'Dawka', text: '0,01-0,05 mg/kg' }
     ],
     indications: 'Przeciwdziałanie napadom drgawek, padaczka.', // [cite: 116]
     contraindications: 'Uczulenie na lek.', // [cite: 118]
@@ -143,9 +152,9 @@ const medications = [
     name: 'Clopidogrelum (Plavix)', // [cite: 123]
     shortDescription: 'Ostry zespół wieńcowy (OZW).', // [cite: 126]
     vialSize: 'Tabl. 75 mg', // [cite: 124]
-    doses: 'Dorośli: 300 mg (dawka nasycająca w OZW). Dzieci: brak danych.', // [cite: 132, 134]
+    doses: 'Dorośli: 600 mg (dawka nasycająca w OZW). Dzieci: brak danych.', // [cite: 132, 134]
     dosesAdults: [
-      { label: 'Dawka nasycająca', text: '300 mg p.o.' }
+      { label: 'Dawka nasycająca', text: '600 mg p.o.' }
     ],
     dosesChildren: [],
     indications: 'Ostry zespół wieńcowy, miażdżyca.', // [cite: 126, 127]
@@ -162,7 +171,7 @@ const medications = [
       { label: 'Dawka', text: '4-8 mg i.v. (można zwiększyć)' }
     ],
     dosesChildren: [
-      { label: 'Dawka', text: '0,2-0,4 mg/kg' }
+      { label: 'Dawka', text: '0,2-0,4 mg/kg (zwykle 2-4 mg/doba)' }
     ],
     indications: 'Alergie, stany spastyczne oskrzeli, obrzęk mózgu/głośni, wstrząs.', // [cite: 138, 140, 141, 142, 143]
     contraindications: 'W ostrych stanach zagrażających życiu brak istotnych przeciwwskazań.', // [cite: 145]
@@ -175,7 +184,7 @@ const medications = [
     vialSize: 'Amp.: 5 mg lub 10 mg / 2 ml',
     doses: 'Dorośli: 5-10 mg. Dzieci: 200-300 µg/kg (lub 1 mg/rok życia).',
     dosesAdults: [
-      { label: 'Dawka', text: '5-10 mg' }
+      { label: 'Dawka', text: '2-20 mg' }
     ],
     dosesChildren: [
       { label: 'Dawka', text: '200-300 µg/kg (lub 1 mg/rok życia)' }
@@ -223,7 +232,7 @@ const medications = [
     vialSize: 'Amp.: 20 mg / 2 ml',
     doses: 'Dorośli: 20-80 mg. Dzieci (<15 r.ż.): 0,5-1,5 mg/kg (max 20 mg).',
     dosesAdults: [
-      { label: 'Dawka', text: '20-40 mg' }
+      { label: 'Dawka', text: '20-80 mg' }
     ],
     dosesChildren: [
       { label: '<15 r.ż.', text: '0,5-1,5 mg/kg (max 20 mg)' }
@@ -305,12 +314,12 @@ const medications = [
     vialSize: 'Fiolka: 25000 j.m. / 5 ml. Amp.: 5000 j.m. / 1 ml',
     doses: 'Dorośli: 5000 j.m. Dzieci: 50 j.m./kg.',
     dosesAdults: [
-      { label: 'Dawka', text: '5000 j.m.' }
+      { label: 'Dawka', text: '5000 j.m. / 10000 j.m (ciężkie zatory) / 80 j.m/kg' }
     ],
     dosesChildren: [
       { label: 'Dawka', text: '50 j.m./kg' }
     ],
-    indications: 'Niestabilna dławica piersiowa (OZW), zator tętnicy płucnej, zakrzepica, DIC.',
+    indications: 'Niestabilna dławica piersiowa, zawał mięśnia sercowego (OZW), zator tętnicy płucnej, zakrzepica, DIC.',
     contraindications: 'Czynne krwawienia, krwotok śródczaszkowy, skazy krwotoczne, hemofilia.',
     administration: 'i.v. (lub s.c. dla mniejszych dawek).'
   },
@@ -324,7 +333,7 @@ const medications = [
       { label: 'Dawka', text: '100-250 mg (do 500 mg w stanach zagrożenia)' }
     ],
     dosesChildren: [
-      { label: 'Dawka', text: '4-10 mg/kg' }
+      { label: 'Dawka', text: '4-10 mg/kg do 14 r.ż.' }
     ],
     indications: 'Stany wstrząsowe (anafilaksja), stan astmatyczny, niedomoga nadnerczy.',
     contraindications: 'Grzybica układowa.',
@@ -340,8 +349,7 @@ const medications = [
       { label: 'Dawka', text: '50-100 mg' }
     ],
     dosesChildren: [
-      { label: '>40 kg', text: '50-100 mg' },
-      { label: '<40 kg', text: '1-2 mg/kg' }
+      { label: '>40 kg', text: '0.6 mg/kg mc.' },
     ],
     indications: 'Objawowe leczenie lęku, pobudzenia, świądu, premedykacja.',
     contraindications: 'Zesp. wydłużonego QT, porfiria, bradykardia, hipokaliemia.',
@@ -393,7 +401,7 @@ const medications = [
     ],
     indications: 'Bóle, RZS, choroba zwyrodnieniowa stawów.',
     contraindications: 'Uczulenie na lek.',
-    administration: 'i.v. (duże rozcieńczenie: min. 100 ml 0,9% NaCl).'
+    administration: 'i.m. (podaż i.v. tylko w warunkach szpitalnych w dużym rozc.)'
   },
   {
     id: 'asa',
@@ -402,7 +410,7 @@ const medications = [
     vialSize: 'Tabl.: 300 mg lub 500 mg',
     doses: 'Dorośli w OZW: 160-325 mg. Dzieci: brak danych.',
     dosesAdults: [
-      { label: 'OZW', text: '160-325 mg' }
+      { label: 'OZW', text: '160-325 mg / typowa dawka 300 mg' }
     ],
     dosesChildren: [],
     indications: 'OZW, zapobieganie zakrzepicy, stany gorączkowe.',
@@ -416,7 +424,7 @@ const medications = [
     vialSize: 'Amp.: 500 mg / 5 ml',
     doses: 'Dorośli: 1 g (i.v.). Dzieci (>1 r.ż.): 20 mg/kg.',
     dosesAdults: [
-      { label: 'Dawka', text: '1 g i.v.' }
+      { label: 'Dawka', text: '1 g i.v. w ciągu 10 min' }
     ],
     dosesChildren: [
       { label: '>1 r.ż.', text: '20 mg/kg' }
@@ -432,8 +440,9 @@ const medications = [
     vialSize: 'Fiolka 10 ml: 100 mg (1%) lub 200 mg (2%)',
     doses: 'Dorośli: 100 mg (opcjonalny bolus 50 mg). Dzieci: 0,8-1 mg/kg.',
     dosesAdults: [
-      { label: 'Bolus', text: '100 mg' },
-      { label: 'Dodatkowo', text: 'opcjonalnie 50 mg' }
+      { label: 'NZK VF/VT (3 defi)', text: '100 mg' },
+      { label: 'NZK VF/VT (5 defi)', text: '50 mg' },
+      { label: 'Bóle mięśniówki gładkiej', text: '1-1.5 mg/kg'}
     ],
     dosesChildren: [
       { label: 'Dawka', text: '0,8-1 mg/kg' }
@@ -450,7 +459,8 @@ const medications = [
     doses: 'Dorośli (Torsade): 2 g w 1-2 min. Astma: 1,2-2 g w 20 min. Dzieci: 50 mg/kg (max 2g).',
     dosesAdults: [
       { label: 'Torsade', text: '2 g w 1-2 min' },
-      { label: 'Astma', text: '1,2-2 g w 20 min' }
+      { label: 'Astma', text: '1,2-2 g w 20 min' },
+      { label: 'Rzucawka ciążowa', text: '2 g'}
     ],
     dosesChildren: [
       { label: 'Dawka', text: '50 mg/kg (max 2 g)' }
@@ -464,12 +474,12 @@ const medications = [
     name: 'Mannitol 15%',
     shortDescription: 'Obrzęk mózgu, uraz głowy.',
     vialSize: 'Flakony: 100ml (15g), 250ml (37,5g), 500ml (75g)',
-    doses: 'Dawka testowa (dorośli i dzieci): 200 mg/kg.',
+    doses: '1.5-2 g/kg',
     dosesAdults: [
-      { label: 'Dawka testowa', text: '200 mg/kg' }
+      { label: 'Wysokie ciśnienie śródczaszkowe', text: '1.5-2 g/kg' }
     ],
     dosesChildren: [
-      { label: 'Dawka testowa', text: '200 mg/kg' }
+      { label: 'Nie ustalono bezpiecznej dawki do 12 r.ż.', text: '' }
     ],
     indications: 'Zmniejszenie ciśnienia wewnątrzczaszkowego, zwiększanie diurezy.',
     contraindications: 'Zastoinowa niewydolność krążenia (obrzęk płuc), bezmocz, krwawienie wewnątrzczaszkowe.',
@@ -516,7 +526,7 @@ const medications = [
       { label: '>60 lat', text: '0,5-1 mg' }
     ],
     dosesChildren: [
-      { label: 'Dawka', text: '0,05-0,2 mg/kg' }
+      { label: 'Dawka', text: '0,05-0,3 mg/kg' }
     ],
     indications: 'Sedacja z zachowaniem świadomości, premedykacja, znieczulenie.',
     contraindications: 'Ostra niewydolność oddechowa, ostre zatrucie alkoholem.',
@@ -532,7 +542,7 @@ const medications = [
       { label: 'Dawka', text: '3-5 mg (frakcjonowanie)' }
     ],
     dosesChildren: [
-      { label: 'Dawka', text: '100-200 µg/kg' }
+      { label: 'Dawka', text: '0.05-0.1 mg/kg' }
     ],
     indications: 'OZW, obrzęk płuc, umiarkowane do bardzo silnych bólów.',
     contraindications: 'Urazy głowy, nadciśnienie śródczaszkowe, upośledzenie oddychania, zatrucie alkoholem.',
@@ -543,12 +553,12 @@ const medications = [
     name: 'Naloxon (Narcan)',
     shortDescription: 'Zatrucie opioidami (odtrutka).',
     vialSize: 'Amp.: 400 µg (0,4 mg) / 1 ml',
-    doses: 'Dorośli: 0,4-2 mg. Dzieci (<20kg): 0,01 mg/kg (NZK: 0,1 mg/kg).',
+    doses: 'Dorośli: 0,4-2 mg. Dzieci (<20kg): 0,01 mg/kg .',
     dosesAdults: [
       { label: 'Dawka', text: '0,4-2 mg' }
     ],
     dosesChildren: [
-      { label: '<20 kg', text: '0,01 mg/kg (NZK: 0,1 mg/kg)' }
+      { label: 'Dawka', text: '0,01 mg/kg ' }
     ],
     indications: 'Zatrucie opioidami, wyprowadzenie ze znieczulenia.',
     contraindications: 'Ostrożnie u osób uzależnionych od opioidów.',
@@ -561,7 +571,8 @@ const medications = [
     vialSize: 'Aerozol/Tabl.: 400 µg (0,4 mg)',
     doses: 'Dorośli: 400 µg co 5 min (max 3 dawki).',
     dosesAdults: [
-      { label: 'Dawka', text: '400 µg co 5 min (max 3 dawki)' }
+      { label: 'Dawka', text: '400 µg co 5 min (max 3 dawki)' },
+      { label: 'Ostra niewydolność lewokomorowa', text: '0.8 mg, kolejne 0.8 mg po 5-10 min.'}
     ],
     dosesChildren: [],
     indications: 'Doraźne leczenie bólu dławicowego, OZW, obrzęk płuc.',
@@ -577,11 +588,8 @@ const medications = [
     dosesAdults: [
       { label: 'Dawka', text: '40-80 mg' }
     ],
-    dosesChildren: [
-      { label: 'Dawka', text: '20 mg' }
-    ],
     indications: 'Skurcze mięśni gładkich, kolki, bolesne skurcze w p. pok.',
-    contraindications: 'Uczulenie na lek.',
+    contraindications: 'Uczulenie na lek, dzieci (i.v)',
     administration: 'i.v.'
   },
   {
@@ -625,7 +633,7 @@ const medications = [
       { label: 'p.o.', text: '0,5-1 g' }
     ],
     dosesChildren: [
-      { label: '>33 kg', text: '10-15 mg/kg i.v.' }
+      { label: 'Dawka', text: '10-20 mg/kg i.v.' }
     ],
     indications: 'Leczenie umiarkowanego bólu i gorączki.',
     contraindications: 'Ciężka choroba wątroby i nerek, choroba alkoholowa.',
@@ -652,7 +660,7 @@ const medications = [
     vialSize: 'Worki infuzyjne',
     doses: 'Dorośli i dzieci: Bolus 10 ml/kg w hipotensji.',
     dosesAdults: [
-      { label: 'Bolus', text: '10 ml/kg w hipotensji' }
+      { label: 'Bolus', text: '20 ml/kg w hipotensji' }
     ],
     dosesChildren: [
       { label: 'Bolus', text: '10 ml/kg w hipotensji' }
@@ -671,7 +679,7 @@ const medications = [
       { label: 'Dawka', text: '0,5-1 g' }
     ],
     dosesChildren: [
-      { label: 'wg wagi', text: 'np. 9–15 kg: 100–250 mg' }
+      
     ],
     indications: 'Silne bóle, gorączka, bóle mięśniówki gładkiej (spazmolityczne).',
     contraindications: 'Ciężka niewydolność nerek/wątroby, hipotensja.',
@@ -684,7 +692,8 @@ const medications = [
     vialSize: 'Fiolka: 2,5 mg lub 5 mg / 2,5 ml',
     doses: 'Dorośli i Dzieci >2 r.ż.: 5 mg. Dzieci <2 r.ż.: 2,5 mg.',
     dosesAdults: [
-      { label: '>2 r.ż.', text: '5 mg' }
+      { label: 'Dawka', text: '5 mg' },
+      { label: 'Hiperkaliemia', text: '10-20 mg'}
     ],
     dosesChildren: [
       { label: '>2 r.ż.', text: '5 mg' },
@@ -701,7 +710,7 @@ const medications = [
     vialSize: 'Różne pojemności (amp, worki)',
     doses: 'Dorośli i Dzieci: Bolus 10 ml/kg w hipotensji.',
     dosesAdults: [
-      { label: 'Bolus', text: '10 ml/kg w hipotensji' }
+      { label: 'Bolus', text: '20 ml/kg w hipotensji' }
     ],
     dosesChildren: [
       { label: 'Bolus', text: '10 ml/kg w hipotensji' }
@@ -715,9 +724,9 @@ const medications = [
     name: 'Solutio Ringeri',
     shortDescription: 'Hipowolemia, oparzenia.',
     vialSize: 'Worki infuzyjne',
-    doses: 'Dorośli i Dzieci: Bolus 10 ml/kg w hipotensji.',
+    doses: 'Dorośli i Dzieci: Bolus 10-20 ml/kg w hipotensji.',
     dosesAdults: [
-      { label: 'Bolus', text: '10 ml/kg w hipotensji' }
+      { label: 'Bolus', text: '20 ml/kg w hipotensji' }
     ],
     dosesChildren: [
       { label: 'Bolus', text: '10 ml/kg w hipotensji' }
@@ -770,7 +779,7 @@ const medications = [
     ],
     indications: 'Leczenie i zapobieganie nudnościom, wymiotom i zawrotom głowy.',
     contraindications: 'Zaburzenia świadomości, istotna hipotensja, depresja OUN.',
-    administration: 'p.r., i.m., i.v.'
+    administration: 'p.r., i.m.'
   },
   {
     id: 'urapidil',
