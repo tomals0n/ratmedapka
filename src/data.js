@@ -1219,6 +1219,113 @@ const ALSData = [
         ]
       }
     ]
+  },
+  {
+    id: 'respirator',
+    title: 'Wentylacja mechaniczna',
+    emoji: "🫁",
+    subtitle: 'Użycie respiratora w stanach nagłych',
+    sections: [
+      {
+        title: 'Terminologia',
+        bullets: [
+          'CPAP - ciągłe dodatnie ciśnienie w drogach oddechowych',
+          'PEEP - dodatnie ciśnienie końcowo-wydechowe',
+          'TV - objętość jednego wdechu',
+          'MV - minutowa objętość wdechu',
+          'f - częstość oddechów /min',
+          'VCV - wentylacja sterowana objętością',
+          'PCV - wentylacja sterowana ciśnieniem',
+          'CMV/IPPV - ciągła obowiązkowa wentylacja (NZK, sztywny tryb)',
+          'SIMV - zsynchronizowana przerywana wentylacja obowiązkowa',
+          'A/C - assist control',
+          'EtCO2 - końcowo-wydechowe stężenie dwutlenku węgla',
+          'Auto-PEEP - pułapka powietrzna, powietrze zalegające w płucach po niepełnym wydechu',
+          'Pmax - alarm ciśnienia szczytowego (cm H2O)',
+          'I : E - stosunek wdechów do wydechów',
+          'FiO2 - stężenie tlenu w mieszaninie oddechowej',
+        ]
+      },
+      {
+        title: 'Respirator sterowany TV/f',
+        bullets: [
+          'Pokrętła/przyciski od TV oraz f',
+          'np. ustawiamy TV = 500ml i f = 10/min - respirator poda MV na poziomie 5000 ml/min',
+          'Co łatwo tu zepsuć - pacjent za wysokie kapno, podkręcimy oddechy z 10 na 20/min - respirator będzie podawać MV na poziomie 10000 ml/min!',
+          'Grozi to szybkim "wypłukaniem" dwutlenku węgla z organizmu, stopniowo zwiększamy oddechy, nie drastycznie o 10.'
+        ]
+      },
+      {
+        title: 'Respirator sterowany MV/f',
+        bullets: [
+          'Pokrętła/przyciski od MV oraz f',
+          'np. ustawiamy MV = 6000 ml/min i f = 12/min - respirator automatycznie przelicza TV = 6000/12 = 500ml',
+          'Co łatwo tu zepsuć - pacjent za wysokie kapno, podkręcimy oddechy z 12 na 24/min - jeżeli nie zmienimy MV, to respirator będzie podawać TV = 6000/24 = 250ml (ZA MAŁO)',
+          'Powinniśmy w tym przypadku zmienić MV = 12000 ml/min i wtedy oddechy na 24/min'
+        ]
+      },
+       {
+        title: 'Wentylacja mechaniczna w NZK - wytyczne 2025',
+        bullets: [
+          'Tryb wentylacji: CMV/IPPV',
+          'TV: 6-8 ml/kg należnej masy ciała',
+          'FiO2: 1.0 (100%) - NO AIR-MIX',
+          'f: 10/min',
+          'I : E - 1 : 2',
+          'PEEP: 0-5 cm H2O',
+          'Pmax: 60-70 cm H2O',
+          'Trigger (wyzwalacz przepływowy): wyłączony',
+          'PEEP = wzrost impedancji -> rozłącz układ przed defibrylacją',
+          'Pogorszenie stanu pacjenta zaintubowanego - patrz akronim DOPES',
+          'Lecz pacjenta, nie alarmy respiratora'
+        ]
+      },
+      {
+        title: 'Wentylacja mechaniczna po ROSC',
+        bullets: [
+          'Analgosedacja pacjenta gdy "kłóci się" z respiratorem: Fentanyl: 50-200 mcg i/lub Midazolam: miareczkuj 2-2.5mg',
+          'FiO2: stopniowo zmniejszamy do wartości 0.5 (dalej dążymy do SpO2 94-98%!)',
+          'PEEP: 5 cm H2O',
+          'f: 10-12/min, miareczkuj pod wynik EtCO2 (cel: 35-45 mmHg)',
+          'Trigger: włączony (zapobieganie walki z respiratorem, gdy wraca własny napęd oddechowy)',
+          'Pmax: 30-35 cm H2O'
+        ]
+      },
+      {
+        title: 'Powikłania po wentylacji mechanicznej',
+        bullets: [
+          'Barotrauma (uraz ciśnieniowy): za wysokie ciśnienie Pmax/PEEP rozerwało pęcherzyki, powietrze ucieka do opłucnej i powstaje odma prężna',
+          'Volutrauma (uraz objętościowy): rozciągnięcie pęcherzyków ponad ich elastyczność, uwalniają się cytokiny i prowadzi to do ARDS(zespół ostrej niewydolności oddechowej)',
+          'Atelectrauma (uraz z niedodmy): brak włączenia PEEP po ROSC - pęcherzyki po wydechu zapadają się całkowicie i sklejają - przy każdym wdechu odrywają się od siebie, niszczony jest surfaktant - krwawienie z płuc',
+          'Auto-PEEP: pułapka powietrza w płucach - za dużo oddechów i powietrze nie ma jak się wydostać z płuc (UWAGA: astmatycy/POChP), odłączamy rurę od maszyny, uciskamy kl.p. i wypuszcza się powietrze.',
+          'Załamanie hemodynamiki: kl.p. napompowana dodatnim ciśnieniem uciska żyły obwodowe - mniejszy powrót żylny',
+          'Hiperoksja: zatrucie tlenem, brak zmniejszania tlenu z FiO2 1.0 do np. 0.5(po ROSC) niszczy błony komórkowe przez wolne rodniki tlenowe.',
+          'Wzrost ICP (Ciśnienia Wewnątrzczaszkowego): wentylacja z dodatnim ciśnieniem (szczególnie przy użyciu PEEP) podwyższa ciśnienie w kl.p. ttrudnia to odpływ krwi żylnej z głowy przez żyły szyjne, co powoduje zastój krwi w mózgowiu i wtórny wzrost ICP. (UWAGA NA PACJENTÓW Z TBI, PEEP 5 cm H2O!)'
+
+        ]
+      },
+      {
+        title: 'Alarm Pmax (ciśnienie szczytowe przekroczone) co robić?',
+        bullets: [
+          'Spójrz na pacjenta: unosi się klatka piersiowa? wentyluje się symetrycznie?',
+          'Sprawdź: NiBP,HR,SpO2,EtCO2',
+          'Zagięcie rurki? - podłącz worek AMBU i przewentyluj pacjenta i obserwuj poprawę.',
+          'Pacjent "kłóci się" z respiratorem? Gryzie rurkę? - włóż rurkę UG jeżeli nie jest włożona, podaj leki do analgosedacji',
+          'Wydzielina w drogach oddechowych? - odessij wydzielinę cewnikiem przez rurkę intubacyjną',
+          'Przemieszczenie się rurki intubacyjnej do prawego oskrzela? - jeżeli szmer po prawej stronie, cofnij rurkę o 1-2 cm i osłuchaj lewą stornę',
+          'Odma prężna? - igłowe odbarczenie odmy prężnej (preferowany dostęp boczny w lini środkowo-pachowej)'  
+        ]
+      },
+      {
+        title: 'Co może powiedzieć kapnografia?',
+        bullets: [
+          'Fala przypominająca "płetwę rekina": możliwy ciężki skurcz oskrzeli (astma/POChP) lub rurka się zatyka',
+          'Fala nagle zniknęła albo drastycznie spadła: układ całkowicie się zagiął, rurka wypadła(ekstubacja) lub pacjent wpadł w NZK',
+          'Wysokie wartości EtCO2: hiperkapnia, powinniśmy zwiększyć częstotliwość oddechów kontrolując wartości',
+          'Niskie wartości EtCO2: hipokapnia, powinniśmy zmniejszyć częstotliwość oddechów kontrolując wartości'
+        ]
+      }
+    ]
   }
 ]
 
@@ -1711,5 +1818,6 @@ const symptoms = [
       ],
       note: 'SBP (dolna): norma (wartość krytyczna). Dla wieku 2-6 lat: x = wiek w latach.'
     }
-  }
+  },
+
 ];
