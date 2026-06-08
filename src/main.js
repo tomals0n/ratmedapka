@@ -107,6 +107,119 @@ function show(name) {
   sections[name].classList.remove('hidden');
 }
 
+// GLOBAL NOTE COMPONENTS
+const NoteTemplates = {
+  // 1. ACRONYM TIMELINE (Timeline Style from Reference Image)
+  AcronymStrip: (items) => {
+    return `
+      <div class="acronym-timeline animate-in fade-in duration-500 bg-[#0A0A0A] p-8 rounded-[2.5rem] border border-[#262626]">
+        ${items.map(it => {
+          return `
+            <div class="acronym-item">
+              <div class="timeline-connector"></div>
+              <div class="acronym-circle-blue">
+                ${it.key}
+              </div>
+              <div class="acronym-content">
+                <div class="text-lg font-black uppercase tracking-tight text-white mb-1">${it.title}</div>
+                <div class="text-white/60 text-base font-medium leading-snug">${it.description}</div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+  },
+
+  // 2. DIAGNOSTIC CARD (Meningeal/Peritoneal)
+  DiagnosticCard: (title, perform, result, img = null) => {
+    let imgHtml = '';
+    if (img) {
+      imgHtml = `
+        <div class="mb-4 rounded-[1.5rem] overflow-hidden border border-[#262626] bg-white/[0.02] p-1 shadow-inner">
+          <img src="${img}" class="w-full rounded-[1.3rem] opacity-90 hover:opacity-100 transition-opacity">
+        </div>
+      `;
+    }
+
+    return `
+      <div class="glimpse-card mb-4 animate-in fade-in duration-500">
+        <div class="px-6 py-4 border-b border-[#262626] bg-white/[0.03]">
+          <h4 class="text-xs font-black uppercase tracking-[0.3em] text-white/50">${title}</h4>
+        </div>
+        <div class="p-5 space-y-4">
+          ${imgHtml}
+          <div class="manewr-box bg-white/[0.02] p-4 rounded-2xl border border-white/5">
+            <div class="text-[10px] font-black uppercase tracking-widest text-white/20 mb-2.5">Manewr / Opis:</div>
+            <p class="text-white/80 font-bold text-base leading-relaxed">${perform}</p>
+          </div>
+          <div class="wynik-dodatni bg-red-500/[0.03] border border-red-500/20 p-4 rounded-2xl">
+            <div class="text-[10px] font-black uppercase tracking-widest text-red-500/40 mb-2.5">Wynik dodatni / Alert:</div>
+            <p class="text-red-500 font-black text-lg leading-snug">${result}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  // 3. DESCRIPTIVE PHASE CARD (Algorithms)
+  PhaseCard: (title, steps, showBadges = false, img = null) => {
+    let imgHtml = '';
+    if (img && img !== '') {
+      imgHtml = `
+        <div class="mb-4 rounded-[1.5rem] overflow-hidden border border-[#444] bg-white p-2 shadow-2xl block">
+          <img src="${img}" 
+               class="w-full h-auto block rounded-[1rem] object-contain mx-auto" 
+               style="max-height: 250px; min-height: 50px;"
+               alt="${title}"
+               onerror="this.parentElement.innerHTML='<div class=\'p-4 text-black text-center font-bold\'>Błąd ładowania grafiki: '+this.src+'</div>'">
+        </div>
+      `;
+    }
+
+    return `
+      <div class="glimpse-card mb-6 animate-in fade-in duration-500 shadow-2xl border-white/10">
+        <div class="px-6 py-5 border-b border-[#262626] bg-white/[0.05]">
+          <h4 class="text-sm font-black uppercase tracking-[0.3em] text-medical">${title}</h4>
+        </div>
+        <div class="p-4 space-y-3">
+          ${imgHtml}
+          ${steps && steps.length > 0 ? steps.map(step => {
+            let formattedStep = step.replace(/\*\*(.*?)\*\*/g, '<span class="text-white font-black">$1</span>');
+            
+            if (showBadges) {
+              formattedStep = formattedStep.replace(/(Metoprololu|Amiodaronu|Midazolamu|Fentanylu|Atropiny|Levonor|Noradrenaliny|Furosemid|Dexaven|Prasugrel|Lignokaina|Adrenalina|Atropina|ASA|Fentanyl|Morfina|Midazolam|Amiodaron|Lidokaina|Adenozyna|Heparyna|Klopidogrel|Tikagrelor|Metoprolol)\s*(\d+(\.\d+)?\s*(mg|mcg|µg|g|ml|j\.m\.))?/gi, 
+                '<span class="badge-drug my-1.5 inline-block shadow-[0_0_15px_rgba(16,185,129,0.2)]">$1 $2</span>');
+            }
+
+            return `
+              <div class="p-5 rounded-[1.5rem] bg-white/[0.02] hover:bg-white/[0.04] transition-all border border-white/[0.03] hover:border-white/10 shadow-inner">
+                <p class="text-white font-bold text-xl leading-snug">${formattedStep}</p>
+              </div>
+            `;
+          }).join('') : ''}
+        </div>
+      </div>
+    `;
+  },
+
+  // 4. DEFINITION GRID (Terminology)
+  DefinitionGrid: (items) => {
+    return `
+      <div class="glimpse-card p-6 animate-in fade-in duration-500">
+        <div class="space-y-5">
+          ${items.map(it => `
+            <div class="def-grid border-b border-white/5 pb-4 last:border-0 last:pb-0">
+              <span class="text-medical font-black uppercase tracking-widest text-xs">${it.term}</span>
+              <span class="text-white/80 font-bold text-base leading-tight">${it.definition}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+};
+
 // NAWIGACJA "HOME"
 els.goMeds.addEventListener('click', () => { show('meds'); renderMeds(); });
 els.goProtocols.addEventListener('click', () => { show('protocols'); renderProtocols(); });
@@ -301,15 +414,24 @@ function renderMeds() {
   const q = (els.medSearch.value || '').trim().toLowerCase();
   const list = q ? medications.filter(m => m.name.toLowerCase().includes(q)) : medications;
   list.forEach(m => {
-    const card = document.createElement('div');
-    card.className = 'rounded-xl p-4 text-center glass hover:shadow-lg transition group cursor-pointer';
+    const card = document.createElement('button');
+    card.className = 'group relative flex flex-col overflow-hidden rounded-3xl border border-emerald-500/20 bg-white/5 p-5 text-left transition-all hover:border-emerald-500/50 hover:bg-emerald-500/5 active:scale-[0.96] active:duration-75';
     card.innerHTML = `
-      <div class="w-12 h-12 mx-auto mb-2 bg-emerald-500/10 rounded-lg flex items-center justify-center overflow-hidden group-hover:bg-emerald-500/20 transition-colors">
-        <img src="./src/img/dawkaleku.png" alt="Lek" class="w-8 h-8 object-contain filter brightness-0 invert opacity-80">
+      <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10 text-2xl group-hover:bg-emerald-500/20 transition-colors shadow-inner">
+        <img src="./src/img/dawkaleku.png" alt="" class="w-7 h-7 object-contain filter brightness-0 invert opacity-80">
       </div>
-      <div class="font-semibold text-white group-hover:text-emerald-400 transition-colors">${m.name}</div>
-      ${m.shortDescription ? `<div class="text-sm text-white/70 mt-1">${m.shortDescription}</div>` : ''}
-      ${m.vialSize ? `<div class="mt-2 text-xs text-white/80 border border-[#2a2e35] rounded-md px-2 py-1 inline-block">${m.vialSize}</div>` : ''}
+      <div class="mt-4 flex flex-col">
+        <h3 class="text-lg font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors">${m.name}</h3>
+        ${m.shortDescription ? `<p class="mt-1 text-sm text-white/50 leading-tight line-clamp-2">${m.shortDescription}</p>` : ''}
+      </div>
+      ${m.vialSize ? `
+        <div class="mt-4 flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-emerald-400/60 bg-emerald-500/5 self-start px-2.5 py-1 rounded-full border border-emerald-500/10">
+          <i class="fa-solid fa-flask text-[8px]"></i>
+          ${m.vialSize}
+        </div>
+      ` : ''}
+      <!-- Decorative background glow -->
+      <div class="absolute -right-8 -bottom-8 h-24 w-24 rounded-full bg-emerald-500/5 blur-2xl group-hover:bg-emerald-500/10 transition-colors"></div>
     `;
     card.addEventListener('click', () => {
       currentMedId = m.id;
@@ -516,11 +638,16 @@ function renderProtocols() {
   els.protocolsGrid.innerHTML = '';
   protocols.forEach(p => {
     const card = document.createElement('button');
-    card.className = 'rounded-xl p-5 text-center glass hover:shadow-lg transition';
+    card.className = 'group relative flex flex-col overflow-hidden rounded-3xl border border-purple-500/20 bg-white/5 p-5 text-left transition-all hover:border-purple-500/50 hover:bg-purple-500/5 active:scale-[0.96] active:duration-75';
     card.innerHTML = `
-      <span class="tile-emoji">📜</span>
-      <div class="font-semibold">${p.title}</div>
-      ${p.subtitle ? `<div class="text-sm text-white/70 mt-1">${p.subtitle}</div>` : ''}
+      <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/10 text-2xl group-hover:bg-purple-500/20 transition-colors">
+        📜
+      </div>
+      <div class="mt-4 flex flex-col">
+        <h3 class="text-lg font-bold tracking-tight text-white group-hover:text-purple-400 transition-colors">${p.title}</h3>
+        ${p.subtitle ? `<p class="mt-1 text-sm text-white/50 leading-tight">${p.subtitle}</p>` : ''}
+      </div>
+      <div class="absolute -right-8 -bottom-8 h-24 w-24 rounded-full bg-purple-500/5 blur-2xl group-hover:bg-purple-500/10 transition-colors"></div>
     `;
     card.addEventListener('click', () => {
       currentProtocolId = p.id;
@@ -536,26 +663,36 @@ function renderProtocolDetail() {
   const item = protocols.find(p => p.id === currentProtocolId);
   els.protocolDetailTitle.textContent = item ? item.title : 'Brak danych';
   els.protocolDetailContent.innerHTML = '';
+  
   if (item && Array.isArray(item.sections)) {
-    item.sections.forEach(sec => {
-      const box = document.createElement('div');
-      box.className = 'mb-4';
-      const header = document.createElement('div');
-      header.className = 'font-semibold';
-      header.innerHTML = `<span class="text-emerald-400 font-extrabold text-xl">${sec.key}</span>: ${sec.title}`;
-      box.appendChild(header);
-      const ul = document.createElement('ul');
-      ul.className = 'list-disc pl-5 marker:text-emerald-400';
-      (sec.bullets || []).forEach(b => {
-        const li = document.createElement('li');
-        li.innerHTML = b;
-        ul.appendChild(li);
-      });
-      box.appendChild(ul);
-      els.protocolDetailContent.appendChild(box);
-    });
+    // Check if it's an acronym (keys are single letters)
+    const isAcronym = item.sections.every(sec => sec.key && sec.key.length === 1);
+    const isTerminology = (item.id.includes('vent') || item.id.includes('terminology')) && !item.id.includes('ekg');
+    
+    if (isAcronym) {
+      const acronymItems = item.sections.map(sec => ({
+        key: sec.key,
+        title: sec.title,
+        description: sec.bullets ? sec.bullets.join(', ') : ''
+      }));
+      els.protocolDetailContent.innerHTML = NoteTemplates.AcronymStrip(acronymItems);
+    } else if (isTerminology) {
+      const defItems = item.sections.map(sec => ({
+        term: sec.title,
+        definition: sec.bullets ? sec.bullets.join(', ') : ''
+      }));
+      els.protocolDetailContent.innerHTML = NoteTemplates.DefinitionGrid(defItems);
+    } else {
+      // Step-by-step, algorithms, and EKG with images
+      const phaseCards = item.sections.map(sec => {
+        // Log image presence for debugging (hidden from user)
+        if (sec.img) console.log('Loading img for:', sec.title, sec.img);
+        return NoteTemplates.PhaseCard(sec.title, sec.bullets || [], false, sec.img);
+      }).join('');
+      els.protocolDetailContent.innerHTML = phaseCards;
+    }
   } else {
-    els.protocolDetailContent.textContent = item ? (item.content || '') : '';
+    els.protocolDetailContent.innerHTML = `<div class="p-8 bg-white/5 rounded-[2rem] border border-[#262626] text-white/50 font-medium text-center">${item ? item.content : 'Brak danych'}</div>`;
   }
 }
 els.backProtocolDetail.addEventListener('click', () => { show('protocols'); });
@@ -578,10 +715,15 @@ function renderSymptoms() {
   els.symptomsGrid.innerHTML = '';
   (symptoms || []).forEach(s => {
     const card = document.createElement('button');
-    card.className = 'rounded-xl p-5 text-center glass hover:shadow-lg transition';
+    card.className = 'group relative flex flex-col overflow-hidden rounded-3xl border border-amber-500/20 bg-white/5 p-5 text-left transition-all hover:border-amber-500/50 hover:bg-amber-500/5 active:scale-[0.96] active:duration-75';
     card.innerHTML = `
-      <span class="tile-emoji">❗</span>
-      <div class="font-semibold">${s.title}</div>
+      <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 text-2xl group-hover:bg-amber-500/20 transition-colors">
+        ❗
+      </div>
+      <div class="mt-4 flex flex-col">
+        <h3 class="text-lg font-bold tracking-tight text-white group-hover:text-amber-400 transition-colors">${s.title}</h3>
+      </div>
+      <div class="absolute -right-8 -bottom-8 h-24 w-24 rounded-full bg-amber-500/5 blur-2xl group-hover:bg-amber-500/10 transition-colors"></div>
     `;
     card.addEventListener('click', () => {
       currentSymptomId = s.id;
@@ -600,22 +742,22 @@ function renderSymptomDetail() {
   
   if (item && item.isTable && item.tableData) {
     const tableContainer = document.createElement('div');
-    tableContainer.className = 'overflow-x-auto rounded-xl border border-[#2a2e35] bg-[#0f1215]';
+    tableContainer.className = 'overflow-x-auto rounded-[2.5rem] border border-[#262626] bg-white/[0.02] p-1 shadow-2xl';
     
     let tableHtml = `<table class="w-full text-sm text-left text-white/90">
-      <thead class="bg-[#14171b] text-emerald-400">
+      <thead class="bg-white/[0.05] text-medical uppercase tracking-[0.25em] font-black">
         <tr>`;
     
     item.tableData.headers.forEach(h => {
-      tableHtml += `<th class="p-3 font-semibold">${h}</th>`;
+      tableHtml += `<th class="p-5">${h}</th>`;
     });
     
-    tableHtml += `</tr></thead><tbody class="divide-y divide-[#2a2e35]">`;
+    tableHtml += `</tr></thead><tbody class="divide-y divide-[#262626] font-bold">`;
     
     item.tableData.rows.forEach((row, idx) => {
-      tableHtml += `<tr class="${idx % 2 === 0 ? 'bg-[#111317]/50' : ''}">`;
+      tableHtml += `<tr class="${idx % 2 === 0 ? 'bg-white/[0.01]' : 'bg-transparent'} hover:bg-white/[0.04] transition-all">`;
       row.forEach(cell => {
-        tableHtml += `<td class="p-3">${cell}</td>`;
+        tableHtml += `<td class="p-5">${cell}</td>`;
       });
       tableHtml += `</tr>`;
     });
@@ -626,7 +768,7 @@ function renderSymptomDetail() {
     
     if (item.tableData.note) {
       const note = document.createElement('div');
-      note.className = 'text-xs text-white/50 mt-3 italic';
+      note.className = 'text-xs font-bold text-white/30 mt-6 p-6 italic bg-white/[0.02] rounded-[2rem] border border-[#262626]';
       note.textContent = item.tableData.note;
       els.symptomDetailContent.appendChild(note);
     }
@@ -635,49 +777,35 @@ function renderSymptomDetail() {
 
   if (item && Array.isArray(item.sections)) {
     item.sections.forEach(sec => {
-      const box = document.createElement('div');
-      box.className = 'mb-4';
-      const header = document.createElement('div');
-      header.className = 'text-emerald-400 font-semibold';
-      header.textContent = sec.title;
-      box.appendChild(header);
-      const ul = document.createElement('ul');
-      ul.className = 'list-disc pl-5 marker:text-emerald-400';
-      (sec.items || []).forEach(it => {
-        const li = document.createElement('li');
-        if (Array.isArray(it.children) && it.children.length) {
-          li.innerHTML = `<span class="font-semibold">${it.label}:</span>`;
-          const ul2 = document.createElement('ul');
-          ul2.className = 'list-disc pl-5 marker:text-emerald-400';
-          it.children.forEach(txt => {
-            const li2 = document.createElement('li');
-            li2.innerHTML = txt;
-            ul2.appendChild(li2);
-          });
-          li.appendChild(ul2);
-        } else {
-          li.innerHTML = it.label;
-        }
-        ul.appendChild(li);
-      });
-      box.appendChild(ul);
-      els.symptomDetailContent.appendChild(box);
+      let perform = '';
+      let result = '';
+
+      if (sec.items && Array.isArray(sec.items)) {
+        // Handle nested items/children structure
+        perform = sec.items.map(it => {
+          const label = it.label ? `<span class="text-medical uppercase tracking-widest text-[10px] block mb-1">${it.label}</span>` : '';
+          const children = it.children ? it.children.join(' ') : '';
+          return `<div class="mb-4 last:mb-0">${label}${children}</div>`;
+        }).join('');
+        
+        result = sec.result || item.note || 'Obserwuj reakcję pacjenta';
+      } else {
+        perform = sec.perform || 'Brak instrukcji';
+        result = sec.result || 'Obserwuj reakcję pacjenta';
+      }
+      
+      const cardHtml = NoteTemplates.DiagnosticCard(
+        sec.title,
+        perform,
+        result,
+        sec.img // Add image support to DiagnosticCard as well
+      );
+      
+      els.symptomDetailContent.insertAdjacentHTML('beforeend', cardHtml);
     });
-    if (item.note) {
-      const note = document.createElement('div');
-      note.className = 'text-red-400 font-semibold mt-3';
-      note.innerHTML = item.note;
-      els.symptomDetailContent.appendChild(note);
-    }
   } else if (item && Array.isArray(item.bullets)) {
-    const ul = document.createElement('ul');
-    ul.className = 'list-disc pl-5 marker:text-emerald-400';
-    item.bullets.forEach(b => {
-      const li = document.createElement('li');
-      li.innerHTML = b;
-      ul.appendChild(li);
-    });
-    els.symptomDetailContent.appendChild(ul);
+    const phaseCard = NoteTemplates.PhaseCard('Informacje', item.bullets);
+    els.symptomDetailContent.innerHTML = phaseCard;
   }
 }
 els.backSymptomDetail.addEventListener('click', () => { show('symptoms'); });
@@ -688,11 +816,16 @@ function renderALS() {
   els.ALSGrid.innerHTML = '';
   ALSData.forEach(a => {  
     const card = document.createElement('button');
-    card.className = 'rounded-xl p-5 text-center glass hover:shadow-lg transition';
+    card.className = 'group relative flex flex-col overflow-hidden rounded-3xl border border-red-500/20 bg-white/5 p-5 text-left transition-all hover:border-red-500/50 hover:bg-red-500/5 active:scale-[0.96] active:duration-75';
     card.innerHTML = `
-      <span class="tile-emoji">${a.emoji || '🚑'}</span>
-      <div class="font-semibold">${a.title}</div>
-      ${a.subtitle ? `<div class="text-sm text-white/70 mt-1">${a.subtitle}</div>` : ''}
+      <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10 text-2xl group-hover:bg-red-500/20 transition-colors">
+        ${a.emoji || '🚑'}
+      </div>
+      <div class="mt-4 flex flex-col">
+        <h3 class="text-lg font-bold tracking-tight text-white group-hover:text-red-400 transition-colors">${a.title}</h3>
+        ${a.subtitle ? `<p class="mt-1 text-sm text-white/50 leading-tight">${a.subtitle}</p>` : ''}
+      </div>
+      <div class="absolute -right-8 -bottom-8 h-24 w-24 rounded-full bg-red-500/5 blur-2xl group-hover:bg-red-500/10 transition-colors"></div>
     `;
     card.addEventListener('click', () => {
       currentALSId = a.id;
@@ -708,37 +841,15 @@ function renderALSDetail() {
   const item = ALSData.find(x => x.id === currentALSId);
   els.ALSdetailTitle.textContent = item ? item.title : 'Brak danych';
   els.ALSdetailContent.innerHTML = '';
+  
   if (item && Array.isArray(item.sections)) {
-    item.sections.forEach(sec => {
-      const box = document.createElement('div');
-      box.className = 'mb-4';
-      const header = document.createElement('div');
-      header.className = 'text-emerald-400 font-semibold mb-1';
-      header.textContent = sec.title;
-      box.appendChild(header);
-
-      if (sec.img) {
-        const img = document.createElement('img');
-        img.src = sec.img;
-        img.className = 'w-full rounded-lg mb-2 border border-[#2a2e35] shadow-md';
-        box.appendChild(img);
-      }
-      
-      const ul = document.createElement('ul');
-      ul.className = 'list-disc pl-5 marker:text-emerald-400 text-white/90';
-      (sec.bullets || []).forEach(b => {
-        const li = document.createElement('li');
-        li.innerHTML = b;
-        ul.appendChild(li);
-      });
-      box.appendChild(ul);
-      els.ALSdetailContent.appendChild(box);
-    });
+    const phaseCards = item.sections.map(sec => 
+      NoteTemplates.PhaseCard(sec.title, sec.bullets || [], true, sec.img)
+    ).join('');
+    
+    els.ALSdetailContent.innerHTML = phaseCards;
   } else if (item && item.content) {
-    const box = document.createElement('div');
-    box.className = 'mb-4';
-    box.innerHTML = item.content;
-    els.ALSdetailContent.appendChild(box);
+    els.ALSdetailContent.innerHTML = `<div class="p-8 bg-white/5 rounded-[2.5rem] border border-[#262626] text-white/80 leading-relaxed font-bold text-lg">${item.content}</div>`;
   }
 }
 els.backFromALSDetail.addEventListener('click', () => { show('ALS'); });
@@ -759,11 +870,16 @@ function renderCalculators() {
   ];
   data.forEach(c => {
     const card = document.createElement('button');
-    card.className = 'rounded-xl p-5 text-center glass hover:shadow-lg transition';
+    card.className = 'group relative flex flex-col overflow-hidden rounded-3xl border border-blue-500/20 bg-white/5 p-5 text-left transition-all hover:border-blue-500/50 hover:bg-blue-500/5 active:scale-[0.96] active:duration-75';
     card.innerHTML = `
-      <span class="tile-emoji">${c.emoji}</span>
-      <div class="font-semibold">${c.title}</div>
-      <div class="text-sm text-white/70 mt-1">${c.subtitle}</div>
+      <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-2xl group-hover:bg-blue-500/20 transition-colors">
+        ${c.emoji}
+      </div>
+      <div class="mt-4 flex flex-col">
+        <h3 class="text-lg font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors">${c.title}</h3>
+        ${c.subtitle ? `<p class="mt-1 text-sm text-white/50 leading-tight">${c.subtitle}</p>` : ''}
+      </div>
+      <div class="absolute -right-8 -bottom-8 h-24 w-24 rounded-full bg-blue-500/5 blur-2xl group-hover:bg-blue-500/10 transition-colors"></div>
     `;
     card.addEventListener('click', () => {
       console.log('Kliknięto kalkulator:', c.id);

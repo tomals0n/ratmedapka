@@ -831,7 +831,7 @@ const ALSData = [
         bullets: [
           'Uciski klatki piersiowej (100-120/min)',
           'Rozważ intubacje / założenie alternatywy',
-          'Przy intubacji/alternatywa 1 oddech co 5s',
+          'Przy intubacji/alternatywa 1 oddech co 6s',
           'Identyfikuj i lecz odwracalne przyczyny NZK(4H 4T)',
           'Minimalizuj przerwy w uciskach',
           'Rozważ użycie sprzętu do mechanicznych ucisków (LUCAS)',
@@ -852,8 +852,8 @@ const ALSData = [
           'Adrenalina 1mg co 3-5 min (w VF/pVT po 3. defibrylacji, asystolia/PEA jak najszybciej)',
           'Amiodaron 300mg (po 3. defibrylacji)',
           'Amiodaron 150mg (po 5. defibrylacji)',
-          'Lignokaina 100mg (po 3. defibrylacji) alternatywa dla Amiodaronu',
-          'Lignokaina 50mg (po 5. defibrylacji) alternatywa dla Amiodaronu',
+          'Lignokaina 100mg (po 3. defibrylacji) alternatywa dla Amiodaron',
+          'Lignokaina 50mg (po 5. defibrylacji) alternatywa dla Amiodaron',
           'Wodorowęglan Sodu (1-2 ml/kg) - NZK w zatruciu: TLPD, leki p.padaczkowe, neuroleptyki',
           'Płyny przy NZK w przebiegu hipowolemii'
         ]
@@ -909,7 +909,7 @@ const ALSData = [
         bullets: [
           'Morfina (2-4 mg i.v.) - przy silnym bólu',
           'Tlen (jeśli SpO2 < 90%)',
-          'ASA: 300mg p.o (rozgryźć)',
+          'ASA 300mg p.o (rozgryźć)',
           'Po teletransmisji: Klopidogrel 600mg | Tikagrelor 180 mg | Prasugrel 60mg -> p.o',
           'Heparyna 5000 j.m lub 80 j.m/kg mc.',
           'Rozważ podanie Nitrogliceryny 0.4mg - p.wskazane w zawale prawej komory!',
@@ -1046,55 +1046,110 @@ const ALSData = [
       },
       {
         title: 'Migotanie komór',
-        img: './src/img/migotanie_komor.png'
+        img: 'src/img/migotanie_komor.png',
+        bullets: [
+          'Brak widocznych zespołów QRS i załamków P',
+          'Całkowicie chaotyczny zapis o różnej amplitudzie',
+          'Brak rzutu serca - rytm NZK do defi'
+        ]
       },
       {
         title: 'Częstoskurcz komorowy',
-        img: './src/img/czestoskurcz_komorowy.png'
+        img: 'src/img/czestoskurcz_komorowy.png',
+        bullets: [
+          'Szerokie zespoły QRS (>0.12s)',
+          'Zazwyczaj miarowy rytm',
+          'Brak widocznych załamków P (lub dysocjacja przedsionkowo-komorowa)',
+          'Możliwy rytm NZK, sprawdź tętno'
+        ]
       },
       {
         title: 'Torsades De Pointes',
-        img: './src/img/torsades_de_pointes.png'
+        img: 'src/img/torsades_de_pointes.png',
+        bullets: [
+          'Wielokształtny częstoskurcz komorowy',
+          'Charakterystyczne "skręcanie się" osi zespołów QRS wokół linii izoelektrycznej',
+          'Może być jako rytm NZK, sprawdź tętno'
+        ]
       },
       {
         title: 'Rytm zatokowy / PEA',
-        img: './src/img/PEA_zatokowy.png'
+        img: 'src/img/PEA_zatokowy.png',
+        bullets: [
+          'Prawidłowy zapis EKG przy braku tętna (PEA)',
+          'Pamiętaj: lecz pacjenta, nie monitor!'
+        ]
       },
       {
         title: 'Asystolia',
-        img: './src/img/asystolia.png'
+        img: 'src/img/asystolia.png',
+        bullets: [
+          'Linia izoelektryczna (płaska linia)',
+          'Brak aktywności elektrycznej komór',
+          'Wykonaj protokół potwierdzenia asystolii'
+        ]
       },
       {
         title: 'Migotanie przedsionków',
-        img: './src/img/migotanie_przedsionkow.png'
+        img: 'src/img/migotanie_przedsionkow.png',
+        bullets: [
+          'Brak załamków P (fala f)',
+          'Całkowicie niemiarowe odstępy R-R'
+        ]
       },
       {
         title: 'Trzepotanie przedsionków',
-        img: './src/img/trzepotanie_przedsionków.png'
+        img: 'src/img/trzepotanie_przedsionków.png',
+        bullets: [
+          'Charakterystyczna fala F (zęby piły)',
+          'Rytm zazwyczaj miarowy (blok stały) lub niemiarowy (blok zmienny)'
+        ]
       },
       {
         title: 'Częstoskurcz nadkomorowy',
-        img: './src/img/czestoskurcz_nadkomorowy.png'
+        img: 'src/img/czestoskurcz_nadkomorowy.png',
+        bullets: [
+          'Wąskie zespoły QRS (<0.12s)',
+          'Bardzo szybka, miarowa akcja serca',
+          'Zazwyczaj brak widocznych załamków P'
+        ]
       },
       {
         title: 'Blok przedsionkowo-komorowy I stopnia',
-        img: './src/img/blok_av_1.png'
+        img: 'src/img/blok_av_1.png',
+        bullets: [
+          'Wydłużony odstęp PQ (>0.20s)',
+          'Stały odstęp PQ, brak wypadniętych zespołów QRS'
+        ]
       },
       {
-        title: 'Blok przedsionkowo-komorowy II stopnia typu 1 (periodyka Wenckebacha)',
-        img: './src/img/blok_av_2.png'
+        title: 'Blok przedsionkowo-komorowy II stopnia typu 1 (Wenckebach)',
+        img: 'src/img/blok_av_2.png',
+        bullets: [
+          'Stopniowe wydłużanie odstępu PQ, aż do wypadnięcia zespołu QRS'
+        ]
       },
       {
-        title: 'Blok przedsionkowo-komorowy II stopnia typu 2',
-        img: './src/img/blok_av_22.png'
+        title: 'Blok przedsionkowo-komorowy II stopnia typu 2 (Mobitz II)',
+        img: 'src/img/blok_av_22.png',
+        bullets: [
+          'Okresowe wypadanie zespołów QRS bez wcześniejszego wydłużania PQ'
+        ]
       },
       {
-        title: 'Blok przedsionkowo-komorowy III stopnia (całkowity)',
-        img: './src/img/blok_av_3.png'
+        title: 'Blok przedsionkowo-komorowy III stopnia (Całkowity)',
+        img: 'src/img/blok_av_3.png',
+        bullets: [
+          'Całkowita dysocjacja przedsionków i komór',
+          'Załamki P i zespoły QRS występują niezależnie od siebie'
+        ]
       },
       {
-        title: 'Zawał mięśnia sercowego z uniesieniem odcinka ST (STEMI)',
-        img: './src/img/stemi.png'
+        title: 'Zawał STEMI',
+        img: 'src/img/stemi.png',
+        bullets: [
+          'Uniesienie odcinka ST w co najmniej dwóch sąsiadujących odprowadzeniach'
+        ]
       },
     ]
 
@@ -1343,7 +1398,7 @@ const protocols = [
         bullets: [
           'Sprawdź drożność dróg oddechowych i oceń czy są zagrożone',
           'Odpowiada? drożność zachowana',
-          'Nieprzytomny? czoło–żuchwa, wysunięcie żuchwy',
+          'Nieprzytomny? Udrożnij drogi oddechowe bezprzyrządowo (czoło-żuchwa, wysunięcie żuchwy)',
           'Rozważ przyrządowe udrożnienie dróg oddechowych'
         ]
       },
