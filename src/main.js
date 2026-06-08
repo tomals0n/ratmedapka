@@ -1,5 +1,22 @@
 // pokaz/ukryj sekcje
+document.addEventListener('DOMContentLoaded', () => {
+  const splash = document.getElementById('splashScreen');
+  const bar = document.getElementById('splashProgress');
   
+  // Start progress bar
+  setTimeout(() => {
+    bar.style.width = '100%';
+  }, 100);
+
+  // Hide splash screen after 3 seconds
+  setTimeout(() => {
+    splash.style.opacity = '0';
+    setTimeout(() => {
+      splash.style.display = 'none';
+    }, 1000); // Wait for opacity transition
+  }, 3000);
+});
+
 const sections = {
   home: document.getElementById('home'),
   meds: document.getElementById('meds'),

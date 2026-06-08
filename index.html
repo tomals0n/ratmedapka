@@ -10,6 +10,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-3hWJpQhKfGfHqKpQ2jv8lGqv1S7rH3V1gPj0vQ5oQe2hYcRkS0TqTgNw9mWQH8xY6oIYl3pR5S9QzjFJqC+ALw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body class="bg-[#050505] text-white min-h-screen font-sans antialiased selection:bg-emerald-500/30">
+    <!-- SPLASH SCREEN -->
+    <div id="splashScreen" class="fixed inset-0 z-[100] bg-[#000000] flex flex-col items-center justify-center transition-opacity duration-1000">
+      <div class="flex flex-col items-center space-y-8 w-full max-w-xs">
+        <!-- Siren/Ambulance Icon with pulse -->
+        <div class="text-6xl animate-bounce-slow relative">
+          🚑
+          <div class="absolute -inset-4 bg-red-600/20 blur-xl rounded-full animate-pulse"></div>
+        </div>
+        
+        <!-- App Name -->
+        <div class="text-center">
+          <h1 class="text-5xl font-black tracking-tighter text-white mb-2">RATMED<span class="text-red-600">PRO</span></h1>
+          <p class="text-xs font-bold text-white/40 uppercase tracking-[0.3em] animate-pulse">Ładowanie systemu...</p>
+        </div>
+
+        <!-- Progress Bar Container -->
+        <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden border border-white/5 relative">
+          <div id="splashProgress" class="absolute top-0 left-0 h-full bg-gradient-to-r from-red-600 to-red-500 shadow-[0_0_15px_rgba(220,38,38,0.5)] transition-all duration-[3000ms] ease-out" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+
     <main class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
       <!-- Header / Status Bar -->
       <header class="mb-8 flex justify-between items-center">
