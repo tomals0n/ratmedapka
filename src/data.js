@@ -6,6 +6,7 @@ const medications = [
     shortDescription: 'Napadowe częstoskurcze nadkomorowe.', // [cite: 4]
     vialSize: 'Fiolka: 6 mg / 2 ml', // [cite: 2]
     doses: 'Dorośli: 6 mg -> 12 mg -> 18 mg (wg ChPL: 3->6->12). Dzieci: 0,1 mg/kg -> 0,2 mg/kg.', // [cite: 11, 12, 13, 14, 15, 17, 18]
+    minAge: 0,
     dosesAdults: [
       { label: 'I dawka', text: '6 mg i.v.' },
       { label: 'II dawka', text: '12 mg i.v.' },
@@ -25,6 +26,7 @@ const medications = [
     shortDescription: 'NZK, wstrząs anafilaktyczny, astma.', // [cite: 22, 23, 24]
     vialSize: 'Amp.: 1 mg / 1 ml (1:1000)', // [cite: 20]
     doses: 'Dorośli NZK: 1 mg. Anafilaksja: 500 µg. Dzieci NZK: 10 µg/kg.', // [cite: 30, 31, 36]
+    minAge: 0,
     dosesAdults: [
       { label: 'NZK', text: '1 mg i.v./i.o. co 3–5 min' },
       { label: 'Anafilaksja', text: '0,5 mg i.m.' },
@@ -393,12 +395,11 @@ const medications = [
     shortDescription: 'Bóle pourazowe, pooperacyjne.',
     vialSize: 'Amp.: 100 mg / 2 ml',
     doses: 'Dorośli: 100-200 mg. Dzieci: nie wolno < 15 r.ż.!',
+    minAge: 15,
     dosesAdults: [
-      { label: 'Dawka', text: '100-200 mg' }
+      { label: 'Dawka', value: 150, minValue: 100, maxValue: 200, unit: 'mg' }
     ],
-    dosesChildren: [
-      { label: 'Dzieci', text: 'nie wolno < 15 r.ż.' }
-    ],
+    dosesChildren: [],
     indications: 'Bóle, RZS, choroba zwyrodnieniowa stawów.',
     contraindications: 'Uczulenie na lek.',
     administration: 'i.m. (podaż i.v. tylko w warunkach szpitalnych w dużym rozc.)'
@@ -787,12 +788,11 @@ const medications = [
     shortDescription: 'Nagłe nadciśnienie, udar mózgu.',
     vialSize: 'Amp.: 25, 50 lub 100 mg',
     doses: 'Dorośli: 10-50 mg (max dobowa 100 mg). Dzieci <18 r.ż.: nie zaleca się.',
+    minAge: 18,
     dosesAdults: [
-      { label: 'Dawka', text: '10-50 mg (max dobowa 100 mg)' }
+      { label: 'Dawka', value: 30, minValue: 10, maxValue: 50, unit: 'mg' }
     ],
-    dosesChildren: [
-      { label: '<18 r.ż.', text: 'nie zaleca się' }
-    ],
+    dosesChildren: [],
     indications: 'Znaczne nadciśnienie tętnicze, udar mózgu.',
     contraindications: 'Stenoza aortalna, przetoki naczyniowe.',
     administration: 'i.v.'
@@ -1729,6 +1729,126 @@ const protocols = [
       }
     ]
   },
+  {
+    id: 'marchh',
+    title: 'Ocena urazu',
+    iconName: 'clipboard-list',
+    subtitle: 'Postępowanie wg. schematu MARCHH',
+    sections: [
+      {
+        key: 'M',
+        title: 'asywne krwotoki',
+        bullets: [
+          'Sprawdź czy nie występuje masywny krwotok z kończyn',
+          'W przypadku krwotoku z kończyny: założenie stazy taktycznej (tourniquet) „high and tight”',
+          'W przypadku krwotoku z innej lokalizacji: opatrunek uciskowy'
+        ]
+      },
+      {
+        key: 'A',
+        title: 'drogi oddechowe',
+        bullets: [
+          'Sprawdź drożność dróg oddechowych',
+          'Jeśli nieprzytomny: udrożnienie bezprzyrządowe (czoło-żuchwa, wysunięcie żuchwy)',
+          'Rozważ przyrządowe udrożnienie dróg oddechowych'
+        ]
+      },
+      {
+        key: 'R',
+        title: 'oddech',
+        bullets: [
+          'Ocena RTWO',
+          'Sprawdź czy nie ma objawów odmy prężnej (ciężka duszność, tachykardia, hipotensja, jednostronna hiperrezonans, osłabienie szmerów oddechowych)',
+          'Podłącz tlenoterapię'
+        ]
+      },
+      {
+        key: 'C',
+        title: ' krążenie',
+        bullets: [
+          'Sprawdź tętno (szyjne i promieniowe)',
+          'Sprawdź CRT (czas powrotu kapilarnego)',
+          'Podłącz monitor (EKG, NiBP, SpO2)',
+          'W przypadku hipowolemii: podaż płynów'
+        ]
+      },
+      {
+        key: 'H',
+        title: 'urazy czaszkowo-mózgowe',
+        bullets: [
+          'Ocena GCS/ACVPU',
+          'Ocena źrenic pacjenta',
+          'Zapobiegaj wtórnym uszkodzeniom mózgu, SpO2>90%, unikaj głębokiej hipotensji',
+          'Monitoruj EtCO2 (35-45mmHg) unikaj hiperwentylacji, chyba, że są przesłanki o wgłobieniu mózgu'
+        ]
+      },
+      {
+        key: 'H',
+        title: 'ipotermia',
+        bullets: [
+          'Sprawdź temperaturę ciała',
+          'W przypadku hipotermii: ogrzewanie pacjenta (koc, ogrzewacze, ogrzane płyny)'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'be-fast',
+    title: 'Udar mózgu',
+    iconName: 'clipboard-list',
+    subtitle: 'Ocena wg. schematu BE-FAST',
+    sections: [
+      {
+        key: 'B',
+        title: 'alance (równowaga)',
+        bullets: [
+          'Czy pacjent ma problemy z równowagą?',
+          'Czy się potyka lub nie może chodzić?'
+        ]
+      },
+      {
+        key: 'E',
+        title: 'yes (oczy)',
+        bullets: [
+          'Czy pacjent ma problemy z widzeniem?',
+          'Czy ma podwójne widzenie lub utratę pola widzenia?'
+        ]
+      },
+      {
+        key: 'F',
+        title: 'ace (twarz)',
+        bullets: [
+          'Czy twarz pacjenta opada po jednej stronie?',
+          'Proszę poprosić o uśmiech'
+        ]
+      },
+      {
+        key: 'A',
+        title: 'rms (ręce)',
+        bullets: [
+          'Czy jedna ręka jest słabsza lub opada?',
+          'Proszę poprosić o podniesienie obu rąk'
+        ]
+      },
+      {
+        key: 'S',
+        title: 'peech (mowa)',
+        bullets: [
+          'Czy mowa pacjenta jest niewyrazna lub nie ma możliwości mowy?',
+          'Proszę poprosić o powtórzenie prostego zdania'
+        ]
+      },
+      {
+        key: 'T',
+        title: 'ime (czas)',
+        bullets: [
+          'Czas jest kluczowy!',
+          'Natychmiast wezwij pomoc (112/999)',
+          'Zanotuj czas wystąpienia objawów'
+        ]
+      }
+    ]
+  }
 ];
 
 // Objawy

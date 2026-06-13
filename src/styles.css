@@ -149,6 +149,27 @@ body {
   align-items: baseline;
 }
 
+/* Accordion Styles */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease-out;
+  opacity: 0;
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 2000px; /* Large enough to fit content */
+  opacity: 1;
+}
+
+.accordion-chevron {
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-chevron {
+  transform: rotate(180deg);
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
@@ -167,4 +188,3 @@ body {
 .animate-in {
   animation: fadeIn 0.4s ease-out;
 }
-

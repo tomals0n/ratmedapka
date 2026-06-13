@@ -179,42 +179,48 @@ const NoteTemplates = {
     `;
   },
 
-  // 3. DESCRIPTIVE PHASE CARD (Algorithms)
+  // 3. DESCRIPTIVE PHASE CARD (Algorithms - Accordion Version)
   PhaseCard: (title, steps, showBadges = false, img = null) => {
     let imgHtml = '';
     if (img && img !== '') {
       imgHtml = `
-        <div class="mb-4 rounded-[1.5rem] overflow-hidden border border-[#444] bg-white p-2 shadow-2xl block">
+        <div class="mb-3 rounded-[1.2rem] overflow-hidden border border-[#444] bg-white p-1.5 shadow-xl block">
           <img src="${img}" 
-               class="w-full h-auto block rounded-[1rem] object-contain mx-auto" 
-               style="max-height: 250px; min-height: 50px;"
+               class="w-full h-auto block rounded-[0.8rem] object-contain mx-auto" 
+               style="max-height: 200px; min-height: 40px;"
                alt="${title}"
-               onerror="this.parentElement.innerHTML='<div class=\'p-4 text-black text-center font-bold\'>Błąd ładowania grafiki: '+this.src+'</div>'">
+               onerror="this.parentElement.innerHTML='<div class=\'p-3 text-black text-center text-xs font-bold\'>Błąd grafiki</div>'">
         </div>
       `;
     }
 
-    return `
-      <div class="glimpse-card mb-6 animate-in fade-in duration-500 shadow-2xl border-white/10">
-        <div class="px-6 py-5 border-b border-[#262626] bg-white/[0.05]">
-          <h4 class="text-sm font-black uppercase tracking-[0.3em] text-medical">${title}</h4>
-        </div>
-        <div class="p-4 space-y-3">
-          ${imgHtml}
-          ${steps && steps.length > 0 ? steps.map(step => {
-            let formattedStep = step.replace(/\*\*(.*?)\*\*/g, '<span class="text-white font-black">$1</span>');
-            
-            if (showBadges) {
-              formattedStep = formattedStep.replace(/(Metoprololu|Amiodaronu|Midazolamu|Fentanylu|Atropiny|Levonor|Noradrenaliny|Furosemid|Dexaven|Prasugrel|Lignokaina|Adrenalina|Atropina|ASA|Fentanyl|Morfina|Midazolam|Amiodaron|Lidokaina|Adenozyna|Heparyna|Klopidogrel|Tikagrelor|Metoprolol)\s*(\d+(\.\d+)?\s*(mg|mcg|µg|g|ml|j\.m\.))?/gi, 
-                '<span class="badge-drug my-1.5 inline-block shadow-[0_0_15px_rgba(16,185,129,0.2)]">$1 $2</span>');
-            }
+    const accordionId = `acc-${Math.random().toString(36).substr(2, 9)}`;
 
-            return `
-              <div class="p-5 rounded-[1.5rem] bg-white/[0.02] hover:bg-white/[0.04] transition-all border border-white/[0.03] hover:border-white/10 shadow-inner">
-                <p class="text-white font-bold text-xl leading-snug">${formattedStep}</p>
-              </div>
-            `;
-          }).join('') : ''}
+    return `
+      <div class="glimpse-card accordion-item mb-3 animate-in fade-in duration-500 shadow-xl border-white/5" id="${accordionId}">
+        <button onclick="this.closest('.accordion-item').classList.toggle('active')" class="w-full flex items-center justify-between px-5 py-4 bg-white/[0.03] hover:bg-white/[0.06] transition-colors text-left cursor-pointer">
+          <h4 class="text-xs font-black uppercase tracking-[0.2em] text-medical flex-1 pr-4 pointer-events-none">${title}</h4>
+          <i class="fa-solid fa-chevron-down text-[10px] text-white/20 accordion-chevron pointer-events-none"></i>
+        </button>
+        
+        <div class="accordion-content">
+          <div class="p-3 space-y-2 border-t border-white/5">
+            ${imgHtml}
+            ${steps && steps.length > 0 ? steps.map(step => {
+              let formattedStep = step.replace(/\*\*(.*?)\*\*/g, '<span class="text-white font-extrabold">$1</span>');
+              
+              if (showBadges) {
+                formattedStep = formattedStep.replace(/(Metoprololu|Amiodaronu|Midazolamu|Fentanylu|Atropiny|Levonor|Noradrenaliny|Furosemid|Dexaven|Prasugrel|Lignokaina|Adrenalina|Atropina|ASA|Fentanyl|Morfina|Midazolam|Amiodaron|Lidokaina|Adenozyna|Heparyna|Klopidogrel|Tikagrelor|Metoprolol)\s*(\d+(\.\d+)?\s*(mg|mcg|µg|g|ml|j\.m\.))?/gi, 
+                  '<span class="badge-drug my-1 inline-block shadow-md">$1 $2</span>');
+              }
+
+              return `
+                <div class="p-3.5 rounded-[1.2rem] bg-white/[0.01] border border-white/[0.03] shadow-inner">
+                  <p class="text-white/90 font-bold text-base leading-snug">${formattedStep}</p>
+                </div>
+              `;
+            }).join('') : ''}
+          </div>
         </div>
       </div>
     `;
@@ -424,8 +430,136 @@ let pedsSalbutamolPowyzej20kgDosage = 5; // mg
 let pedsWodoroweglanSoduDosage = 1; // mEq/kg (1 mEq = 1 ml dla 8,4%)
 let pedsWodoroweglanSoduDosageMAX = 50; // mEq (blokada)
 
+// DAWKI LEKÓW DLA DOROSŁYCH
+// 1. Adenozyna (Adenocor)
+let adultAdenozynaPierwszaDosage = 6; // mg
+let adultAdenozynaKolejnaDosage = 12; // mg
+
+// 2. Adrenalina
+let adultAdrenalinaNzkDosage = 1000; // mcg (1 mg)
+let adultAdrenalinaAstmaDosage = 500; // mcg (0,5 mg)
+let adultAdrenalinaPompaMinDosage = 2; // mcg/min (nie na kg)
+let adultAdrenalinaPompaMaxDosage = 10; // mcg/min (nie na kg)
+
+// 3. Amiodaron (Cordarone)
+let adultAmiodaronDosage = 300; // mg
+
+// 4. Atropina
+let adultAtropinaNzkDosage = 1000; // mcg (1 mg)
+let adultAtropinaZatruciaDosage = 2000; // mcg (2 mg)
+let adultAtropinaBradykardiaDosage = 500; // mcg (0,5 mg)
+
+// 5. Budesonid (Nebbud/Pulmicort)
+let adultBudesonideAstmaMinDosage = 0.5; // mg
+let adultBudesonideAstmaMaxDosage = 1; // mg
+let adultBudesonideKrupMinDosage = 2; // mg
+let adultBudesonideKrupMaxDosage = 4; // mg
+
+// 6. Captopril
+let adultCaptoprilDosage = 25; // mg
+
+// 7. Clemastin
+let adultClemastinMinDosage = 1000; // mcg (1 mg)
+let adultClemastinMaxDosage = 2000; // mcg (2 mg)
+
+// 8. Clonazepam
+let adultClonazepamDosage = 1; // mg
+
+// 9. Deksametazon
+let adultDeksametazonMinDosage = 4; // mg
+let adultDeksametazonMaxDosage = 8; // mg
+
+// 10. Diazepam
+let adultDiazepamMinDosage = 5000; // mcg (5 mg)
+let adultDiazepamMaxDosage = 10000; // mcg (10 mg)
+
+// 11. Drotaweryna
+let adultDrotawerynaDosage = 40; // mg
+
+// 12. Fentanyl
+let adultFentanylMinDosage = 50; // mcg
+let adultFentanylMaxDosage = 100; // mcg
+
+// 13. Flumazenil
+let adultFlumazenilDosage = 0.2; // mg
+
+// 14. Furosemid
+let adultFurosemidMinDosage = 20; // mg
+let adultFurosemidMaxDosage = 40; // mg
+
+// 15. Gelofusine
+let adultGelofusineDosage = 500; // ml
+
+// 16. Glukagon
+let adultGlukagonPonizej25kgDosage = 1; // mg
+let adultGlukagonPowyzej25kgDosage = 1; // mg
+let adultGlukagonZatruciaDosage = 10000; // mcg (10 mg)
+
+// 17. Glukoza
+let adultGlukozaDosage = 25; // g
+
+// 18. Heparyna
+let adultHeparynaDosage = 5000; // j.m.
+
+// 19. Hydrokortyzon
+let adultHydrokortyzonMinDosage = 100; // mg
+let adultHydrokortyzonMaxDosage = 250; // mg
+
+// 20. Hydroksyzyna
+let adultHydroksyzynaDosage = 50; // mg
+
+// 21. Ibuprofen
+let adultIbuprofenMinDosage = 200; // mg
+let adultIbuprofenMaxDosage = 400; // mg
+
+// 22. Kwas traneksamowy
+let adultKwasTraneksamowyDosage = 1000; // mg
+
+// 23. Lignocaina
+let adultLignocainaDosage = 100; // mg
+
+// 24. Magnez
+let adultMagnezMinDosage = 1000; // mg
+let adultMagnezMaxDosage = 2000; // mg
+
+// 25. Mannitol
+let adultMannitolMinDosage = 20; // g
+let adultMannitolMaxDosage = 50; // g
+
+// 26. Metamizol (Pyralgina)
+let adultPyralginaMinDosage = 500; // mg
+let adultPyralginaMaxDosage = 1000; // mg
+
+// 27. Metoclopramid
+let adultMetoclopramidDosage = 10; // mg
+
+// 28. Midazolam
+let adultMidazolamIvDosage = 2; // mg
+let adultMidazolamInDosage = 5; // mg
+
+// 29. Morfina
+let adultMorfinaDosage = 5000; // mcg (5 mg)
+
+// 30. Naloxon
+let adultNaloxonDosage = 2; // mg
+
+// 31. Paracetamol
+let adultParacetamolDosage = 1000; // mg
+
+// 32. Płyny Krystaloidy
+let adultPlynyBolusMinDosage = 250; // ml
+let adultPlynyBolusMaxDosage = 500; // ml
+
+// 33. Salbutamol
+let adultSalbutamolDo20kgDosage = 5; // mg
+let adultSalbutamolPowyzej20kgDosage = 5; // mg
+
+// 34. Wodorowęglan Sodu
+let adultWodoroweglanSoduDosage = 50; // mEq
+
 // WIDOK LEKÓW  
 let currentMedId = null;
+let medsListScrollY = 0;
 function renderMeds() {
   els.medsGrid.innerHTML = '';
   const q = (els.medSearch.value || '').trim().toLowerCase();
@@ -451,6 +585,7 @@ function renderMeds() {
       <div class="absolute -right-8 -bottom-8 h-24 w-24 rounded-full bg-emerald-500/5 blur-2xl group-hover:bg-emerald-500/10 transition-colors"></div>
     `;
     card.addEventListener('click', () => {
+      medsListScrollY = window.scrollY || 0;
       currentMedId = m.id;
       renderMedDetail();
       show('medDetail');
@@ -647,7 +782,12 @@ function renderMedDetail() {
     els.medDetailMenu.classList.remove('hidden');
   };
 }
-els.backMedDetail.addEventListener('click', () => { show('meds'); });
+els.backMedDetail.addEventListener('click', () => {
+  show('meds');
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => window.scrollTo(0, medsListScrollY || 0));
+  });
+});
 
 // WIDOK "AKRONIMY"
 let currentProtocolId = null;
@@ -682,7 +822,6 @@ function renderProtocolDetail() {
   els.protocolDetailContent.innerHTML = '';
   
   if (item && Array.isArray(item.sections)) {
-    // Check if it's an acronym (keys are single letters)
     const isAcronym = item.sections.every(sec => sec.key && sec.key.length === 1);
     const isTerminology = (item.id.includes('vent') || item.id.includes('terminology')) && !item.id.includes('ekg');
     
@@ -700,13 +839,18 @@ function renderProtocolDetail() {
       }));
       els.protocolDetailContent.innerHTML = NoteTemplates.DefinitionGrid(defItems);
     } else {
-      // Step-by-step, algorithms, and EKG with images
-      const phaseCards = item.sections.map(sec => {
-        // Log image presence for debugging (hidden from user)
-        if (sec.img) console.log('Loading img for:', sec.title, sec.img);
-        return NoteTemplates.PhaseCard(sec.title, sec.bullets || [], false, sec.img);
-      }).join('');
-      els.protocolDetailContent.innerHTML = phaseCards;
+      // Step-by-step, algorithms, and EKG with images - ALL USE ACCORDION NOW
+      item.sections.forEach((sec, idx) => {
+        const cardHtml = NoteTemplates.PhaseCard(sec.title, sec.bullets || [], false, sec.img);
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = cardHtml;
+        const card = tempDiv.firstElementChild;
+        
+        // Open first item by default to show it's working
+        if (idx === 0) card.classList.add('active');
+        
+        els.protocolDetailContent.appendChild(card);
+      });
     }
   } else {
     els.protocolDetailContent.innerHTML = `<div class="p-8 bg-white/5 rounded-[2rem] border border-[#262626] text-white/50 font-medium text-center">${item ? item.content : 'Brak danych'}</div>`;
@@ -860,11 +1004,30 @@ function renderALSDetail() {
   els.ALSdetailContent.innerHTML = '';
   
   if (item && Array.isArray(item.sections)) {
-    const phaseCards = item.sections.map(sec => 
-      NoteTemplates.PhaseCard(sec.title, sec.bullets || [], true, sec.img)
-    ).join('');
-    
-    els.ALSdetailContent.innerHTML = phaseCards;
+    if (item.notice) {
+      els.ALSdetailContent.insertAdjacentHTML('beforeend', `
+        <div class="glass p-3.5 rounded-2xl border border-emerald-500/25 bg-emerald-500/5">
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0 text-emerald-300 text-lg">ⓘ</div>
+            <div>
+              <div class="text-xs font-black uppercase tracking-widest text-emerald-300/90">Informacja</div>
+              <div class="text-white/90 font-bold leading-snug">${item.notice}</div>
+            </div>
+          </div>
+        </div>
+      `);
+    }
+    item.sections.forEach((sec, idx) => {
+      const cardHtml = NoteTemplates.PhaseCard(sec.title, sec.bullets || [], true, sec.img);
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = cardHtml;
+      const card = tempDiv.firstElementChild;
+      
+      // Open first item by default
+      if (idx === 0) card.classList.add('active');
+      
+      els.ALSdetailContent.appendChild(card);
+    });
   } else if (item && item.content) {
     els.ALSdetailContent.innerHTML = `<div class="p-8 bg-white/5 rounded-[2.5rem] border border-[#262626] text-white/80 leading-relaxed font-bold text-lg">${item.content}</div>`;
   }
@@ -1450,7 +1613,7 @@ function renderPedsFull() {
     else if (age < 3) { hr = '90-150'; rr = '24-40'; sbp = '80-100'; }
     else if (age < 6) { hr = '80-140'; rr = '22-34'; sbp = '80-110'; }
     else if (age < 12) { hr = '70-120'; rr = '18-30'; sbp = '90-120'; }
-    else { hr = '60-100'; rr = '12-20'; sbp = '100-130'; }
+    else { hr = '60-100'; rr = '12-20'; sbp = '100-140'; }
 
     physiologyContainer.innerHTML = `
       <div class="glass p-3.5 rounded-2xl border border-blue-500/30 bg-blue-500/5 col-span-full">
@@ -1550,22 +1713,35 @@ function renderPedsFull() {
       </div>
     `;
 
+    const isAdult = age >= 18;
     const drugs = [
       {
-        name: 'Adenozyna (0,1 | 0,2 mg/kg)',
-        doses: [
-          { label: 'I dawka', value: pedsAdenozynaPierwszaDosage * weight, unit: 'mg', max: pedsAdenozynaPierwszaDosageMAX },
-          { label: 'II dawka', value: pedsAdenozynaKolejnaDosage * weight, unit: 'mg', max: pedsAdenozynaKolejnaDosageMAX }
-        ]
+        name: isAdult ? 'Adenozyna (6 | 12 mg)' : 'Adenozyna (0,1 | 0,2 mg/kg)',
+        doses: isAdult
+          ? [
+              { label: 'I dawka', value: adultAdenozynaPierwszaDosage, unit: 'mg', max: null },
+              { label: 'II dawka', value: adultAdenozynaKolejnaDosage, unit: 'mg', max: null }
+            ]
+          : [
+              { label: 'I dawka', value: pedsAdenozynaPierwszaDosage * weight, unit: 'mg', max: pedsAdenozynaPierwszaDosageMAX },
+              { label: 'II dawka', value: pedsAdenozynaKolejnaDosage * weight, unit: 'mg', max: pedsAdenozynaKolejnaDosageMAX }
+            ]
       },
       {
-        name: 'Adrenalina (10 µg/kg)',
-        doses: [
-          { label: 'NZK', value: pedsAdrenalinaNzkDosage * weight, unit: 'µg', max: pedsAdrenalinaNzkDosageMAX },
-          { label: 'Anafilaksja/Astma', value: pedsAdrenalinaAstmaDosage * weight, unit: 'µg', max: pedsAdrenalinaAstmaDosageMAX },
-          { label: 'Wlew (min: 0,05 µg/kg)', value: pedsAdrenalinaPompaMinDosage * weight, unit: 'mcg/min', max: null },
-          { label: 'Wlew (max: 1 µg/kg)', value: pedsAdrenalinaPompaMaxDosage * weight, unit: 'mcg/min', max: null }
-        ]
+        name: isAdult ? 'Adrenalina (1 mg)' : 'Adrenalina (10 µg/kg)',
+        doses: isAdult
+          ? [
+              { label: 'NZK', value: adultAdrenalinaNzkDosage, unit: 'µg', max: null },
+              { label: 'Anafilaksja/Astma', value: adultAdrenalinaAstmaDosage, unit: 'µg', max: null },
+              { label: 'Wlew (min: 2 µg/min)', value: adultAdrenalinaPompaMinDosage, unit: 'mcg/min', max: null },
+              { label: 'Wlew (max: 10 µg/min)', value: adultAdrenalinaPompaMaxDosage, unit: 'mcg/min', max: null }
+            ]
+          : [
+              { label: 'NZK', value: pedsAdrenalinaNzkDosage * weight, unit: 'µg', max: pedsAdrenalinaNzkDosageMAX },
+              { label: 'Anafilaksja/Astma', value: pedsAdrenalinaAstmaDosage * weight, unit: 'µg', max: pedsAdrenalinaAstmaDosageMAX },
+              { label: 'Wlew (min: 0,05 µg/kg)', value: pedsAdrenalinaPompaMinDosage * weight, unit: 'mcg/min', max: null },
+              { label: 'Wlew (max: 1 µg/kg)', value: pedsAdrenalinaPompaMaxDosage * weight, unit: 'mcg/min', max: null }
+            ]
       },
       {
         name: 'Amiodaron (5 mg/kg)',
@@ -1770,11 +1946,47 @@ function renderPedsFull() {
         doses: [
           { label: 'Dawka', value: pedsWodoroweglanSoduDosage * weight, unit: 'mEq', max: pedsWodoroweglanSoduDosageMAX }
         ]
+      },
+      {
+        name: isAdult ? 'Ketonal (100-200 mg)' : 'Ketonal (tylko ≥15 r.ż.)',
+        minAge: 15,
+        doses: age >=15
+          ? [
+              { label: 'Dawka', value: 150, unit: 'mg', minValue: 100, maxValue: 200 }
+            ]
+          : [
+              { label: 'Info', value: 'Nie wolno < 15 r.ż.', unit: '', max: null }
+            ]
+      },
+      {
+        name: isAdult ? 'Urapidil (10-50 mg)' : 'Urapidil (tylko ≥18 r.ż.)',
+        minAge: 18,
+        doses: age >=18
+          ? [
+              { label: 'Dawka', value: 30, unit: 'mg', minValue: 10, maxValue: 50 }
+            ]
+          : [
+              { label: 'Info', value: 'Nie zaleca się < 18 r.ż.', unit: '', max: null }
+            ]
       }
     ];
 
     let html = '';
-    drugs.forEach(drug => {
+    if (isAdult) {
+      html += `
+        <div class="col-span-full glass p-3.5 rounded-2xl border border-red-500/50 bg-red-500/10 mb-4">
+          <div class="flex items-center gap-2">
+            <div class="text-red-400 text-lg">⚡</div>
+            <div class="font-bold text-red-400">Dawki dla dorosłych</div>
+          </div>
+        </div>
+      `;
+    }
+    const filteredDrugs = drugs.filter(drug => {
+      const drugMinAge = drug.minAge || 0;
+      return age >= drugMinAge;
+    });
+    filteredDrugs.forEach(drug => {
       html += `
         <div class="glass p-3.5 rounded-2xl border border-[#2a2e35]">
           <div class="flex items-center gap-2 mb-3">
@@ -1785,6 +1997,16 @@ function renderPedsFull() {
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
             ${drug.doses.map(dose => {
+              if (dose.label === 'Info') {
+                return `
+                  <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35] col-span-full">
+                    <div class="text-lg font-bold text-amber-400">
+                      ${dose.value}
+                    </div>
+                  </div>
+                `;
+              }
+
               let val = dose.value;
               let isMaxed = false;
               
@@ -1803,7 +2025,7 @@ function renderPedsFull() {
                 <div class="bg-[#111317] p-2.5 rounded-xl border border-[#2a2e35]">
                   <div class="text-[11px] text-white/60 uppercase tracking-wider font-semibold mb-1">${dose.label}</div>
                   <div class="text-lg font-bold text-emerald-400">
-                    ${formatNumber(val)} ${dose.unit}
+                    ${dose.minValue !== undefined ? `${formatNumber(dose.minValue)}-${formatNumber(dose.maxValue)}` : formatNumber(val)} ${dose.unit}
                     ${badge}
                   </div>
                 </div>
