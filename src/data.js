@@ -1381,6 +1381,142 @@ const ALSData = [
         ]
       }
     ]
+  },
+  {
+    id: 'udar_mozgu',
+    title: 'Udar mózgu',
+    emoji: "🧠",
+    subtitle: 'Postępowanie przy udarze mózgu NIEDOKRWIENNYM',
+    sections: [
+      {
+        title: 'Co pierwsze przy pacjencie?',
+        bullets: [
+          'Oceń pacjenta wg. schematu ABCDE',
+          'Rozważ tlenoterapię gdy SpO2 < 94% (UWAGA: miareczkuj tlen, nie podawaj go zbyt dużo)',
+          'Ocena neurologiczna FAST',
+          'Zbadaj pacjenta neurologicznie',
+          'Obowiązkowo wyklucz: hipoglikemie, zaburzenia elektrolitowe',
+        ]
+      },
+      {
+          title: 'Okno czasowe (Tromboliza)',
+          bullets: [
+            '4.5h - maksymalny czas od wystąpienia objawów (lub od momentu, gdy pacjent był widziany zdrowy)',
+            'Priorytet transportowy - pacjent wymaga natcyhmiastowego transportu do najbliższego oddziału neurologii z pododdziałem udarowym',
+            'Powiadom szpital o pacjencie, który znajduje się w "oknie udarowym"',
+          ]
+        },
+        {
+          title: 'Kontrola ciśnienia tętniczego (BP)',
+          bullets: [
+            'Nie obniżaj rutynowo ciśnienia, mózg potrzebuje wyższego ciśnienia perfuzyjnego, aby dotlenić obszar niedokrwienia',
+            'Interwencja farmakologiczna - obniżaj BP gdy SBP > 220 mmHg lub DBP > 120 mmHg, LUB jeśli współistnieje inne ostre zagrożenie',
+            'Leki - Urapidyl, miareczkuj, nie zbijaj BP gwałtownie',
+            'Pamiętaj o poinformowaniu personelu przy przekazaniu pacjenta, że farmakologicznie obniżaliście BP'
+          ]
+        },
+        {
+          title: 'Transport pacjenta',
+          bullets: [
+            'Ułóż pacjenta na wznak z uniesionym wezgłowiem pod kątem 15-30 stopni (zapobiega wzrostem ICP)',
+            'Uważaj na wymioty pacjenta, mogą współistnieć z udarem mózgu',
+            'Załóż duży dostęp dożylny na ZDROWĄ kończynę',
+            'Monitoruj: EKG, NiBP, SpO2'
+          ]
+        }
+    ]
+  },
+  {
+    id: 'anafilaksja',
+    title: 'Anafilaksja',
+    emoji: "💉",
+    subtitle: 'Postępowanie przy anafilaksji',
+    sections: [
+      {
+        title: 'Co pierwsze przy pacjencie?',
+        bullets: [
+          'Oceń pacjenta wg. schematu ABCDE',
+          'Zwróć uwagę na całokształt pacjenta, rozwój objawów ze strony dróg oddechowych (obrzęk, świst krtaniowy, duszność, skurcz oskrzeli)',
+          'Zbierz parametry życiowe pacjenta, oceń czy pacjent jest we wstrząsie anafilaktycznym'
+        ]
+      },
+      {
+        title: 'Leczenie anafilaksji',
+        bullets: [
+          'Lekiem pierwszego rzutu w anafilaksji jest adrenalina',
+          'Zawsze podawaj ją i.m w przednio-boczną powierzchnię 1/3 środkowej części uda',
+          'Dawka dla dorosłych i dzieci > 12 lat: 0.5 mg i.m',
+          'Dawka dla dzieci: 0.01 mg/kg m.c.',
+          'Wykonaj duży dostęp dożylny: podawaj płyny aby wypełnić łożysko (konieczne może być "zalanie" dużej ilości płynów)',
+          'Nie stosuj rutynowo GKS oraz klemastyny, nie powinny one opóźniać podaży adrenaliny'
+        ]
+      },
+      {
+        title: 'Leki drugiego rzutu i ułożenie',
+        bullets: [
+          'Ułóż pacjenta w pozycji przeciwwstrząsowej',
+          'Tlenoterapia: maska z rezerwuarem, przepływ 12-15l/min (jeżeli SpO2 tego wymaga)',
+          'Salbutamol: 2.5-5mg, jeżeli mimo podania adrenaliny pacjent ma problemy z oddychaniem',
+          'Sterydy: hydrokortyzon 250 mg(można do 500mg jeżeli stan nagły) i.v / dzieci: 4-8 mg/kg m.c',
+          'Klemastyna: 2 mg i.v / dzieci i.v przeciwwskazane',
+        ]
+      },
+      {
+        title: 'Transport i stabilizacja',
+        bullets: [
+          'Po stabilizacji stanu oceń wg. schematu ABCDE',
+          'Zbierz ponownie parametry życiowe',
+          'Wykonaj 12-odpr. EKG',
+          'Nie opóźniaj transportu, ponieważ adrenalina może przestać działać'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'zaostrzenie_astmy',
+    title: 'Zaostrzenie astmy',
+    emoji: '🫁',
+    subtitle: 'Postępowanie przy zaostrzeniu astmy',
+    sections: [
+{
+    title: 'Ocena pacjenta i rozpoznanie',
+    bullets: [
+      'Oceń pacjenta wg schematu ABCDE (zwróć uwagę na tor oddychania i użycie dodatkowych mięśni oddechowych)',
+      'Osłuchaj klatkę piersiową: szukaj świstów, furczeń i wydłużonego wydechu',
+      'UWAGA: "Cicha klatka piersiowa" (brak słyszalnych szmerów) to objaw krytycznego skurczu oskrzeli i skrajnego wyczerpania!',
+      'Zbierz wywiad (SAMPLE): zapytaj o dotychczasowe leczenie, czy pacjent przyjmował już dzisiaj swoje leki wziewne',
+      'Oceń parametry życiowe: SpO2, częstość oddechów (tachypnoe), HR (tachykardia to częsty objaw przy astmie i po użyciu beta-mimetyków)'
+    ]
+  },
+  {
+    title: 'Leczenie pierwszego rzutu',
+    bullets: [
+      'Ułóż pacjenta w pozycji siedzącej lub półsiedzącej z podparciem ramion (ułatwia to pracę mięśni oddechowych)',
+      'Tlenoterapia: w astmie docelowe SpO2 wynosi 94-98% (nie mylić z POChP, gdzie celujemy w 88-92%)',
+      'Salbutamol: 2.5 - 5 mg w nebulizacji (w ciężkich zaostrzeniach można powtarzać dawki co 15-20 min)',
+      'Glikokortykosteroidy: Hydrokortyzon 250 mg i.v. lub Deksametazon 4-8 mg i.v. (działają z opóźnieniem, ale hamują kaskadę zapalną)',
+      'Glikokortykosteroidy wziewne: Budesonide 1-2 mg w nebulizacji (pamiętaj o tym, że pacjent powinien przepłukać usta po nebulizacji)'
+    ]
+  },
+  {
+    title: 'Astma zagrażająca życiu (leczenie ratunkowe)',
+    bullets: [
+      'Wykonaj duży dostęp dożylny: pacjenci w ciężkim ataku astmy często są odwodnieni (hiperwentylacja), podaj płyny krystaloidowe',
+      'Siarczan magnezu: 1.2 - 2 g w powolnym wlewie i.v. przez 20 minut (w ciężkim skurczu niereagującym na nebulizację)',
+      'Adrenalina: rozważ podanie 0.3 mg i.m. w przypadku astmy bezpośrednio zagrażającej życiu (np. "cicha klatka", spadek świadomości)',
+      'Bądź przygotowany na wyczerpanie oddechowe pacjenta – miej na uwadze konieczność przejęcia oddechu za pacjenta'
+    ]
+  },
+  {
+    title: 'Transport i monitorowanie',
+    bullets: [
+      'Stale uspokajaj pacjenta (panika znacznie nasila duszność i zapotrzebowanie na tlen)',
+      'Monitoruj ciągle parametry życiowe, zwłaszcza SpO2, tętno i świadomość',
+      'Po stabilizacji wykonaj 12-odpr. EKG (wykluczenie przyczyn kardiologicznych duszności)',
+      'W przypadku narastającej hiperkapnii (senność, zaburzenia świadomości) – pilny transport i uprzedzenie SOR'
+    ]
+  }
+    ]
   }
 ]
 
@@ -1849,6 +1985,7 @@ const protocols = [
       }
     ]
   }
+
 ];
 
 // Objawy
