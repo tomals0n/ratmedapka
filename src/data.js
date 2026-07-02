@@ -830,7 +830,8 @@ const ALSData = [
         title: 'RKO',
         bullets: [
           'Uciski klatki piersiowej (100-120/min)',
-          'Rozważ intubacje / założenie alternatywy',
+          'W celu zaopatrzenia dróg oddechowych, zastosuj od razu alternatywę',
+          'Jeżeli czujesz się pewnie, przygotuj sprzęt do intubacji, pamiętaj o protokole VORTEX',
           'Przy intubacji/alternatywa 1 oddech co 6s',
           'Identyfikuj i lecz odwracalne przyczyny NZK(4H 4T)',
           'Minimalizuj przerwy w uciskach',
@@ -847,15 +848,27 @@ const ALSData = [
         ]
       },
       {
-        title: 'Farmakoterapia',
+        title: 'Rytmy do defibrylacji',
         bullets: [
-          'Adrenalina 1mg co 3-5 min (w VF/pVT po 3. defibrylacji, asystolia/PEA jak najszybciej)',
-          'Amiodaron 300mg (po 3. defibrylacji)',
-          'Amiodaron 150mg (po 5. defibrylacji)',
-          'Lignokaina 100mg (po 3. defibrylacji) alternatywa dla Amiodaron',
-          'Lignokaina 50mg (po 5. defibrylacji) alternatywa dla Amiodaron',
-          'Wodorowęglan Sodu (1-2 ml/kg) - NZK w zatruciu: TLPD, leki p.padaczkowe, neuroleptyki',
-          'Płyny przy NZK w przebiegu hipowolemii'
+          'Jak najszybciej dostarcz wyładowanie',
+          'Minimalizuj przerwy w uciśnięć, max. 5 sekund na wyładowanie a na ocene rytmu do 10 sekund',
+          'W przypadku pVT sprawdzaj co ocenę rytmu tętno, tętno może wrócić bez konwersji rytmu',
+          'Po 3 defibrylacji: 300 mg amiodaronu(ew. 100 mg lignokainy - nie mieszaj tych leków!) rozc. w 5% glukozie, 1 mg adrenaliny rozc. w 0.9% NaCl',
+          'Dalej adrenalinę podawaj co 4 minuty (2 oceny rytmu)',
+          'Po 5 defibrylacji: 150 mg amiodaronu(ew. 50 mg lignokainy - nie mieszaj tych leków!) rozc. w 5% glukozie',
+          'Lecz odwracalne przyczyny zatrzymania krążenia',
+        ]
+      },
+      {
+        title: 'Rytmy nie do defibrylacji',
+        bullets: [
+          'Jak najszybciej uzyskaj dostęp dożylny / doszpikowy',
+          'Wykonaj protokół potwierdzenia asystolii (zwiększ cechę, sprawdź elektrody)',
+          'W przypadku PEA - sprawdzaj co ocenę rytmu tętno',
+          'Po uzyskaniu dostępu dożylnego / doszpikowego podaj 1 mg adrenaliny rozc. w 0.9% NaCl',
+          'Następne dawki adrenaliny podawaj co 4 minuty (2 oceny rytmu)',
+          'Lecz odwracalne przyczyny zatrzymania krążenia',
+
         ]
       },
       {
@@ -878,10 +891,11 @@ const ALSData = [
           'Docelowe SpO2: 94-98%',
           'Docelowe EtCO2: 35-45 mmHg',
           '12-odpr. EKG',
-          'SBP > 100 mmHg',
+          'SBP > 100 mmHg (MAP 60-65)',
           'Płyny - przywróć normowolemię',
           'Rozważ podłączenie Noradrenaliny jeżeli hipotensja',
-          'Kontroluj temperaturę ciała - 32-36 *C'
+          'Temperatura ciała < 37.5 *C',
+          'Pacjentów z łagodną hipotermią nie należy aktywnie ogrzewać aby osiągnąć normotermie'
         ]
       }
 
@@ -896,6 +910,7 @@ const ALSData = [
       {
         title: 'Postępowanie ogólne',
         bullets: [
+          'Zbadaj pacjenta wg. ABCDE',
           'EKG 12-odprowadzeniowe (teletransmisja z hemodynamiką)',
           'Monitorowanie (EKG, SpO2, NiBP)',
           'Pomiar NiBP z obu kończyn',
@@ -907,12 +922,12 @@ const ALSData = [
       {
         title: 'Leki',
         bullets: [
-          'Morfina (2-4 mg i.v.) - przy silnym bólu',
+          'Morfina dawki frakcjonowane po 2 mg (rozcieńcz 1 ml morfiny do 10 ml NaCl 0.9% w celu uzyskania roztworu 1mg/ml)',
           'Tlen (jeśli SpO2 < 90%)',
-          'ASA 300mg p.o (rozgryźć)',
+          'ASA 300mg p.o (rozgryźć) (wyklucz aktywne krwawienia)',
           'Po teletransmisji: Klopidogrel 600mg | Tikagrelor 180 mg | Prasugrel 60mg -> p.o',
-          'Heparyna 5000 j.m lub 80 j.m/kg mc.',
-          'Rozważ podanie Nitrogliceryny 0.4mg - p.wskazane w zawale prawej komory!',
+          'Heparyna 5000 j.m lub 80 j.m/kg mc. (wyklucz aktywne krwawienia)',
+          'Rozważ podanie Nitrogliceryny 0.4mg - p.wskazane w zawale prawej komory, zawale ściany dolnej!',
           'Jeżeli hipotensja rozważ: Fentanyl 50-200 mcg i.v',       
         ]
       },
@@ -936,10 +951,9 @@ const ALSData = [
       {
         title: 'Farmakoterapia',
         bullets: [
-          'Nitrogliceryna (aerozol 0,4 mg co 5 min)',
+          'Nitrogliceryna (aerozol 0,4 mg co 5 min) (uważaj na niskie ciśnienie!)',
           'Furosemid (20-80 mg i.v.) jeżeli pacjent bierze Furosemid to dawka zwiększona 2x',
-          'Morfina (1-2 mg i.v.) - redukcja lęku i preloadu',
-          'Rozważ Dexaven (4-8 mg i.v.)',
+          'Morfina dawki frakcjonowane po 2 mg (rozcieńcz 1 ml morfiny do 10 ml NaCl 0.9% w celu uzyskania roztworu 1mg/ml, uważaj na niskie ciśnienie!)',
           'Przy znacznej hipotensji rozważ włączenie Noradrenaliny'
         ]
       },
@@ -1009,10 +1023,18 @@ const ALSData = [
         bullets: [
           'A - drogi oddechowe - niedrożność? Ręczne udrożnienie, odessanie, przyrządowe udrożnienie d.o',
           'B - oddech - ocena RTWO',
-          'C - krążenie - 5P, HR, perfuzja obwodowa, objętość tętna, CTK, preload',
+          'C - krążenie - 5P, HR, perfuzja obwodowa, objętość tętna, CTK, preload, policz MAP',
           'D - ocena neurologiczna - ACVPU, pGCS, napięcie mięśniowe, źrenice, glikemia',
           'E - ekspozycja - SAMPLE, gorączka, zmiany skórne, urazy',
           'F - rodzina - Rodzic zawsze wie najlepiej czy jego dziecko zachowuje się inaczej niż zwykle'
+        ]
+      },
+      {
+        title: '3. Wywiad SAMPLE/AMPLE',
+        bullets: [
+          'Jeżeli dziecko jest w stanie rozmawiać/potrafi mówić to przeprowadź z nim krótki wywiad',
+          'Najczęściej wywiad będziesz przeprowadzać z rodzicem',
+          'Dopytaj o wszystkie szczegóły, jak w literce F - rodzic zawsze wie czy jest coś "nie tak" z ich dzieckiem'
         ]
       }
     ]
@@ -1207,7 +1229,8 @@ const ALSData = [
         title: 'Medyczne czynności ratunkowe w przypadku częstoskurczów komorowych',
         bullets: [
           'Pacjent stabilny: wykonaj dostęp dożylny, podaj 300 mg Amiodaronu w 250 ml 5% glukozy w ciągu 20-60 minut (w przypadku dzieci 5 mg/kg mc)',
-          'Pacjent niestabilny: wykonaj dostęp dożylny, podaj 2-2.5 mg Midazolamu (ew. dodaj 50-200 mcg Fentanylu) oraz wykonaj kardiowersje elektryczną',
+          'Pacjent niestabilny: wykonaj dostęp dożylny, podaj 2.5-5 mg Midazolamu + dodaj 50-200 mcg Fentanylu oraz wykonaj kardiowersje elektryczną',
+          'Przed kardiowersją pamiętaj o natlenowaniu pacjenta!',
           'Jeżeli kardiowersja nie przywróciła rytmu zatokowego, podaj 300 mg Amiodaronu w 250 ml 5% glukozy w ciągu 10-20 minut i wykonaj kolejną kardiowersję'
         ]
       },
@@ -1270,6 +1293,7 @@ const ALSData = [
           'Ustaw rytm z którym ma bić serce (zwykle 60-80/min)',
           'Ustaw natężenie (mA) -> zwiększaj stopniowo aż do przechwycenia rytmu, jeżeli przechwyci - zwiększ o 10%',
           'Pamiętaj o sedacji/analgosedacji pacjenta - stymulacja przezskórna jest bolesna',
+          'Gdy transport do szpitala jest dłuższy pamiętaj o powtarzaniu leków!',
           'Sprawdź tętno na tętnicy udowej aby potwierdzić mechaniczne przejęcie rytmu a nie tylko elektryczne'
         ]
       }
@@ -1339,9 +1363,9 @@ const ALSData = [
         title: 'Wentylacja mechaniczna po ROSC',
         bullets: [
           'Analgosedacja pacjenta gdy "kłóci się" z respiratorem: Fentanyl: 50-200 mcg i/lub Midazolam: miareczkuj 2-2.5mg',
-          'FiO2: stopniowo zmniejszamy do wartości 0.5 (dalej dążymy do SpO2 94-98%!)',
+          'FiO2: stopniowo zmniejszamy do wartości 0.2 (dalej dążymy do SpO2 94-98%!)',
           'PEEP: 5 cm H2O',
-          'f: 10-12/min, miareczkuj pod wynik EtCO2 (cel: 35-45 mmHg)',
+          'f: 12/min, miareczkuj pod wynik EtCO2 (cel: 35-45 mmHg)',
           'Trigger: włączony (zapobieganie walki z respiratorem, gdy wraca własny napęd oddechowy)',
           'Pmax: 30-35 cm H2O'
         ]
@@ -1392,8 +1416,9 @@ const ALSData = [
         title: 'Co pierwsze przy pacjencie?',
         bullets: [
           'Oceń pacjenta wg. schematu ABCDE',
+          'Wywiad SAMPLE, spytaj o leki przeciwkrzepliwe jak tak - to jakie?',
           'Rozważ tlenoterapię gdy SpO2 < 94% (UWAGA: miareczkuj tlen, nie podawaj go zbyt dużo)',
-          'Ocena neurologiczna FAST',
+          'Ocena neurologiczna BE-FAST',
           'Zbadaj pacjenta neurologicznie',
           'Obowiązkowo wyklucz: hipoglikemie, zaburzenia elektrolitowe',
         ]
@@ -1421,6 +1446,7 @@ const ALSData = [
             'Ułóż pacjenta na wznak z uniesionym wezgłowiem pod kątem 15-30 stopni (zapobiega wzrostem ICP)',
             'Uważaj na wymioty pacjenta, mogą współistnieć z udarem mózgu',
             'Załóż duży dostęp dożylny na ZDROWĄ kończynę',
+            'Podaj 500 ml NaCl/PWE w celu utrzymania drożności wkłucia (POWOLI)',
             'Monitoruj: EKG, NiBP, SpO2'
           ]
         }
@@ -1445,7 +1471,7 @@ const ALSData = [
         bullets: [
           'Lekiem pierwszego rzutu w anafilaksji jest adrenalina',
           'Zawsze podawaj ją i.m w przednio-boczną powierzchnię 1/3 środkowej części uda',
-          'Dawka dla dorosłych i dzieci > 12 lat: 0.5 mg i.m',
+          'Dawka dla dorosłych i dzieci > 12 lat: 0.5 mg i.m (dawke powtarzaj jeśli potrzeba co 5 min)',
           'Dawka dla dzieci: 0.01 mg/kg m.c.',
           'Wykonaj duży dostęp dożylny: podawaj płyny aby wypełnić łożysko (konieczne może być "zalanie" dużej ilości płynów)',
           'Nie stosuj rutynowo GKS oraz klemastyny, nie powinny one opóźniać podaży adrenaliny'
@@ -1456,8 +1482,8 @@ const ALSData = [
         bullets: [
           'Ułóż pacjenta w pozycji przeciwwstrząsowej',
           'Tlenoterapia: maska z rezerwuarem, przepływ 12-15l/min (jeżeli SpO2 tego wymaga)',
-          'Salbutamol: 2.5-5mg, jeżeli mimo podania adrenaliny pacjent ma problemy z oddychaniem',
-          'Sterydy: hydrokortyzon 250 mg(można do 500mg jeżeli stan nagły) i.v / dzieci: 4-8 mg/kg m.c',
+          'Salbutamol: 5mg, jeżeli mimo podania adrenaliny pacjent ma problemy z oddychaniem',
+          'Sterydy: hydrokortyzon 200 mg(można do 500mg jeżeli stan nagły) i.v / dzieci: 4-8 mg/kg m.c',
           'Klemastyna: 2 mg i.v / dzieci i.v przeciwwskazane',
         ]
       },
@@ -1493,8 +1519,8 @@ const ALSData = [
     bullets: [
       'Ułóż pacjenta w pozycji siedzącej lub półsiedzącej z podparciem ramion (ułatwia to pracę mięśni oddechowych)',
       'Tlenoterapia: w astmie docelowe SpO2 wynosi 94-98% (nie mylić z POChP, gdzie celujemy w 88-92%)',
-      'Salbutamol: 2.5 - 5 mg w nebulizacji (w ciężkich zaostrzeniach można powtarzać dawki co 15-20 min)',
-      'Glikokortykosteroidy: Hydrokortyzon 250 mg i.v. lub Deksametazon 4-8 mg i.v. (działają z opóźnieniem, ale hamują kaskadę zapalną)',
+      'Salbutamol: 5 mg w nebulizacji (w ciężkich zaostrzeniach można powtarzać dawki co 15-20 min)',
+      'Glikokortykosteroidy: Hydrokortyzon 200 mg i.v. lub Deksametazon 4-8 mg i.v. (działają z opóźnieniem, ale hamują kaskadę zapalną)',
       'Glikokortykosteroidy wziewne: Budesonide 1-2 mg w nebulizacji (pamiętaj o tym, że pacjent powinien przepłukać usta po nebulizacji)'
     ]
   },
